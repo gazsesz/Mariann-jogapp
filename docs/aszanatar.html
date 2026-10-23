@@ -82,6 +82,18 @@ section.cat { padding-top: 40px; scroll-margin-top: 120px; }
 .names .en { font-size: 12.5px; color: var(--muted); }
 .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 .tags span { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 1px 7px; }
+.legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 8px; margin-top: 22px; }
+.legend button { text-align: left; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 12px 1fr; gap: 2px 8px; align-items: center; min-width: 0; }
+.legend button[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.legend button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.legend b { font-size: 13px; }
+.legend small { grid-column: 2; font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+.cdot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; box-shadow: 0 0 0 1.5px var(--surface); }
+.chak { font-size: 13.5px; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.chak .row1 { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.chak .c { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; }
+.chak .c.sec { font-weight: 400; color: var(--muted); }
+.chak .why { color: var(--muted); font-size: 13px; }
 .lbl { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
 ol.how { margin: 0; padding-left: 20px; font-size: 14px; display: flex; flex-direction: column; gap: 3px; }
 ol.how li::marker { color: var(--accent); font-weight: 600; }
@@ -114,8 +126,9 @@ footer p { max-width: 75ch; margin: 0 0 8px; }
 <header class="hero wrap">
   <div class="eyebrow">Mariann jógapp · ászana-gyűjtemény</div>
   <h1>Ászana<em>tár</em></h1>
-  <p class="lede">A hatha, vinyasa, Ashtanga, Iyengar és yin jóga pózai és fontosabb változataik kategóriák szerint: szanszkrit és magyar névvel, sematikus ábrával, lépésről lépésre leírt kivitelezéssel, a jótékony hatásokkal és az óvatossági szempontokkal.</p>
+  <p class="lede">A hatha, vinyasa, Ashtanga, Iyengar és yin jóga pózai és fontosabb változataik kategóriák szerint: szanszkrit és magyar névvel, sematikus ábrával, lépésről lépésre leírt kivitelezéssel, a jótékony hatásokkal, a csakrákkal és az óvatossági szempontokkal.</p>
   <div class="stats" id="stats"></div>
+  <div class="legend" id="legend" aria-label="Csakrák"></div>
 </header>
 
 <div class="bar">
@@ -132,6 +145,7 @@ footer p { max-width: 75ch; margin: 0 0 8px; }
         <option value="3">Haladó</option>
       </select>
       <select id="tr" aria-label="Irányzat"></select>
+      <select id="ch" aria-label="Csakra"></select>
     </div>
     <div class="chips" id="chips" role="toolbar" aria-label="Kategóriák"></div>
   </div>
@@ -141,6 +155,7 @@ footer p { max-width: 75ch; margin: 0 0 8px; }
 
 <footer class="wrap">
   <p><b>Az ábrákról:</b> a figurák sematikus, oldal- vagy szemből nézeti vázlatok (a halványabb végtag a távolabbi oldal, a pont a tekintet iránya). A pontos igazításhoz érdemes tanárral vagy tükör előtt gyakorolni.</p>
+  <p><b>A csakrákról:</b> a hozzárendelések a jóga energetikai hagyományán alapuló tájékoztató jellegű összefoglalók. Iskolánként eltérhetnek, és nem orvosi állítások. Az első a fő hatás, a többi másodlagos.</p>
   <p><b>Fontos:</b> ez a gyűjtemény tájékoztató jellegű, nem helyettesíti az orvosi vagy gyógytornászi tanácsot. Sérülés, krónikus betegség vagy várandósság esetén egyeztess szakemberrel, és soha ne erőltess fájdalmas mozdulatot.</p>
 </footer>
 
@@ -1258,6 +1273,95 @@ POSES.push(
 
 POSES.forEach(p => { p.tr = p.tr || []; if (p.c === "yin" && !p.tr.includes("yin")) p.tr.push("yin"); });
 
+// Chakra associations. Digits = chakra numbers, first is primary, the rest secondary.
+const CHAKRAS = [
+  [1, "Mūlādhāra", "Gyökércsakra", "gerinc töve, gát", "stabilitás, biztonság, földeltség", "#c8382e"],
+  [2, "Svādhiṣṭhāna", "Szakrális csakra", "alhas, medence", "kreativitás, érzelmek, áramlás", "#e0782a"],
+  [3, "Maṇipūra", "Napfonatcsakra", "köldök, gyomortáj", "akaraterő, önbizalom, belső tűz", "#d9a714"],
+  [4, "Anāhata", "Szívcsakra", "mellkas közepe", "szeretet, együttérzés, nyitottság", "#3f9a55"],
+  [5, "Viśuddha", "Torokcsakra", "torok, nyak", "kifejezés, kommunikáció, igazság", "#2f8fc4"],
+  [6, "Ājñā", "Harmadik szem", "szemöldökök között", "intuíció, fókusz, belátás", "#4b58b8"],
+  [7, "Sahasrāra", "Koronacsakra", "fejtető", "tudatosság, egység, elcsendesedés", "#8a5cc4"]
+];
+
+const CHAKRA_MAP = {
+  // álló
+  "Tāḍāsana":"17","Ūrdhva Hastāsana":"47","Utkaṭāsana":"13","Vīrabhadrāsana I":"134","Vīrabhadrāsana II":"13",
+  "Viparīta Vīrabhadrāsana":"42","Utthita Trikoṇāsana":"124","Parivṛtta Trikoṇāsana":"31","Utthita Pārśvakoṇāsana":"12",
+  "Pārśvottānāsana":"16","Aṣṭa Candrāsana":"134","Utkaṭa Koṇāsana":"21","Utthita Tāḍāsana":"14","Pārśva Ūrdhva Hastāsana":"43",
+  "Praṇāmāsana":"47","Baddha Vīrabhadrāsana":"64","Utthita Hasta Pādāsana":"14","Utthita Aśva Sañcalanāsana":"12",
+  // egyensúly
+  "Vṛkṣāsana":"167","Garuḍāsana":"62","Naṭarājāsana":"41","Utthita Hasta Pādāṅguṣṭhāsana":"16","Ardha Candrāsana":"26",
+  "Parivṛtta Ardha Candrāsana":"36","Vīrabhadrāsana III":"36","Eka Pāda Utkaṭāsana":"21","Ardha Baddha Padmottānāsana":"62",
+  "Ūrdhva Prasārita Eka Pādāsana":"61","Daṇḍayamana Jānuśirāsana":"36","Svarga Dvijāsana":"26","Ardha Candra Cāpāsana":"42",
+  "Pādāṅguṣṭhāsana (lábujj-egyensúly)":"61",
+  // előrehajlások
+  "Uttānāsana":"61","Ardha Uttānāsana":"31","Pādāṅguṣṭhāsana":"61","Pādahastāsana":"61","Prasārita Pādottānāsana":"67",
+  "Paścimottānāsana":"62","Jānu Śīrṣāsana":"62","Upaviṣṭha Koṇāsana":"26","Kūrmāsana":"62","Triaṅg Mukhaikapāda Paścimottānāsana":"62",
+  "Ardha Baddha Padma Paścimottānāsana":"32","Marīcyāsana I":"36","Ubhaya Pādāṅguṣṭhāsana":"36","Ūrdhva Mukha Paścimottānāsana":"36",
+  "Śaśāṅkāsana (Sasangasana)":"75","Rongybaba (Uttānāsana változat)":"61",
+  // hátrahajlások
+  "Bhujaṅgāsana":"43","Salamba Bhujaṅgāsana":"42","Ūrdhva Mukha Śvānāsana":"43","Śalabhāsana":"31","Dhanurāsana":"43",
+  "Uṣṭrāsana":"45","Setu Bandha Sarvāṅgāsana":"451","Ūrdhva Dhanurāsana":"437","Matsyāsana":"547","Camatkārāsana":"42",
+  "Pūrvottānāsana":"45","Ardha Pūrvottānāsana":"43","Bitilāsana":"42","Marjaryāsana":"32","Anāhatāsana":"45","Supta Vīrāsana":"24",
+  "Eka Pāda Rājakapotāsana":"425","Ardha Cakrāsana":"45","Ardha Uṣṭrāsana":"45","Ardha Bhekāsana":"24","Bhekāsana":"24",
+  "Kapotāsana":"457","Eka Pāda Setu Bandha Sarvāṅgāsana":"413","Eka Pāda Ūrdhva Dhanurāsana":"43","Dvi Pāda Viparīta Daṇḍāsana":"457",
+  "Laghu Vajrāsana":"451","Eka Pāda Rājakapotāsana (hableány)":"42",
+  // csavarások, oldalhajlítások
+  "Parivṛtta Pārśvakoṇāsana":"31","Ardha Matsyendrāsana":"34","Marīcyāsana III":"34","Bharadvājāsana":"32","Parivṛtta Utkaṭāsana":"31",
+  "Parivṛtta Añjaneyāsana":"32","Supta Matsyendrāsana":"32","Parivṛtta Sukhāsana":"34","Jaṭhara Parivartanāsana":"32",
+  "Parivṛtta Jānu Śīrṣāsana":"43","Parighāsana":"43","Pārśva Sukhāsana":"43","Pāśāsana":"31","Vakrāsana":"34","Kaṭi Cakrāsana":"32",
+  "Parivṛtta Prasārita Pādottānāsana":"36","Pārśva Bālāsana":"45",
+  // csípőnyitók
+  "Baddha Koṇāsana":"21","Kapotāsana (előkészítő)":"21","Añjaneyāsana":"214","Mālāsana":"12","Gomukhāsana":"24","Agnistambhāsana":"21",
+  "Skandāsana":"21","Utthan Pṛṣṭhāsana":"21","Maṇḍūkāsana":"21","Ānanda Bālāsana":"21","Supta Pādāṅguṣṭhāsana":"12","Hanumānāsana":"214",
+  "Ardha Hanumānāsana":"12","Sūcirandhrāsana":"21","Samakoṇāsana":"21","Eka Pāda Śīrṣāsana":"26","Yoganidrāsana":"267",
+  "Anantāsana":"23","Utthan Pṛṣṭhāsana (repülő gyík)":"24","Supta Kapotāsana":"21",
+  // ülő
+  "Daṇḍāsana":"13","Sukhāsana":"174","Siddhāsana":"716","Ardha Padmāsana":"712","Padmāsana":"716","Vajrāsana":"13","Vīrāsana":"16",
+  "Siṁhāsana":"56","Krauñcāsana":"21","Svastikāsana":"71","Baddha Padmāsana":"74","Yoga Mudrā":"63","Parvatāsana":"74",
+  "Mahā Mudrā":"615","Upaviṣṭha Koṇāsana (ülő terpesz)":"21",
+  // karegyensúlyok
+  "Bakāsana":"36","Pārśva Bakāsana":"36","Caturaṅga Daṇḍāsana":"34","Vasiṣṭhāsana":"35","Ṭiṭṭibhāsana":"32","Mayūrāsana":"36",
+  "Aṣṭāvakrāsana":"36","Eka Pāda Kauṇḍinyāsana":"36","Bhujapīḍāsana":"32","Lolāsana":"36","Tolāsana":"37","Eka Pāda Gālavāsana":"32",
+  "Kākāsana":"36","Eka Pāda Bakāsana":"36","Kukkuṭāsana":"37","Utthita Vasiṣṭhāsana":"36","Dvi Pāda Kauṇḍinyāsana":"36",
+  "Viśvāmitrāsana":"324","Haṁsāsana":"34","Aṣṭāṅga Namaskāra":"43","Eka Hasta Bhujāsana":"32",
+  // törzserősítők
+  "Phalakāsana":"31","Makara Adho Mukha Śvānāsana":"31","Nāvāsana":"32","Ardha Nāvāsana":"32","Ūrdhva Prasārita Pādāsana":"32",
+  "Bharmanāsana":"31","Daṇḍayamana Bharmanāsana":"36","Uttānapādāsana":"32","Viparīta Śalabhāsana":"34","Alkaros oldalsó deszka":"35",
+  "Cakki Calanāsana":"32",
+  // fordított
+  "Adho Mukha Śvānāsana":"614","Ardha Pincha Mayūrāsana":"65","Sālamba Sarvāṅgāsana":"56","Halāsana":"56","Karṇapīḍāsana":"56",
+  "Sālamba Śīrṣāsana":"76","Sālamba Śīrṣāsana II":"76","Adho Mukha Vṛkṣāsana":"736","Pīñcha Mayūrāsana":"64","Vṛścikāsana":"746",
+  "Eka Pāda Adho Mukha Śvānāsana":"62","Ardha Śīrṣāsana":"76","Viparīta Karaṇī Mudrā":"57","Nirālamba Sarvāṅgāsana":"536",
+  "Eka Pāda Sarvāṅgāsana":"56","Supta Koṇāsana":"52",
+  // pihentető
+  "Bālāsana":"61","Śavāsana":"71","Makarāsana":"21","Apānāsana":"21","Pavanamuktāsana":"32","Supta Baddha Koṇāsana":"24",
+  "Viparīta Karaṇī":"57","Utthita Bālāsana":"64","Sālamba Bālāsana":"64","Sālamba Setu Bandha Sarvāṅgāsana":"45",
+  "Sālamba Matsyāsana":"45","Supta Sukhāsana":"24","Advāsana":"13","Matsya Krīḍāsana":"23",
+  // yin
+  "Pillangó (yin)":"21","Félpillangó (yin)":"21","Hernyó (yin)":"61","Sárkány (yin)":"21","Hattyú (yin)":"24","Alvó hattyú (yin)":"21",
+  "Cipőfűző (yin)":"21","Négyzet (yin)":"21","Nyereg (yin)":"23","Fóka (yin)":"43","Csiga (yin)":"56","Szitakötő (yin)":"21",
+  "Lábujjguggolás (yin)":"1","Bokanyújtás (yin)":"1","Banán (yin)":"43","Szarvas (yin)":"21"
+};
+
+// Why the pose's family works on its primary chakra
+const CHAKRA_WHY = {
+  1: "a lábak és a talaj erős kapcsolata, a stabil alap",
+  2: "a medence és a csípő megnyitása, az alhas felszabadítása",
+  3: "a has összenyomása, csavarása vagy a törzs izommunkája",
+  4: "a mellkas és a vállak tágítása, a szív előtti tér nyitása",
+  5: "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása",
+  6: "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly",
+  7: "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+};
+
+POSES.forEach(p => {
+  const m = CHAKRA_MAP[p.s];
+  if (!m) throw new Error("Missing chakra map: " + p.s);
+  p.ch = m.split("").map(Number);
+});
+
 // Stick-figure renderer: forward kinematics from joint angles, auto-grounded on the mat.
 const L = {torso: 28, neck: 9, head: 6.2, ua: 15, fa: 14, th: 21, sh: 21};
 const W = 140, H = 112, FLOOR = 102;
@@ -1333,13 +1437,15 @@ function figure(f) {
     CATS.map(([k, n]) => `<button class="chip" id="c-${k}" data-c="${k}" aria-pressed="false">${n.replace(/ ászanák| jóga pózok/, "")}<span>${counts[k] || 0}</span></button>`).join("");
 
   const TRN = Object.fromEntries(TRADITIONS);
+  const CHN = Object.fromEntries(CHAKRAS.map(c => [c[0], c]));
   const dots = n => `<i>${[1, 2, 3].map(i => `<b class="${i <= n ? "on" : ""}"></b>`).join("")}</i>`;
-  const card = p => `<article class="card" data-k="${esc(p.key)}" data-lv="${p.lv}" data-tr="${p.tr.join(" ")}">
+  const card = p => `<article class="card" data-k="${esc(p.key)}" data-lv="${p.lv}" data-tr="${p.tr.join(" ")}" data-ch="${p.ch.join(" ")}">
     <div class="fig">${p.svg}<span class="lvl">${dots(p.lv)}${LV[p.lv]}</span></div>
     <div class="body">
       <div class="names"><div class="sa">${esc(p.s)}</div><div class="hu">${esc(p.h)}</div><div class="en">${esc(p.e)}</div>${p.tr.length ? `<div class="tags">${p.tr.map(k => `<span>${TRN[k]}</span>`).join("")}</div>` : ""}</div>
       <div><div class="lbl">Kivitelezés</div><ol class="how">${p.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>
       <div><div class="lbl">Hatás</div><p class="ben">${esc(p.ben)}</p></div>
+      <div><div class="lbl">Csakrák</div><div class="chak"><div class="row1">${p.ch.map((n, i) => `<span class="c${i ? " sec" : ""}" title="${CHN[n][4]}"><i class="cdot" style="background:${CHN[n][5]}"></i>${CHN[n][2]}${i ? "" : " (elsődleges)"}</span>`).join("")}</div><div class="why">Miért: ${CHAKRA_WHY[p.ch[0]]}.</div></div></div>
       <p class="warn"><b>Figyelj:</b> ${esc(p.warn)}</p>
     </div></article>`;
 
@@ -1352,15 +1458,25 @@ function figure(f) {
 
   const q = document.getElementById("q"), lv = document.getElementById("lv"), tr = document.getElementById("tr");
   tr.innerHTML = `<option value="">Minden irányzat</option>` + TRADITIONS.map(([k, n]) => `<option value="${k}">${n} (${POSES.filter(p => p.tr.includes(k)).length})</option>`).join("");
+  const ch = document.getElementById("ch");
+  ch.innerHTML = `<option value="">Minden csakra</option>` + CHAKRAS.map(c => `<option value="${c[0]}">${c[0]}. ${c[2]} (${POSES.filter(p => p.ch.includes(c[0])).length})</option>`).join("") +
+    CHAKRAS.map(c => `<option value="p${c[0]}">${c[0]}. ${c[2]}, csak elsődleges (${POSES.filter(p => p.ch[0] === c[0]).length})</option>`).join("");
+  const legend = document.getElementById("legend");
+  legend.innerHTML = CHAKRAS.map(c => `<button type="button" data-n="${c[0]}" aria-pressed="false"><i class="cdot" style="background:${c[5]}"></i><b>${c[0]}. ${c[2]}</b><small>${c[1]} · ${c[3]}<br>${c[4]}</small></button>`).join("");
+  legend.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    ch.value = ch.value === b.dataset.n ? "" : b.dataset.n; apply();
+  });
   let cat = "";
   function apply() {
-    const t = fold(q.value.trim()), L = +lv.value, R = tr.value;
+    const t = fold(q.value.trim()), L = +lv.value, R = tr.value, C = ch.value, Cp = C.startsWith("p"), Cn = C.replace("p", "");
+    legend.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.n === Cn ? "true" : "false"));
     let shown = 0;
     main.querySelectorAll("section.cat").forEach(sec => {
       let n = 0;
       const catOk = !cat || sec.dataset.c === cat;
       sec.querySelectorAll(".card").forEach(c => {
-        const ok = catOk && (!t || c.dataset.k.includes(t)) && (!L || +c.dataset.lv === L) && (!R || c.dataset.tr.split(" ").includes(R));
+        const ok = catOk && (!t || c.dataset.k.includes(t)) && (!L || +c.dataset.lv === L) && (!R || c.dataset.tr.split(" ").includes(R)) && (!C || (Cp ? c.dataset.ch.split(" ")[0] === Cn : c.dataset.ch.split(" ").includes(Cn)));
         c.hidden = !ok; if (ok) n++;
       });
       sec.hidden = n === 0; shown += n;
@@ -1379,6 +1495,7 @@ function figure(f) {
   q.addEventListener("input", apply);
   lv.addEventListener("change", apply);
   tr.addEventListener("change", apply);
+  ch.addEventListener("change", apply);
 
   const h = location.hash.slice(1);
   if (h && CATS.some(c => c[0] === h)) { const b = document.getElementById("c-" + h); if (b) b.click(); }
