@@ -1,0 +1,1387 @@
+<title>Ászanatár</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a mat-like catalogue. Header, sticky filter bar, one section per family of poses, cards in a fluid grid. */
+:root {
+  --bg: #f2f4f1;
+  --surface: #ffffff;
+  --panel: #e6ebe5;
+  --ink: #23262e;
+  --muted: #5d6470;
+  --line: #d5dbd4;
+  --accent: #3d4f8f;
+  --accent-soft: #dfe4f3;
+  --gold: #a86f0c;
+  --gold-soft: #f6ead2;
+  --warn: #a2412b;
+  --warn-soft: #f8e6e1;
+  --fig: #2b2f3a;
+  --fig-far: #a8b1ad;
+  --mat: #b9c8d9;
+  --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15181d; --surface: #1d2128; --panel: #252b31; --ink: #e9ebef; --muted: #a2a9b4; --line: #313840;
+  --accent: #a9b8f0; --accent-soft: #2a3253; --gold: #e2b25a; --gold-soft: #3b3020; --warn: #f0a08b; --warn-soft: #3a2420;
+  --fig: #e4e7ec; --fig-far: #6b7680; --mat: #3d5168; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15181d; --surface: #1d2128; --panel: #252b31; --ink: #e9ebef; --muted: #a2a9b4; --line: #313840;
+  --accent: #a9b8f0; --accent-soft: #2a3253; --gold: #e2b25a; --gold-soft: #3b3020; --warn: #f0a08b; --warn-soft: #3a2420;
+  --fig: #e4e7ec; --fig-far: #6b7680; --mat: #3d5168; color-scheme: dark }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header.hero { padding-block: 48px 28px; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(44px, 7vw, 76px); line-height: 1; margin: 10px 0 14px; text-wrap: balance; }
+h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
+.lede { max-width: 62ch; color: var(--muted); font-size: 16px; margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 20px; font-size: 14px; color: var(--muted); }
+.stats b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; flex-direction: column; gap: 10px; padding-block: 12px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.search { flex: 1 1 260px; min-width: 0; position: relative; }
+.search input { width: 100%; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px 9px 36px; }
+.search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 2; }
+.search input:focus-visible, .chip:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; font: 500 13px var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; white-space: nowrap; }
+.chip span { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: 4px; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.chip[aria-pressed="true"] span { color: inherit; opacity: .75; }
+
+main { padding-block: 8px 56px; }
+section.cat { padding-top: 40px; scroll-margin-top: 120px; }
+.cat-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 18px; }
+.cat-head h2 { font-family: var(--display); font-weight: 600; font-size: 34px; line-height: 1.1; margin: 0; text-wrap: balance; }
+.cat-head p { margin: 0; color: var(--muted); font-size: 14px; flex: 1 1 280px; min-width: 0; }
+.cat-head .n { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.fig { background: var(--panel); position: relative; aspect-ratio: 140 / 104; max-width: 100%; display: grid; place-items: center; }
+.fig svg { width: 100%; height: 100%; display: block; }
+.lvl { position: absolute; top: 10px; right: 10px; font-size: 11px; font-weight: 600; letter-spacing: .04em; padding: 3px 8px; border-radius: 999px; background: var(--surface); color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+.lvl i { display: inline-flex; gap: 2px; }
+.lvl i b { width: 5px; height: 5px; border-radius: 50%; background: var(--line); }
+.lvl i b.on { background: var(--gold); }
+.body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.names .sa { font-family: var(--display); font-style: italic; font-size: 22px; line-height: 1.15; color: var(--accent); overflow-wrap: anywhere; }
+.names .hu { font-weight: 700; font-size: 17px; line-height: 1.25; margin-top: 2px; }
+.names .en { font-size: 12.5px; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.tags span { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 1px 7px; }
+.lbl { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+ol.how { margin: 0; padding-left: 20px; font-size: 14px; display: flex; flex-direction: column; gap: 3px; }
+ol.how li::marker { color: var(--accent); font-weight: 600; }
+.ben { font-size: 14px; margin: 0; }
+.warn { font-size: 13.5px; margin: 0; background: var(--warn-soft); color: var(--ink); border-radius: 8px; padding: 8px 10px; }
+.warn b { color: var(--warn); }
+
+.empty { padding: 60px 0; text-align: center; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--muted); font-size: 13px; }
+footer p { max-width: 75ch; margin: 0 0 8px; }
+
+.fg-limb { fill: none; stroke: var(--fig); stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; }
+.fg-far { stroke: var(--fig-far); }
+.fg-torso { fill: none; stroke: var(--fig); stroke-width: 6.5; stroke-linecap: round; }
+.fg-head { fill: var(--fig); }
+.fg-eye { fill: var(--panel); }
+.fg-mat { fill: var(--mat); }
+.fg-wall { stroke: var(--fig-far); stroke-width: 3; stroke-linecap: round; }
+.fg-strap { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-dasharray: 3 2; }
+
+@media (max-width: 520px) {
+  header.hero { padding-block: 32px 20px; }
+  .cat-head h2 { font-size: 28px; }
+  .grid { grid-template-columns: 1fr; }
+  .fig { aspect-ratio: auto; height: 220px; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<header class="hero wrap">
+  <div class="eyebrow">Mariann jógapp · ászana-gyűjtemény</div>
+  <h1>Ászana<em>tár</em></h1>
+  <p class="lede">A hatha, vinyasa, Ashtanga, Iyengar és yin jóga pózai és fontosabb változataik kategóriák szerint: szanszkrit és magyar névvel, sematikus ábrával, lépésről lépésre leírt kivitelezéssel, a jótékony hatásokkal és az óvatossági szempontokkal.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="row">
+      <label class="search" for="q">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Keresés név szerint (pl. kutya, Vṛkṣāsana, cobra)" autocomplete="off" aria-label="Keresés">
+      </label>
+      <select id="lv" aria-label="Szint">
+        <option value="0">Minden szint</option>
+        <option value="1">Kezdő</option>
+        <option value="2">Középhaladó</option>
+        <option value="3">Haladó</option>
+      </select>
+      <select id="tr" aria-label="Irányzat"></select>
+    </div>
+    <div class="chips" id="chips" role="toolbar" aria-label="Kategóriák"></div>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap">
+  <p><b>Az ábrákról:</b> a figurák sematikus, oldal- vagy szemből nézeti vázlatok (a halványabb végtag a távolabbi oldal, a pont a tekintet iránya). A pontos igazításhoz érdemes tanárral vagy tükör előtt gyakorolni.</p>
+  <p><b>Fontos:</b> ez a gyűjtemény tájékoztató jellegű, nem helyettesíti az orvosi vagy gyógytornászi tanácsot. Sérülés, krónikus betegség vagy várandósság esetén egyeztess szakemberrel, és soha ne erőltess fájdalmas mozdulatot.</p>
+</footer>
+
+<script>
+const CATS = [
+  ["allo", "Álló ászanák", "Erőt, stabilitást és tartást építenek. A legtöbb óra ezekre épül."],
+  ["egyensuly", "Egyensúlyozó ászanák", "Egy lábon vagy szokatlan alátámasztáson: fókuszt, bokaerőt és testtudatot fejlesztenek."],
+  ["elore", "Előrehajlások", "A test hátsó láncát nyújtják, és megnyugtatják az idegrendszert."],
+  ["hatra", "Hátrahajlások", "Nyitják a mellkast és a csípőhajlítókat, erősítik a hátat, élénkítenek."],
+  ["csavar", "Csavarások", "A gerinc forgatásával mobilizálnak, és tudatosítják a törzs mélyizmait."],
+  ["csipo", "Csípőnyitók", "A csípő körüli izmokat nyújtják minden irányban."],
+  ["ulo", "Ülő ászanák", "Meditációs és légzőgyakorlati ülések, valamint ülő alappózok."],
+  ["kar", "Karegyensúlyok", "A testsúly a kezeken: kar-, váll- és törzserőt, bátorságot kívánnak."],
+  ["core", "Törzserősítő ászanák", "A has- és hátizmok összehangolt munkájával stabil középpontot adnak."],
+  ["forditott", "Fordított ászanák", "A szív a fej fölé kerül. Csak fokozatosan, megfelelő előkészítés után."],
+  ["pihen", "Pihentető és fekvő ászanák", "Regeneráló pózok az óra elejére, végére vagy a megterhelő sorozatok közé."]
+];
+
+const LV = ["", "Kezdő", "Középhaladó", "Haladó"];
+
+// f: figure. Angles in degrees, 0 = up, 90 = forward (right), 180 = down.
+// t torso, h head, a/b near/far arm [upper, fore, scale], l/r near/far leg [thigh, shin, scale]
+// c torso curve (+ rounded back, − arched), ts torso scale, v:"f" front view (no eye), fc gaze
+const POSES = [
+// ---------- ÁLLÓ ----------
+{s:"Tāḍāsana", h:"Hegy", e:"Mountain", c:"allo", lv:1,
+ how:["Állj csípőszélességű terpeszben, a talpak párhuzamosak, a súly egyenletesen oszlik el a sarok és a lábujjpárnák között.","Aktiváld a combokat, a farokcsontot engedd lefelé, a köldököt húzd enyhén befelé.","A fejtető nyúljon a mennyezet felé, a vállak lazák, a karok a törzs mellett.","Lélegezz egyenletesen 5–10 légzésig."],
+ ben:"Javítja a testtartást, tudatosítja a talajkapcsolatot, minden álló póz kiindulópontja.",
+ warn:"Alacsony vérnyomásnál vagy szédülésnél állj fal mellé.",
+ f:{t:0,a:[172,178],b:[188,182],l:[177,180],r:[183,180],v:"f"}},
+{s:"Ūrdhva Hastāsana", h:"Felfelé nyújtott kezek", e:"Upward Salute", c:"allo", lv:1,
+ how:["Hegy pózból belégzésre emeld a karokat oldalt a fejed fölé.","A tenyerek nézzenek egymás felé, a vállak maradjanak távol a fülektől.","Nyújtsd meg a törzs oldalait, a bordákat ne told előre."],
+ ben:"Nyújtja a törzset és a vállakat, élénkít, a napüdvözlet része.",
+ warn:"Vállsérülésnél a karokat csak vállmagasságig emeld.",
+ f:{t:0,a:[16,6],b:[-16,-6],l:[177,180],r:[183,180],v:"f"}},
+{s:"Utkaṭāsana", h:"Szék", e:"Chair", c:"allo", lv:1,
+ how:["Hegy pózból hajlítsd be a térdeket, mintha egy székre ülnél le hátra.","A súly a sarkakon legyen, a térdek ne csússzanak a lábujjak elé.","Emeld a karokat a fülek mellé, a törzs enyhén előredől, a gerinc hosszú.","Tartsd 5–8 légzésig."],
+ ben:"Erősíti a combot, a farizmokat és a bokát, melegít, fejleszti az állóképességet.",
+ warn:"Térdfájdalomnál kisebb hajlítással dolgozz; vállproblémánál a kezek a csípőn.",
+ f:{t:25,a:[20,15],b:[22,17],l:[125,200],r:[127,202]}},
+{s:"Vīrabhadrāsana I", h:"Harcos I", e:"Warrior I", c:"allo", lv:1,
+ how:["Lépj hátra egy nagyot az egyik lábbal, a hátsó talp kb. 45 fokban kifelé fordul.","Hajlítsd az első térdet a boka fölé, a csípő nézzen előre.","Emeld a karokat a fejed fölé, a mellkas emelkedik, a hátsó láb erős és egyenes.","Tarts 5 légzést, majd cserélj oldalt."],
+ ben:"Erősíti a lábakat, nyújtja a csípőhajlítót és a vádlit, nyitja a mellkast.",
+ warn:"Magas vérnyomásnál a karok a csípőn; térdproblémánál rövidebb állás.",
+ f:{t:0,a:[0,0],b:[3,3],l:[100,180],r:[235,235]}},
+{s:"Vīrabhadrāsana II", h:"Harcos II", e:"Warrior II", c:"allo", lv:1,
+ how:["Nyitott, széles terpeszben fordítsd az első lábfejet előre, a hátsót kissé befelé.","Hajlítsd az első térdet a boka fölé, a térd a második lábujj irányába mutasson.","A karok vállmagasságban nyúlnak két irányba, a tekintet az első kéz ujjain.","A törzs középen marad, ne dőlj előre."],
+ ben:"Erősíti a combokat és a bokát, nyitja a csípőt, fejleszti az állóképességet.",
+ warn:"Nyaki panasznál a tekintet maradjon előre, ne fordítsd a fejet.",
+ f:{t:0,a:[90,90],b:[270,270],l:[100,180],r:[235,235]}},
+{s:"Viparīta Vīrabhadrāsana", h:"Fordított harcos", e:"Reverse Warrior", c:"allo", lv:1,
+ how:["Harcos II-ből fordítsd az első tenyeret felfelé.","Belégzésre nyúlj az első karral felfelé és hátra, a hátsó kéz lazán csússzon le a hátsó lábon.","Az első térd maradjon hajlítva, a törzs oldala hosszan nyúljon."],
+ ben:"Nyújtja a törzs oldalát és a bordaközi izmokat, erősíti a lábakat.",
+ warn:"A hátsó lábra ne támaszkodj rá teljes súllyal.",
+ f:{t:-22,h:-28,c:-3,a:[-15,-20],b:[225,210],l:[100,180],r:[235,235]}},
+{s:"Utthita Trikoṇāsana", h:"Háromszög", e:"Extended Triangle", c:"allo", lv:1,
+ how:["Széles terpeszben fordítsd az első lábfejet előre, mindkét láb egyenes.","Nyúlj előre az első kézzel, majd billentsd a törzset oldalra az első láb fölé.","Az alsó kéz a lábszáron, blokkon vagy a talajon, a felső kar egyenesen felfelé.","A mellkas nyitva marad, a tekintet a felső kézen."],
+ ben:"Nyújtja a combhajlítókat, ágyékot és törzsoldalt, erősíti a lábakat.",
+ warn:"Alacsony vérnyomásnál nézz lefelé; a térdeket ne feszítsd túl.",
+ f:{t:105,h:105,fc:0,a:[180,180],b:[0,0],l:[150,150],r:[210,210]}},
+{s:"Parivṛtta Trikoṇāsana", h:"Fordított háromszög", e:"Revolved Triangle", c:"allo", lv:2,
+ how:["Rövidebb terpeszben a csípő nézzen előre.","Nyújtsd meg a gerincet, majd dőlj előre és csavard a törzset az első láb felé.","Az ellentétes kéz a láb mellett vagy blokkon, a másik kar felfelé nyúlik.","A csavarás a mellkasból induljon, ne a nyakból."],
+ ben:"Csavarja és nyújtja a gerincet, javítja az egyensúlyt, nyújtja a combhajlítókat.",
+ warn:"Gerinc- vagy porckorongsérülésnél kerüld; használj blokkot.",
+ f:{t:100,h:100,fc:-10,a:[185,185],b:[-5,-5],l:[155,155],r:[205,205]}},
+{s:"Utthita Pārśvakoṇāsana", h:"Kiterjesztett oldalszög", e:"Extended Side Angle", c:"allo", lv:1,
+ how:["Harcos II-ből engedd az első alkart a combra, vagy a kezet a talajra a láb mellé.","A felső kar a fül mellett nyúlik előre, egy egyenes vonalat alkotva a hátsó sarokig.","A mellkas forduljon a mennyezet felé."],
+ ben:"Nyújtja a teljes testoldalt, erősíti a lábakat, nyitja a csípőt és a vállat.",
+ warn:"Nyaki panasznál nézz előre vagy le, ne felfelé.",
+ f:{t:100,h:85,fc:0,a:[170,95],b:[55,55],l:[100,180],r:[235,235]}},
+{s:"Parivṛtta Pārśvakoṇāsana", h:"Fordított oldalszög", e:"Revolved Side Angle", c:"csavar", lv:2,
+ how:["Kitörésből tedd össze a kezeket a mellkas előtt.","Csavard a törzset az első comb felé, a felső könyök kerüljön a térden kívülre.","Nyomd össze a tenyereket, a mellkas forduljon felfelé, a hátsó láb erős."],
+ ben:"Erőteljes csavarás, erősíti a lábakat, támogatja az emésztést.",
+ warn:"Hátsérülésnél és terhesség alatt kerüld.",
+ f:{t:110,h:95,fc:0,a:[160,30],b:[160,32],l:[100,180],r:[235,235]}},
+{s:"Pārśvottānāsana", h:"Piramis", e:"Intense Side Stretch", c:"allo", lv:1,
+ how:["Rövid terpeszben, a csípő előre néz, mindkét láb egyenes.","A kezek a hát mögött imatartásban vagy könyököt fogva.","Nyújtsd meg a gerincet, majd hajolj előre az első láb fölé."],
+ ben:"Mélyen nyújtja a combhajlítókat, javítja az egyensúlyt és a tartást.",
+ warn:"Combhajlító-sérülésnél enyhén hajlítsd az első térdet.",
+ f:{t:160,h:165,c:4,a:[240,75],b:[242,77],l:[165,165],r:[200,200]}},
+{s:"Aṣṭa Candrāsana", h:"Magas kitörés", e:"High Lunge", c:"allo", lv:1,
+ how:["Lépj hátra az egyik lábbal, a hátsó sarok emelt, a láb egyenes.","Az első térd a boka fölött, 90 fokban hajlik.","Emeld a karokat a fejed fölé, a csípő maradjon szemben előre."],
+ ben:"Erősíti a lábakat, nyújtja a csípőhajlítót, fejleszti az egyensúlyt.",
+ warn:"Térdsérülésnél kisebb hajlítás; egyensúlyproblémánál kezek a csípőn.",
+ f:{t:5,a:[5,0],b:[7,2],l:[100,180],r:[235,235]}},
+{s:"Utkaṭa Koṇāsana", h:"Istennő", e:"Goddess", c:"allo", lv:1,
+ how:["Széles terpeszben fordítsd a lábfejeket kifelé.","Hajlítsd a térdeket a lábujjak irányába, a combok közelítsenek a vízszinteshez.","A karok kaktusztartásban, a törzs egyenes, a farokcsont lefelé mutat."],
+ ben:"Erősíti a combokat és a farizmokat, nyitja a csípőt és a mellkast.",
+ warn:"A térdek ne essenek befelé; térdfájdalomnál kisebb hajlítás.",
+ f:{t:0,a:[90,0],b:[270,0],l:[125,185],r:[235,175],v:"f"}},
+{s:"Utthita Tāḍāsana", h:"Csillag", e:"Five-Pointed Star", c:"allo", lv:1,
+ how:["Lépj széles terpeszbe, a lábfejek párhuzamosak.","Emeld a karokat vállmagasságba oldalra.","Nyújtózz öt irányba: a fejtetővel, a kezekkel és a lábakkal."],
+ ben:"Energetizál, nyújtja az egész testet, javítja a koordinációt.",
+ warn:"Vállpanasznál a karok kissé lejjebb.",
+ f:{t:0,a:[62,60],b:[298,300],l:[158,158],r:[202,202],v:"f"}},
+{s:"Pārśva Ūrdhva Hastāsana", h:"Álló oldalhajlítás", e:"Standing Side Bend", c:"allo", lv:1,
+ how:["Hegy pózból emeld a karokat a fejed fölé, kulcsold össze az ujjakat.","Hajolj oldalra, a csípő maradjon középen.","Tarts néhány légzést, majd cserélj oldalt."],
+ ben:"Nyújtja a törzs oldalát, a bordaközi izmokat és a hátizmokat.",
+ warn:"Előre vagy hátra ne dőlj ki; hátfájdalomnál kisebb ív.",
+ f:{t:14,h:18,c:-5,a:[26,32],b:[12,30],l:[177,180],r:[183,180],v:"f"}},
+
+// ---------- EGYENSÚLY ----------
+{s:"Vṛkṣāsana", h:"Fa", e:"Tree", c:"egyensuly", lv:1,
+ how:["Állj egy lábra, a másik talpat tedd a belső combra vagy a vádlira, ne a térdre.","A felemelt térd mutasson oldalra, a csípő maradjon egyenesen.","A tenyerek a mellkas előtt vagy a fej fölött összeérnek.","Nézz egy fix pontra, majd cserélj oldalt."],
+ ben:"Fejleszti az egyensúlyt és a koncentrációt, erősíti a bokát és a lábat.",
+ warn:"Alacsony vérnyomásnál a karok maradjanak lent; szükség esetén fal mellett.",
+ f:{t:0,a:[20,-20],b:[-20,20],l:[130,250],r:[180,180],v:"f"}},
+{s:"Garuḍāsana", h:"Sas", e:"Eagle", c:"egyensuly", lv:2,
+ how:["Hajlítsd a térdeket, emeld az egyik lábat és tekerd át a másikon.","Ha lehet, a lábfejet akaszd a vádli mögé.","A karokat keresztezd ellentétesen, a tenyereket hozd össze.","Ülj mélyebbre, a könyököket emeld vállmagasságba."],
+ ben:"Nyújtja a vállat és a felső hátat, erősíti a lábakat, fejleszti a fókuszt.",
+ warn:"Térdsérülésnél a lábfej maradjon a talajon a másik mellett.",
+ f:{t:15,a:[62,10],b:[64,14],l:[150,190],r:[145,200]}},
+{s:"Naṭarājāsana", h:"Táncos", e:"Dancer", c:"egyensuly", lv:2,
+ how:["Állj egy lábra, a másik lábat hajlítsd hátra, és fogd meg a bokát.","Rúgd a lábat a kézbe, miközben a törzs előredől.","A szabad kar előre és felfelé nyúlik."],
+ ben:"Nyitja a vállat, mellkast és csípőhajlítót, erősíti az álló lábat.",
+ warn:"Derékpanasznál kisebb ív; használj hevedert a lábfejhez.",
+ f:{t:35,h:40,c:-4,a:[50,45],b:[285,285],l:[300,20],r:[180,180]}},
+{s:"Utthita Hasta Pādāṅguṣṭhāsana", h:"Kinyújtott kéz-nagylábujj", e:"Extended Hand-to-Big-Toe", c:"egyensuly", lv:2,
+ how:["Állj egy lábra, a másik térdet húzd a mellkashoz.","Fogd meg a nagylábujjat két ujjal (vagy hevederrel), és nyújtsd ki a lábat előre.","Az álló láb egyenes, a törzs hosszú, a szabad kéz a csípőn."],
+ ben:"Nyújtja a combhajlítókat, erősíti a bokát, fejleszti az egyensúlyt.",
+ warn:"Ha a hát kerekedik, használj hevedert vagy hajlítsd a térdet.",
+ f:{t:22,a:[112,112],b:[200,60],l:[70,70],r:[180,180]}},
+{s:"Ardha Candrāsana", h:"Félhold", e:"Half Moon", c:"egyensuly", lv:2,
+ how:["Háromszögből hajlítsd az első térdet, az első kezet tedd a láb elé a talajra vagy blokkra.","Emeld a hátsó lábat csípőmagasságba, miközben az első lábat kinyújtod.","A felső kar felfelé nyúlik, a csípő és a mellkas oldalra nyit."],
+ ben:"Erősíti a bokát és combot, nyújtja a törzsoldalt, fejleszti a koordinációt.",
+ warn:"Nyaki panasznál nézz le; használj blokkot.",
+ f:{t:110,h:105,fc:0,a:[180,180,1.1],b:[0,0],l:[280,280],r:[180,180]}},
+{s:"Parivṛtta Ardha Candrāsana", h:"Fordított félhold", e:"Revolved Half Moon", c:"egyensuly", lv:3,
+ how:["Álló lábon dőlj előre, az ellentétes kéz a talajon vagy blokkon.","A hátsó láb emelkedik csípőmagasságba, a lábfej lefelé néz.","Csavard a mellkast oldalra, a felső kar felfelé nyúlik."],
+ ben:"Egyensúly és csavarás egyszerre: erősít, mobilizál, fókuszt kíván.",
+ warn:"Hátsérülésnél kerüld; mindig használj blokkot, amíg stabil nem leszel.",
+ f:{t:105,h:100,fc:0,a:[180,180,1.1],b:[0,0],l:[275,275],r:[180,180]}},
+{s:"Vīrabhadrāsana III", h:"Harcos III", e:"Warrior III", c:"egyensuly", lv:2,
+ how:["Magas kitörésből told a súlyt az első lábra.","Emeld a hátsó lábat, miközben a törzs előre billen, amíg egy vízszintes vonalat alkotsz.","A karok előre nyúlnak, vagy a csípőn vannak, a csípő párhuzamos a talajjal."],
+ ben:"Erősíti a lábat, a farizmokat, a hátat és a törzset, javítja az egyensúlyt.",
+ warn:"Magas vérnyomásnál a karok hátra; egyensúlyhoz falat használhatsz.",
+ f:{t:90,h:90,a:[90,90],b:[90,90],l:[180,180],r:[270,270]}},
+{s:"Eka Pāda Utkaṭāsana", h:"Egylábas szék (álló galamb)", e:"Standing Figure Four", c:"egyensuly", lv:2,
+ how:["Szék pózból tedd az egyik bokát a másik térd fölé a combra.","A felemelt térd oldalra nyílik, a lábfej flexben.","Ülj mélyebbre, a tenyerek a mellkas előtt, a gerinc hosszú."],
+ ben:"Nyitja a külső csípőt, erősíti az álló lábat.",
+ warn:"Térdfájdalomnál kevésbé ülj le; a bokát ne csavard.",
+ f:{t:40,a:[150,30],b:[150,32],l:[110,250,0.6],r:[125,200]}},
+
+// ---------- ELŐREHAJLÁSOK ----------
+{s:"Uttānāsana", h:"Álló előrehajlás", e:"Standing Forward Bend", c:"elore", lv:1,
+ how:["Hegy pózból kilégzésre hajolj előre a csípőből.","Engedd a fejet és a nyakat lazán lógni, a kezek a talajon vagy könyököt fogva.","A térdek lehetnek hajlítva, a súly enyhén a lábujjpárnák felé."],
+ ben:"Nyújtja a combhajlítókat és a hátat, megnyugtat, enyhíti a stresszt.",
+ warn:"Hátsérülésnél hajlított térddel; glaukómánál kerüld a hosszú tartást.",
+ f:{t:165,h:175,c:6,a:[175,100],b:[177,98],l:[185,178],r:[183,176]}},
+{s:"Ardha Uttānāsana", h:"Félig előrehajlás", e:"Half Forward Bend", c:"elore", lv:1,
+ how:["Előrehajlásból emeld a törzset félútig, a kezek a lábszáron.","Nyújtsd ki a gerincet a fejtető felé, a hát egyenes.","A lapockák a csípő felé húzódnak."],
+ ben:"Erősíti a hátizmokat, nyújtja a combhajlítókat, a napüdvözlet része.",
+ warn:"Ha a hát kerekedik, hajlítsd a térdeket.",
+ f:{t:95,h:85,a:[180,182],b:[180,182],l:[180,180],r:[180,180]}},
+{s:"Pādāṅguṣṭhāsana", h:"Nagylábujj-fogás", e:"Big Toe Pose", c:"elore", lv:1,
+ how:["Állj csípőszélességben, hajolj előre.","Fogd meg a nagylábujjakat a mutató- és középső ujjal.","Belégzésre nyújtsd a gerincet, kilégzésre hajolj mélyebbre, a könyökök oldalra nyílnak."],
+ ben:"Nyújtja a combhajlítókat és a vádlit, nyugtató hatású.",
+ warn:"Nyaki vagy derékpanasznál óvatosan, hajlított térddel.",
+ f:{t:168,h:178,c:6,a:[230,110],b:[228,112],l:[182,180],r:[180,180]}},
+{s:"Pādahastāsana", h:"Kéz a talp alatt", e:"Hand Under Foot", c:"elore", lv:2,
+ how:["Előrehajlásban csúsztasd a tenyereket a talpak alá, az ujjak a sarok felé.","Állj rá a kezekre, kilégzésre engedd a törzset a lábak felé.","A fej lazán lóg."],
+ ben:"Mélyíti az előrehajlást, nyújtja a csuklót és a teljes hátsó láncot.",
+ warn:"Csuklóproblémánál kerüld; magas vérnyomásnál rövid ideig.",
+ f:{t:172,h:180,c:7,a:[235,112],b:[233,114],l:[184,180],r:[182,180]}},
+{s:"Prasārita Pādottānāsana", h:"Terpeszállású előrehajlás", e:"Wide-Legged Forward Bend", c:"elore", lv:1,
+ how:["Lépj széles terpeszbe, a lábfejek párhuzamosak.","Kezek a csípőn, nyújtsd a gerincet, majd hajolj előre.","A tenyerek a vállak alatt a talajon, a fejtető a föld felé."],
+ ben:"Nyújtja a combhajlítókat és a belső combot, enyhe fordított hatású.",
+ warn:"Felemelkedéskor lassan, hogy ne szédülj; derékpanasznál félig hajolj.",
+ f:{t:180,h:180,ts:0.7,a:[100,190],b:[260,170],l:[145,145],r:[215,215],v:"f"}},
+{s:"Paścimottānāsana", h:"Ülő előrehajlás", e:"Seated Forward Bend", c:"elore", lv:1,
+ how:["Ülj kinyújtott lábakkal, a lábfejek flexben.","Belégzésre nyújtsd a gerincet, kilégzésre hajolj előre a csípőből.","Fogd meg a lábszárat, a bokát vagy a talpakat; a has közelít a combokhoz."],
+ ben:"Nyújtja a teljes hátsó láncot, nyugtat, segíti az emésztést.",
+ warn:"Hátsérülésnél ülj párnára és hajlítsd a térdet; asztmánál óvatosan.",
+ f:{t:72,h:85,c:5,a:[103,103],b:[104,104],l:[90,90],r:[90,90]}},
+{s:"Jānu Śīrṣāsana", h:"Fej a térden", e:"Head-to-Knee", c:"elore", lv:1,
+ how:["Ülésben az egyik láb nyújtva, a másik talp a belső combon.","Fordítsd a törzset a nyújtott láb felé.","Kilégzésre hajolj előre a nyújtott láb fölé, fogd a lábfejet vagy a lábszárat."],
+ ben:"Nyújtja a combhajlítót és a hátat, nyitja a csípőt, nyugtat.",
+ warn:"Térdsérülésnél tegyél párnát a hajlított térd alá.",
+ f:{t:74,h:85,c:5,a:[103,103],b:[104,104],l:[90,90],r:[75,250,0.55]}},
+{s:"Upaviṣṭha Koṇāsana", h:"Ülő terpesz-előrehajlás", e:"Wide-Angle Seated Forward Bend", c:"elore", lv:2,
+ how:["Ülj széles terpeszben, a térdek és lábujjak felfelé néznek.","Tedd a kezeket magad elé a talajra, nyújtsd a gerincet.","Kilégzésre sétáltasd a kezeket előre, a törzs a talaj felé ereszkedik."],
+ ben:"Nyújtja a belső combot és a combhajlítót, nyitja a csípőt.",
+ warn:"Ágyéki panasznál ülj magas párnára, hajolj kevésbé.",
+ f:{t:0,h:0,ts:0.5,a:[112,96],b:[248,264],l:[90,90],r:[270,270],v:"f"}},
+{s:"Kūrmāsana", h:"Teknős", e:"Tortoise", c:"elore", lv:3,
+ how:["Ülj széles terpeszben, enyhén hajlított térdekkel.","Hajolj előre, és csúsztasd a karokat a térdek alá oldalra.","Fokozatosan nyújtsd a lábakat, a mellkas és a homlok a talaj felé."],
+ ben:"Mély nyújtás a háton és a csípőben, befelé forduló, nyugtató póz.",
+ warn:"Gerinc- és vállsérülésnél kerüld; csak bemelegedett testtel.",
+ f:{t:86,h:92,c:3,a:[250,265],b:[252,267],l:[85,100],r:[87,100]}},
+
+// ---------- HÁTRAHAJLÁSOK ----------
+{s:"Bhujaṅgāsana", h:"Kobra", e:"Cobra", c:"hatra", lv:1,
+ how:["Feküdj hasra, a tenyereket tedd a vállak alá, a könyökök a test mellett.","Nyomd a lábfejek tetejét és a szeméremcsontot a talajba.","Belégzésre emeld a mellkast, a hát izmaival dolgozz, a karok csak segítenek.","A vállak lefelé, távol a fülektől."],
+ ben:"Erősíti a hátizmokat, nyitja a mellkast, javítja a tartást.",
+ warn:"Terhesség alatt kerüld; derékfájdalomnál alacsony kobra.",
+ f:{t:60,h:45,c:-4,a:[215,110],b:[217,112],l:[270,270],r:[270,270]}},
+{s:"Salamba Bhujaṅgāsana", h:"Szfinx", e:"Sphinx", c:"hatra", lv:1,
+ how:["Hasrafekvésből tedd az alkarokat a talajra, a könyökök a vállak alatt.","Emeld a mellkast, a köldök enyhén befelé.","A nyak hosszú, a tekintet előre."],
+ ben:"Kíméletes hátrahajlás, erősíti a hátat, nyitja a mellkast.",
+ warn:"Akut derékfájdalomnál kerüld; terhesség alatt ne.",
+ f:{t:60,h:45,c:-3,a:[180,90],b:[182,90],l:[270,270],r:[270,270]}},
+{s:"Ūrdhva Mukha Śvānāsana", h:"Felfelé néző kutya", e:"Upward-Facing Dog", c:"hatra", lv:1,
+ how:["Hasrafekvésből tedd a kezeket a bordák mellé.","Nyújtsd ki a karokat, emeld a mellkast és a combokat a talajról.","Csak a tenyerek és a lábfejek tetején támaszkodsz, a vállak lefelé."],
+ ben:"Erősíti a karokat és a hátat, nyitja a mellkast és a csípőhajlítót.",
+ warn:"Csuklóproblémánál és derékpanasznál inkább kobra.",
+ f:{t:42,h:30,c:-5,a:[180,180],b:[180,180],l:[255,268],r:[255,268]}},
+{s:"Śalabhāsana", h:"Sáska", e:"Locust", c:"hatra", lv:1,
+ how:["Feküdj hasra, a karok a test mellett, tenyerek lefelé.","Belégzésre emeld a fejet, a mellkast, a karokat és a lábakat.","A nyak hosszú, a tekintet a talajra."],
+ ben:"Erősíti a teljes hátsó láncot, javítja a tartást.",
+ warn:"Derékfájdalomnál egyszerre csak egy lábat emelj.",
+ f:{t:78,h:80,c:-3,a:[258,264],b:[260,266],l:[262,266],r:[263,267]}},
+{s:"Dhanurāsana", h:"Íj", e:"Bow", c:"hatra", lv:2,
+ how:["Hasrafekvésben hajlítsd be a térdeket, és fogd meg kívülről a bokákat.","Belégzésre rúgd a lábakat a kezekbe, így emelkedik a mellkas és a comb.","A térdek csípőszélességben maradjanak."],
+ ben:"Nyitja a mellkast, vállat és csípőhajlítót, erősíti a hátat.",
+ warn:"Magas vérnyomásnál, sérvnél, terhesség alatt kerüld.",
+ f:{t:55,h:40,c:-5,a:[291,291],b:[292,292],l:[300,40],r:[302,42]}},
+{s:"Uṣṭrāsana", h:"Teve", e:"Camel", c:"hatra", lv:2,
+ how:["Térdelj csípőszélességben, a combok függőlegesek.","Kezek a keresztcsonton, emeld a mellkast felfelé.","Ha stabil vagy, engedd a kezeket a sarkakra, a csípő előre tolódik."],
+ ben:"Mélyen nyitja a mellkast és a csípőhajlítót, élénkít.",
+ warn:"Nyaki panasznál ne hajtsd hátra a fejet; derékproblémánál kezek a keresztcsonton.",
+ f:{t:-70,h:-110,c:-7,a:[175,175],b:[176,176],l:[180,272],r:[180,272]}},
+{s:"Setu Bandha Sarvāṅgāsana", h:"Híd", e:"Bridge", c:"hatra", lv:1,
+ how:["Feküdj hanyatt, hajlítsd be a térdeket, a talpak csípőszélességben a talajon.","Belégzésre emeld a csípőt, a karok a talajon nyúlnak.","A térdek párhuzamosak, a nyak laza, ne fordítsd el a fejet."],
+ ben:"Erősíti a farizmokat és a combot, nyitja a mellkast, megnyugtat.",
+ warn:"Nyaksérülésnél tegyél takarót a vállak alá.",
+ f:{t:220,h:270,c:-5,a:[98,90],b:[98,90],l:[100,178],r:[102,178]}},
+{s:"Ūrdhva Dhanurāsana", h:"Kerék", e:"Wheel", c:"hatra", lv:3,
+ how:["Hanyattfekvésben a talpak a talajon, a tenyerek a fülek mellett, ujjak a vállak felé.","Emeld a csípőt, majd a fejtetőt tedd a talajra.","Nyújtsd ki a karokat és emelkedj fel teljesen, a súly egyenletesen oszlik meg."],
+ ben:"Erőteljesen nyitja a mellkast és vállat, erősíti a karokat és lábakat, élénkít.",
+ warn:"Csukló-, váll- és derékproblémánál, magas vérnyomásnál kerüld.",
+ f:{t:260,h:200,c:-10,a:[185,180],b:[186,180],l:[120,190],r:[122,190]}},
+{s:"Matsyāsana", h:"Hal", e:"Fish", c:"hatra", lv:2,
+ how:["Feküdj hanyatt, a kezeket csúsztasd a fenék alá.","Támaszkodj az alkarokra, emeld a mellkast.","Óvatosan engedd hátra a fejtetőt a talajra, a súly a könyökökön marad."],
+ ben:"Nyitja a mellkast és a torkot, ellenpóz a vállállás után.",
+ warn:"Nyaksérülésnél a fej maradjon fent vagy párnán.",
+ f:{t:295,h:220,c:-5,a:[150,90],b:[152,90],l:[90,90],r:[90,90]}},
+{s:"Camatkārāsana", h:"Vad dolog", e:"Wild Thing", c:"hatra", lv:2,
+ how:["Oldalsó deszkából lépj hátra a felső lábbal, a talp a talajra kerül.","Emeld a csípőt és a mellkast, a felső kar nyúljon a fej fölé.","A támaszkodó kéz erősen nyom a talajba."],
+ ben:"Nyitja a mellkast és vállat, erősíti a kart, örömteli, energizáló.",
+ warn:"Csukló- és vállsérülésnél kerüld.",
+ f:{t:250,h:250,c:-8,a:[185,185],b:[290,280],l:[150,150],r:[125,175]}},
+{s:"Pūrvottānāsana", h:"Fordított deszka", e:"Upward Plank", c:"hatra", lv:2,
+ how:["Ülj kinyújtott lábakkal, a kezeket tedd a csípő mögé, ujjak előre.","Nyomd a talpakat és tenyereket a talajba, emeld a csípőt.","A test egyenes vonalat alkot, a mellkas nyitva."],
+ ben:"Erősíti a karokat, csuklót, hátat, nyitja a mellkast és vállat.",
+ warn:"Nyaki panasznál a fej ne hanyatoljon hátra; csuklóproblémánál ököllel.",
+ f:{t:294,h:250,a:[180,180],b:[180,180],l:[114,114],r:[114,114]}},
+{s:"Ardha Pūrvottānāsana", h:"Fordított asztal", e:"Reverse Tabletop", c:"hatra", lv:1,
+ how:["Ülj hajlított térdekkel, talpak a talajon, kezek a csípő mögött.","Emeld a csípőt, amíg a törzs és a combok vízszintesek.","A térdek a bokák fölött, a vállak a csuklók fölött."],
+ ben:"Erősíti a vállat, farizmot és combot, nyitja a mellkast.",
+ warn:"Vállsérülésnél kerüld.",
+ f:{t:283,h:275,a:[180,180],b:[180,180],l:[95,180],r:[95,180]}},
+{s:"Bitilāsana", h:"Tehén", e:"Cow", c:"hatra", lv:1,
+ how:["Négykézlábas helyzetben a csuklók a vállak, a térdek a csípő alatt.","Belégzésre engedd a hasat lefelé, emeld a farokcsontot és a mellkast.","Nézz enyhén előre, a vállak távol a fülektől."],
+ ben:"Mobilizálja a gerincet, nyitja a mellkast; macskával váltogatva bemelegít.",
+ warn:"Nyaki panasznál a fej maradjon a gerinc vonalában.",
+ f:{t:76,h:55,c:-5,a:[180,180],b:[180,180],l:[180,270],r:[180,270]}},
+{s:"Marjaryāsana", h:"Macska", e:"Cat", c:"hatra", lv:1,
+ how:["Négykézláb kilégzésre kerekítsd a hátat a mennyezet felé.","A fej és a farokcsont lefelé, a köldök a gerinc felé húzódik.","Váltogasd a tehénnel a légzés ritmusára."],
+ ben:"Mobilizálja és nyújtja a hátat, oldja a hátfeszültséget.",
+ warn:"Térdérzékenységnél tegyél takarót a térdek alá.",
+ f:{t:76,h:135,c:7,a:[180,180],b:[180,180],l:[180,270],r:[180,270]}},
+{s:"Anāhatāsana", h:"Kölyökkutya (szívnyitó)", e:"Puppy / Melting Heart", c:"hatra", lv:1,
+ how:["Négykézlábból sétáltasd előre a kezeket.","A csípő marad a térdek fölött, a mellkas a talaj felé olvad.","A homlok vagy az áll a talajon, a karok aktívan nyúlnak."],
+ ben:"Nyitja a vállat és a mellkast, nyújtja a gerincet.",
+ warn:"Vállsérülésnél ne nyújtsd túl a karokat; térdpárna ajánlott.",
+ f:{t:130,h:110,a:[95,90],b:[96,90],l:[180,270],r:[180,270]}},
+{s:"Supta Vīrāsana", h:"Fekvő hős", e:"Reclining Hero", c:"hatra", lv:2,
+ how:["Hős ülésből, a sarkak a csípő mellett, támaszkodj hátra a könyökökre.","Ha a térdek engedik, feküdj le teljesen a hátadra.","A térdek ne emelkedjenek el és ne nyíljanak szét."],
+ ben:"Mélyen nyújtja a combfeszítőt és a csípőhajlítót, nyitja a hasat.",
+ warn:"Térd- és bokasérülésnél kerüld; használj bolstert a hát alá.",
+ f:{t:270,h:270,a:[270,270],b:[272,272],l:[92,268],r:[93,268]}},
+{s:"Eka Pāda Rājakapotāsana", h:"Király galamb", e:"King Pigeon", c:"hatra", lv:3,
+ how:["Galamb pózból hajlítsd be a hátsó térdet.","Nyúlj hátra a fej fölött mindkét kézzel, és fogd meg a lábfejet.","A mellkas emelkedik, a csípő egyenesen marad."],
+ ben:"Mély hátrahajlás és csípőnyitás, nyitja a vállat.",
+ warn:"Térd-, váll- és derékproblémánál kerüld; használj hevedert.",
+ f:{t:-25,h:-40,c:-5,a:[-20,200],b:[-22,202],l:[92,265,0.6],r:[268,10]}},
+
+// ---------- CSAVARÁSOK ----------
+{s:"Ardha Matsyendrāsana", h:"Fél gerinccsavar", e:"Half Lord of the Fishes", c:"csavar", lv:1,
+ how:["Ülésben az egyik lábat tedd át a másik térdén, a talp a talajon.","Az alsó láb lehet nyújtva vagy hajlítva a csípő mellett.","Belégzésre nyújtózz, kilégzésre csavarodj a felhúzott térd felé, a könyök a térden kívül.","A hátsó kéz a csípő mögött támaszt."],
+ ben:"Mobilizálja a gerincet, serkenti az emésztést, nyitja a vállat.",
+ warn:"Porckorong-problémánál és terhesség alatt kíméletesen, kisebb csavarással.",
+ f:{t:0,fc:270,a:[120,0],b:[200,185],l:[30,182],r:[90,265,0.7]}},
+{s:"Marīcyāsana III", h:"Marícsi csavar", e:"Marichi's Twist", c:"csavar", lv:2,
+ how:["Ülj kinyújtott lábakkal, az egyik térdet húzd fel, a talp a talajon a csípő előtt.","Öleld át a térdet, vagy tedd a könyököt a térden kívülre.","Csavarodj a felhúzott térd felé, a gerinc függőleges."],
+ ben:"Mély csavarás, mobilizál, nyújtja a vállat és a csípőt.",
+ warn:"Hátsérülésnél ülj párnára; terhesség alatt kerüld.",
+ f:{t:0,fc:270,a:[120,0],b:[200,185],l:[25,180],r:[90,90]}},
+{s:"Bharadvājāsana", h:"Bharadvádzsa-csavar", e:"Bharadvaja's Twist", c:"csavar", lv:1,
+ how:["Ülj oldalra, a lábakat hajlítva egy oldalra fektetve.","Csavarodj a térdekkel ellentétes irányba.","Az egyik kéz a térden, a másik a csípő mögött támaszt."],
+ ben:"Kíméletes csavarás, oldja a derék- és hátfeszültséget.",
+ warn:"Térdpanasznál ülj takaróra.",
+ f:{t:0,fc:270,a:[150,90],b:[200,185],l:[90,265,0.7],r:[95,268,0.7]}},
+{s:"Parivṛtta Utkaṭāsana", h:"Csavart szék", e:"Revolved Chair", c:"csavar", lv:2,
+ how:["Szék pózban tedd össze a tenyereket a mellkas előtt.","Csavarodj oldalra, a felső könyök kerüljön az ellentétes combon kívülre.","A térdek egy vonalban maradnak, a csípő nem csúszik oldalra."],
+ ben:"Erősíti a lábakat, csavarja a gerincet, serkenti az emésztést.",
+ warn:"Hátsérülésnél kerüld; térdproblémánál kisebb hajlítás.",
+ f:{t:40,h:45,fc:20,a:[150,30],b:[150,32],l:[125,200],r:[127,202]}},
+{s:"Parivṛtta Añjaneyāsana", h:"Csavart kitörés", e:"Revolved Low Lunge", c:"csavar", lv:2,
+ how:["Kitörésben tedd össze a tenyereket a mellkas előtt.","Csavarodj az első láb felé, a könyököt akaszd a térden kívülre.","A hátsó térd lehet a talajon vagy emelve."],
+ ben:"Csavarja a gerincet, nyújtja a csípőhajlítót, erősíti a lábakat.",
+ warn:"Térdpanasznál a hátsó térd alá takarót tegyél.",
+ f:{t:35,fc:10,a:[150,30],b:[150,32],l:[100,180],r:[235,235]}},
+{s:"Supta Matsyendrāsana", h:"Fekvő csavar", e:"Supine Twist", c:"csavar", lv:1,
+ how:["Feküdj hanyatt, húzd az egyik térdet a mellkashoz.","Vezesd át a térdet a test másik oldalára, a karok oldalt T-alakban.","A fejet fordíthatod a térddel ellentétes irányba."],
+ ben:"Oldja a hát- és derékfeszültséget, nyugtat, jó óra végén.",
+ warn:"Porckorong-problémánál párnát tegyél a térd alá.",
+ f:{t:270,fc:0,a:[350,350,0.6],b:[95,90],l:[30,140,0.8],r:[90,90]}},
+{s:"Parivṛtta Sukhāsana", h:"Ülő csavar", e:"Easy Seated Twist", c:"csavar", lv:1,
+ how:["Törökülésben nyújtsd meg a gerincet.","Az egyik kéz az ellentétes térden, a másik a hát mögött a talajon.","Kilégzésre csavarodj, a vállak lazák."],
+ ben:"Egyszerű gerincmobilizáló, könnyű bemelegítés.",
+ warn:"Csak addig csavarodj, amíg a gerinc hosszú marad.",
+ f:{t:0,fc:270,a:[110,50],b:[200,180],l:[80,250,0.7],r:[85,255,0.7]}},
+{s:"Jaṭhara Parivartanāsana", h:"Hasforgatás", e:"Revolved Abdomen", c:"csavar", lv:2,
+ how:["Hanyatt fekve emeld a térdeket a csípő fölé 90 fokban.","A karok oldalt a talajon.","Kilégzésre engedd a lábakat az egyik oldalra, belégzésre hozd vissza középre."],
+ ben:"Erősíti a ferde hasizmokat, mobilizálja a gerincet.",
+ warn:"Derékfájdalomnál csak kis ívben, hajlított térddel.",
+ f:{t:270,fc:0,a:[350,350,0.6],b:[95,90],l:[45,130,0.8],r:[47,132,0.8]}},
+{s:"Parivṛtta Jānu Śīrṣāsana", h:"Csavart fej-térd", e:"Revolved Head-to-Knee", c:"csavar", lv:2,
+ how:["Ülj terpeszben, az egyik lábat hajlítsd be, a talp a belső combon.","Hajolj oldalra a nyújtott láb fölé, az alsó váll a térd belső oldalán.","A felső kar a fej fölött nyúlik a lábfej felé, a mellkas felfelé fordul."],
+ ben:"Nyújtja a törzsoldalt és a combhajlítót, nyitja a vállat.",
+ warn:"Térdpanasznál párnát a hajlított térd alá.",
+ f:{t:62,h:70,fc:0,c:-3,a:[150,100],b:[60,70],l:[90,90],r:[250,80,0.7]}},
+
+// ---------- CSÍPŐNYITÓK ----------
+{s:"Baddha Koṇāsana", h:"Pillangó (kötött szög)", e:"Bound Angle / Butterfly", c:"csipo", lv:1,
+ how:["Ülésben tedd össze a talpakat, a térdek oldalra nyílnak.","Fogd meg a lábfejeket, húzd a sarkakat a csípő felé, amennyire kényelmes.","Nyújtsd a gerincet; előre is dőlhetsz."],
+ ben:"Nyitja a csípőt és a belső combot, jó előkészítő a meditációs üléshez.",
+ warn:"Térd- vagy ágyéksérülésnél tegyél blokkot a térdek alá.",
+ f:{t:5,a:[160,170],b:[162,172],l:[80,245,0.7],r:[82,248,0.7]}},
+{s:"Kapotāsana (előkészítő)", h:"Galamb", e:"Pigeon", c:"csipo", lv:2,
+ how:["Lefelé néző kutyából hozd előre az egyik térdet a kezek közé, a lábszár ferdén a talajon.","A hátsó láb nyújtva, a lábfej teteje a talajon.","Egyenesítsd a csípőt, maradj fent, vagy dőlj előre az alkarokra."],
+ ben:"Mélyen nyitja a külső csípőt és a farizmot, nyújtja a csípőhajlítót.",
+ warn:"Térdfájdalomnál használj tűfok pózt fekve helyette; a csípő alá párna.",
+ f:{t:0,a:[180,180],b:[182,180],l:[92,265,0.6],r:[268,270]}},
+{s:"Añjaneyāsana", h:"Alacsony kitörés", e:"Low Lunge", c:"csipo", lv:1,
+ how:["Kitörésben engedd le a hátsó térdet a talajra, a lábfej teteje a földön.","Told a csípőt előre és lefelé.","Emeld a karokat a fejed fölé, a mellkas nyílik."],
+ ben:"Nyújtja a csípőhajlítót és a combot, nyitja a mellkast.",
+ warn:"Térdpanasznál takarót a hátsó térd alá.",
+ f:{t:-5,h:-8,c:-3,a:[0,0],b:[2,2],l:[95,155],r:[200,270]}},
+{s:"Mālāsana", h:"Guggolás (füzér)", e:"Garland", c:"csipo", lv:1,
+ how:["Állj csípőnél szélesebb terpeszben, a lábfejek enyhén kifelé.","Guggolj le, a sarkak a talajon vagy egy takarón.","Tenyerek a mellkas előtt, a könyökök a térdeket finoman széttolják."],
+ ben:"Nyitja a csípőt és az ágyékot, nyújtja a bokát, segíti az emésztést.",
+ warn:"Térdsérülésnél ülj blokkra.",
+ f:{t:15,a:[170,60],b:[172,62],l:[85,190],r:[87,192]}},
+{s:"Gomukhāsana", h:"Tehénarc", e:"Cow Face", c:"csipo", lv:2,
+ how:["Ülésben tedd a térdeket egymásra, a lábfejek a csípő két oldalán.","Az egyik kart nyújtsd fel és hajlítsd hátra, a másikat alulról vezesd a hát mögé.","Fogd meg az ujjakat (vagy egy hevedert)."],
+ ben:"Nyitja a csípőt és a vállat egyszerre, javítja a testtartást.",
+ warn:"Térd- vagy vállsérülésnél csak a lábakkal vagy csak a karokkal dolgozz.",
+ f:{t:0,a:[355,190],b:[200,10],l:[85,265,0.8],r:[88,268,0.8]}},
+{s:"Agnistambhāsana", h:"Tűzrönk", e:"Fire Log", c:"csipo", lv:2,
+ how:["Ülésben a lábszárakat tedd egymásra párhuzamosan, a boka a térd fölé.","A lábfejek flexben, hogy védjék a térdet.","Nyújtsd a gerincet, majd dőlj előre."],
+ ben:"Erősen nyitja a külső csípőt és a farizmokat.",
+ warn:"Ha a térd fáj, tegyél blokkot a felső térd alá vagy válassz pillangót.",
+ f:{t:10,a:[165,120],b:[167,122],l:[85,260,0.75],r:[88,262,0.75]}},
+{s:"Skandāsana", h:"Oldalsó kitörés", e:"Side Lunge", c:"csipo", lv:2,
+ how:["Széles terpeszből hajlítsd az egyik térdet mélyen, a másik láb nyújtva, lábujjak felfelé.","A hajlított láb sarka maradjon lent, ha lehet.","Kezek a talajon vagy a mellkas előtt."],
+ ben:"Nyújtja a belső combot és a combhajlítót, nyitja a csípőt.",
+ warn:"Térdpanasznál ne menj túl mélyre.",
+ f:{t:10,a:[150,30],b:[210,330],l:[135,135],r:[235,178],v:"f"}},
+{s:"Utthan Pṛṣṭhāsana", h:"Gyík", e:"Lizard", c:"csipo", lv:2,
+ how:["Alacsony kitörésből tedd mindkét kezet az első láb belső oldalára.","Ha lehet, engedd le az alkarokat a talajra vagy egy blokkra.","A hátsó térd lehet lent vagy fent."],
+ ben:"Mélyen nyitja a csípőhajlítót és a belső csípőt.",
+ warn:"Válldelikát esetén maradj kézen; a hátsó térd alá takaró.",
+ f:{t:100,h:95,a:[180,90],b:[182,90],l:[95,155],r:[200,270]}},
+{s:"Maṇḍūkāsana", h:"Béka", e:"Frog", c:"csipo", lv:2,
+ how:["Négykézlábról csúsztasd szét a térdeket, a lábszárak párhuzamosak, a lábfejek kifelé.","Ereszkedj le az alkarokra.","A csípőt lassan told hátra a térdek vonala felé."],
+ ben:"Intenzíven nyitja a belső combot és a csípőt.",
+ warn:"Térdek alá vastag takarót tegyél; fokozatosan mélyíts.",
+ f:{t:95,h:100,a:[180,90,0.6],b:[182,90,0.6],l:[180,270,0.5],r:[180,270,0.5]}},
+{s:"Ānanda Bālāsana", h:"Boldog baba", e:"Happy Baby", c:"csipo", lv:1,
+ how:["Feküdj hanyatt, húzd a térdeket a hónaljak felé.","Fogd meg a lábfejek külső élét, a talpak a mennyezet felé néznek.","A keresztcsont maradjon a talajon, ringathatod magad oldalra."],
+ ben:"Nyitja a csípőt és az ágyékot, lazítja a deréktájat.",
+ warn:"Terhesség utolsó szakaszában és nyaki panasznál óvatosan.",
+ f:{t:270,fc:0,a:[25,15],b:[27,17],l:[320,0],r:[322,2]}},
+{s:"Supta Pādāṅguṣṭhāsana", h:"Fekvő kéz-nagylábujj", e:"Reclining Hand-to-Big-Toe", c:"csipo", lv:1,
+ how:["Hanyatt fekve emeld fel az egyik lábat, a talpra tegyél hevedert.","A másik láb nyújtva a talajon, a lábfej flexben.","Húzd közelebb a lábat, majd oldalra is nyithatod."],
+ ben:"Biztonságosan nyújtja a combhajlítót és a belső combot.",
+ warn:"Ha a keresztcsont felemelkedik, engedd lejjebb a lábat.",
+ f:{t:270,fc:0,a:[40,30],b:[95,90],l:[0,0],r:[90,90],strap:true}},
+{s:"Hanumānāsana", h:"Spárga (Hanumán)", e:"Monkey / Front Splits", c:"csipo", lv:3,
+ how:["Alacsony kitörésből nyújtsd ki fokozatosan az első lábat előre.","A hátsó láb hátrafelé csúszik, a csípő szemben marad.","Használj blokkokat a kezek alá, és ha kell, a csípő alá is."],
+ ben:"Maximálisan nyújtja a combhajlítót és a csípőhajlítót.",
+ warn:"Csak bemelegedve, sok előkészítés után; combhajlító-sérülésnél kerüld.",
+ f:{t:0,a:[0,0],b:[2,2],l:[90,90],r:[270,270]}},
+{s:"Ardha Hanumānāsana", h:"Félspárga", e:"Half Splits", c:"csipo", lv:1,
+ how:["Alacsony kitörésből told hátra a csípőt a hátsó térd fölé.","Nyújtsd ki az első lábat, a lábujjak felfelé.","Hajolj előre a gerinc hosszával, a kezek a talajon vagy blokkokon."],
+ ben:"Nyújtja a combhajlítót és a vádlit, előkészíti a spárgát.",
+ warn:"Térdpanasznál takarót a hátsó térd alá.",
+ f:{t:75,h:85,c:3,a:[180,180],b:[182,180],l:[120,120],r:[180,270]}},
+{s:"Sūcirandhrāsana", h:"Tűfok", e:"Eye of the Needle", c:"csipo", lv:1,
+ how:["Feküdj hanyatt, talpak a talajon.","Tedd az egyik bokát a másik térd fölé.","Fogd meg az alsó combot, és húzd a lábakat a mellkas felé."],
+ ben:"Kíméletesen nyitja a külső csípőt és a farizmot; a galamb biztonságos változata.",
+ warn:"A felső lábfej maradjon flexben a térd védelmében.",
+ f:{t:270,fc:0,a:[20,60],b:[22,62],l:[30,250,0.6],r:[340,80]}},
+
+// ---------- ÜLŐ ----------
+{s:"Daṇḍāsana", h:"Bot", e:"Staff", c:"ulo", lv:1,
+ how:["Ülj kinyújtott lábakkal, a lábfejek flexben.","A tenyerek a csípő mellett a talajon, nyomd őket lefelé.","A gerinc függőleges, a fejtető felfelé nyúlik."],
+ ben:"Az ülő pózok alapja, erősíti a hátizmokat, javítja a tartást.",
+ warn:"Ha a hát kerekedik, ülj egy takaró szélére.",
+ f:{t:0,a:[180,180],b:[182,180],l:[90,90],r:[90,90]}},
+{s:"Sukhāsana", h:"Könnyű ülés (törökülés)", e:"Easy Pose", c:"ulo", lv:1,
+ how:["Ülj keresztbe tett lábakkal, a lábfejek a térdek alatt.","Ülj egy összehajtott takaró szélére, hogy a térdek a csípő alá kerüljenek.","A kezek a térdeken, a gerinc egyenes, a vállak lazák."],
+ ben:"Kényelmes meditációs és légzőgyakorlati ülés, nyitja a csípőt.",
+ warn:"Térdfájdalomnál párnát tegyél a térdek alá.",
+ f:{t:0,a:[165,120],b:[167,122],l:[80,250,0.7],r:[85,255,0.7]}},
+{s:"Siddhāsana", h:"Tökéletes ülés", e:"Accomplished Pose", c:"ulo", lv:2,
+ how:["Az egyik sarkat hozd a gát elé, a másikat elé tedd egy vonalban.","A térdek a talaj felé nyílnak.","A kezek a térdeken, mudrában."],
+ ben:"Stabil, egyenes tartást ad hosszabb meditációhoz.",
+ warn:"Térd- és bokapanasznál válaszd a könnyű ülést.",
+ f:{t:0,a:[160,110],b:[162,112],l:[82,252,0.7],r:[86,256,0.7]}},
+{s:"Ardha Padmāsana", h:"Fél lótusz", e:"Half Lotus", c:"ulo", lv:2,
+ how:["Törökülésből emeld az egyik lábfejet az ellentétes comb tetejére.","A másik láb a comb alatt pihen.","A térdek a talaj felé, a gerinc hosszú."],
+ ben:"Előkészíti a lótuszt, nyitja a csípőt, stabil ülés.",
+ warn:"Soha ne erőltesd a térdnél; a mozgás a csípőből jöjjön.",
+ f:{t:0,a:[160,110],b:[162,112],l:[84,258,0.7],r:[86,256,0.7]}},
+{s:"Padmāsana", h:"Lótusz", e:"Lotus", c:"ulo", lv:3,
+ how:["Ülésben emeld az egyik lábfejet az ellentétes comb tetejére.","Ezután a másik lábfejet is tedd a másik combra.","A sarkak a has felé, a térdek a talajon, a kezek mudrában."],
+ ben:"Klasszikus meditációs ülés, nagyon stabil tartást ad.",
+ warn:"Térdsérülésnél kerüld; csak nyitott csípővel próbáld.",
+ f:{t:0,a:[160,110],b:[162,112],l:[85,260,0.7],r:[88,262,0.7]}},
+{s:"Vajrāsana", h:"Gyémánt (sarokülés)", e:"Thunderbolt / Diamond", c:"ulo", lv:1,
+ how:["Térdelj, a térdek összezárva, a lábfejek teteje a talajon.","Ülj le a sarkakra.","A kezek a combokon, a gerinc egyenes."],
+ ben:"Segíti az emésztést (étkezés után is végezhető), nyújtja a bokát.",
+ warn:"Térdpanasznál tegyél párnát a sarkak és a fenék közé.",
+ f:{t:0,a:[175,110],b:[177,112],l:[100,272],r:[100,272]}},
+{s:"Vīrāsana", h:"Hős", e:"Hero", c:"ulo", lv:2,
+ how:["Térdelj, a lábfejeket told a csípőnél kicsit szélesebbre.","Ülj le a lábfejek közé a talajra vagy egy blokkra.","A térdek összezárva, a gerinc egyenes."],
+ ben:"Nyújtja a combfeszítőt és a bokát, kényelmes meditációs ülés.",
+ warn:"Térd- és bokaproblémánál mindig ülj blokkra.",
+ f:{t:0,a:[175,110],b:[177,112],l:[100,272],r:[100,272]}},
+{s:"Siṁhāsana", h:"Oroszlán", e:"Lion", c:"ulo", lv:1,
+ how:["Ülj sarokülésben, a tenyereket tedd a térdekre, ujjak szétterpesztve.","Mély belégzés után nyisd ki a szádat, nyújtsd ki a nyelvedet.","Hangosan, „há” hanggal lélegezz ki, a szemek felfelé néznek."],
+ ben:"Oldja az arc és a torok feszültségét, felszabadító, játékos.",
+ warn:"Térdpanasznál ülj széken.",
+ f:{t:10,h:20,a:[155,150],b:[157,152],l:[100,272],r:[100,272]}},
+{s:"Krauñcāsana", h:"Gém", e:"Heron", c:"ulo", lv:2,
+ how:["Ülj hős ülésben az egyik lábbal, a másik láb előre nyújtva.","Hajlítsd be az előre nyújtott lábat, fogd meg a talpat két kézzel.","Nyújtsd ki a lábat felfelé, a gerinc egyenes marad."],
+ ben:"Mélyen nyújtja a combhajlítót, erősíti a hátat.",
+ warn:"Ha a hát kerekedik, használj hevedert.",
+ f:{t:10,a:[85,85,0.78],b:[87,87,0.78],l:[40,40],r:[90,265,0.7]}},
+
+// ---------- KAREGYENSÚLYOK ----------
+{s:"Bakāsana", h:"Varjú", e:"Crow", c:"kar", lv:2,
+ how:["Guggolásból tedd a tenyereket vállszélességben a talajra.","Hajlítsd a könyököket, a térdeket tedd a felkarok hátsó részére.","Dőlj előre, nézz előre, és emeld fel egyesével a lábfejeket."],
+ ben:"Erősíti a karokat, csuklót és hasat, fejleszti az egyensúlyt és a bátorságot.",
+ warn:"Csuklósérülésnél és terhesség alatt kerüld; tegyél párnát magad elé.",
+ f:{t:120,h:110,a:[180,175],b:[182,177],l:[150,300],r:[152,302]}},
+{s:"Pārśva Bakāsana", h:"Oldalsó varjú", e:"Side Crow", c:"kar", lv:3,
+ how:["Guggolásból csavarodj oldalra, a kezeket tedd a talajra a lábak mellé.","Az egyik combot tedd az ellentétes felkarra.","Dőlj előre, és emeld fel a lábakat összezárva."],
+ ben:"Erősíti a karokat és a ferde hasizmokat, csavarás és egyensúly egyben.",
+ warn:"Csukló- és vállproblémánál kerüld.",
+ f:{t:110,h:100,a:[180,175],b:[182,177],l:[140,250],r:[142,252]}},
+{s:"Caturaṅga Daṇḍāsana", h:"Négy ponton álló bot", e:"Four-Limbed Staff", c:"kar", lv:2,
+ how:["Deszkából told a súlyt kissé előre.","Hajlítsd a könyököket egyenesen hátra, a test mellé.","Ereszkedj le, amíg a felkarok párhuzamosak a talajjal, a test egyenes."],
+ ben:"Erősíti a karokat, vállat és törzset, a vinyasa áramlás kulcsmozdulata.",
+ warn:"Vállsérülésnél a térdeket engedd le; ne süllyedj a vállak alá.",
+ f:{t:78.5,h:80,a:[270,180],b:[270,180],l:[258.5,258.5],r:[258.5,258.5]}},
+{s:"Vasiṣṭhāsana", h:"Oldalsó deszka", e:"Side Plank", c:"kar", lv:2,
+ how:["Deszkából fordulj az egyik kéz külső élére, a lábfejek egymáson.","Emeld a csípőt, a test egy egyenes vonal.","A felső kar a mennyezet felé nyúlik."],
+ ben:"Erősíti a karokat, csuklót és a ferde hasizmokat.",
+ warn:"Csuklóproblémánál alkaron; könnyítésként a felső lábfej elé a talajra.",
+ f:{t:65.5,a:[180,180],b:[0,0],l:[245.5,245.5],r:[245.5,245.5],v:"f"}},
+{s:"Ṭiṭṭibhāsana", h:"Szentjánosbogár", e:"Firefly", c:"kar", lv:3,
+ how:["Széles guggolásból vezesd a vállakat a térdek alá, a tenyerek a lábak mögött.","Ülj rá a felkarokra, és nyújtsd ki a lábakat előre.","A karok egyenesek, a lábak a talajjal párhuzamosan vagy feljebb."],
+ ben:"Erősíti a karokat és a hasat, nyújtja a combhajlítót.",
+ warn:"Csukló-, könyök- és vállsérülésnél kerüld.",
+ f:{t:70,h:80,c:4,a:[180,180],b:[182,180],l:[80,80],r:[82,82]}},
+{s:"Mayūrāsana", h:"Páva", e:"Peacock", c:"kar", lv:3,
+ how:["Térdelj, a tenyereket tedd le az ujjakkal hátrafelé.","Hajlítsd a könyököket, és tedd a hasat a könyökökre.","Dőlj előre, és emeld a nyújtott lábakat, a test vízszintes."],
+ ben:"Nagy erőt kíván, erősíti a csuklót és az alkart, serkenti az emésztést.",
+ warn:"Magas vérnyomásnál, terhesség alatt, csuklósérülésnél kerüld.",
+ f:{t:95,h:90,a:[225,180],b:[227,180],l:[268,268],r:[268,268]}},
+{s:"Aṣṭāvakrāsana", h:"Nyolcszög", e:"Eight-Angle", c:"kar", lv:3,
+ how:["Ülésben az egyik lábat tedd a felkarra a vállhoz közel.","A tenyerek a talajon, emeld fel a testet, a lábfejeket kulcsold össze.","Dőlj előre és nyújtsd a lábakat oldalra, a könyökök hajlítva."],
+ ben:"Erősíti a karokat és a ferde hasizmokat, fejleszti a koordinációt.",
+ warn:"Csuklóproblémánál kerüld.",
+ f:{t:100,h:95,a:[260,180],b:[262,180],l:[100,100],r:[102,102]}},
+{s:"Eka Pāda Kauṇḍinyāsana", h:"Kaundínja", e:"Koundinya's Pose", c:"kar", lv:3,
+ how:["Csavart guggolásból tedd a kezeket a talajra, a combot a felkarra.","Chaturanga karokkal dőlj előre.","Nyújtsd az első lábat előre-oldalra, a hátsót hátra."],
+ ben:"Erősíti a karokat és a törzset, csavarás és egyensúly egyben.",
+ warn:"Csukló- és vállsérülésnél kerüld.",
+ f:{t:100,h:95,a:[260,180],b:[262,180],l:[95,95],r:[265,265]}},
+{s:"Bhujapīḍāsana", h:"Vállnyomó", e:"Shoulder-Pressing", c:"kar", lv:3,
+ how:["Guggolásból told a vállakat a térdek mögé, a kezek a lábak mögött.","Ülj rá a felkarokra, és kulcsold össze a bokákat magad előtt.","Emeld fel a lábfejeket a talajról."],
+ ben:"Erősíti a karokat és a csuklót, nyitja a csípőt.",
+ warn:"Csukló-, váll- és könyöksérülésnél kerüld.",
+ f:{t:30,h:45,a:[180,180],b:[182,180],l:[60,150],r:[62,152]}},
+{s:"Lolāsana", h:"Függő (fülbevaló)", e:"Pendant", c:"kar", lv:3,
+ how:["Térdelj, tegyél blokkokat a kezek alá.","Keresztezd a bokákat, húzd a térdeket a mellkashoz.","Nyomd a kezeket lefelé, és emeld el az egész testet a talajról."],
+ ben:"Erősíti a karokat és a mélyizmokat, fejleszti a koncentrációt.",
+ warn:"Csuklóproblémánál kerüld; kezdj egy lábfej emelésével.",
+ f:{t:15,h:25,c:6,a:[180,180],b:[182,180],l:[95,260,0.7],r:[97,262,0.7]}},
+{s:"Tolāsana", h:"Mérleg", e:"Scale", c:"kar", lv:3,
+ how:["Ülj lótuszban vagy törökülésben, a tenyereket tedd a csípő mellé.","Nyomd a tenyereket a talajba, és emeld el a testet.","Tartsd néhány légzésig."],
+ ben:"Erősíti a karokat, csuklót és hasat.",
+ warn:"Térdpanasznál törökülésből, csuklópanasznál blokkokon.",
+ f:{t:5,h:10,a:[180,180],b:[182,180],l:[85,260,0.7],r:[88,262,0.7]}},
+{s:"Eka Pāda Gālavāsana", h:"Repülő galamb", e:"Flying Pigeon", c:"kar", lv:3,
+ how:["Egylábas székből dőlj előre, a kezek a talajon.","Akaszd a felhúzott lábfejet a felkar köré, a sípcsont a felkarokon.","Dőlj előre, és nyújtsd hátra-felfelé a hátsó lábat."],
+ ben:"Erősíti a karokat, nyitja a csípőt, fejleszti az egyensúlyt.",
+ warn:"Csukló- és térdsérülésnél kerüld.",
+ f:{t:120,h:110,a:[180,175],b:[182,177],l:[140,90,0.7],r:[290,290]}},
+
+// ---------- TÖRZSERŐSÍTŐK ----------
+{s:"Phalakāsana", h:"Deszka", e:"Plank", c:"core", lv:1,
+ how:["Négykézlábról lépj hátra a lábakkal, a csuklók a vállak alatt.","A test egyenes vonal a sarktól a fejtetőig.","A has aktív, a csípő nem süllyed és nem emelkedik."],
+ ben:"Erősíti a törzset, a karokat és a vállat, alapja a karegyensúlyoknak.",
+ warn:"Csuklóproblémánál alkaron; könnyítés térdeken.",
+ f:{t:65.5,h:70,a:[180,180],b:[180,180],l:[245.5,245.5],r:[245.5,245.5]}},
+{s:"Makara Adho Mukha Śvānāsana", h:"Alkartámasz", e:"Forearm Plank", c:"core", lv:1,
+ how:["Alkarokra támaszkodj, a könyökök a vállak alatt.","Lépj hátra a lábakkal, a test egyenes.","Tarts 20–60 másodpercig egyenletes légzéssel."],
+ ben:"Erősíti a mély hasizmokat, kíméli a csuklót.",
+ warn:"Ha a derék beesik, engedd le a térdeket.",
+ f:{t:77.6,h:80,a:[180,90],b:[180,90],l:[257.6,257.6],r:[257.6,257.6]}},
+{s:"Nāvāsana", h:"Csónak", e:"Boat", c:"core", lv:2,
+ how:["Ülj, a térdek hajlítva, a kezek a combok mögött.","Dőlj hátra, emeld a lábakat, a sípcsont párhuzamos a talajjal.","Ha megy, nyújtsd ki a lábakat, a karok előre nyúlnak."],
+ ben:"Erősíti a hasizmokat és a csípőhajlítót, fejleszti az egyensúlyt.",
+ warn:"Derék- és nyakpanasznál hajlított térddel, kézzel a combot fogva.",
+ f:{t:-35,h:-25,a:[90,90],b:[92,92],l:[45,45],r:[47,47]}},
+{s:"Ardha Nāvāsana", h:"Félcsónak", e:"Half Boat", c:"core", lv:2,
+ how:["Csónakból engedd lejjebb a lábakat és a törzset.","Lebegj pár centivel a talaj fölött, a derék közel a talajhoz.","Tarts néhány légzést, majd emelkedj vissza csónakba."],
+ ben:"Intenzíven erősíti a hasizmokat.",
+ warn:"Derékpanasznál kerüld vagy hajlított térddel végezd.",
+ f:{t:-62,h:-50,a:[92,92],b:[94,94],l:[72,72],r:[74,74]}},
+{s:"Ūrdhva Prasārita Pādāsana", h:"Felemelt lábak", e:"Upward Extended Feet", c:"core", lv:1,
+ how:["Feküdj hanyatt, a karok a fej fölött a talajon.","Emeld a nyújtott lábakat 90 fokba.","Kilégzésre engedd lejjebb őket, amíg a derék a talajon marad."],
+ ben:"Erősíti az alsó hasat, nyújtja a combhajlítót.",
+ warn:"Ha a derék elemelkedik, ne engedd túl alacsonyra a lábakat.",
+ f:{t:270,fc:0,a:[270,270],b:[272,272],l:[0,0],r:[2,2]}},
+{s:"Bharmanāsana", h:"Asztal (négykézláb)", e:"Tabletop", c:"core", lv:1,
+ how:["Térdelj négykézláb, a csuklók a vállak, a térdek a csípő alatt.","A hát egyenes, a nyak a gerinc meghosszabbítása.","Nyomd a tenyereket a talajba, a has finoman aktív."],
+ ben:"Biztonságos kiindulópont, stabilizálja a vállat és a törzset.",
+ warn:"Csuklófájdalomnál ököllel vagy alkaron.",
+ f:{t:76,h:80,a:[180,180],b:[180,180],l:[180,270],r:[180,270]}},
+{s:"Daṇḍayamana Bharmanāsana", h:"Egyensúlyozó asztal (madár-kutya)", e:"Bird Dog", c:"core", lv:1,
+ how:["Asztal pózból nyújtsd előre az egyik kart.","Ezzel egyidőben nyújtsd hátra az ellentétes lábat.","A csípő és a vállak maradjanak vízszintesen, majd cserélj."],
+ ben:"Fejleszti a törzsstabilitást, az egyensúlyt és a koordinációt.",
+ warn:"Térdpanasznál takarót a térd alá.",
+ f:{t:76,h:85,a:[82,86],b:[180,180],l:[180,270],r:[270,270]}},
+
+// ---------- FORDÍTOTT ----------
+{s:"Adho Mukha Śvānāsana", h:"Lefelé néző kutya", e:"Downward-Facing Dog", c:"forditott", lv:1,
+ how:["Négykézlábról tedd a kezeket a vállak elé, emeld a csípőt felfelé és hátra.","A test fordított V-t alkot, a karok és a hát egy vonalban.","A sarkak a talaj felé nyúlnak, a térdek lehetnek hajlítva."],
+ ben:"Nyújtja a teljes hátsó láncot, erősíti a vállat és a karokat, frissít.",
+ warn:"Csukló- és vállproblémánál delfin póz; magas vérnyomásnál rövid tartás.",
+ f:{t:135,h:150,a:[135,135],b:[135,135],l:[205,205],r:[205,205]}},
+{s:"Ardha Pincha Mayūrāsana", h:"Delfin", e:"Dolphin", c:"forditott", lv:2,
+ how:["Alkarokra támaszkodj, a könyökök vállszélességben.","Emeld a csípőt, mint a lefelé néző kutyában.","Sétálj közelebb a lábakkal, a vállak a csuklók fölé."],
+ ben:"Erősíti a vállat és a felső hátat, előkészíti az alkarállást és a fejenállást.",
+ warn:"Vállsérülésnél kerüld.",
+ f:{t:140,h:160,a:[180,90],b:[180,90],l:[200,200],r:[200,200]}},
+{s:"Sālamba Sarvāṅgāsana", h:"Gyertya (vállállás)", e:"Supported Shoulderstand", c:"forditott", lv:2,
+ how:["Feküdj hanyatt, a vállak alá tegyél összehajtott takarót.","Lendülj fel, és támaszd meg a hátat a kezekkel.","Nyújtsd a lábakat felfelé, a súly a vállakon, nem a nyakon."],
+ ben:"Nyugtat, nyújtja a nyakat és vállat, a „fordított pózok királynője”.",
+ warn:"Nyaksérülésnél, magas vérnyomásnál, menstruáció alatt kerüld.",
+ f:{t:180,h:290,fc:20,a:[95,330],b:[97,332],l:[0,0],r:[0,0]}},
+{s:"Halāsana", h:"Eke", e:"Plow", c:"forditott", lv:2,
+ how:["Vállállásból engedd a lábakat a fej mögé a talajra.","A kezeket kulcsold össze a hát mögött, vagy támaszd a hátat.","A nyak maradjon mozdulatlan, ne fordítsd el a fejet."],
+ ben:"Nyújtja a gerincet és a vállat, nyugtat.",
+ warn:"Nyaksérülésnél kerüld; ha a lábak nem érnek le, tegyél alájuk széket.",
+ f:{t:172,h:290,fc:20,c:4,a:[90,90],b:[92,90],l:[235,235],r:[235,235]}},
+{s:"Karṇapīḍāsana", h:"Fülnyomó", e:"Ear Pressure", c:"forditott", lv:3,
+ how:["Ekéből hajlítsd be a térdeket.","Engedd le a térdeket a fülek mellé a talajra.","A karok a hát mögött vagy a lábak körül."],
+ ben:"Mély nyugtató hatás, nyújtja a hátat.",
+ warn:"Nyaksérülésnél kerüld.",
+ f:{t:172,h:290,fc:20,c:5,a:[90,90],b:[92,90],l:[205,260],r:[205,260]}},
+{s:"Sālamba Śīrṣāsana", h:"Fejenállás", e:"Supported Headstand", c:"forditott", lv:3,
+ how:["Térdelj, kulcsold össze az ujjakat, az alkarok a talajon.","A fejtetőt tedd le a kezek közé, a fejtető hátsó részét a kezek támasztják.","Sétálj közelebb, emeld fel a lábakat, a súly főként az alkarokon."],
+ ben:"Erősíti a vállat és a törzset, fejleszti a koncentrációt.",
+ warn:"Nyakproblémánál, magas vérnyomásnál, glaukómánál kerüld; tanulj tanárral, fal mellett.",
+ f:{t:180,h:180,a:[160,270],b:[162,270],l:[0,0],r:[2,2]}},
+{s:"Sālamba Śīrṣāsana II", h:"Háromszög-fejenállás", e:"Tripod Headstand", c:"forditott", lv:3,
+ how:["A tenyerek és a fejtető egy háromszöget alkotnak a talajon.","A könyökök a csuklók fölött, a térdeket tedd a könyökökre (varjú-szerűen).","Emeld lassan a lábakat felfelé."],
+ ben:"Erősíti a vállat és a karokat, előkészíti a karegyensúlyokat.",
+ warn:"Nyaksérülésnél kerüld; mindig kontrolláltan, ugrás nélkül.",
+ f:{t:180,h:180,a:[100,180],b:[102,180],l:[0,0],r:[2,2]}},
+{s:"Adho Mukha Vṛkṣāsana", h:"Kézenállás", e:"Handstand", c:"forditott", lv:3,
+ how:["Lefelé néző kutyából sétálj közel a falhoz, a kezek a faltól egy tenyérnyire.","Rugaszkodj el az egyik lábbal, és lendítsd fel a lábakat.","A karok egyenesek, a vállak a fülek felé, a test egy vonal."],
+ ben:"Erősíti a vállat, karokat és törzset, élénkítő, magabiztosságot ad.",
+ warn:"Csukló- és vállsérülésnél, magas vérnyomásnál kerüld.",
+ f:{t:180,h:180,a:[180,180],b:[180,180],l:[0,0],r:[2,2]}},
+{s:"Pīñcha Mayūrāsana", h:"Alkarállás", e:"Forearm Stand", c:"forditott", lv:3,
+ how:["Delfin pózból sétálj közelebb a lábakkal.","Emeld fel az egyik lábat, majd lendülj fel a másikkal.","A vállak a könyökök fölött, a has aktív."],
+ ben:"Erősíti a vállat és a hátat, fejleszti az egyensúlyt.",
+ warn:"Vállsérülésnél kerüld; tanuld fal mellett.",
+ f:{t:180,h:170,a:[180,90],b:[180,90],l:[0,0],r:[2,2]}},
+{s:"Vṛścikāsana", h:"Skorpió", e:"Scorpion", c:"forditott", lv:3,
+ how:["Alkarállásból hajlítsd a térdeket.","Engedd a lábfejeket a fej felé, a hát ívben hajlik.","Emeld a fejet és nézz előre."],
+ ben:"Nagyon mély hátrahajlás és egyensúly, erősít és nyit.",
+ warn:"Csak haladó gyakorlóknak, gerinc- és vállsérülésnél kerüld.",
+ f:{t:170,h:150,c:-8,a:[180,90],b:[180,90],l:[40,150],r:[42,152]}},
+
+// ---------- PIHENTETŐ ----------
+{s:"Bālāsana", h:"Gyermek", e:"Child's Pose", c:"pihen", lv:1,
+ how:["Térdelj, ülj a sarkakra, a térdek lehetnek összezárva vagy szétnyitva.","Hajolj előre, a homlok a talajon.","A karok előre nyúlnak vagy hátul a test mellett pihennek."],
+ ben:"Nyugtat, nyújtja a hátat és a csípőt, bármikor pihenhetsz benne.",
+ warn:"Térdsérülésnél párnát a térdhajlatba; terhesség alatt széles térddel.",
+ f:{t:100,h:95,c:4,a:[110,90],b:[112,90],l:[125,272],r:[125,272]}},
+{s:"Śavāsana", h:"Ellazulás (halott póz)", e:"Corpse", c:"pihen", lv:1,
+ how:["Feküdj hanyatt, a lábak csípőszélességben, a lábfejek lazán kifelé dőlnek.","A karok a test mellett, tenyerek felfelé.","Csukd be a szemed, engedd el az izmokat, és maradj 5–10 percig."],
+ ben:"Mély relaxáció, beépíti a gyakorlás hatását, csökkenti a stresszt.",
+ warn:"Derékfájdalomnál tegyél párnát a térdek alá; terhesség alatt oldalt feküdj.",
+ f:{t:270,fc:0,a:[100,95],b:[102,97],l:[90,90],r:[92,92]}},
+{s:"Makarāsana", h:"Krokodil", e:"Crocodile", c:"pihen", lv:1,
+ how:["Feküdj hasra, a lábak kicsit szétnyitva.","Tedd egymásra az alkarokat, és pihentesd rajtuk a homlokod.","Lélegezz a has felé, érezd, ahogy a has a talajhoz nyomódik."],
+ ben:"Ellazítja a hátat, segíti a hasi légzést, hátrahajlások után ideális.",
+ warn:"Terhesség alatt kerüld.",
+ f:{t:90,h:90,a:[75,270],b:[77,270],l:[270,270],r:[268,268]}},
+{s:"Apānāsana", h:"Térd a mellkashoz", e:"Knees-to-Chest", c:"pihen", lv:1,
+ how:["Feküdj hanyatt, húzd mindkét térdet a mellkashoz.","Öleld át a lábszárakat.","Ringasd magad finoman oldalra vagy körbe."],
+ ben:"Masszírozza a derekat, oldja a puffadást, nyugtat.",
+ warn:"Terhesség alatt széles térddel.",
+ f:{t:270,fc:0,a:[20,80],b:[22,82],l:[315,90],r:[317,92]}},
+{s:"Pavanamuktāsana", h:"Szélfelszabadító", e:"Wind-Relieving", c:"pihen", lv:1,
+ how:["Hanyatt fekve húzd az egyik térdet a mellkashoz, a másik láb nyújtva.","Öleld át a térdet, a vállak lazák.","Tarts néhány légzést, majd cserélj."],
+ ben:"Segíti az emésztést, lazítja a derekat és a csípőt.",
+ warn:"Nyaki panasznál a fej maradjon a talajon.",
+ f:{t:270,fc:0,a:[20,80],b:[22,82],l:[315,90],r:[90,90]}},
+{s:"Supta Baddha Koṇāsana", h:"Fekvő pillangó", e:"Reclining Bound Angle", c:"pihen", lv:1,
+ how:["Feküdj hanyatt, tedd össze a talpakat, a térdek oldalra nyílnak.","Tehetsz blokkot vagy párnát a térdek alá.","A karok oldalt lazán, tenyerek felfelé."],
+ ben:"Nyitja a csípőt és a mellkast, mélyen ellazít.",
+ warn:"Ágyéki érzékenységnél támaszd alá a combokat.",
+ f:{t:270,fc:0,a:[110,90],b:[112,90],l:[40,160,0.7],r:[42,162,0.7]}},
+{s:"Viparīta Karaṇī", h:"Láb a falon", e:"Legs-Up-the-Wall", c:"pihen", lv:1,
+ how:["Ülj oldalt a fal mellé, majd fordulj hanyatt, és told fel a lábakat a falon.","A fenék közel a falhoz, a csípő alá tehetsz takarót.","Karok lazán oldalt, maradj 5–15 percig."],
+ ben:"Pihenteti a lábakat, nyugtatja az idegrendszert, enyhe fordított póz.",
+ warn:"Glaukómánál és súlyos szívbetegségnél kerüld.",
+ f:{t:270,fc:0,a:[95,90],b:[97,90],l:[0,0],r:[2,2],wall:true}}
+];
+
+// Second batch: variations and poses from Ashtanga, Iyengar, Hatha, Yin and restorative practice.
+CATS.splice(CATS.findIndex(c => c[0] === "pihen") + 1, 0,
+  ["yin", "Yin jóga pózok", "Passzív, hosszan (3–5 percig) tartott pózok a kötőszövetek és ízületek finom terhelésére. Izomerő helyett gravitáció és türelem dolgozik."]);
+CATS.find(c => c[0] === "csavar")[1] = "Csavarások és oldalhajlítások";
+
+const TRADITIONS = [["ashtanga", "Ashtanga"], ["iyengar", "Iyengar"], ["hatha", "Klasszikus hatha"], ["yin", "Yin"], ["restor", "Restoratív"]];
+
+// Tradition tags for the first batch, by Sanskrit name
+const TR1 = {
+  ashtanga: ["Pādāṅguṣṭhāsana","Pādahastāsana","Utthita Trikoṇāsana","Parivṛtta Trikoṇāsana","Utthita Pārśvakoṇāsana","Parivṛtta Pārśvakoṇāsana","Prasārita Pādottānāsana","Pārśvottānāsana","Utthita Hasta Pādāṅguṣṭhāsana","Utkaṭāsana","Vīrabhadrāsana I","Vīrabhadrāsana II","Daṇḍāsana","Paścimottānāsana","Pūrvottānāsana","Jānu Śīrṣāsana","Marīcyāsana III","Nāvāsana","Bhujapīḍāsana","Kūrmāsana","Baddha Koṇāsana","Upaviṣṭha Koṇāsana","Supta Pādāṅguṣṭhāsana","Ūrdhva Dhanurāsana","Sālamba Sarvāṅgāsana","Halāsana","Karṇapīḍāsana","Matsyāsana","Sālamba Śīrṣāsana","Padmāsana","Tolāsana","Caturaṅga Daṇḍāsana","Adho Mukha Śvānāsana","Ūrdhva Mukha Śvānāsana","Śavāsana","Bakāsana","Ṭiṭṭibhāsana","Aṣṭāvakrāsana","Eka Pāda Kauṇḍinyāsana","Ardha Matsyendrāsana","Bharadvājāsana","Krauñcāsana","Śalabhāsana","Dhanurāsana","Uṣṭrāsana","Kapotāsana (előkészítő)","Gomukhāsana","Vīrabhadrāsana III"],
+  iyengar: ["Tāḍāsana","Vṛkṣāsana","Utthita Trikoṇāsana","Parivṛtta Trikoṇāsana","Utthita Pārśvakoṇāsana","Vīrabhadrāsana I","Vīrabhadrāsana II","Vīrabhadrāsana III","Ardha Candrāsana","Garuḍāsana","Pārśvottānāsana","Prasārita Pādottānāsana","Uttānāsana","Daṇḍāsana","Vīrāsana","Supta Vīrāsana","Baddha Koṇāsana","Upaviṣṭha Koṇāsana","Jānu Śīrṣāsana","Paścimottānāsana","Sālamba Śīrṣāsana","Sālamba Sarvāṅgāsana","Halāsana","Setu Bandha Sarvāṅgāsana","Viparīta Karaṇī","Bharadvājāsana","Marīcyāsana III","Ardha Matsyendrāsana","Uṣṭrāsana","Ūrdhva Dhanurāsana","Adho Mukha Vṛkṣāsana","Pīñcha Mayūrāsana","Śavāsana","Supta Pādāṅguṣṭhāsana","Gomukhāsana","Hanumānāsana","Kūrmāsana","Mayūrāsana","Vasiṣṭhāsana"],
+  hatha: ["Tāḍāsana","Vṛkṣāsana","Bhujaṅgāsana","Śalabhāsana","Dhanurāsana","Paścimottānāsana","Ardha Matsyendrāsana","Sālamba Sarvāṅgāsana","Halāsana","Matsyāsana","Sālamba Śīrṣāsana","Śavāsana","Makarāsana","Vajrāsana","Padmāsana","Siddhāsana","Sukhāsana","Siṁhāsana","Gomukhāsana","Mayūrāsana","Bālāsana","Uṣṭrāsana","Utthita Trikoṇāsana","Pavanamuktāsana","Kūrmāsana","Krauñcāsana","Bakāsana"],
+  yin: ["Anāhatāsana","Supta Vīrāsana","Maṇḍūkāsana","Bālāsana","Salamba Bhujaṅgāsana","Supta Matsyendrāsana","Śavāsana","Ānanda Bālāsana","Viparīta Karaṇī","Mālāsana"],
+  restor: ["Viparīta Karaṇī","Supta Baddha Koṇāsana","Śavāsana","Bālāsana","Makarāsana","Apānāsana","Setu Bandha Sarvāṅgāsana","Supta Matsyendrāsana"]
+};
+POSES.forEach(p => { p.tr = TRADITIONS.map(t => t[0]).filter(t => TR1[t].includes(p.s)); });
+
+POSES.push(
+// ---------- ÁLLÓ ----------
+{s:"Praṇāmāsana", h:"Imapóz (üdvözlés)", e:"Prayer Pose", c:"allo", lv:1, tr:["hatha"],
+ how:["Állj hegy pózban, a talpak összezárva vagy csípőszélességben.","Hozd össze a tenyereket a szív előtt, a hüvelykujjak a szegycsonthoz érnek.","Lazítsd a vállakat, csukd be a szemed, és figyeld a légzést."],
+ ben:"Összeszedetté tesz, a napüdvözlet nyitó és záró póza, a gyakorlás szándékának kijelölése.",
+ warn:"Nincs különösebb ellenjavallat; szédülésnél tartsd nyitva a szemed.",
+ f:{t:0,a:[150,300],b:[210,60],l:[177,180],r:[183,180],v:"f"}},
+{s:"Baddha Vīrabhadrāsana", h:"Alázatos harcos", e:"Humble Warrior", c:"allo", lv:2, tr:[],
+ how:["Harcos I-ből kulcsold össze a kezeket a hát mögött.","Kilégzésre hajolj előre az első comb belső oldalára, a fej a talaj felé.","Az összekulcsolt karok emelkednek a fej fölé, az első térd hajlítva marad."],
+ ben:"Nyitja a vállat és a mellkast, nyújtja a csípőhajlítót, befelé forduló, alázatos minőség.",
+ warn:"Magas vérnyomásnál és vállsérülésnél kerüld vagy fogj hevedert.",
+ f:{t:150,h:160,c:4,a:[290,290],b:[292,292],l:[100,180],r:[235,235]}},
+{s:"Utthita Hasta Pādāsana", h:"Kinyújtott kezek és lábak", e:"Extended Hands and Feet", c:"allo", lv:1, tr:["iyengar"],
+ how:["Hegy pózból ugorj vagy lépj széles terpeszbe, kb. egy lábnyi hosszra.","A lábfejek párhuzamosak, a combok aktívak.","A karok vállmagasságban oldalra nyúlnak, tenyér lefelé."],
+ ben:"Előkészítő helyzet a háromszög és a harcos II előtt, kitárja a mellkast.",
+ warn:"Térdpanasznál ne feszítsd túl a térdeket.",
+ f:{t:0,a:[90,90],b:[270,270],l:[153,153],r:[207,207],v:"f"}},
+{s:"Utthita Aśva Sañcalanāsana", h:"Lovas póz", e:"Equestrian / Runner's Lunge", c:"allo", lv:1, tr:["hatha"],
+ how:["Előrehajlásból lépj hátra egy nagyot az egyik lábbal, a hátsó térd a talajon.","Az ujjbegyek a talajon az első láb két oldalán.","Emeld a mellkast, a tekintet előre, a csípő süllyed."],
+ ben:"Nyújtja a csípőhajlítót, a napüdvözlet (Surya Namaskar) része.",
+ warn:"Térdpanasznál takarót a hátsó térd alá.",
+ f:{t:35,h:45,a:[178,175],b:[180,175],l:[95,155],r:[200,270]}},
+
+// ---------- EGYENSÚLY ----------
+{s:"Ardha Baddha Padmottānāsana", h:"Félig kötött lótusz előrehajlás", e:"Half Bound Lotus Standing Forward Bend", c:"egyensuly", lv:3, tr:["ashtanga"],
+ how:["Állj egy lábra, a másik lábfejet tedd fél lótuszba a comb tetejére.","Ugyanazon oldali karral nyúlj a hát mögött, és fogd meg a lábfejet.","Hajolj előre, a szabad kéz a talajon az álló láb mellett."],
+ ben:"Mélyen nyitja a csípőt és a vállat, erősíti az álló lábat, fejleszti az egyensúlyt.",
+ warn:"Térdsérülésnél kerüld; a lótuszt soha ne erőltesd a térdnél.",
+ f:{t:165,h:175,c:6,a:[180,175],b:[250,60],l:[130,250,0.7],r:[180,180]}},
+{s:"Ūrdhva Prasārita Eka Pādāsana", h:"Álló spárga", e:"Standing Splits", c:"egyensuly", lv:2, tr:[],
+ how:["Előrehajlásból told a súlyt az egyik lábra.","Emeld a másik lábat egyenesen hátra és fel, a csípő maradjon szemben.","A kezek a talajon vagy az álló boka körül, a fej lazán lóg."],
+ ben:"Nyújtja az álló láb combhajlítóját, erősíti a felemelt láb farizmát, enyhe fordított hatású.",
+ warn:"Magas vérnyomásnál rövid ideig; a kezek alá tehetsz blokkot.",
+ f:{t:170,h:175,c:4,a:[180,175],b:[182,175],l:[180,180],r:[15,15]}},
+{s:"Daṇḍayamana Jānuśirāsana", h:"Álló fej-térd", e:"Standing Head-to-Knee", c:"egyensuly", lv:3, tr:["hatha"],
+ how:["Állj egy lábra, a másik lábfejet fogd meg két kézzel összekulcsolt ujjakkal.","Nyújtsd ki a lábat előre vízszintesbe.","Hajlítsd a könyököket lefelé, és hozd a homlokot a térd felé."],
+ ben:"Erősíti az álló lábat és a hasat, nyújtja a combhajlítót, maximális koncentrációt kíván.",
+ warn:"Az álló térdet aktívan tartsd, de ne feszítsd túl; combhajlító-sérülésnél kerüld.",
+ f:{t:120,h:130,c:6,a:[160,100],b:[162,102],l:[90,90],r:[180,180]}},
+{s:"Svarga Dvijāsana", h:"Paradicsommadár", e:"Bird of Paradise", c:"egyensuly", lv:3, tr:[],
+ how:["Kötött oldalszögből lépj előre a hátsó lábbal, a kezek a felső comb alatt összekulcsolva.","Lassan állj fel az álló lábra, a kötött lábat magaddal emelve.","Nyújtsd ki a felemelt lábat felfelé és oldalra."],
+ ben:"Nyitja a vállat és a combhajlítót, erősíti az álló lábat.",
+ warn:"Vállsérülésnél hevederrel; ne rántsd meg a vállat.",
+ f:{t:15,h:10,a:[150,200],b:[200,150],l:[30,20],r:[180,180]}},
+{s:"Ardha Candra Cāpāsana", h:"Cukornád", e:"Sugarcane", c:"egyensuly", lv:3, tr:[],
+ how:["Félhold pózból hajlítsd be a felemelt térdet.","A felső kézzel nyúlj hátra, és fogd meg a lábfejet.","Rúgd a lábat a kézbe, hogy a mellkas és a csípőhajlító nyíljon."],
+ ben:"Egyensúly és hátrahajlás egyben, nyitja a combfeszítőt és a vállat.",
+ warn:"Mindig használj blokkot az alsó kéz alá, amíg stabil nem leszel.",
+ f:{t:110,h:105,fc:0,a:[180,180,1.1],b:[300,20],l:[290,40],r:[180,180]}},
+{s:"Pādāṅguṣṭhāsana (lábujj-egyensúly)", h:"Lábujjon egyensúlyozás", e:"Toe Stand", c:"egyensuly", lv:3, tr:["hatha"],
+ how:["Fa pózból hajolj előre, ereszkedj le guggolásba az álló láb lábujjpárnáira.","A felső bokát tartsd a comb tetején fél lótuszban.","Engedd el a talajt, a tenyerek a mellkas előtt, a gerinc egyenes."],
+ ben:"Erősíti a bokát és lábfejet, nyitja a csípőt, mély koncentrációt fejleszt.",
+ warn:"Térd- és bokasérülésnél kerüld.",
+ f:{t:5,a:[150,30],b:[150,32],l:[100,250,0.6],r:[85,190]}},
+
+// ---------- ELŐREHAJLÁSOK ----------
+{s:"Triaṅg Mukhaikapāda Paścimottānāsana", h:"Háromtagú előrehajlás", e:"Three-Limbed Forward Bend", c:"elore", lv:2, tr:["ashtanga"],
+ how:["Ülj, az egyik lábat hajlítsd hátra hős ülésbe, a másik nyújtva előre.","Az ülőcsontok egyenletesen terheljenek, tehetsz takarót a nyújtott láb oldali csípő alá.","Hajolj előre, fogd meg a nyújtott lábfejet."],
+ ben:"Nyújtja a combhajlítót és a combfeszítőt, nyújtja a térdet.",
+ warn:"Térd- és bokasérülésnél kerüld.",
+ f:{t:74,h:85,c:5,a:[103,103],b:[104,104],l:[90,90],r:[95,268,0.7]}},
+{s:"Ardha Baddha Padma Paścimottānāsana", h:"Fél lótusz ülő előrehajlás", e:"Half Bound Lotus Seated Forward Bend", c:"elore", lv:3, tr:["ashtanga"],
+ how:["Ülésben tedd az egyik lábfejet fél lótuszba.","Ugyanazon oldali kézzel nyúlj a hát mögött, és fogd meg a lábfejet.","Hajolj előre a nyújtott láb fölé, a másik kéz a lábfejen."],
+ ben:"Mélyen nyitja a csípőt és vállat, nyújtja a combhajlítót.",
+ warn:"Térdsérülésnél kerüld; a lábfej ne nyomja a hasat fájdalmasan.",
+ f:{t:74,h:85,c:5,a:[103,103],b:[230,60],l:[90,90],r:[85,260,0.7]}},
+{s:"Marīcyāsana I", h:"Marícsi I", e:"Marichi's Pose I", c:"elore", lv:2, tr:["ashtanga"],
+ how:["Ülj kinyújtott lábakkal, az egyik térdet húzd fel, a talp a talajon.","Ugyanazon oldali karral öleld át a sípcsontot hátulról, a kezeket kulcsold össze a hát mögött.","Hajolj előre a nyújtott láb fölé."],
+ ben:"Nyújtja a combhajlítót és a vállat, összenyomja és masszírozza a hasat.",
+ warn:"Vállsérülésnél kötés nélkül; derékpanasznál óvatosan.",
+ f:{t:72,h:85,c:5,a:[200,60],b:[202,62],l:[90,90],r:[30,182]}},
+{s:"Ubhaya Pādāṅguṣṭhāsana", h:"Kettős nagylábujj-fogás", e:"Both Big Toes Pose", c:"elore", lv:2, tr:["ashtanga"],
+ how:["Ülésben hajlítsd be a térdeket, fogd meg mindkét nagylábujjat.","Gördülj az ülőcsontok mögé, és nyújtsd ki a lábakat felfelé.","Egyensúlyozz, a mellkas emelt, a gerinc egyenes."],
+ ben:"Erősíti a hasat és a hátat, nyújtja a combhajlítót, fejleszti az egyensúlyt.",
+ warn:"Derékpanasznál hajlított térddel; ha a hát kerekedik, használj hevedert.",
+ f:{t:-20,h:-15,a:[50,40],b:[52,42],l:[20,20],r:[22,22]}},
+{s:"Ūrdhva Mukha Paścimottānāsana", h:"Felfelé néző előrehajlás", e:"Upward-Facing Forward Bend", c:"elore", lv:3, tr:["ashtanga"],
+ how:["Hanyattfekvésből gördülj fel, a lábfejeket kívülről fogd meg.","Egyensúlyozz az ülőcsontokon, a lábak felfelé nyúlnak.","Húzd a mellkast a combokhoz, a gerinc hosszú."],
+ ben:"Fordított előrehajlás, erősíti a hasat és nyújtja a hátat.",
+ warn:"Gerincsérülésnél kerüld.",
+ f:{t:-5,h:5,c:4,a:[30,15],b:[32,17],l:[10,10],r:[12,12]}},
+{s:"Śaśāṅkāsana (Sasangasana)", h:"Nyúl", e:"Rabbit", c:"elore", lv:2, tr:["hatha"],
+ how:["Sarokülésben fogd meg a sarkakat.","Gördülj előre, a fejtetőt tedd a térdek elé a talajra.","Emeld a csípőt, a combok függőlegesek, a kezek húzzák a sarkakat."],
+ ben:"Mélyen nyújtja a hátat és a nyakat, enyhe fordított hatás.",
+ warn:"Nyaksérülésnél és magas vérnyomásnál kerüld.",
+ f:{t:140,h:190,c:10,a:[230,190],b:[232,190],l:[180,272],r:[180,272]}},
+{s:"Rongybaba (Uttānāsana változat)", h:"Rongybaba előrehajlás", e:"Ragdoll", c:"elore", lv:1, tr:[],
+ how:["Állj csípőszélességben, hajlítsd be a térdeket bőven.","Hajolj előre, a has a combokon pihen.","Fogd meg a könyököket, és ringasd a törzset oldalra."],
+ ben:"Oldja a derék- és nyakfeszültséget, kíméletes a combhajlítóknak.",
+ warn:"Magas vérnyomásnál és szédülésnél lassan emelkedj fel.",
+ f:{t:162,h:178,c:8,a:[175,95],b:[177,93],l:[160,200],r:[162,202]}},
+
+// ---------- HÁTRAHAJLÁSOK ----------
+{s:"Ardha Cakrāsana", h:"Álló hátrahajlás", e:"Standing Half Wheel", c:"hatra", lv:1, tr:["hatha"],
+ how:["Állj hegy pózban, a tenyereket tedd a keresztcsontra, ujjak lefelé.","Belégzésre emeld a mellkast, majd hajolj hátra.","A csípő enyhén előre tolódik, a nyak hosszú marad."],
+ ben:"Nyitja a mellkast és a csípőhajlítót, előrehajlások ellenpóza.",
+ warn:"Szédülésnél és nyaksérülésnél kis ívben, a fej maradjon a gerinc vonalában.",
+ f:{t:-25,h:-40,c:-6,a:[200,330],b:[202,332],l:[175,180],r:[177,180]}},
+{s:"Ardha Uṣṭrāsana", h:"Félteve", e:"Half Camel", c:"hatra", lv:1, tr:[],
+ how:["Térdelj csípőszélességben, a lábujjakat behajlíthatod.","Tedd a tenyereket a keresztcsontra.","Emeld a mellkast, és hajolj hátra, a csípő a térdek fölött marad."],
+ ben:"A teve biztonságos változata, nyitja a mellkast és a csípőhajlítót.",
+ warn:"Nyaki panasznál ne hajtsd hátra a fejet.",
+ f:{t:-35,h:-50,c:-5,a:[200,330],b:[202,332],l:[180,272],r:[180,272]}},
+{s:"Ardha Bhekāsana", h:"Félbéka", e:"Half Frog", c:"hatra", lv:2, tr:["iyengar"],
+ how:["Szfinx helyzetből hajlítsd be az egyik térdet.","Ugyanazon oldali kézzel fogd meg a lábfejet felülről.","Nyomd a sarkat a csípő mellé, miközben a mellkas emelkedik."],
+ ben:"Nyújtja a combfeszítőt és a csípőhajlítót, nyitja a vállat.",
+ warn:"Térdsérülésnél kerüld; ne told erőltetve a lábfejet.",
+ f:{t:58,h:45,c:-3,a:[180,90],b:[262,262],l:[270,270],r:[268,60]}},
+{s:"Bhekāsana", h:"Béka (hason)", e:"Frog (prone)", c:"hatra", lv:3, tr:["iyengar"],
+ how:["Feküdj hasra, hajlítsd be mindkét térdet.","Fogd meg a lábfejeket felülről, könyökök felfelé.","Nyomd a sarkakat a csípő mellé, emeld a mellkast."],
+ ben:"Mélyen nyújtja a combfeszítőt, erősíti a hátat, nyitja a vállat.",
+ warn:"Térd- és vállsérülésnél kerüld.",
+ f:{t:55,h:45,c:-3,a:[262,262],b:[264,264],l:[268,60],r:[270,62]}},
+{s:"Kapotāsana", h:"Térdelő galamb", e:"Kneeling Pigeon", c:"hatra", lv:3, tr:["ashtanga","iyengar"],
+ how:["Térdelj, és hajolj hátra, mint a tevében.","Engedd a karokat a fej fölött a talajra, és sétáltasd őket a sarkak felé.","Fogd meg a sarkakat, az alkarok a talajon."],
+ ben:"Az egyik legmélyebb hátrahajlás, nyitja a mellkast, vállat és csípőhajlítót.",
+ warn:"Csak haladóknak, tanár mellett; nyak- és derékproblémánál kerüld.",
+ f:{t:250,h:200,c:-12,a:[190,270],b:[192,270],l:[170,272],r:[170,272]}},
+{s:"Eka Pāda Setu Bandha Sarvāṅgāsana", h:"Egylábas híd", e:"One-Legged Bridge", c:"hatra", lv:2, tr:[],
+ how:["Híd pózban told át a súlyt az egyik talpra.","Emeld a másik lábat egyenesen felfelé.","A csípő maradjon vízszintesen, ne billenjen."],
+ ben:"Erősíti a farizmot és a combhajlítót, stabilizálja a medencét.",
+ warn:"Nyaksérülésnél takarót a vállak alá.",
+ f:{t:220,h:270,c:-5,a:[98,90],b:[98,90],l:[25,25],r:[102,178]}},
+{s:"Eka Pāda Ūrdhva Dhanurāsana", h:"Egylábas kerék", e:"One-Legged Wheel", c:"hatra", lv:3, tr:["iyengar"],
+ how:["Kerékből told a súlyt a kezekre és az egyik lábra.","Emeld a másik lábat egyenesen felfelé.","Tartsd néhány légzésig, majd cserélj."],
+ ben:"Erőt, egyensúlyt és mély hátrahajlást kíván.",
+ warn:"Csukló-, váll- és derékproblémánál kerüld.",
+ f:{t:260,h:200,c:-10,a:[185,180],b:[186,180],l:[30,30],r:[122,190]}},
+{s:"Dvi Pāda Viparīta Daṇḍāsana", h:"Fordított bot", e:"Inverted Staff", c:"hatra", lv:3, tr:["iyengar"],
+ how:["Kerékből engedd le a fejtetőt, majd az alkarokat a talajra, ujjak összekulcsolva.","Sétáltasd a lábakat távolabb, amíg nyújtva vannak.","A vállakat told a fej felé, a mellkas nyílik."],
+ ben:"Mélyen nyitja a vállat és a mellkast.",
+ warn:"Nyaksérülésnél kerüld; mindig kerékből építsd.",
+ f:{t:240,h:190,c:-12,a:[175,100],b:[177,100],l:[105,105],r:[107,107]}},
+{s:"Laghu Vajrāsana", h:"Kis villám", e:"Little Thunderbolt", c:"hatra", lv:3, tr:["ashtanga"],
+ how:["Térdelj, a kezeket tedd a combokra.","Hajolj hátra, a csípő előre tolódik.","Engedd a fejtetőt a talajra a lábfejek közé, majd emelkedj vissza."],
+ ben:"Erősíti a combokat és a hátat, mély mellkasnyitás.",
+ warn:"Térd-, nyak- és derékproblémánál kerüld.",
+ f:{t:250,h:210,c:-12,a:[150,160],b:[152,162],l:[155,272],r:[155,272]}},
+{s:"Eka Pāda Rājakapotāsana (hableány)", h:"Hableány", e:"Mermaid", c:"hatra", lv:3, tr:[],
+ how:["Galamb pózból hajlítsd be a hátsó térdet.","Akaszd a lábfejet a könyökhajlatba.","A másik kart nyújtsd fel, hajlítsd, és kulcsold össze a kezeket a fej mögött."],
+ ben:"Nyitja a csípőhajlítót, a vállat és a mellkast.",
+ warn:"Térdsérülésnél kerüld; a csípő alá párna.",
+ f:{t:-15,h:-25,c:-4,a:[0,250],b:[200,270],l:[92,265,0.6],r:[268,10]}},
+
+// ---------- CSAVARÁSOK, OLDALHAJLÍTÁSOK ----------
+{s:"Parighāsana", h:"Kapu", e:"Gate", c:"csavar", lv:1, tr:["iyengar"],
+ how:["Térdelj, az egyik lábat nyújtsd ki oldalra, a talp a talajon.","Az ugyanazon oldali kéz csússzon le a nyújtott lábon.","A másik kar ívben nyúljon a fej fölött, a mellkas nyitva."],
+ ben:"Nyújtja a törzs oldalát és a belső combot, tágítja a bordaközöket.",
+ warn:"Térdpanasznál takarót a térd alá.",
+ f:{t:55,h:65,fc:0,c:-4,a:[150,150],b:[30,50],l:[130,130],r:[180,180,0.55],v:"f"}},
+{s:"Pārśva Sukhāsana", h:"Ülő oldalhajlítás", e:"Seated Side Bend", c:"csavar", lv:1, tr:[],
+ how:["Törökülésben tedd az egyik kezet a talajra a csípő mellé.","A másik kart emeld fel, és hajolj oldalra.","Az ülőcsontok maradjanak a talajon, majd cserélj."],
+ ben:"Kíméletesen nyújtja a törzs oldalát, jó bemelegítés.",
+ warn:"Ne dőlj előre vagy hátra; a vállak lazák.",
+ f:{t:22,h:28,c:-4,a:[160,180],b:[15,40],l:[80,250,0.75],r:[280,110,0.75],v:"f"}},
+{s:"Pāśāsana", h:"Hurok", e:"Noose", c:"csavar", lv:3, tr:["ashtanga","iyengar"],
+ how:["Guggolj le zárt lábakkal, a sarkak a talajon (vagy takarón).","Csavarodj oldalra, a felső kart akaszd a térdeken kívülre.","Kösd össze a kezeket a hát mögött."],
+ ben:"Mély csavarás, nyújtja a bokát, nyitja a vállat.",
+ warn:"Térd- és derékproblémánál kerüld.",
+ f:{t:20,fc:270,a:[200,180],b:[110,200],l:[85,190],r:[87,192]}},
+{s:"Vakrāsana", h:"Egyszerű ülő csavar", e:"Simple Seated Twist", c:"csavar", lv:1, tr:["hatha"],
+ how:["Ülj kinyújtott lábakkal, az egyik talpat tedd a másik térd mellé.","A hátsó kéz a gerinc mögött a talajon, a másik kar öleli a térdet.","Csavarodj a felhúzott térd felé, a tekintet hátra."],
+ ben:"Mobilizálja a gerincet, az ardha matsyendrasana előkészítője.",
+ warn:"Akut hátfájásnál kerüld.",
+ f:{t:0,fc:270,a:[120,0],b:[200,185],l:[40,180],r:[90,90]}},
+{s:"Kaṭi Cakrāsana", h:"Álló derékcsavar", e:"Standing Waist Twist", c:"csavar", lv:1, tr:["hatha"],
+ how:["Állj vállszélességű terpeszben.","Lendítsd a karokat lazán jobbra-balra, a törzs a csípőtől fölfelé csavarodik.","A kezek a vállakat és a derekat érintik a mozdulat végén."],
+ ben:"Oldja a derék és a hát merevségét, jó bemelegítés.",
+ warn:"Lassan, lendület nélkül, ha a derék érzékeny.",
+ f:{t:0,a:[90,200],b:[250,350],l:[170,180],r:[190,180],v:"f"}},
+{s:"Parivṛtta Prasārita Pādottānāsana", h:"Csavart terpesz-előrehajlás", e:"Revolved Wide-Legged Forward Bend", c:"csavar", lv:2, tr:[],
+ how:["Terpeszállású előrehajlásban tedd az egyik kezet a talajra középen.","A másik kart nyújtsd fel a mennyezet felé.","A mellkas fordul, a csípő középen marad."],
+ ben:"Csavarja a gerincet, nyújtja a combhajlítót és a belső combot.",
+ warn:"Derékpanasznál blokk az alsó kéz alá.",
+ f:{t:180,h:180,ts:0.7,a:[100,190],b:[0,0],l:[145,145],r:[215,215],v:"f"}},
+{s:"Pārśva Bālāsana", h:"Tűbefűzés", e:"Thread the Needle", c:"csavar", lv:1, tr:[],
+ how:["Négykézláb vezesd az egyik kart a másik alatt keresztbe.","Engedd le a vállat és a halántékot a talajra.","A másik kar nyúlhat előre vagy felfelé."],
+ ben:"Oldja a vállöv és a felső hát feszültségét.",
+ warn:"Nyaki panasznál párnát a fej alá.",
+ f:{t:125,h:120,a:[250,265],b:[30,30,0.8],l:[180,270],r:[180,270]}},
+
+// ---------- CSÍPŐNYITÓK ----------
+{s:"Samakoṇāsana", h:"Oldalspárga", e:"Side Splits", c:"csipo", lv:3, tr:["iyengar"],
+ how:["Terpeszből csúsztasd szét fokozatosan a lábakat oldalra.","A kezek a talajon támasztanak, a medence semleges.","Ha eléred a talajt, a karok előre vagy oldalra nyúlhatnak."],
+ ben:"Maximálisan nyújtja a belső combot, nyitja a csípőt.",
+ warn:"Csak bemelegedve; ágyéksérülésnél kerüld.",
+ f:{t:0,a:[90,90],b:[270,270],l:[90,90],r:[270,270],v:"f"}},
+{s:"Eka Pāda Śīrṣāsana", h:"Láb a fej mögött", e:"Foot-Behind-the-Head", c:"csipo", lv:3, tr:["ashtanga"],
+ how:["Ülésben emeld fel az egyik lábat, a lábszárat tartsd a karokkal.","Vezesd a lábat a váll mögé, majd a fej mögé.","Egyenesítsd ki a hátat, tenyerek a mellkas előtt."],
+ ben:"Extrém csípőnyitás, csak hosszú előkészítés után.",
+ warn:"Nyak-, csípő- és térdsérülésnél kerüld.",
+ f:{t:10,h:20,a:[150,30],b:[152,32],l:[20,250],r:[90,90]}},
+{s:"Yoganidrāsana", h:"Jógaalvás", e:"Yogic Sleep", c:"csipo", lv:3, tr:["ashtanga"],
+ how:["Hanyatt fekve húzd mindkét lábat a fej mögé, a bokák keresztben.","A karokat kulcsold a hát mögött.","Lazíts és lélegezz."],
+ ben:"Mélyen nyitja a csípőt, befelé fordulást és nyugalmat ad.",
+ warn:"Nyak- és csípősérülésnél kerüld.",
+ f:{t:270,fc:0,a:[0,90],b:[2,92],l:[300,330],r:[302,332]}},
+{s:"Anantāsana", h:"Ananta (oldalfekvő lábemelés)", e:"Side-Reclining Leg Lift", c:"csipo", lv:2, tr:["iyengar"],
+ how:["Feküdj oldalra, a fejet támaszd a tenyérre.","Hajlítsd a felső térdet, fogd meg a nagylábujjat.","Nyújtsd a lábat felfelé, a test egy vonalban marad."],
+ ben:"Nyújtja a combhajlítót és a belső combot, erősíti az oldalsó törzset.",
+ warn:"Ha a csípő hátradől, használj hevedert.",
+ f:{t:270,h:270,a:[270,30],b:[40,30],l:[90,90],r:[35,35],v:"f"}},
+{s:"Utthan Pṛṣṭhāsana (repülő gyík)", h:"Csavart gyík", e:"Twisted Lizard", c:"csipo", lv:2, tr:[],
+ how:["Gyík pózban told a hátsó térdet a talajra.","Fogd meg a hátsó lábfejet az ellentétes kézzel.","Nyisd a mellkast az első láb felé."],
+ ben:"Egyszerre nyitja a csípőhajlítót és a combfeszítőt.",
+ warn:"Térdpanasznál takarót a hátsó térd alá.",
+ f:{t:95,h:90,a:[180,90],b:[260,300],l:[95,155],r:[200,290]}},
+{s:"Supta Kapotāsana", h:"Fekvő galamb", e:"Reclining Pigeon", c:"csipo", lv:1, tr:["restor"],
+ how:["Feküdj hanyatt, talpak a talajon.","Tedd az egyik bokát a másik combra, a térd oldalra nyílik.","Maradj így, vagy emeld a lábakat, és húzd a mellkas felé."],
+ ben:"A galamb kíméletes változata, oldja a farizmot és a körtealakú izmot.",
+ warn:"Térdfájdalomnál ne húzd a lábakat a mellkashoz.",
+ f:{t:270,fc:0,a:[95,90],b:[97,90],l:[60,250,0.6],r:[60,180]}},
+
+// ---------- ÜLŐ ----------
+{s:"Svastikāsana", h:"Szerencsés ülés", e:"Auspicious Pose", c:"ulo", lv:1, tr:["hatha"],
+ how:["Ülésben tedd az egyik talpat a másik comb belső oldalához.","A másik lábfejet csúsztasd a comb és a vádli közé.","A térdek a talajon, a kezek mudrában a térdeken."],
+ ben:"Stabil, kényelmes meditációs ülés.",
+ warn:"Térdfájdalomnál ülj magasabb párnára.",
+ f:{t:0,a:[160,110],b:[162,112],l:[82,253,0.7],r:[86,257,0.7]}},
+{s:"Baddha Padmāsana", h:"Kötött lótusz", e:"Bound Lotus", c:"ulo", lv:3, tr:["ashtanga"],
+ how:["Ülj lótuszban.","Nyúlj hátra a karokkal keresztben, és fogd meg a lábujjakat.","A mellkas nyitva, a gerinc egyenes."],
+ ben:"Nyitja a vállat és a csípőt, mélyen összpontosító.",
+ warn:"Térd- és vállsérülésnél kerüld.",
+ f:{t:0,a:[200,90],b:[202,92],l:[85,260,0.7],r:[88,262,0.7]}},
+{s:"Yoga Mudrā", h:"Jógapecsét", e:"Yoga Seal", c:"ulo", lv:2, tr:["ashtanga","hatha"],
+ how:["Ülj lótuszban vagy törökülésben.","Kulcsold össze a kezeket a hát mögött.","Kilégzésre hajolj előre, a homlok a talaj felé, a karok emelkednek."],
+ ben:"Nyugtat, nyitja a vállat, befelé fordulást segít.",
+ warn:"Magas vérnyomásnál és glaukómánál kerüld.",
+ f:{t:80,h:100,c:6,a:[240,280],b:[242,282],l:[85,260,0.7],r:[88,262,0.7]}},
+{s:"Parvatāsana", h:"Ülő hegy", e:"Seated Mountain", c:"ulo", lv:1, tr:["hatha"],
+ how:["Ülj törökülésben vagy lótuszban.","Kulcsold össze az ujjakat, és nyújtsd a karokat a fej fölé, tenyér felfelé.","Nyújtsd meg a törzset, majd cserélj ujjkulcsolást."],
+ ben:"Nyújtja a törzset és a vállat, javítja a tartást.",
+ warn:"Vállsérülésnél a karok alacsonyabban.",
+ f:{t:0,a:[2,0],b:[4,2],l:[85,260,0.7],r:[88,262,0.7]}},
+{s:"Mahā Mudrā", h:"Nagy pecsét", e:"Great Seal", c:"ulo", lv:2, tr:["hatha","iyengar"],
+ how:["Ülj, egyik láb nyújtva, a másik sarok a gátnál.","Fogd meg a nyújtott lábfejet, a gerinc egyenes.","Belégzés után tartsd vissza a lélegzetet állzárral, majd lazíts."],
+ ben:"Pránájáma- és bandha-gyakorlat, élénkíti a hasi szerveket.",
+ warn:"Magas vérnyomásnál és terhesség alatt légzésvisszatartás nélkül.",
+ f:{t:30,h:35,a:[100,100],b:[102,102],l:[90,90],r:[80,250,0.6]}},
+{s:"Upaviṣṭha Koṇāsana (ülő terpesz)", h:"Ülő terpesz", e:"Wide-Angle Seated Pose", c:"ulo", lv:1, tr:[],
+ how:["Ülj széles terpeszben, a lábfejek flexben.","A kezek a talajon a csípő mögött vagy előtt.","Emeld a mellkast, a gerinc függőleges."],
+ ben:"Nyújtja a belső combot, javítja a tartást, előkészíti a terpesz-előrehajlást.",
+ warn:"Ha a hát kerekedik, ülj takaróra.",
+ f:{t:0,a:[160,180],b:[200,180],l:[90,90],r:[270,270],v:"f"}},
+
+// ---------- KAREGYENSÚLYOK ----------
+{s:"Kākāsana", h:"Hajlított karú varjú", e:"Bent-Arm Crow", c:"kar", lv:2, tr:["hatha"],
+ how:["Guggolásból tedd a tenyereket a talajra.","Hajlítsd a könyököket, a térdeket helyezd a felkarok hátsó részére.","Dőlj előre, és emeld fel a lábfejeket."],
+ ben:"A varjú könnyebb, alacsonyabb változata, a karegyensúlyok belépője.",
+ warn:"Csuklósérülésnél kerüld; párnát tegyél magad elé.",
+ f:{t:115,h:105,a:[215,170],b:[217,172],l:[150,300],r:[152,302]}},
+{s:"Eka Pāda Bakāsana", h:"Egylábas varjú", e:"One-Legged Crow", c:"kar", lv:3, tr:[],
+ how:["Varjúból told a súlyt előre.","Nyújtsd ki az egyik lábat hátra és fel.","A másik térd a felkaron marad."],
+ ben:"Erősíti a karokat és a törzset, fejleszti az egyensúlyt.",
+ warn:"Csukló- és vállsérülésnél kerüld.",
+ f:{t:120,h:110,a:[180,175],b:[182,177],l:[150,300],r:[290,290]}},
+{s:"Kukkuṭāsana", h:"Kakas", e:"Rooster", c:"kar", lv:3, tr:["ashtanga"],
+ how:["Ülj lótuszban, vezesd a kezeket a comb és a vádli között.","A tenyerek a talajon, az ujjak előre.","Nyomd le a kezeket, és emeld el a testet."],
+ ben:"Erősíti a karokat és a hasat, mély koncentrációt kíván.",
+ warn:"Térd- és csuklóproblémánál kerüld.",
+ f:{t:10,h:15,a:[180,180],b:[182,180],l:[60,250,0.7],r:[62,252,0.7]}},
+{s:"Utthita Vasiṣṭhāsana", h:"Kiterjesztett oldalsó deszka", e:"Extended Side Plank", c:"kar", lv:3, tr:["iyengar"],
+ how:["Oldalsó deszkából hajlítsd be a felső térdet.","Fogd meg a nagylábujjat, és nyújtsd a lábat felfelé.","A csípő emelt, a test egy síkban."],
+ ben:"Erősíti a kart és a törzset, nyújtja a combhajlítót.",
+ warn:"Csukló- és vállsérülésnél kerüld.",
+ f:{t:65.5,a:[180,180],b:[10,10],l:[245.5,245.5],r:[355,355],v:"f"}},
+{s:"Dvi Pāda Kauṇḍinyāsana", h:"Kétlábas Kaundínja", e:"Two-Legged Koundinya", c:"kar", lv:3, tr:[],
+ how:["Csavart guggolásból tedd a kezeket a talajra, a combokat az egyik felkarra.","Hajlítsd a könyököket, dőlj előre.","Nyújtsd ki mindkét lábat oldalra összezárva."],
+ ben:"Erősíti a karokat és a ferde hasizmokat.",
+ warn:"Csukló- és vállsérülésnél kerüld.",
+ f:{t:100,h:95,a:[260,180],b:[262,180],l:[95,95],r:[97,97]}},
+{s:"Viśvāmitrāsana", h:"Viszvámitra", e:"Vishvamitra's Pose", c:"kar", lv:3, tr:["iyengar"],
+ how:["Kitörésből vezesd az első vállat az első térd alá, a kéz a talajon.","Emeld az első lábat, és fogd meg a lábfejet a felső kézzel.","Nyújtsd ki a lábat, a mellkas oldalra nyílik."],
+ ben:"Mély csípő- és combhajlító-nyújtás, erősíti a kart.",
+ warn:"Csukló-, váll- és combhajlító-sérülésnél kerüld.",
+ f:{t:40,h:30,fc:0,a:[180,180],b:[30,30],l:[55,55],r:[235,235],v:"f"}},
+{s:"Haṁsāsana", h:"Hattyú", e:"Swan", c:"kar", lv:2, tr:["hatha"],
+ how:["Térdelj, a tenyereket tedd le, az ujjak előre.","A könyököket told a hasba, majd nyújtsd hátra a lábakat.","A lábujjak a talajon, a test egyenes, a súly a kezeken."],
+ ben:"A páva előkészítője, erősíti a csuklót és a hasat.",
+ warn:"Csuklósérülésnél kerüld.",
+ f:{t:80,h:85,a:[225,180],b:[227,180],l:[260,260],r:[260,260]}},
+{s:"Aṣṭāṅga Namaskāra", h:"Nyolcpontos üdvözlés", e:"Eight-Limbed Salute", c:"kar", lv:1, tr:["hatha"],
+ how:["Deszkából engedd le a térdeket, a mellkast és az állat a talajra.","A csípő emelt marad, a könyökök a test mellett.","A test nyolc ponton ér a talajhoz: lábujjak, térdek, mellkas, kezek, áll."],
+ ben:"A chaturanga kíméletes változata a napüdvözletben, erősíti a karokat.",
+ warn:"Vállsérülésnél óvatosan.",
+ f:{t:135,h:110,a:[315,180],b:[317,180],l:[200,270],r:[200,270]}},
+{s:"Eka Hasta Bhujāsana", h:"Elefántormány", e:"Elephant's Trunk", c:"kar", lv:3, tr:[],
+ how:["Ülésben vezesd az egyik lábat a váll fölé, a comb a felkaron.","A másik láb előre nyújtva.","Nyomd le a kezeket, és emeld el a testet a talajról."],
+ ben:"Erősíti a karokat és a hasat, nyitja a csípőt.",
+ warn:"Csukló- és combhajlító-sérülésnél kerüld.",
+ f:{t:10,a:[180,180],b:[182,180],l:[60,150],r:[90,90]}},
+
+// ---------- TÖRZSERŐSÍTŐK ----------
+{s:"Uttānapādāsana", h:"Lábemelés", e:"Raised Legs", c:"core", lv:1, tr:["hatha"],
+ how:["Feküdj hanyatt, a karok a test mellett.","Belégzésre emeld a nyújtott lábakat 30–60 fokra.","Kilégzésre lassan engedd vissza, a derék a talajon marad."],
+ ben:"Erősíti az alsó hasat és a csípőhajlítót.",
+ warn:"Derékfájdalomnál egyszerre csak egy lábat emelj.",
+ f:{t:270,fc:0,a:[95,90],b:[97,90],l:[60,60],r:[62,62]}},
+{s:"Viparīta Śalabhāsana", h:"Szuperman", e:"Superman", c:"core", lv:2, tr:[],
+ how:["Feküdj hasra, a karok előre nyújtva.","Belégzésre emeld a karokat, a mellkast és a lábakat egyszerre.","A nyak hosszú, a tekintet a talajon."],
+ ben:"Erősíti a teljes hátsó láncot és a mélyizmokat.",
+ warn:"Derékpanasznál felváltva emeld a kart és a lábat.",
+ f:{t:80,h:80,c:-3,a:[80,82],b:[82,84],l:[262,266],r:[263,267]}},
+{s:"Alkaros oldalsó deszka", h:"Alkaros oldalsó deszka", e:"Forearm Side Plank", c:"core", lv:1, tr:[],
+ how:["Feküdj oldalra, a könyök a váll alatt.","Emeld a csípőt, a test egyenes vonalat alkot.","A felső kéz a csípőn vagy felfelé nyúlik."],
+ ben:"Erősíti a ferde hasizmokat, kíméli a csuklót.",
+ warn:"Könnyítés: az alsó térd a talajon.",
+ f:{t:72,a:[180,90,0.8],b:[0,0],l:[252,252],r:[252,252],v:"f"}},
+{s:"Cakki Calanāsana", h:"Malomőrlés", e:"Churning the Mill", c:"core", lv:1, tr:["hatha"],
+ how:["Ülj terpeszben, kulcsold össze a kezeket, és nyújtsd előre.","Körözz a törzzsel a csípőből, előre, oldalra, hátra.","Néhány kör után válts irányt."],
+ ben:"Erősíti a hasat és a hátat, mobilizálja a csípőt.",
+ warn:"Terhesség alatt és derékpanasznál kis körökkel.",
+ f:{t:40,h:45,a:[90,90],b:[92,92],l:[90,90],r:[92,92]}},
+
+// ---------- FORDÍTOTT ----------
+{s:"Eka Pāda Adho Mukha Śvānāsana", h:"Háromlábú kutya", e:"Three-Legged Dog", c:"forditott", lv:1, tr:[],
+ how:["Lefelé néző kutyából emeld fel az egyik lábat hátra és fel.","A csípő maradjon vízszintesen, vagy nyisd ki oldalra.","A kezek egyenletesen nyomnak."],
+ ben:"Erősíti a karokat, nyújtja az álló lábat, előkészíti a lépéseket előre.",
+ warn:"Csuklóproblémánál delfinből.",
+ f:{t:135,h:150,a:[135,135],b:[135,135],l:[205,205],r:[300,300]}},
+{s:"Ardha Śīrṣāsana", h:"Félfejenállás", e:"Half Headstand", c:"forditott", lv:2, tr:["iyengar"],
+ how:["Fejenállás alaphelyzetéből a fejtető a talajon, az alkarok támasztanak.","Emeld a csípőt, és sétálj közelebb a lábakkal.","A lábak a talajon maradnak; itt építsd a vállerőt."],
+ ben:"Biztonságosan készít fel a fejenállásra, erősíti a vállat.",
+ warn:"Nyaksérülésnél kerüld; a súly a karokon legyen.",
+ f:{t:165,h:180,a:[160,270],b:[162,270],l:[210,210],r:[210,210]}},
+{s:"Viparīta Karaṇī Mudrā", h:"Fordított pecsét", e:"Inverted Seal", c:"forditott", lv:2, tr:["hatha"],
+ how:["Hanyattfekvésből emeld a lábakat és a csípőt.","Támaszd a csípőt a tenyerekkel, a törzs ferde, a lábak függőlegesek.","Maradj néhány percig nyugodt légzéssel."],
+ ben:"A gyertya kíméletesebb, klasszikus hatha változata, nyugtat.",
+ warn:"Nyaksérülésnél, magas vérnyomásnál kerüld.",
+ f:{t:215,h:290,fc:20,a:[90,10],b:[92,12],l:[0,0],r:[2,2]}},
+{s:"Nirālamba Sarvāṅgāsana", h:"Támasz nélküli gyertya", e:"Unsupported Shoulderstand", c:"forditott", lv:3, tr:["iyengar"],
+ how:["Vállállásból engedd el a hátat.","A karokat nyújtsd a lábak mellett felfelé.","A test a vállakon és a tarkón egyensúlyoz."],
+ ben:"Erősíti a hátat és a törzset, mély koncentrációt fejleszt.",
+ warn:"Nyaksérülésnél kerüld.",
+ f:{t:180,h:290,fc:20,a:[0,0],b:[2,2],l:[0,0],r:[2,2]}},
+{s:"Eka Pāda Sarvāṅgāsana", h:"Egylábas gyertya", e:"One-Legged Shoulderstand", c:"forditott", lv:2, tr:["iyengar"],
+ how:["Vállállásból engedd le az egyik lábat a fej mögé a talajra.","A másik láb függőlegesen marad.","Hozd vissza, majd cserélj."],
+ ben:"Nyújtja a combhajlítót, erősíti a törzset.",
+ warn:"Nyaksérülésnél kerüld.",
+ f:{t:180,h:290,fc:20,a:[95,330],b:[97,332],l:[0,0],r:[235,235]}},
+{s:"Supta Koṇāsana", h:"Fekvő szög", e:"Reclining Angle", c:"forditott", lv:2, tr:["ashtanga"],
+ how:["Ekéből nyisd szét a lábakat széles terpeszbe.","Fogd meg a nagylábujjakat.","Gördülj fel ülésbe, majd egyensúlyozz és ereszkedj le (Ashtanga)."],
+ ben:"Nyújtja a combhajlítót és belső combot, nyitja a hátat.",
+ warn:"Nyaksérülésnél kerüld.",
+ f:{t:172,h:290,fc:20,c:4,a:[235,235],b:[237,237],l:[235,235],r:[240,240]}},
+
+// ---------- PIHENTETŐ ----------
+{s:"Utthita Bālāsana", h:"Kinyújtott gyermek", e:"Extended Child's Pose", c:"pihen", lv:1, tr:[],
+ how:["Gyermek pózban nyújtsd a karokat előre.","A térdek szétnyithatók, a nagylábujjak összeérnek.","A csípő a sarkak felé, a kezek előre nyúlnak."],
+ ben:"Nyújtja a vállat és a hátat, megnyugtat.",
+ warn:"Térdpanasznál párnát a térdhajlatba.",
+ f:{t:100,h:95,c:3,a:[95,90],b:[97,90],l:[125,272],r:[125,272]}},
+{s:"Sālamba Bālāsana", h:"Alátámasztott gyermek", e:"Supported Child's Pose", c:"pihen", lv:1, tr:["restor"],
+ how:["Térdelj szét nyitott térdekkel, a hosszú párnát (bolstert) tedd a combok közé.","Feküdj rá a mellkassal, a fejet fordítsd oldalra.","Maradj 3–5 percig, félidőben fordítsd a fejet."],
+ ben:"Mély relaxáció, a has és a mellkas támasza megnyugtat.",
+ warn:"Nincs különösebb ellenjavallat; térdpanasznál takaró a térdek alá.",
+ f:{t:95,h:90,c:2,a:[160,90],b:[162,90],l:[120,272],r:[120,272]}},
+{s:"Sālamba Setu Bandha Sarvāṅgāsana", h:"Alátámasztott híd", e:"Supported Bridge", c:"pihen", lv:1, tr:["restor","yin"],
+ how:["Híd pózban csúsztass egy blokkot a keresztcsont alá.","Engedd rá a súlyt teljesen a blokkra.","A lábak lehetnek hajlítva vagy nyújtva, maradj 2–5 percig."],
+ ben:"Passzívan nyitja a mellkast és a csípőhajlítót, csökkenti a fáradtságot.",
+ warn:"Derékpanasznál alacsonyabb blokkmagasság.",
+ f:{t:240,h:270,c:-3,a:[98,90],b:[98,90],l:[95,170],r:[97,170]}},
+{s:"Sālamba Matsyāsana", h:"Alátámasztott hal", e:"Supported Fish", c:"pihen", lv:1, tr:["restor"],
+ how:["Tegyél egy hosszú párnát vagy két blokkot a lapockák alá.","Feküdj rá, a fej is legyen alátámasztva.","A karok oldalt, tenyerek felfelé."],
+ ben:"Passzívan nyitja a mellkast, segíti a légzést, enyhíti a görnyedt tartást.",
+ warn:"Nyaki panasznál magasabb fejtámasz.",
+ f:{t:282,h:275,c:-3,a:[100,90],b:[102,90],l:[90,90],r:[92,92]}},
+{s:"Supta Sukhāsana", h:"Fekvő törökülés", e:"Reclining Easy Pose", c:"pihen", lv:1, tr:["restor"],
+ how:["Feküdj hanyatt, a lábakat tedd keresztbe törökülésben.","A térdek oldalra esnek, alájuk tehetsz párnát.","A karok a fej fölött vagy a test mellett."],
+ ben:"Kíméletesen nyitja a csípőt, ellazít.",
+ warn:"Derékpanasznál párnát a fej és a térdek alá.",
+ f:{t:270,fc:0,a:[270,270],b:[272,272],l:[50,170,0.7],r:[52,172,0.7]}},
+{s:"Advāsana", h:"Hasonfekvés", e:"Reversed Corpse", c:"pihen", lv:1, tr:["hatha"],
+ how:["Feküdj hasra, a karok előre nyújtva, tenyerek lefelé.","A homlok a talajon vagy a fej oldalra fordítva.","Lazítsd el az egész testet."],
+ ben:"Hátrahajlások utáni pihenő, lazítja a hátat.",
+ warn:"Terhesség alatt kerüld.",
+ f:{t:90,h:90,a:[90,90],b:[92,92],l:[270,270],r:[270,270]}},
+{s:"Matsya Krīḍāsana", h:"Játszó hal", e:"Flapping Fish", c:"pihen", lv:1, tr:["hatha"],
+ how:["Feküdj hasra, kulcsold össze a kezeket a fej alatt.","Fordulj kissé oldalra, és hajlítsd az egyik térdet a könyök felé.","A fej a karon pihen, a másik láb nyújtva."],
+ ben:"Pihentet, segíti az emésztést, terhesség alatt is kényelmes alvóhelyzet.",
+ warn:"Nincs különösebb ellenjavallat.",
+ f:{t:90,h:90,a:[60,250],b:[62,252],l:[80,250],r:[270,270]}},
+
+// ---------- YIN ----------
+{s:"Pillangó (yin)", h:"Yin pillangó", e:"Butterfly", c:"yin", lv:1, tr:["yin"],
+ how:["Ülésben tedd össze a talpakat, a sarkak távolabb a csípőtől, mint a baddha konasanában.","Kerekítsd a hátat, és engedd a fejet a lábfejek felé.","Maradj 3–5 percig, izommunka nélkül."],
+ ben:"Passzívan nyújtja a hátat és a belső combot.",
+ warn:"Isiász esetén ülj magasabbra, és ne kerekítsd a hátat.",
+ f:{t:62,h:115,c:9,a:[105,100],b:[107,102],l:[80,245,0.7],r:[82,248,0.7]}},
+{s:"Félpillangó (yin)", h:"Yin félpillangó", e:"Half Butterfly", c:"yin", lv:1, tr:["yin"],
+ how:["Az egyik láb nyújtva, a másik talp a belső combon.","Kerekítve hajolj a nyújtott láb fölé.","Lazíts el mindent, maradj 3–5 percig oldalanként."],
+ ben:"Nyújtja a combhajlítót és a gerincet.",
+ warn:"Térdpanasznál párnát a hajlított térd alá.",
+ f:{t:66,h:115,c:9,a:[105,100],b:[107,102],l:[90,90],r:[75,250,0.55]}},
+{s:"Hernyó (yin)", h:"Hernyó", e:"Caterpillar", c:"yin", lv:1, tr:["yin"],
+ how:["Ülj kinyújtott lábakkal, a térdek alá tehetsz párnát.","Engedd előre a törzset kerekített háttal.","A fej lazán lóg, a kezek a lábak mellett pihennek."],
+ ben:"Passzívan nyújtja a hátat és a combhajlítót, befelé fordít.",
+ warn:"Porckorong-problémánál ne kerekítsd a hátat.",
+ f:{t:65,h:115,c:10,a:[105,100],b:[107,102],l:[90,90],r:[90,90]}},
+{s:"Sárkány (yin)", h:"Sárkány", e:"Dragon", c:"yin", lv:1, tr:["yin"],
+ how:["Alacsony kitörésben tedd a kezeket az első láb két oldalára.","Engedd a csípőt előre és lefelé.","Maradj 1–3 percig oldalanként."],
+ ben:"Mélyen nyújtja a csípőhajlítót, nyitja a csípőt.",
+ warn:"Térdpanasznál takarót a hátsó térd alá.",
+ f:{t:20,h:25,a:[175,175],b:[177,175],l:[95,155],r:[200,270]}},
+{s:"Hattyú (yin)", h:"Hattyú", e:"Swan", c:"yin", lv:1, tr:["yin"],
+ how:["Galamb helyzetben maradj egyenes karokkal.","A mellkas emelkedik, a csípő süllyed.","Maradj 1–3 percig."],
+ ben:"Nyitja a külső csípőt, enyhe hátrahajlás.",
+ warn:"Térdfájdalomnál tűfok pózt válassz.",
+ f:{t:12,a:[175,180],b:[177,180],l:[92,265,0.6],r:[268,270]}},
+{s:"Alvó hattyú (yin)", h:"Alvó hattyú", e:"Sleeping Swan", c:"yin", lv:1, tr:["yin"],
+ how:["Hattyúból engedd előre a törzset a talaj felé.","A fej a karokon vagy egy párnán pihen.","Maradj 3–5 percig oldalanként."],
+ ben:"Passzívan nyitja a külső csípőt és a farizmot, nyugtat.",
+ warn:"A csípő alá tegyél párnát, ha nem éri a talajt.",
+ f:{t:95,h:100,c:5,a:[95,90],b:[97,90],l:[92,265,0.6],r:[268,270]}},
+{s:"Cipőfűző (yin)", h:"Cipőfűző", e:"Shoelace", c:"yin", lv:2, tr:["yin"],
+ how:["Ülésben tedd a térdeket egymásra, a lábfejek a csípő két oldalán.","Hajolj előre kerekített háttal.","Maradj 3–5 percig, majd cserélj."],
+ ben:"Nyitja a külső csípőt, a farizmot és az iliotibiális szalagot.",
+ warn:"Térdfájdalomnál nyújtsd ki az alsó lábat.",
+ f:{t:70,h:110,c:8,a:[105,100],b:[107,102],l:[85,265,0.8],r:[88,268,0.8]}},
+{s:"Négyzet (yin)", h:"Négyzet", e:"Square", c:"yin", lv:2, tr:["yin"],
+ how:["Ülésben a lábszárakat tedd egymásra párhuzamosan.","Ha a térdek engedik, hajolj előre.","Maradj 3–5 percig oldalanként."],
+ ben:"Erősen nyitja a külső csípőt.",
+ warn:"Térdpanasznál válaszd a fekvő galambot.",
+ f:{t:60,h:100,c:8,a:[105,100],b:[107,102],l:[85,260,0.75],r:[88,262,0.75]}},
+{s:"Nyereg (yin)", h:"Nyereg", e:"Saddle", c:"yin", lv:2, tr:["yin"],
+ how:["Sarokülésből, vagy a sarkak közé ülve támaszkodj hátra a kezekre vagy könyökökre.","Ha kényelmes, feküdj le teljesen, alátámasztva a hátat.","Maradj 3–5 percig."],
+ ben:"Passzívan nyújtja a combfeszítőt és az ágyékot, enyhe hátrahajlás.",
+ warn:"Térd- és derékpanasznál bolster a hát alá.",
+ f:{t:300,h:290,c:-4,a:[180,120],b:[182,122],l:[95,270],r:[96,270]}},
+{s:"Fóka (yin)", h:"Fóka", e:"Seal", c:"yin", lv:2, tr:["yin"],
+ how:["Szfinx helyzetből nyújtsd ki a karokat, a kezek a vállak előtt kifelé fordítva.","A has a talajon marad.","Lazítsd a farizmokat, maradj 1–3 percig."],
+ ben:"Mélyebb passzív hátrahajlás, nyomás az ágyéki részen.",
+ warn:"Derékfájdalomnál maradj szfinxben.",
+ f:{t:32,h:25,c:-4,a:[170,170],b:[172,172],l:[270,270],r:[270,270]}},
+{s:"Csiga (yin)", h:"Csiga", e:"Snail", c:"yin", lv:2, tr:["yin"],
+ how:["Hanyattfekvésből gördítsd a lábakat a fej mögé.","A lábfejek a talajon vagy párnán, a hát kerekedik.","Maradj 1–3 percig."],
+ ben:"Passzívan nyújtja a gerincet, befelé fordít.",
+ warn:"Nyaksérülésnél és magas vérnyomásnál kerüld.",
+ f:{t:165,h:290,fc:20,c:6,a:[90,90],b:[92,90],l:[225,240],r:[227,242]}},
+{s:"Szitakötő (yin)", h:"Szitakötő", e:"Dragonfly", c:"yin", lv:1, tr:["yin"],
+ how:["Ülj széles terpeszben.","Engedd előre a törzset kerekített háttal, a kezek előtted.","Maradj 3–5 percig."],
+ ben:"Nyújtja a belső combot és a combhajlítót.",
+ warn:"Ha a térdek hátul feszülnek, hajlítsd őket.",
+ f:{t:0,h:0,ts:0.45,a:[150,180],b:[210,180],l:[90,90],r:[270,270],v:"f"}},
+{s:"Lábujjguggolás (yin)", h:"Lábujjguggolás", e:"Toe Squat", c:"yin", lv:1, tr:["yin"],
+ how:["Térdelj, hajlítsd be a lábujjakat.","Ülj le a sarkakra, a gerinc egyenes.","Maradj 1 percig, majd pihentesd a lábfejeket."],
+ ben:"Nyújtja a talpi bőnyét és a lábujjakat, élénkít.",
+ warn:"Bütyök- vagy lábujjproblémánál kerüld.",
+ f:{t:0,a:[175,110],b:[177,112],l:[100,275],r:[100,275]}},
+{s:"Bokanyújtás (yin)", h:"Bokanyújtás", e:"Ankle Stretch", c:"yin", lv:1, tr:["yin"],
+ how:["Sarokülésben a lábfejek teteje a talajon.","Támaszkodj hátra a kezekre, és emeld a térdeket.","Maradj 1 percig."],
+ ben:"Nyújtja a lábfej tetejét és a sípcsont elülső izmait.",
+ warn:"Bokasérülésnél kerüld.",
+ f:{t:-25,a:[200,185],b:[202,187],l:[95,272],r:[95,272]}},
+{s:"Banán (yin)", h:"Banán", e:"Bananasana", c:"yin", lv:1, tr:["yin"],
+ how:["Feküdj hanyatt, a karokat nyújtsd a fej fölé.","Told a lábakat és a felsőtestet ugyanarra az oldalra, hogy a test ív legyen.","Maradj 3–5 percig oldalanként."],
+ ben:"Passzívan nyújtja a törzs oldalát.",
+ warn:"Nincs különösebb ellenjavallat.",
+ f:{t:270,h:265,fc:0,c:-4,a:[275,280],b:[278,282],l:[85,85],r:[87,87],v:"f"}},
+{s:"Szarvas (yin)", h:"Szarvas", e:"Deer", c:"yin", lv:1, tr:["yin"],
+ how:["Ülj, az első láb hajlítva előtted, a hátsó láb hajlítva a csípő mögött (90/90).","Fordulj az első láb felé, és dőlj előre, vagy maradj egyenesen.","Maradj 3–5 percig oldalanként."],
+ ben:"Egyszerre nyitja a csípő belső és külső forgatását.",
+ warn:"Térdpanasznál kevésbé hajlítsd a hátsó lábat.",
+ f:{t:0,a:[160,180],b:[200,180],l:[90,250,0.6],r:[270,110,0.6],v:"f"}}
+);
+
+POSES.forEach(p => { p.tr = p.tr || []; if (p.c === "yin" && !p.tr.includes("yin")) p.tr.push("yin"); });
+
+// Stick-figure renderer: forward kinematics from joint angles, auto-grounded on the mat.
+const L = {torso: 28, neck: 9, head: 6.2, ua: 15, fa: 14, th: 21, sh: 21};
+const W = 140, H = 112, FLOOR = 102;
+const dir = a => { const r = a * Math.PI / 180; return [Math.sin(r), -Math.cos(r)]; };
+const add = (p, a, len) => { const d = dir(a); return [p[0] + d[0] * len, p[1] + d[1] * len]; };
+
+function figure(f) {
+  const ts = f.ts ?? 1;
+  const hip = [0, 0];
+  const neck = add(hip, f.t, L.torso * ts);
+  const sh = add(hip, f.t, L.torso * ts - 2);
+  const hd = f.h ?? f.t;
+  const head = add(neck, hd, L.neck);
+  const limb = (o, s, ln1, ln2) => {
+    const k = s[2] ?? 1;
+    const j = add(o, s[0], ln1 * k);
+    return [o, j, add(j, s[1], ln2 * k)];
+  };
+  const P = {
+    a: limb(sh, f.a, L.ua, L.fa), b: limb(sh, f.b, L.ua, L.fa),
+    l: limb(hip, f.l, L.th, L.sh), r: limb(hip, f.r, L.th, L.sh)
+  };
+  const pts = [hip, neck, ...P.a, ...P.b, ...P.l, ...P.r,
+    [head[0] - L.head, head[1] - L.head], [head[0] + L.head, head[1] + L.head]];
+  let minX = Infinity, maxX = -Infinity, maxY = -Infinity, minY = Infinity;
+  for (const [x, y] of pts) { minX = Math.min(minX, x); maxX = Math.max(maxX, x); minY = Math.min(minY, y); maxY = Math.max(maxY, y); }
+  const pad = 4;
+  const sc = Math.min(1, (W - 2 * pad) / (maxX - minX + 4), (FLOOR - pad) / (maxY - minY + 2));
+  const ox = W / 2 - sc * (minX + maxX) / 2, oy = FLOOR - 2 - sc * maxY;
+  const T = p => [(ox + p[0] * sc).toFixed(1), (oy + p[1] * sc).toFixed(1)];
+  const line = (pp, cls) => `<polyline class="${cls}" points="${pp.map(T).map(q => q.join(',')).join(' ')}"/>`;
+
+  // torso as a quadratic curve; c > 0 bulges toward the back
+  const c = f.c ?? 0;
+  const mid = [(hip[0] + neck[0]) / 2, (hip[1] + neck[1]) / 2];
+  const ctrl = add(mid, f.t - 90, c * 2);
+  const [h0, h1] = T(hip), [c0, c1] = T(ctrl), [n0, n1] = T(neck);
+  const torso = `<path class="fg-torso" d="M${h0} ${h1} Q${c0} ${c1} ${n0} ${n1}"/>`;
+  const [hx, hy] = T(head);
+  const neckLine = line([neck, add(neck, hd, L.neck - L.head + 0.5)], 'fg-limb');
+  let eye = '';
+  if (f.v !== 'f') {
+    const e = add(head, f.fc ?? hd + 90, 3.2);
+    const [ex, ey] = T(e);
+    eye = `<circle class="fg-eye" cx="${ex}" cy="${ey}" r="${(1.3 * sc).toFixed(2)}"/>`;
+  }
+  let extra = '';
+  if (f.wall) {
+    const wx = (+T(P.l[2])[0] + 5 * sc).toFixed(1);
+    extra += `<line class="fg-wall" x1="${wx}" y1="8" x2="${wx}" y2="${FLOOR}"/>`;
+  }
+  if (f.strap) extra += line([P.a[2], P.l[2]], 'fg-strap');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-hidden="true" style="--sw:${sc}">` +
+    `<rect class="fg-mat" x="10" y="${FLOOR}" width="${W - 20}" height="3.5" rx="1.75"/>` + extra +
+    line(P.b, 'fg-limb fg-far') + line(P.r, 'fg-limb fg-far') + torso + neckLine +
+    `<circle class="fg-head" cx="${hx}" cy="${hy}" r="${(L.head * sc).toFixed(2)}"/>` + eye +
+    line(P.l, 'fg-limb') + line(P.a, 'fg-limb') + '</svg>';
+}
+
+(function () {
+  const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+  const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  POSES.forEach(p => { p.key = fold([p.s, p.h, p.e].join(" ")); p.svg = figure(p.f); });
+
+  const counts = {}; POSES.forEach(p => counts[p.c] = (counts[p.c] || 0) + 1);
+  const byLv = [0, 0, 0, 0]; POSES.forEach(p => byLv[p.lv]++);
+  document.getElementById("stats").innerHTML =
+    `<span><b>${POSES.length}</b> ászana</span><span><b>${CATS.length}</b> kategória</span>` +
+    `<span><b>${byLv[1]}</b> kezdő · <b>${byLv[2]}</b> középhaladó · <b>${byLv[3]}</b> haladó</span>`;
+
+  const chips = document.getElementById("chips");
+  chips.innerHTML = `<button class="chip" id="c-all" data-c="" aria-pressed="true">Mind<span>${POSES.length}</span></button>` +
+    CATS.map(([k, n]) => `<button class="chip" id="c-${k}" data-c="${k}" aria-pressed="false">${n.replace(/ ászanák| jóga pózok/, "")}<span>${counts[k] || 0}</span></button>`).join("");
+
+  const TRN = Object.fromEntries(TRADITIONS);
+  const dots = n => `<i>${[1, 2, 3].map(i => `<b class="${i <= n ? "on" : ""}"></b>`).join("")}</i>`;
+  const card = p => `<article class="card" data-k="${esc(p.key)}" data-lv="${p.lv}" data-tr="${p.tr.join(" ")}">
+    <div class="fig">${p.svg}<span class="lvl">${dots(p.lv)}${LV[p.lv]}</span></div>
+    <div class="body">
+      <div class="names"><div class="sa">${esc(p.s)}</div><div class="hu">${esc(p.h)}</div><div class="en">${esc(p.e)}</div>${p.tr.length ? `<div class="tags">${p.tr.map(k => `<span>${TRN[k]}</span>`).join("")}</div>` : ""}</div>
+      <div><div class="lbl">Kivitelezés</div><ol class="how">${p.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>
+      <div><div class="lbl">Hatás</div><p class="ben">${esc(p.ben)}</p></div>
+      <p class="warn"><b>Figyelj:</b> ${esc(p.warn)}</p>
+    </div></article>`;
+
+  const main = document.getElementById("main");
+  main.innerHTML = CATS.map(([k, n, d]) => {
+    const list = POSES.filter(p => p.c === k);
+    return `<section class="cat" id="${k}" data-c="${k}"><div class="cat-head"><h2>${n}</h2><p>${d}</p><span class="n">${list.length} póz</span></div>
+      <div class="grid">${list.map(card).join("")}</div></section>`;
+  }).join("") + `<div class="empty" id="empty" hidden>Nincs a keresésnek megfelelő ászana. Próbálj más nevet, vagy válaszd a „Mind” kategóriát.</div>`;
+
+  const q = document.getElementById("q"), lv = document.getElementById("lv"), tr = document.getElementById("tr");
+  tr.innerHTML = `<option value="">Minden irányzat</option>` + TRADITIONS.map(([k, n]) => `<option value="${k}">${n} (${POSES.filter(p => p.tr.includes(k)).length})</option>`).join("");
+  let cat = "";
+  function apply() {
+    const t = fold(q.value.trim()), L = +lv.value, R = tr.value;
+    let shown = 0;
+    main.querySelectorAll("section.cat").forEach(sec => {
+      let n = 0;
+      const catOk = !cat || sec.dataset.c === cat;
+      sec.querySelectorAll(".card").forEach(c => {
+        const ok = catOk && (!t || c.dataset.k.includes(t)) && (!L || +c.dataset.lv === L) && (!R || c.dataset.tr.split(" ").includes(R));
+        c.hidden = !ok; if (ok) n++;
+      });
+      sec.hidden = n === 0; shown += n;
+      sec.querySelector(".n").textContent = n + " póz";
+    });
+    document.getElementById("empty").hidden = shown > 0;
+  }
+  chips.addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    cat = b.dataset.c;
+    chips.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    apply();
+    const top = document.querySelector(".bar").offsetTop;
+    if (window.scrollY > top) window.scrollTo({top});
+  });
+  q.addEventListener("input", apply);
+  lv.addEventListener("change", apply);
+  tr.addEventListener("change", apply);
+
+  const h = location.hash.slice(1);
+  if (h && CATS.some(c => c[0] === h)) { const b = document.getElementById("c-" + h); if (b) b.click(); }
+  apply();
+})();
+</script>
