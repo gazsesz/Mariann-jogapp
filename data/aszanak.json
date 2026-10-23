@@ -1,5 +1,63 @@
 {
- "version": 2,
+ "version": 3,
+ "chakras": [
+  {
+   "id": 1,
+   "sanskrit": "Mūlādhāra",
+   "name": "Gyökércsakra",
+   "location": "gerinc töve, gát",
+   "theme": "stabilitás, biztonság, földeltség",
+   "color": "#c8382e"
+  },
+  {
+   "id": 2,
+   "sanskrit": "Svādhiṣṭhāna",
+   "name": "Szakrális csakra",
+   "location": "alhas, medence",
+   "theme": "kreativitás, érzelmek, áramlás",
+   "color": "#e0782a"
+  },
+  {
+   "id": 3,
+   "sanskrit": "Maṇipūra",
+   "name": "Napfonatcsakra",
+   "location": "köldök, gyomortáj",
+   "theme": "akaraterő, önbizalom, belső tűz",
+   "color": "#d9a714"
+  },
+  {
+   "id": 4,
+   "sanskrit": "Anāhata",
+   "name": "Szívcsakra",
+   "location": "mellkas közepe",
+   "theme": "szeretet, együttérzés, nyitottság",
+   "color": "#3f9a55"
+  },
+  {
+   "id": 5,
+   "sanskrit": "Viśuddha",
+   "name": "Torokcsakra",
+   "location": "torok, nyak",
+   "theme": "kifejezés, kommunikáció, igazság",
+   "color": "#2f8fc4"
+  },
+  {
+   "id": 6,
+   "sanskrit": "Ājñā",
+   "name": "Harmadik szem",
+   "location": "szemöldökök között",
+   "theme": "intuíció, fókusz, belátás",
+   "color": "#4b58b8"
+  },
+  {
+   "id": 7,
+   "sanskrit": "Sahasrāra",
+   "name": "Koronacsakra",
+   "location": "fejtető",
+   "theme": "tudatosság, egység, elcsendesedés",
+   "color": "#8a5cc4"
+  }
+ ],
  "categories": [
   {
    "id": "allo",
@@ -110,6 +168,13 @@
    ],
    "benefits": "Javítja a testtartást, tudatosítja a talajkapcsolatot, minden álló póz kiindulópontja.",
    "cautions": "Alacsony vérnyomásnál vagy szédülésnél állj fal mellé.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     7
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -146,6 +211,13 @@
    ],
    "benefits": "Nyújtja a törzset és a vállakat, élénkít, a napüdvözlet része.",
    "cautions": "Vállsérülésnél a karokat csak vállmagasságig emeld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     7
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -185,6 +257,13 @@
    ],
    "benefits": "Erősíti a combot, a farizmokat és a bokát, melegít, fejleszti az állóképességet.",
    "cautions": "Térdfájdalomnál kisebb hajlítással dolgozz; vállproblémánál a kezek a csípőn.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 25,
     "a": [
@@ -224,6 +303,14 @@
    ],
    "benefits": "Erősíti a lábakat, nyújtja a csípőhajlítót és a vádlit, nyitja a mellkast.",
    "cautions": "Magas vérnyomásnál a karok a csípőn; térdproblémánál rövidebb állás.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3,
+     4
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -263,6 +350,13 @@
    ],
    "benefits": "Erősíti a combokat és a bokát, nyitja a csípőt, fejleszti az állóképességet.",
    "cautions": "Nyaki panasznál a tekintet maradjon előre, ne fordítsd a fejet.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -298,6 +392,13 @@
    ],
    "benefits": "Nyújtja a törzs oldalát és a bordaközi izmokat, erősíti a lábakat.",
    "cautions": "A hátsó lábra ne támaszkodj rá teljes súllyal.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": -22,
     "h": -28,
@@ -340,6 +441,14 @@
    ],
    "benefits": "Nyújtja a combhajlítókat, ágyékot és törzsoldalt, erősíti a lábakat.",
    "cautions": "Alacsony vérnyomásnál nézz lefelé; a térdeket ne feszítsd túl.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2,
+     4
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 105,
     "h": 105,
@@ -381,6 +490,13 @@
    ],
    "benefits": "Csavarja és nyújtja a gerincet, javítja az egyensúlyt, nyújtja a combhajlítókat.",
    "cautions": "Gerinc- vagy porckorongsérülésnél kerüld; használj blokkot.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 100,
     "h": 100,
@@ -421,6 +537,13 @@
    ],
    "benefits": "Nyújtja a teljes testoldalt, erősíti a lábakat, nyitja a csípőt és a vállat.",
    "cautions": "Nyaki panasznál nézz előre vagy le, ne felfelé.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 100,
     "h": 85,
@@ -460,6 +583,13 @@
    ],
    "benefits": "Erőteljes csavarás, erősíti a lábakat, támogatja az emésztést.",
    "cautions": "Hátsérülésnél és terhesség alatt kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 110,
     "h": 95,
@@ -500,6 +630,13 @@
    ],
    "benefits": "Mélyen nyújtja a combhajlítókat, javítja az egyensúlyt és a tartást.",
    "cautions": "Combhajlító-sérülésnél enyhén hajlítsd az első térdet.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 160,
     "h": 165,
@@ -537,6 +674,14 @@
    ],
    "benefits": "Erősíti a lábakat, nyújtja a csípőhajlítót, fejleszti az egyensúlyt.",
    "cautions": "Térdsérülésnél kisebb hajlítás; egyensúlyproblémánál kezek a csípőn.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3,
+     4
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 5,
     "a": [
@@ -572,6 +717,13 @@
    ],
    "benefits": "Erősíti a combokat és a farizmokat, nyitja a csípőt és a mellkast.",
    "cautions": "A térdek ne essenek befelé; térdfájdalomnál kisebb hajlítás.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -608,6 +760,13 @@
    ],
    "benefits": "Energetizál, nyújtja az egész testet, javítja a koordinációt.",
    "cautions": "Vállpanasznál a karok kissé lejjebb.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     4
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -644,6 +803,13 @@
    ],
    "benefits": "Nyújtja a törzs oldalát, a bordaközi izmokat és a hátizmokat.",
    "cautions": "Előre vagy hátra ne dőlj ki; hátfájdalomnál kisebb ív.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 14,
     "h": 18,
@@ -686,6 +852,14 @@
    ],
    "benefits": "Fejleszti az egyensúlyt és a koncentrációt, erősíti a bokát és a lábat.",
    "cautions": "Alacsony vérnyomásnál a karok maradjanak lent; szükség esetén fal mellett.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6,
+     7
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -725,6 +899,13 @@
    ],
    "benefits": "Nyújtja a vállat és a felső hátat, erősíti a lábakat, fejleszti a fókuszt.",
    "cautions": "Térdsérülésnél a lábfej maradjon a talajon a másik mellett.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 15,
     "a": [
@@ -760,6 +941,13 @@
    ],
    "benefits": "Nyitja a vállat, mellkast és csípőhajlítót, erősíti az álló lábat.",
    "cautions": "Derékpanasznál kisebb ív; használj hevedert a lábfejhez.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     1
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 35,
     "h": 40,
@@ -799,6 +987,13 @@
    ],
    "benefits": "Nyújtja a combhajlítókat, erősíti a bokát, fejleszti az egyensúlyt.",
    "cautions": "Ha a hát kerekedik, használj hevedert vagy hajlítsd a térdet.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 22,
     "a": [
@@ -836,6 +1031,13 @@
    ],
    "benefits": "Erősíti a bokát és combot, nyújtja a törzsoldalt, fejleszti a koordinációt.",
    "cautions": "Nyaki panasznál nézz le; használj blokkot.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 110,
     "h": 105,
@@ -874,6 +1076,13 @@
    ],
    "benefits": "Egyensúly és csavarás egyszerre: erősít, mobilizál, fókuszt kíván.",
    "cautions": "Hátsérülésnél kerüld; mindig használj blokkot, amíg stabil nem leszel.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 105,
     "h": 100,
@@ -915,6 +1124,13 @@
    ],
    "benefits": "Erősíti a lábat, a farizmokat, a hátat és a törzset, javítja az egyensúlyt.",
    "cautions": "Magas vérnyomásnál a karok hátra; egyensúlyhoz falat használhatsz.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 90,
     "h": 90,
@@ -951,6 +1167,13 @@
    ],
    "benefits": "Nyitja a külső csípőt, erősíti az álló lábat.",
    "cautions": "Térdfájdalomnál kevésbé ülj le; a bokát ne csavard.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 40,
     "a": [
@@ -989,6 +1212,13 @@
    ],
    "benefits": "Nyújtja a combhajlítókat és a hátat, megnyugtat, enyhíti a stresszt.",
    "cautions": "Hátsérülésnél hajlított térddel; glaukómánál kerüld a hosszú tartást.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 165,
     "h": 175,
@@ -1026,6 +1256,13 @@
    ],
    "benefits": "Erősíti a hátizmokat, nyújtja a combhajlítókat, a napüdvözlet része.",
    "cautions": "Ha a hát kerekedik, hajlítsd a térdeket.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 95,
     "h": 85,
@@ -1064,6 +1301,13 @@
    ],
    "benefits": "Nyújtja a combhajlítókat és a vádlit, nyugtató hatású.",
    "cautions": "Nyaki vagy derékpanasznál óvatosan, hajlított térddel.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 168,
     "h": 178,
@@ -1103,6 +1347,13 @@
    ],
    "benefits": "Mélyíti az előrehajlást, nyújtja a csuklót és a teljes hátsó láncot.",
    "cautions": "Csuklóproblémánál kerüld; magas vérnyomásnál rövid ideig.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 172,
     "h": 180,
@@ -1143,6 +1394,13 @@
    ],
    "benefits": "Nyújtja a combhajlítókat és a belső combot, enyhe fordított hatású.",
    "cautions": "Felemelkedéskor lassan, hogy ne szédülj; derékpanasznál félig hajolj.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     7
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 180,
     "h": 180,
@@ -1185,6 +1443,13 @@
    ],
    "benefits": "Nyújtja a teljes hátsó láncot, nyugtat, segíti az emésztést.",
    "cautions": "Hátsérülésnél ülj párnára és hajlítsd a térdet; asztmánál óvatosan.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 72,
     "h": 85,
@@ -1225,6 +1490,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és a hátat, nyitja a csípőt, nyugtat.",
    "cautions": "Térdsérülésnél tegyél párnát a hajlított térd alá.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 74,
     "h": 85,
@@ -1266,6 +1538,13 @@
    ],
    "benefits": "Nyújtja a belső combot és a combhajlítót, nyitja a csípőt.",
    "cautions": "Ágyéki panasznál ülj magas párnára, hajolj kevésbé.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "h": 0,
@@ -1308,6 +1587,13 @@
    ],
    "benefits": "Mély nyújtás a háton és a csípőben, befelé forduló, nyugtató póz.",
    "cautions": "Gerinc- és vállsérülésnél kerüld; csak bemelegedett testtel.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 86,
     "h": 92,
@@ -1348,6 +1634,13 @@
    ],
    "benefits": "Erősíti a hátizmokat, nyitja a mellkast, javítja a tartást.",
    "cautions": "Terhesség alatt kerüld; derékfájdalomnál alacsony kobra.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 60,
     "h": 45,
@@ -1387,6 +1680,13 @@
    ],
    "benefits": "Kíméletes hátrahajlás, erősíti a hátat, nyitja a mellkast.",
    "cautions": "Akut derékfájdalomnál kerüld; terhesség alatt ne.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 60,
     "h": 45,
@@ -1426,6 +1726,13 @@
    ],
    "benefits": "Erősíti a karokat és a hátat, nyitja a mellkast és a csípőhajlítót.",
    "cautions": "Csuklóproblémánál és derékpanasznál inkább kobra.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 42,
     "h": 30,
@@ -1466,6 +1773,13 @@
    ],
    "benefits": "Erősíti a teljes hátsó láncot, javítja a tartást.",
    "cautions": "Derékfájdalomnál egyszerre csak egy lábat emelj.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 78,
     "h": 80,
@@ -1506,6 +1820,13 @@
    ],
    "benefits": "Nyitja a mellkast, vállat és csípőhajlítót, erősíti a hátat.",
    "cautions": "Magas vérnyomásnál, sérvnél, terhesség alatt kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 55,
     "h": 40,
@@ -1547,6 +1868,13 @@
    ],
    "benefits": "Mélyen nyitja a mellkast és a csípőhajlítót, élénkít.",
    "cautions": "Nyaki panasznál ne hajtsd hátra a fejet; derékproblémánál kezek a keresztcsonton.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": -70,
     "h": -110,
@@ -1587,6 +1915,14 @@
    ],
    "benefits": "Erősíti a farizmokat és a combot, nyitja a mellkast, megnyugtat.",
    "cautions": "Nyaksérülésnél tegyél takarót a vállak alá.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5,
+     1
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 220,
     "h": 270,
@@ -1627,6 +1963,14 @@
    ],
    "benefits": "Erőteljesen nyitja a mellkast és vállat, erősíti a karokat és lábakat, élénkít.",
    "cautions": "Csukló-, váll- és derékproblémánál, magas vérnyomásnál kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3,
+     7
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 260,
     "h": 200,
@@ -1667,6 +2011,14 @@
    ],
    "benefits": "Nyitja a mellkast és a torkot, ellenpóz a vállállás után.",
    "cautions": "Nyaksérülésnél a fej maradjon fent vagy párnán.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     4,
+     7
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 295,
     "h": 220,
@@ -1704,6 +2056,13 @@
    ],
    "benefits": "Nyitja a mellkast és vállat, erősíti a kart, örömteli, energizáló.",
    "cautions": "Csukló- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 250,
     "h": 250,
@@ -1743,6 +2102,13 @@
    ],
    "benefits": "Erősíti a karokat, csuklót, hátat, nyitja a mellkast és vállat.",
    "cautions": "Nyaki panasznál a fej ne hanyatoljon hátra; csuklóproblémánál ököllel.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 294,
     "h": 250,
@@ -1779,6 +2145,13 @@
    ],
    "benefits": "Erősíti a vállat, farizmot és combot, nyitja a mellkast.",
    "cautions": "Vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 283,
     "h": 275,
@@ -1815,6 +2188,13 @@
    ],
    "benefits": "Mobilizálja a gerincet, nyitja a mellkast; macskával váltogatva bemelegít.",
    "cautions": "Nyaki panasznál a fej maradjon a gerinc vonalában.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 76,
     "h": 55,
@@ -1852,6 +2232,13 @@
    ],
    "benefits": "Mobilizálja és nyújtja a hátat, oldja a hátfeszültséget.",
    "cautions": "Térdérzékenységnél tegyél takarót a térdek alá.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 76,
     "h": 135,
@@ -1891,6 +2278,13 @@
    ],
    "benefits": "Nyitja a vállat és a mellkast, nyújtja a gerincet.",
    "cautions": "Vállsérülésnél ne nyújtsd túl a karokat; térdpárna ajánlott.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 130,
     "h": 110,
@@ -1930,6 +2324,13 @@
    ],
    "benefits": "Mélyen nyújtja a combfeszítőt és a csípőhajlítót, nyitja a hasat.",
    "cautions": "Térd- és bokasérülésnél kerüld; használj bolstert a hát alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "h": 270,
@@ -1966,6 +2367,14 @@
    ],
    "benefits": "Mély hátrahajlás és csípőnyitás, nyitja a vállat.",
    "cautions": "Térd-, váll- és derékproblémánál kerüld; használj hevedert.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2,
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": -25,
     "h": -40,
@@ -2009,6 +2418,13 @@
    ],
    "benefits": "Mobilizálja a gerincet, serkenti az emésztést, nyitja a vállat.",
    "cautions": "Porckorong-problémánál és terhesség alatt kíméletesen, kisebb csavarással.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2049,6 +2465,13 @@
    ],
    "benefits": "Mély csavarás, mobilizál, nyújtja a vállat és a csípőt.",
    "cautions": "Hátsérülésnél ülj párnára; terhesség alatt kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2088,6 +2511,13 @@
    ],
    "benefits": "Kíméletes csavarás, oldja a derék- és hátfeszültséget.",
    "cautions": "Térdpanasznál ülj takaróra.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2126,6 +2556,13 @@
    ],
    "benefits": "Erősíti a lábakat, csavarja a gerincet, serkenti az emésztést.",
    "cautions": "Hátsérülésnél kerüld; térdproblémánál kisebb hajlítás.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 40,
     "h": 45,
@@ -2163,6 +2600,13 @@
    ],
    "benefits": "Csavarja a gerincet, nyújtja a csípőhajlítót, erősíti a lábakat.",
    "cautions": "Térdpanasznál a hátsó térd alá takarót tegyél.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 35,
     "fc": 10,
@@ -2202,6 +2646,13 @@
    ],
    "benefits": "Oldja a hát- és derékfeszültséget, nyugtat, jó óra végén.",
    "cautions": "Porckorong-problémánál párnát tegyél a térd alá.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2240,6 +2691,13 @@
    ],
    "benefits": "Egyszerű gerincmobilizáló, könnyű bemelegítés.",
    "cautions": "Csak addig csavarodj, amíg a gerinc hosszú marad.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2278,6 +2736,13 @@
    ],
    "benefits": "Erősíti a ferde hasizmokat, mobilizálja a gerincet.",
    "cautions": "Derékfájdalomnál csak kis ívben, hajlított térddel.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2317,6 +2782,13 @@
    ],
    "benefits": "Nyújtja a törzsoldalt és a combhajlítót, nyitja a vállat.",
    "cautions": "Térdpanasznál párnát a hajlított térd alá.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 62,
     "h": 70,
@@ -2359,6 +2831,13 @@
    ],
    "benefits": "Nyitja a csípőt és a belső combot, jó előkészítő a meditációs üléshez.",
    "cautions": "Térd- vagy ágyéksérülésnél tegyél blokkot a térdek alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 5,
     "a": [
@@ -2398,6 +2877,13 @@
    ],
    "benefits": "Mélyen nyitja a külső csípőt és a farizmot, nyújtja a csípőhajlítót.",
    "cautions": "Térdfájdalomnál használj tűfok pózt fekve helyette; a csípő alá párna.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -2434,6 +2920,14 @@
    ],
    "benefits": "Nyújtja a csípőhajlítót és a combot, nyitja a mellkast.",
    "cautions": "Térdpanasznál takarót a hátsó térd alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1,
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": -5,
     "h": -8,
@@ -2473,6 +2967,13 @@
    ],
    "benefits": "Nyitja a csípőt és az ágyékot, nyújtja a bokát, segíti az emésztést.",
    "cautions": "Térdsérülésnél ülj blokkra.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 15,
     "a": [
@@ -2512,6 +3013,13 @@
    ],
    "benefits": "Nyitja a csípőt és a vállat egyszerre, javítja a testtartást.",
    "cautions": "Térd- vagy vállsérülésnél csak a lábakkal vagy csak a karokkal dolgozz.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -2549,6 +3057,13 @@
    ],
    "benefits": "Erősen nyitja a külső csípőt és a farizmokat.",
    "cautions": "Ha a térd fáj, tegyél blokkot a felső térd alá vagy válassz pillangót.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 10,
     "a": [
@@ -2586,6 +3101,13 @@
    ],
    "benefits": "Nyújtja a belső combot és a combhajlítót, nyitja a csípőt.",
    "cautions": "Térdpanasznál ne menj túl mélyre.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 10,
     "a": [
@@ -2622,6 +3144,13 @@
    ],
    "benefits": "Mélyen nyitja a csípőhajlítót és a belső csípőt.",
    "cautions": "Válldelikát esetén maradj kézen; a hátsó térd alá takaró.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 100,
     "h": 95,
@@ -2660,6 +3189,13 @@
    ],
    "benefits": "Intenzíven nyitja a belső combot és a csípőt.",
    "cautions": "Térdek alá vastag takarót tegyél; fokozatosan mélyíts.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 95,
     "h": 100,
@@ -2702,6 +3238,13 @@
    ],
    "benefits": "Nyitja a csípőt és az ágyékot, lazítja a deréktájat.",
    "cautions": "Terhesség utolsó szakaszában és nyaki panasznál óvatosan.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2741,6 +3284,13 @@
    ],
    "benefits": "Biztonságosan nyújtja a combhajlítót és a belső combot.",
    "cautions": "Ha a keresztcsont felemelkedik, engedd lejjebb a lábat.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2780,6 +3330,14 @@
    ],
    "benefits": "Maximálisan nyújtja a combhajlítót és a csípőhajlítót.",
    "cautions": "Csak bemelegedve, sok előkészítés után; combhajlító-sérülésnél kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1,
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -2815,6 +3373,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és a vádlit, előkészíti a spárgát.",
    "cautions": "Térdpanasznál takarót a hátsó térd alá.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 75,
     "h": 85,
@@ -2852,6 +3417,13 @@
    ],
    "benefits": "Kíméletesen nyitja a külső csípőt és a farizmot; a galamb biztonságos változata.",
    "cautions": "A felső lábfej maradjon flexben a térd védelmében.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2892,6 +3464,13 @@
    ],
    "benefits": "Az ülő pózok alapja, erősíti a hátizmokat, javítja a tartást.",
    "cautions": "Ha a hát kerekedik, ülj egy takaró szélére.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -2929,6 +3508,14 @@
    ],
    "benefits": "Kényelmes meditációs és légzőgyakorlati ülés, nyitja a csípőt.",
    "cautions": "Térdfájdalomnál párnát tegyél a térdek alá.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     7,
+     4
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -2968,6 +3555,14 @@
    ],
    "benefits": "Stabil, egyenes tartást ad hosszabb meditációhoz.",
    "cautions": "Térd- és bokapanasznál válaszd a könnyű ülést.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     1,
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -3005,6 +3600,14 @@
    ],
    "benefits": "Előkészíti a lótuszt, nyitja a csípőt, stabil ülés.",
    "cautions": "Soha ne erőltesd a térdnél; a mozgás a csípőből jöjjön.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     1,
+     2
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -3045,6 +3648,14 @@
    ],
    "benefits": "Klasszikus meditációs ülés, nagyon stabil tartást ad.",
    "cautions": "Térdsérülésnél kerüld; csak nyitott csípővel próbáld.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     1,
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -3084,6 +3695,13 @@
    ],
    "benefits": "Segíti az emésztést (étkezés után is végezhető), nyújtja a bokát.",
    "cautions": "Térdpanasznál tegyél párnát a sarkak és a fenék közé.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -3121,6 +3739,13 @@
    ],
    "benefits": "Nyújtja a combfeszítőt és a bokát, kényelmes meditációs ülés.",
    "cautions": "Térd- és bokaproblémánál mindig ülj blokkra.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -3158,6 +3783,13 @@
    ],
    "benefits": "Oldja az arc és a torok feszültségét, felszabadító, játékos.",
    "cautions": "Térdpanasznál ülj széken.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 10,
     "h": 20,
@@ -3197,6 +3829,13 @@
    ],
    "benefits": "Mélyen nyújtja a combhajlítót, erősíti a hátat.",
    "cautions": "Ha a hát kerekedik, használj hevedert.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 10,
     "a": [
@@ -3238,6 +3877,13 @@
    ],
    "benefits": "Erősíti a karokat, csuklót és hasat, fejleszti az egyensúlyt és a bátorságot.",
    "cautions": "Csuklósérülésnél és terhesség alatt kerüld; tegyél párnát magad elé.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 120,
     "h": 110,
@@ -3274,6 +3920,13 @@
    ],
    "benefits": "Erősíti a karokat és a ferde hasizmokat, csavarás és egyensúly egyben.",
    "cautions": "Csukló- és vállproblémánál kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 110,
     "h": 100,
@@ -3312,6 +3965,13 @@
    ],
    "benefits": "Erősíti a karokat, vállat és törzset, a vinyasa áramlás kulcsmozdulata.",
    "cautions": "Vállsérülésnél a térdeket engedd le; ne süllyedj a vállak alá.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 78.5,
     "h": 80,
@@ -3350,6 +4010,13 @@
    ],
    "benefits": "Erősíti a karokat, csuklót és a ferde hasizmokat.",
    "cautions": "Csuklóproblémánál alkaron; könnyítésként a felső lábfej elé a talajra.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     5
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 65.5,
     "a": [
@@ -3388,6 +4055,13 @@
    ],
    "benefits": "Erősíti a karokat és a hasat, nyújtja a combhajlítót.",
    "cautions": "Csukló-, könyök- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 70,
     "h": 80,
@@ -3428,6 +4102,13 @@
    ],
    "benefits": "Nagy erőt kíván, erősíti a csuklót és az alkart, serkenti az emésztést.",
    "cautions": "Magas vérnyomásnál, terhesség alatt, csuklósérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 95,
     "h": 90,
@@ -3466,6 +4147,13 @@
    ],
    "benefits": "Erősíti a karokat és a ferde hasizmokat, fejleszti a koordinációt.",
    "cautions": "Csuklóproblémánál kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 100,
     "h": 95,
@@ -3504,6 +4192,13 @@
    ],
    "benefits": "Erősíti a karokat és a törzset, csavarás és egyensúly egyben.",
    "cautions": "Csukló- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 100,
     "h": 95,
@@ -3542,6 +4237,13 @@
    ],
    "benefits": "Erősíti a karokat és a csuklót, nyitja a csípőt.",
    "cautions": "Csukló-, váll- és könyöksérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 30,
     "h": 45,
@@ -3578,6 +4280,13 @@
    ],
    "benefits": "Erősíti a karokat és a mélyizmokat, fejleszti a koncentrációt.",
    "cautions": "Csuklóproblémánál kerüld; kezdj egy lábfej emelésével.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 15,
     "h": 25,
@@ -3619,6 +4328,13 @@
    ],
    "benefits": "Erősíti a karokat, csuklót és hasat.",
    "cautions": "Térdpanasznál törökülésből, csuklópanasznál blokkokon.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     7
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 5,
     "h": 10,
@@ -3657,6 +4373,13 @@
    ],
    "benefits": "Erősíti a karokat, nyitja a csípőt, fejleszti az egyensúlyt.",
    "cautions": "Csukló- és térdsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 120,
     "h": 110,
@@ -3694,6 +4417,13 @@
    ],
    "benefits": "Erősíti a törzset, a karokat és a vállat, alapja a karegyensúlyoknak.",
    "cautions": "Csuklóproblémánál alkaron; könnyítés térdeken.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 65.5,
     "h": 70,
@@ -3730,6 +4460,13 @@
    ],
    "benefits": "Erősíti a mély hasizmokat, kíméli a csuklót.",
    "cautions": "Ha a derék beesik, engedd le a térdeket.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 77.6,
     "h": 80,
@@ -3768,6 +4505,13 @@
    ],
    "benefits": "Erősíti a hasizmokat és a csípőhajlítót, fejleszti az egyensúlyt.",
    "cautions": "Derék- és nyakpanasznál hajlított térddel, kézzel a combot fogva.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": -35,
     "h": -25,
@@ -3804,6 +4548,13 @@
    ],
    "benefits": "Intenzíven erősíti a hasizmokat.",
    "cautions": "Derékpanasznál kerüld vagy hajlított térddel végezd.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": -62,
     "h": -50,
@@ -3840,6 +4591,13 @@
    ],
    "benefits": "Erősíti az alsó hasat, nyújtja a combhajlítót.",
    "cautions": "Ha a derék elemelkedik, ne engedd túl alacsonyra a lábakat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -3876,6 +4634,13 @@
    ],
    "benefits": "Biztonságos kiindulópont, stabilizálja a vállat és a törzset.",
    "cautions": "Csuklófájdalomnál ököllel vagy alkaron.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 76,
     "h": 80,
@@ -3912,6 +4677,13 @@
    ],
    "benefits": "Fejleszti a törzsstabilitást, az egyensúlyt és a koordinációt.",
    "cautions": "Térdpanasznál takarót a térd alá.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 76,
     "h": 85,
@@ -3950,6 +4722,14 @@
    ],
    "benefits": "Nyújtja a teljes hátsó láncot, erősíti a vállat és a karokat, frissít.",
    "cautions": "Csukló- és vállproblémánál delfin póz; magas vérnyomásnál rövid tartás.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1,
+     4
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 135,
     "h": 150,
@@ -3986,6 +4766,13 @@
    ],
    "benefits": "Erősíti a vállat és a felső hátat, előkészíti az alkarállást és a fejenállást.",
    "cautions": "Vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     5
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 140,
     "h": 160,
@@ -4026,6 +4813,13 @@
    ],
    "benefits": "Nyugtat, nyújtja a nyakat és vállat, a „fordított pózok királynője”.",
    "cautions": "Nyaksérülésnél, magas vérnyomásnál, menstruáció alatt kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 180,
     "h": 290,
@@ -4067,6 +4861,13 @@
    ],
    "benefits": "Nyújtja a gerincet és a vállat, nyugtat.",
    "cautions": "Nyaksérülésnél kerüld; ha a lábak nem érnek le, tegyél alájuk széket.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 172,
     "h": 290,
@@ -4107,6 +4908,13 @@
    ],
    "benefits": "Mély nyugtató hatás, nyújtja a hátat.",
    "cautions": "Nyaksérülésnél kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 172,
     "h": 290,
@@ -4149,6 +4957,13 @@
    ],
    "benefits": "Erősíti a vállat és a törzset, fejleszti a koncentrációt.",
    "cautions": "Nyakproblémánál, magas vérnyomásnál, glaukómánál kerüld; tanulj tanárral, fal mellett.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 180,
     "h": 180,
@@ -4185,6 +5000,13 @@
    ],
    "benefits": "Erősíti a vállat és a karokat, előkészíti a karegyensúlyokat.",
    "cautions": "Nyaksérülésnél kerüld; mindig kontrolláltan, ugrás nélkül.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 180,
     "h": 180,
@@ -4223,6 +5045,14 @@
    ],
    "benefits": "Erősíti a vállat, karokat és törzset, élénkítő, magabiztosságot ad.",
    "cautions": "Csukló- és vállsérülésnél, magas vérnyomásnál kerüld.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     3,
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 180,
     "h": 180,
@@ -4261,6 +5091,13 @@
    ],
    "benefits": "Erősíti a vállat és a hátat, fejleszti az egyensúlyt.",
    "cautions": "Vállsérülésnél kerüld; tanuld fal mellett.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 180,
     "h": 170,
@@ -4297,6 +5134,14 @@
    ],
    "benefits": "Nagyon mély hátrahajlás és egyensúly, erősít és nyit.",
    "cautions": "Csak haladó gyakorlóknak, gerinc- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     4,
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 170,
     "h": 150,
@@ -4338,6 +5183,13 @@
    ],
    "benefits": "Nyugtat, nyújtja a hátat és a csípőt, bármikor pihenhetsz benne.",
    "cautions": "Térdsérülésnél párnát a térdhajlatba; terhesség alatt széles térddel.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 100,
     "h": 95,
@@ -4381,6 +5233,13 @@
    ],
    "benefits": "Mély relaxáció, beépíti a gyakorlás hatását, csökkenti a stresszt.",
    "cautions": "Derékfájdalomnál tegyél párnát a térdek alá; terhesség alatt oldalt feküdj.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     1
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -4420,6 +5279,13 @@
    ],
    "benefits": "Ellazítja a hátat, segíti a hasi légzést, hátrahajlások után ideális.",
    "cautions": "Terhesség alatt kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 90,
     "h": 90,
@@ -4458,6 +5324,13 @@
    ],
    "benefits": "Masszírozza a derekat, oldja a puffadást, nyugtat.",
    "cautions": "Terhesség alatt széles térddel.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -4496,6 +5369,13 @@
    ],
    "benefits": "Segíti az emésztést, lazítja a derekat és a csípőt.",
    "cautions": "Nyaki panasznál a fej maradjon a talajon.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -4534,6 +5414,13 @@
    ],
    "benefits": "Nyitja a csípőt és a mellkast, mélyen ellazít.",
    "cautions": "Ágyéki érzékenységnél támaszd alá a combokat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -4576,6 +5463,13 @@
    ],
    "benefits": "Pihenteti a lábakat, nyugtatja az idegrendszert, enyhe fordított póz.",
    "cautions": "Glaukómánál és súlyos szívbetegségnél kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     7
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -4615,6 +5509,13 @@
    ],
    "benefits": "Összeszedetté tesz, a napüdvözlet nyitó és záró póza, a gyakorlás szándékának kijelölése.",
    "cautions": "Nincs különösebb ellenjavallat; szédülésnél tartsd nyitva a szemed.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     7
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -4651,6 +5552,13 @@
    ],
    "benefits": "Nyitja a vállat és a mellkast, nyújtja a csípőhajlítót, befelé forduló, alázatos minőség.",
    "cautions": "Magas vérnyomásnál és vállsérülésnél kerüld vagy fogj hevedert.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 150,
     "h": 160,
@@ -4690,6 +5598,13 @@
    ],
    "benefits": "Előkészítő helyzet a háromszög és a harcos II előtt, kitárja a mellkast.",
    "cautions": "Térdpanasznál ne feszítsd túl a térdeket.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     4
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -4728,6 +5643,13 @@
    ],
    "benefits": "Nyújtja a csípőhajlítót, a napüdvözlet (Surya Namaskar) része.",
    "cautions": "Térdpanasznál takarót a hátsó térd alá.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 35,
     "h": 45,
@@ -4766,6 +5688,13 @@
    ],
    "benefits": "Mélyen nyitja a csípőt és a vállat, erősíti az álló lábat, fejleszti az egyensúlyt.",
    "cautions": "Térdsérülésnél kerüld; a lótuszt soha ne erőltesd a térdnél.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 165,
     "h": 175,
@@ -4804,6 +5733,13 @@
    ],
    "benefits": "Nyújtja az álló láb combhajlítóját, erősíti a felemelt láb farizmát, enyhe fordított hatású.",
    "cautions": "Magas vérnyomásnál rövid ideig; a kezek alá tehetsz blokkot.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 170,
     "h": 175,
@@ -4843,6 +5779,13 @@
    ],
    "benefits": "Erősíti az álló lábat és a hasat, nyújtja a combhajlítót, maximális koncentrációt kíván.",
    "cautions": "Az álló térdet aktívan tartsd, de ne feszítsd túl; combhajlító-sérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 120,
     "h": 130,
@@ -4880,6 +5823,13 @@
    ],
    "benefits": "Nyitja a vállat és a combhajlítót, erősíti az álló lábat.",
    "cautions": "Vállsérülésnél hevederrel; ne rántsd meg a vállat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 15,
     "h": 10,
@@ -4916,6 +5866,13 @@
    ],
    "benefits": "Egyensúly és hátrahajlás egyben, nyitja a combfeszítőt és a vállat.",
    "cautions": "Mindig használj blokkot az alsó kéz alá, amíg stabil nem leszel.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 110,
     "h": 105,
@@ -4956,6 +5913,13 @@
    ],
    "benefits": "Erősíti a bokát és lábfejet, nyitja a csípőt, mély koncentrációt fejleszt.",
    "cautions": "Térd- és bokasérülésnél kerüld.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 5,
     "a": [
@@ -4994,6 +5958,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és a combfeszítőt, nyújtja a térdet.",
    "cautions": "Térd- és bokasérülésnél kerüld.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 74,
     "h": 85,
@@ -5034,6 +6005,13 @@
    ],
    "benefits": "Mélyen nyitja a csípőt és vállat, nyújtja a combhajlítót.",
    "cautions": "Térdsérülésnél kerüld; a lábfej ne nyomja a hasat fájdalmasan.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 74,
     "h": 85,
@@ -5074,6 +6052,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és a vállat, összenyomja és masszírozza a hasat.",
    "cautions": "Vállsérülésnél kötés nélkül; derékpanasznál óvatosan.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 72,
     "h": 85,
@@ -5113,6 +6098,13 @@
    ],
    "benefits": "Erősíti a hasat és a hátat, nyújtja a combhajlítót, fejleszti az egyensúlyt.",
    "cautions": "Derékpanasznál hajlított térddel; ha a hát kerekedik, használj hevedert.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": -20,
     "h": -15,
@@ -5151,6 +6143,13 @@
    ],
    "benefits": "Fordított előrehajlás, erősíti a hasat és nyújtja a hátat.",
    "cautions": "Gerincsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": -5,
     "h": 5,
@@ -5190,6 +6189,13 @@
    ],
    "benefits": "Mélyen nyújtja a hátat és a nyakat, enyhe fordított hatás.",
    "cautions": "Nyaksérülésnél és magas vérnyomásnál kerüld.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     5
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 140,
     "h": 190,
@@ -5227,6 +6233,13 @@
    ],
    "benefits": "Oldja a derék- és nyakfeszültséget, kíméletes a combhajlítóknak.",
    "cautions": "Magas vérnyomásnál és szédülésnél lassan emelkedj fel.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 162,
     "h": 178,
@@ -5266,6 +6279,13 @@
    ],
    "benefits": "Nyitja a mellkast és a csípőhajlítót, előrehajlások ellenpóza.",
    "cautions": "Szédülésnél és nyaksérülésnél kis ívben, a fej maradjon a gerinc vonalában.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": -25,
     "h": -40,
@@ -5303,6 +6323,13 @@
    ],
    "benefits": "A teve biztonságos változata, nyitja a mellkast és a csípőhajlítót.",
    "cautions": "Nyaki panasznál ne hajtsd hátra a fejet.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": -35,
     "h": -50,
@@ -5342,6 +6369,13 @@
    ],
    "benefits": "Nyújtja a combfeszítőt és a csípőhajlítót, nyitja a vállat.",
    "cautions": "Térdsérülésnél kerüld; ne told erőltetve a lábfejet.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 58,
     "h": 45,
@@ -5381,6 +6415,13 @@
    ],
    "benefits": "Mélyen nyújtja a combfeszítőt, erősíti a hátat, nyitja a vállat.",
    "cautions": "Térd- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 55,
     "h": 45,
@@ -5421,6 +6462,14 @@
    ],
    "benefits": "Az egyik legmélyebb hátrahajlás, nyitja a mellkast, vállat és csípőhajlítót.",
    "cautions": "Csak haladóknak, tanár mellett; nyak- és derékproblémánál kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5,
+     7
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 250,
     "h": 200,
@@ -5458,6 +6507,14 @@
    ],
    "benefits": "Erősíti a farizmot és a combhajlítót, stabilizálja a medencét.",
    "cautions": "Nyaksérülésnél takarót a vállak alá.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     1,
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 220,
     "h": 270,
@@ -5497,6 +6554,13 @@
    ],
    "benefits": "Erőt, egyensúlyt és mély hátrahajlást kíván.",
    "cautions": "Csukló-, váll- és derékproblémánál kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 260,
     "h": 200,
@@ -5536,6 +6600,14 @@
    ],
    "benefits": "Mélyen nyitja a vállat és a mellkast.",
    "cautions": "Nyaksérülésnél kerüld; mindig kerékből építsd.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5,
+     7
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 240,
     "h": 190,
@@ -5575,6 +6647,14 @@
    ],
    "benefits": "Erősíti a combokat és a hátat, mély mellkasnyitás.",
    "cautions": "Térd-, nyak- és derékproblémánál kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5,
+     1
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 250,
     "h": 210,
@@ -5612,6 +6692,13 @@
    ],
    "benefits": "Nyitja a csípőhajlítót, a vállat és a mellkast.",
    "cautions": "Térdsérülésnél kerüld; a csípő alá párna.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": -15,
     "h": -25,
@@ -5652,6 +6739,13 @@
    ],
    "benefits": "Nyújtja a törzs oldalát és a belső combot, tágítja a bordaközöket.",
    "cautions": "Térdpanasznál takarót a térd alá.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 55,
     "h": 65,
@@ -5692,6 +6786,13 @@
    ],
    "benefits": "Kíméletesen nyújtja a törzs oldalát, jó bemelegítés.",
    "cautions": "Ne dőlj előre vagy hátra; a vállak lazák.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 22,
     "h": 28,
@@ -5735,6 +6836,13 @@
    ],
    "benefits": "Mély csavarás, nyújtja a bokát, nyitja a vállat.",
    "cautions": "Térd- és derékproblémánál kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 20,
     "fc": 270,
@@ -5773,6 +6881,13 @@
    ],
    "benefits": "Mobilizálja a gerincet, az ardha matsyendrasana előkészítője.",
    "cautions": "Akut hátfájásnál kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 0,
     "fc": 270,
@@ -5811,6 +6926,13 @@
    ],
    "benefits": "Oldja a derék és a hát merevségét, jó bemelegítés.",
    "cautions": "Lassan, lendület nélkül, ha a derék érzékeny.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -5847,6 +6969,13 @@
    ],
    "benefits": "Csavarja a gerincet, nyújtja a combhajlítót és a belső combot.",
    "cautions": "Derékpanasznál blokk az alsó kéz alá.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 180,
     "h": 180,
@@ -5885,6 +7014,13 @@
    ],
    "benefits": "Oldja a vállöv és a felső hát feszültségét.",
    "cautions": "Nyaki panasznál párnát a fej alá.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 125,
     "h": 120,
@@ -5924,6 +7060,13 @@
    ],
    "benefits": "Maximálisan nyújtja a belső combot, nyitja a csípőt.",
    "cautions": "Csak bemelegedve; ágyéksérülésnél kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -5962,6 +7105,13 @@
    ],
    "benefits": "Extrém csípőnyitás, csak hosszú előkészítés után.",
    "cautions": "Nyak-, csípő- és térdsérülésnél kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 10,
     "h": 20,
@@ -6000,6 +7150,14 @@
    ],
    "benefits": "Mélyen nyitja a csípőt, befelé fordulást és nyugalmat ad.",
    "cautions": "Nyak- és csípősérülésnél kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6,
+     7
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -6038,6 +7196,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és a belső combot, erősíti az oldalsó törzset.",
    "cautions": "Ha a csípő hátradől, használj hevedert.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     3
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "h": 270,
@@ -6075,6 +7240,13 @@
    ],
    "benefits": "Egyszerre nyitja a csípőhajlítót és a combfeszítőt.",
    "cautions": "Térdpanasznál takarót a hátsó térd alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 95,
     "h": 90,
@@ -6113,6 +7285,13 @@
    ],
    "benefits": "A galamb kíméletes változata, oldja a farizmot és a körtealakú izmot.",
    "cautions": "Térdfájdalomnál ne húzd a lábakat a mellkashoz.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -6152,6 +7331,13 @@
    ],
    "benefits": "Stabil, kényelmes meditációs ülés.",
    "cautions": "Térdfájdalomnál ülj magasabb párnára.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     1
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -6191,6 +7377,13 @@
    ],
    "benefits": "Nyitja a vállat és a csípőt, mélyen összpontosító.",
    "cautions": "Térd- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     4
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -6231,6 +7424,13 @@
    ],
    "benefits": "Nyugtat, nyitja a vállat, befelé fordulást segít.",
    "cautions": "Magas vérnyomásnál és glaukómánál kerüld.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     3
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 80,
     "h": 100,
@@ -6272,6 +7472,13 @@
    ],
    "benefits": "Nyújtja a törzset és a vállat, javítja a tartást.",
    "cautions": "Vállsérülésnél a karok alacsonyabban.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     4
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -6312,6 +7519,14 @@
    ],
    "benefits": "Pránájáma- és bandha-gyakorlat, élénkíti a hasi szerveket.",
    "cautions": "Magas vérnyomásnál és terhesség alatt légzésvisszatartás nélkül.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1,
+     5
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 30,
     "h": 35,
@@ -6349,6 +7564,13 @@
    ],
    "benefits": "Nyújtja a belső combot, javítja a tartást, előkészíti a terpesz-előrehajlást.",
    "cautions": "Ha a hát kerekedik, ülj takaróra.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -6387,6 +7609,13 @@
    ],
    "benefits": "A varjú könnyebb, alacsonyabb változata, a karegyensúlyok belépője.",
    "cautions": "Csuklósérülésnél kerüld; párnát tegyél magad elé.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 115,
     "h": 105,
@@ -6423,6 +7652,13 @@
    ],
    "benefits": "Erősíti a karokat és a törzset, fejleszti az egyensúlyt.",
    "cautions": "Csukló- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 120,
     "h": 110,
@@ -6461,6 +7697,13 @@
    ],
    "benefits": "Erősíti a karokat és a hasat, mély koncentrációt kíván.",
    "cautions": "Térd- és csuklóproblémánál kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     7
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 10,
     "h": 15,
@@ -6501,6 +7744,13 @@
    ],
    "benefits": "Erősíti a kart és a törzset, nyújtja a combhajlítót.",
    "cautions": "Csukló- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 65.5,
     "a": [
@@ -6537,6 +7787,13 @@
    ],
    "benefits": "Erősíti a karokat és a ferde hasizmokat.",
    "cautions": "Csukló- és vállsérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 100,
     "h": 95,
@@ -6575,6 +7832,14 @@
    ],
    "benefits": "Mély csípő- és combhajlító-nyújtás, erősíti a kart.",
    "cautions": "Csukló-, váll- és combhajlító-sérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2,
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 40,
     "h": 30,
@@ -6615,6 +7880,13 @@
    ],
    "benefits": "A páva előkészítője, erősíti a csuklót és a hasat.",
    "cautions": "Csuklósérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 80,
     "h": 85,
@@ -6653,6 +7925,13 @@
    ],
    "benefits": "A chaturanga kíméletes változata a napüdvözletben, erősíti a karokat.",
    "cautions": "Vállsérülésnél óvatosan.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 135,
     "h": 110,
@@ -6689,6 +7968,13 @@
    ],
    "benefits": "Erősíti a karokat és a hasat, nyitja a csípőt.",
    "cautions": "Csukló- és combhajlító-sérülésnél kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 10,
     "a": [
@@ -6726,6 +8012,13 @@
    ],
    "benefits": "Erősíti az alsó hasat és a csípőhajlítót.",
    "cautions": "Derékfájdalomnál egyszerre csak egy lábat emelj.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -6762,6 +8055,13 @@
    ],
    "benefits": "Erősíti a teljes hátsó láncot és a mélyizmokat.",
    "cautions": "Derékpanasznál felváltva emeld a kart és a lábat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 80,
     "h": 80,
@@ -6799,6 +8099,13 @@
    ],
    "benefits": "Erősíti a ferde hasizmokat, kíméli a csuklót.",
    "cautions": "Könnyítés: az alsó térd a talajon.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     5
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 72,
     "a": [
@@ -6838,6 +8145,13 @@
    ],
    "benefits": "Erősíti a hasat és a hátat, mobilizálja a csípőt.",
    "cautions": "Terhesség alatt és derékpanasznál kis körökkel.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ],
+    "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
+   },
    "figure": {
     "t": 40,
     "h": 45,
@@ -6874,6 +8188,13 @@
    ],
    "benefits": "Erősíti a karokat, nyújtja az álló lábat, előkészíti a lépéseket előre.",
    "cautions": "Csuklóproblémánál delfinből.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     2
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 135,
     "h": 150,
@@ -6912,6 +8233,13 @@
    ],
    "benefits": "Biztonságosan készít fel a fejenállásra, erősíti a vállat.",
    "cautions": "Nyaksérülésnél kerüld; a súly a karokon legyen.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     6
+    ],
+    "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
+   },
    "figure": {
     "t": 165,
     "h": 180,
@@ -6950,6 +8278,13 @@
    ],
    "benefits": "A gyertya kíméletesebb, klasszikus hatha változata, nyugtat.",
    "cautions": "Nyaksérülésnél, magas vérnyomásnál kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     7
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 215,
     "h": 290,
@@ -6989,6 +8324,14 @@
    ],
    "benefits": "Erősíti a hátat és a törzset, mély koncentrációt fejleszt.",
    "cautions": "Nyaksérülésnél kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     3,
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 180,
     "h": 290,
@@ -7028,6 +8371,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót, erősíti a törzset.",
    "cautions": "Nyaksérülésnél kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 180,
     "h": 290,
@@ -7067,6 +8417,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és belső combot, nyitja a hátat.",
    "cautions": "Nyaksérülésnél kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     2
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 172,
     "h": 290,
@@ -7105,6 +8462,13 @@
    ],
    "benefits": "Nyújtja a vállat és a hátat, megnyugtat.",
    "cautions": "Térdpanasznál párnát a térdhajlatba.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 100,
     "h": 95,
@@ -7144,6 +8508,13 @@
    ],
    "benefits": "Mély relaxáció, a has és a mellkas támasza megnyugtat.",
    "cautions": "Nincs különösebb ellenjavallat; térdpanasznál takaró a térdek alá.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 95,
     "h": 90,
@@ -7184,6 +8555,13 @@
    ],
    "benefits": "Passzívan nyitja a mellkast és a csípőhajlítót, csökkenti a fáradtságot.",
    "cautions": "Derékpanasznál alacsonyabb blokkmagasság.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 240,
     "h": 270,
@@ -7223,6 +8601,13 @@
    ],
    "benefits": "Passzívan nyitja a mellkast, segíti a légzést, enyhíti a görnyedt tartást.",
    "cautions": "Nyaki panasznál magasabb fejtámasz.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 282,
     "h": 275,
@@ -7262,6 +8647,13 @@
    ],
    "benefits": "Kíméletesen nyitja a csípőt, ellazít.",
    "cautions": "Derékpanasznál párnát a fej és a térdek alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 270,
     "fc": 0,
@@ -7302,6 +8694,13 @@
    ],
    "benefits": "Hátrahajlások utáni pihenő, lazítja a hátat.",
    "cautions": "Terhesség alatt kerüld.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     3
+    ],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 90,
     "h": 90,
@@ -7340,6 +8739,13 @@
    ],
    "benefits": "Pihentet, segíti az emésztést, terhesség alatt is kényelmes alvóhelyzet.",
    "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     3
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 90,
     "h": 90,
@@ -7378,6 +8784,13 @@
    ],
    "benefits": "Passzívan nyújtja a hátat és a belső combot.",
    "cautions": "Isiász esetén ülj magasabbra, és ne kerekítsd a hátat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 62,
     "h": 115,
@@ -7419,6 +8832,13 @@
    ],
    "benefits": "Nyújtja a combhajlítót és a gerincet.",
    "cautions": "Térdpanasznál párnát a hajlított térd alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 66,
     "h": 115,
@@ -7459,6 +8879,13 @@
    ],
    "benefits": "Passzívan nyújtja a hátat és a combhajlítót, befelé fordít.",
    "cautions": "Porckorong-problémánál ne kerekítsd a hátat.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ],
+    "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
+   },
    "figure": {
     "t": 65,
     "h": 115,
@@ -7498,6 +8925,13 @@
    ],
    "benefits": "Mélyen nyújtja a csípőhajlítót, nyitja a csípőt.",
    "cautions": "Térdpanasznál takarót a hátsó térd alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 20,
     "h": 25,
@@ -7536,6 +8970,13 @@
    ],
    "benefits": "Nyitja a külső csípőt, enyhe hátrahajlás.",
    "cautions": "Térdfájdalomnál tűfok pózt válassz.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 12,
     "a": [
@@ -7574,6 +9015,13 @@
    ],
    "benefits": "Passzívan nyitja a külső csípőt és a farizmot, nyugtat.",
    "cautions": "A csípő alá tegyél párnát, ha nem éri a talajt.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 95,
     "h": 100,
@@ -7614,6 +9062,13 @@
    ],
    "benefits": "Nyitja a külső csípőt, a farizmot és az iliotibiális szalagot.",
    "cautions": "Térdfájdalomnál nyújtsd ki az alsó lábat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 70,
     "h": 110,
@@ -7655,6 +9110,13 @@
    ],
    "benefits": "Erősen nyitja a külső csípőt.",
    "cautions": "Térdpanasznál válaszd a fekvő galambot.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 60,
     "h": 100,
@@ -7696,6 +9158,13 @@
    ],
    "benefits": "Passzívan nyújtja a combfeszítőt és az ágyékot, enyhe hátrahajlás.",
    "cautions": "Térd- és derékpanasznál bolster a hát alá.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     3
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 300,
     "h": 290,
@@ -7735,6 +9204,13 @@
    ],
    "benefits": "Mélyebb passzív hátrahajlás, nyomás az ágyéki részen.",
    "cautions": "Derékfájdalomnál maradj szfinxben.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 32,
     "h": 25,
@@ -7774,6 +9250,13 @@
    ],
    "benefits": "Passzívan nyújtja a gerincet, befelé fordít.",
    "cautions": "Nyaksérülésnél és magas vérnyomásnál kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ],
+    "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
+   },
    "figure": {
     "t": 165,
     "h": 290,
@@ -7814,6 +9297,13 @@
    ],
    "benefits": "Nyújtja a belső combot és a combhajlítót.",
    "cautions": "Ha a térdek hátul feszülnek, hajlítsd őket.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "h": 0,
@@ -7854,6 +9344,11 @@
    ],
    "benefits": "Nyújtja a talpi bőnyét és a lábujjakat, élénkít.",
    "cautions": "Bütyök- vagy lábujjproblémánál kerüld.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": 0,
     "a": [
@@ -7891,6 +9386,11 @@
    ],
    "benefits": "Nyújtja a lábfej tetejét és a sípcsont elülső izmait.",
    "cautions": "Bokasérülésnél kerüld.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [],
+    "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
+   },
    "figure": {
     "t": -25,
     "a": [
@@ -7928,6 +9428,13 @@
    ],
    "benefits": "Passzívan nyújtja a törzs oldalát.",
    "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ],
+    "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
+   },
    "figure": {
     "t": 270,
     "h": 265,
@@ -7969,6 +9476,13 @@
    ],
    "benefits": "Egyszerre nyitja a csípő belső és külső forgatását.",
    "cautions": "Térdpanasznál kevésbé hajlítsd a hátsó lábat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ],
+    "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
+   },
    "figure": {
     "t": 0,
     "a": [
