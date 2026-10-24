@@ -94,6 +94,8 @@ section.cat { padding-top: 40px; scroll-margin-top: 120px; }
 .chak .c { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; }
 .chak .c.sec { font-weight: 400; color: var(--muted); }
 .chak .why { color: var(--muted); font-size: 13px; }
+.bens { display: flex; flex-wrap: wrap; gap: 4px; }
+.bens span { font-size: 12px; font-weight: 600; color: var(--gold); background: var(--gold-soft); border-radius: 6px; padding: 2px 8px; cursor: help; }
 .lbl { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
 ol.how { margin: 0; padding-left: 20px; font-size: 14px; display: flex; flex-direction: column; gap: 3px; }
 ol.how li::marker { color: var(--accent); font-weight: 600; }
@@ -126,7 +128,7 @@ footer p { max-width: 75ch; margin: 0 0 8px; }
 <header class="hero wrap">
   <div class="eyebrow">Mariann jógapp · ászana-gyűjtemény</div>
   <h1>Ászana<em>tár</em></h1>
-  <p class="lede">A hatha, vinyasa, Ashtanga, Iyengar és yin jóga pózai és fontosabb változataik kategóriák szerint: szanszkrit és magyar névvel, sematikus ábrával, lépésről lépésre leírt kivitelezéssel, a jótékony hatásokkal, a csakrákkal és az óvatossági szempontokkal.</p>
+  <p class="lede">A hatha, vinyasa, Ashtanga, Iyengar és yin jóga pózai és fontosabb változataik kategóriák szerint: szanszkrit és magyar névvel, sematikus ábrával, lépésről lépésre leírt kivitelezéssel, a jótékony hatásokkal, a hatásterületekkel (szív, tüdő, emésztés, alvás…), a csakrákkal és az óvatossági szempontokkal.</p>
   <div class="stats" id="stats"></div>
   <div class="legend" id="legend" aria-label="Csakrák"></div>
 </header>
@@ -146,6 +148,12 @@ footer p { max-width: 75ch; margin: 0 0 8px; }
       </select>
       <select id="tr" aria-label="Irányzat"></select>
       <select id="ch" aria-label="Csakra"></select>
+      <select id="bn" aria-label="Jótékony hatás"></select>
+      <select id="gr" aria-label="Csoportosítás">
+        <option value="cat">Csoportosítás: kategória</option>
+        <option value="bn">Csoportosítás: hatás</option>
+        <option value="ch">Csoportosítás: csakra</option>
+      </select>
     </div>
     <div class="chips" id="chips" role="toolbar" aria-label="Kategóriák"></div>
   </div>
@@ -156,6 +164,7 @@ footer p { max-width: 75ch; margin: 0 0 8px; }
 <footer class="wrap">
   <p><b>Az ábrákról:</b> a figurák sematikus, oldal- vagy szemből nézeti vázlatok (a halványabb végtag a távolabbi oldal, a pont a tekintet iránya). A pontos igazításhoz érdemes tanárral vagy tükör előtt gyakorolni.</p>
   <p><b>A csakrákról:</b> a hozzárendelések a jóga energetikai hagyományán alapuló tájékoztató jellegű összefoglalók. Iskolánként eltérhetnek, és nem orvosi állítások. Az első a fő hatás, a többi másodlagos.</p>
+  <p><b>A hatásterületekről:</b> a „Mire jó” címkék a jógagyakorlás általánosan leírt hatásait foglalják össze pózcsaládonként, egyedi finomításokkal. Rendszeres gyakorlás mellett érvényesülnek, és nem gyógyító ígéretek. A címkére állva rövid magyarázat jelenik meg.</p>
   <p><b>Fontos:</b> ez a gyűjtemény tájékoztató jellegű, nem helyettesíti az orvosi vagy gyógytornászi tanácsot. Sérülés, krónikus betegség vagy várandósság esetén egyeztess szakemberrel, és soha ne erőltess fájdalmas mozdulatot.</p>
 </footer>
 
@@ -1362,6 +1371,101 @@ POSES.forEach(p => {
   p.ch = m.split("").map(Number);
 });
 
+// Health benefit areas. Each pose gets areas from its family, adjusted by per-pose additions (+) and removals (-).
+const BENEFITS = [
+  ["sziv", "Szív és keringés", "A keringés serkentése vagy a pulzus és a vérnyomás nyugtatása."],
+  ["tudo", "Tüdő és légzés", "A mellkas és a bordaközi izmok tágítása mélyebb, szabadabb légzést tesz lehetővé."],
+  ["emesztes", "Emésztés", "A has összenyomása, csavarása vagy nyújtása masszírozza a hasi szerveket és segíti a bélmozgást."],
+  ["allokepesseg", "Állóképesség és erő", "A tartott izommunka erőt és kitartást épít."],
+  ["hajlekonysag", "Hajlékonyság", "Az izmok, inak és kötőszövetek nyújtása növeli a mozgástartományt."],
+  ["immun", "Immunrendszer", "A nyirokkeringés serkentése és a stresszszint csökkentése támogatja a szervezet védekezését."],
+  ["hormon", "Szervek és hormonok", "A belső szervek és mirigyek (pajzsmirigy, mellékvese, kismedence) környékének finom nyomása, nyújtása vagy vérellátása."],
+  ["tartas", "Testtartás", "A gerinc körüli izmok erősítése és a görnyedt tartás ellensúlyozása."],
+  ["elme", "Agy és elme", "A fókusz, a koncentráció és a lelki egyensúly fejlesztése, a stressz oldása."],
+  ["alvas", "Alvás", "Az idegrendszer lecsendesítése (paraszimpatikus hatás), ami segíti az elalvást és a pihenést."]
+];
+
+const BEN_BY_CAT = {
+  allo: ["allokepesseg", "tartas"],
+  egyensuly: ["elme", "tartas", "allokepesseg"],
+  elore: ["hajlekonysag", "emesztes", "elme", "alvas"],
+  hatra: ["tudo", "tartas", "hajlekonysag", "sziv"],
+  csavar: ["emesztes", "hajlekonysag", "hormon"],
+  csipo: ["hajlekonysag", "hormon"],
+  ulo: ["elme", "tudo", "tartas"],
+  kar: ["allokepesseg", "elme"],
+  core: ["allokepesseg", "emesztes", "tartas"],
+  forditott: ["sziv", "immun", "hormon", "elme"],
+  pihen: ["alvas", "elme", "sziv"],
+  yin: ["hajlekonysag", "alvas", "elme"]
+};
+
+const BEN_ADJ = {
+  // álló
+  "Tāḍāsana": "+elme", "Ūrdhva Hastāsana": "+tudo -allokepesseg", "Utkaṭāsana": "+sziv", "Vīrabhadrāsana I": "+sziv +tudo",
+  "Vīrabhadrāsana II": "+sziv +hajlekonysag", "Viparīta Vīrabhadrāsana": "+tudo +hajlekonysag", "Utthita Trikoṇāsana": "+hajlekonysag +emesztes",
+  "Parivṛtta Trikoṇāsana": "+emesztes +hajlekonysag +elme", "Utthita Pārśvakoṇāsana": "+hajlekonysag +tudo", "Pārśvottānāsana": "+hajlekonysag +elme",
+  "Aṣṭa Candrāsana": "+sziv +hajlekonysag", "Utkaṭa Koṇāsana": "+sziv +hormon", "Utthita Tāḍāsana": "+tudo", "Pārśva Ūrdhva Hastāsana": "+tudo +hajlekonysag -allokepesseg",
+  "Praṇāmāsana": "+elme -allokepesseg", "Baddha Vīrabhadrāsana": "+hajlekonysag +elme", "Utthita Hasta Pādāsana": "+tudo -allokepesseg",
+  "Utthita Aśva Sañcalanāsana": "+hajlekonysag",
+  // egyensúly
+  "Vṛkṣāsana": "", "Garuḍāsana": "+hajlekonysag +immun", "Naṭarājāsana": "+hajlekonysag +tudo", "Utthita Hasta Pādāṅguṣṭhāsana": "+hajlekonysag",
+  "Ardha Candrāsana": "+hajlekonysag", "Parivṛtta Ardha Candrāsana": "+emesztes", "Vīrabhadrāsana III": "+sziv", "Eka Pāda Utkaṭāsana": "+hajlekonysag",
+  "Ardha Baddha Padmottānāsana": "+hajlekonysag +emesztes", "Ūrdhva Prasārita Eka Pādāsana": "+hajlekonysag +sziv", "Daṇḍayamana Jānuśirāsana": "+hajlekonysag +emesztes",
+  "Svarga Dvijāsana": "+hajlekonysag", "Ardha Candra Cāpāsana": "+hajlekonysag +tudo", "Pādāṅguṣṭhāsana (lábujj-egyensúly)": "+hajlekonysag",
+  // előrehajlások
+  "Uttānāsana": "+sziv", "Ardha Uttānāsana": "+tartas -alvas", "Prasārita Pādottānāsana": "+sziv", "Paścimottānāsana": "+hormon",
+  "Jānu Śīrṣāsana": "+hormon", "Upaviṣṭha Koṇāsana": "+hormon", "Kūrmāsana": "+hormon", "Ubhaya Pādāṅguṣṭhāsana": "+allokepesseg -alvas",
+  "Ūrdhva Mukha Paścimottānāsana": "+allokepesseg -alvas", "Śaśāṅkāsana (Sasangasana)": "+immun +hormon", "Marīcyāsana I": "+hormon",
+  // hátrahajlások
+  "Bhujaṅgāsana": "+emesztes", "Salamba Bhujaṅgāsana": "+emesztes -sziv", "Ūrdhva Mukha Śvānāsana": "+allokepesseg", "Śalabhāsana": "+allokepesseg +emesztes -hajlekonysag",
+  "Dhanurāsana": "+emesztes +hormon", "Uṣṭrāsana": "+hormon", "Setu Bandha Sarvāṅgāsana": "+hormon +alvas", "Ūrdhva Dhanurāsana": "+allokepesseg +hormon",
+  "Matsyāsana": "+hormon +immun", "Pūrvottānāsana": "+allokepesseg", "Ardha Pūrvottānāsana": "+allokepesseg", "Bitilāsana": "-sziv +emesztes",
+  "Marjaryāsana": "-sziv -tudo +emesztes", "Anāhatāsana": "-sziv", "Supta Vīrāsana": "+emesztes", "Kapotāsana": "+hormon",
+  "Eka Pāda Setu Bandha Sarvāṅgāsana": "+allokepesseg", "Eka Pāda Ūrdhva Dhanurāsana": "+allokepesseg", "Dvi Pāda Viparīta Daṇḍāsana": "+hormon",
+  "Laghu Vajrāsana": "+allokepesseg", "Viparīta Śalabhāsana": "",
+  // csavarások
+  "Parivṛtta Pārśvakoṇāsana": "+allokepesseg", "Parivṛtta Utkaṭāsana": "+allokepesseg", "Parivṛtta Añjaneyāsana": "+allokepesseg",
+  "Supta Matsyendrāsana": "+alvas", "Jaṭhara Parivartanāsana": "+allokepesseg", "Parighāsana": "+tudo -emesztes -hormon",
+  "Pārśva Sukhāsana": "+tudo -emesztes -hormon", "Kaṭi Cakrāsana": "-hormon", "Pārśva Bālāsana": "+alvas -emesztes -hormon +tartas",
+  "Marīcyāsana III": "+tartas", "Ardha Matsyendrāsana": "+tartas",
+  // csípőnyitók
+  "Baddha Koṇāsana": "+emesztes", "Mālāsana": "+emesztes", "Gomukhāsana": "+tudo +tartas", "Añjaneyāsana": "+tartas",
+  "Ānanda Bālāsana": "+alvas", "Sūcirandhrāsana": "+alvas", "Supta Kapotāsana": "+alvas", "Hanumānāsana": "-hormon",
+  "Ardha Hanumānāsana": "-hormon", "Skandāsana": "+allokepesseg -hormon", "Samakoṇāsana": "-hormon", "Yoganidrāsana": "+alvas",
+  // ülő
+  "Daṇḍāsana": "-tudo", "Sukhāsana": "+alvas", "Siddhāsana": "+alvas", "Padmāsana": "+alvas", "Vajrāsana": "+emesztes",
+  "Vīrāsana": "+emesztes", "Siṁhāsana": "+immun -tartas", "Krauñcāsana": "+hajlekonysag -tudo", "Yoga Mudrā": "+emesztes +hajlekonysag",
+  "Mahā Mudrā": "+hormon +emesztes", "Upaviṣṭha Koṇāsana (ülő terpesz)": "+hajlekonysag -tudo", "Parvatāsana": "-elme",
+  // karegyensúlyok
+  "Caturaṅga Daṇḍāsana": "+tartas", "Vasiṣṭhāsana": "+tartas", "Mayūrāsana": "+emesztes", "Haṁsāsana": "+emesztes",
+  "Aṣṭāṅga Namaskāra": "-elme", "Ṭiṭṭibhāsana": "+hajlekonysag", "Bhujapīḍāsana": "+hajlekonysag", "Aṣṭāvakrāsana": "+emesztes",
+  // törzserősítők
+  "Bharmanāsana": "-allokepesseg -emesztes", "Daṇḍayamana Bharmanāsana": "+elme -emesztes", "Phalakāsana": "+sziv",
+  "Alkaros oldalsó deszka": "-emesztes", "Cakki Calanāsana": "+hajlekonysag",
+  // fordított
+  "Adho Mukha Śvānāsana": "+hajlekonysag +allokepesseg -hormon", "Ardha Pincha Mayūrāsana": "+allokepesseg -hormon",
+  "Eka Pāda Adho Mukha Śvānāsana": "+hajlekonysag +allokepesseg -hormon", "Sālamba Sarvāṅgāsana": "+alvas", "Halāsana": "+alvas +emesztes +hajlekonysag",
+  "Karṇapīḍāsana": "+alvas", "Viparīta Karaṇī Mudrā": "+alvas", "Adho Mukha Vṛkṣāsana": "+allokepesseg -hormon",
+  "Pīñcha Mayūrāsana": "+allokepesseg -hormon", "Vṛścikāsana": "+allokepesseg +hajlekonysag", "Sālamba Śīrṣāsana": "+allokepesseg",
+  "Supta Koṇāsana": "+hajlekonysag",
+  // pihentető
+  "Śavāsana": "+immun", "Apānāsana": "+emesztes -sziv", "Pavanamuktāsana": "+emesztes -sziv", "Makarāsana": "+tudo -sziv",
+  "Viparīta Karaṇī": "+immun", "Supta Baddha Koṇāsana": "+hormon +tudo", "Bālāsana": "+emesztes -sziv", "Utthita Bālāsana": "+hajlekonysag -sziv",
+  "Sālamba Bālāsana": "+emesztes -sziv", "Sālamba Setu Bandha Sarvāṅgāsana": "+hormon", "Sālamba Matsyāsana": "+tudo", "Supta Sukhāsana": "+hajlekonysag -sziv",
+  "Advāsana": "-sziv", "Matsya Krīḍāsana": "+emesztes -sziv",
+  // yin
+  "Pillangó (yin)": "+hormon", "Hernyó (yin)": "+emesztes", "Sárkány (yin)": "+hormon", "Csiga (yin)": "+hormon +sziv",
+  "Nyereg (yin)": "+emesztes +tudo", "Fóka (yin)": "+tudo +tartas", "Banán (yin)": "+tudo", "Lábujjguggolás (yin)": "-alvas",
+  "Bokanyújtás (yin)": "-alvas", "Szitakötő (yin)": "+hormon"
+};
+
+POSES.forEach(p => {
+  const set = new Set(BEN_BY_CAT[p.c]);
+  (BEN_ADJ[p.s] || "").split(" ").filter(Boolean).forEach(x => x[0] === "+" ? set.add(x.slice(1)) : set.delete(x.slice(1)));
+  p.bn = BENEFITS.map(b => b[0]).filter(k => set.has(k));
+});
+
 // Stick-figure renderer: forward kinematics from joint angles, auto-grounded on the mat.
 const L = {torso: 28, neck: 9, head: 6.2, ua: 15, fa: 14, th: 21, sh: 21};
 const W = 140, H = 112, FLOOR = 102;
@@ -1438,23 +1542,34 @@ function figure(f) {
 
   const TRN = Object.fromEntries(TRADITIONS);
   const CHN = Object.fromEntries(CHAKRAS.map(c => [c[0], c]));
+  const BNN = Object.fromEntries(BENEFITS.map(b => [b[0], b]));
   const dots = n => `<i>${[1, 2, 3].map(i => `<b class="${i <= n ? "on" : ""}"></b>`).join("")}</i>`;
-  const card = p => `<article class="card" data-k="${esc(p.key)}" data-lv="${p.lv}" data-tr="${p.tr.join(" ")}" data-ch="${p.ch.join(" ")}">
+  const card = p => `<article class="card" data-k="${esc(p.key)}" data-lv="${p.lv}" data-tr="${p.tr.join(" ")}" data-ch="${p.ch.join(" ")}" data-bn="${p.bn.join(" ")}" data-c="${p.c}">
     <div class="fig">${p.svg}<span class="lvl">${dots(p.lv)}${LV[p.lv]}</span></div>
     <div class="body">
       <div class="names"><div class="sa">${esc(p.s)}</div><div class="hu">${esc(p.h)}</div><div class="en">${esc(p.e)}</div>${p.tr.length ? `<div class="tags">${p.tr.map(k => `<span>${TRN[k]}</span>`).join("")}</div>` : ""}</div>
       <div><div class="lbl">Kivitelezés</div><ol class="how">${p.how.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>
       <div><div class="lbl">Hatás</div><p class="ben">${esc(p.ben)}</p></div>
+      <div><div class="lbl">Mire jó</div><div class="bens">${p.bn.map(k => `<span title="${esc(BNN[k][2])}">${BNN[k][1]}</span>`).join("")}</div></div>
       <div><div class="lbl">Csakrák</div><div class="chak"><div class="row1">${p.ch.map((n, i) => `<span class="c${i ? " sec" : ""}" title="${CHN[n][4]}"><i class="cdot" style="background:${CHN[n][5]}"></i>${CHN[n][2]}${i ? "" : " (elsődleges)"}</span>`).join("")}</div><div class="why">Miért: ${CHAKRA_WHY[p.ch[0]]}.</div></div></div>
       <p class="warn"><b>Figyelj:</b> ${esc(p.warn)}</p>
     </div></article>`;
 
   const main = document.getElementById("main");
-  main.innerHTML = CATS.map(([k, n, d]) => {
-    const list = POSES.filter(p => p.c === k);
-    return `<section class="cat" id="${k}" data-c="${k}"><div class="cat-head"><h2>${n}</h2><p>${d}</p><span class="n">${list.length} póz</span></div>
-      <div class="grid">${list.map(card).join("")}</div></section>`;
-  }).join("") + `<div class="empty" id="empty" hidden>Nincs a keresésnek megfelelő ászana. Próbálj más nevet, vagy válaszd a „Mind” kategóriát.</div>`;
+  const GROUPS = {
+    cat: () => CATS.map(([k, n, d]) => [k, n, d, POSES.filter(p => p.c === k)]),
+    bn: () => BENEFITS.map(([k, n, d]) => [k, n, d, POSES.filter(p => p.bn.includes(k))]),
+    ch: () => CHAKRAS.map(c => ["ch" + c[0], `${c[0]}. ${c[2]}`, `${c[1]} · ${c[3]} · ${c[4]}. Elöl azok a pózok, amelyeknek ez az elsődleges csakrája.`,
+      POSES.filter(p => p.ch.includes(c[0])).sort((a, b) => (a.ch[0] !== c[0]) - (b.ch[0] !== c[0]))])
+  };
+  const cardHtml = new Map();
+  function render(g) {
+    main.innerHTML = GROUPS[g]().map(([k, n, d, list]) =>
+      `<section class="cat" id="${k}"><div class="cat-head"><h2>${n}</h2><p>${d}</p><span class="n">${list.length} póz</span></div>
+      <div class="grid">${list.map(p => { if (!cardHtml.has(p)) cardHtml.set(p, card(p)); return cardHtml.get(p); }).join("")}</div></section>`).join("") +
+      `<div class="empty" id="empty" hidden>Nincs a szűrésnek megfelelő ászana. Próbálj más nevet, vagy állítsd vissza a szűrőket.</div>`;
+  }
+  render("cat");
 
   const q = document.getElementById("q"), lv = document.getElementById("lv"), tr = document.getElementById("tr");
   tr.innerHTML = `<option value="">Minden irányzat</option>` + TRADITIONS.map(([k, n]) => `<option value="${k}">${n} (${POSES.filter(p => p.tr.includes(k)).length})</option>`).join("");
@@ -1467,18 +1582,20 @@ function figure(f) {
     const b = e.target.closest("button"); if (!b) return;
     ch.value = ch.value === b.dataset.n ? "" : b.dataset.n; apply();
   });
+  const bn = document.getElementById("bn"), gr = document.getElementById("gr");
+  bn.innerHTML = `<option value="">Minden hatás</option>` + BENEFITS.map(([k, n]) => `<option value="${k}">${n} (${POSES.filter(p => p.bn.includes(k)).length})</option>`).join("");
   let cat = "";
   function apply() {
-    const t = fold(q.value.trim()), L = +lv.value, R = tr.value, C = ch.value, Cp = C.startsWith("p"), Cn = C.replace("p", "");
+    const t = fold(q.value.trim()), L = +lv.value, R = tr.value, B = bn.value, C = ch.value, Cp = C.startsWith("p"), Cn = C.replace("p", "");
     legend.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.n === Cn ? "true" : "false"));
     let shown = 0;
     main.querySelectorAll("section.cat").forEach(sec => {
       let n = 0;
-      const catOk = !cat || sec.dataset.c === cat;
       sec.querySelectorAll(".card").forEach(c => {
-        const ok = catOk && (!t || c.dataset.k.includes(t)) && (!L || +c.dataset.lv === L) && (!R || c.dataset.tr.split(" ").includes(R)) && (!C || (Cp ? c.dataset.ch.split(" ")[0] === Cn : c.dataset.ch.split(" ").includes(Cn)));
+        const ok = (!cat || c.dataset.c === cat) && (!B || c.dataset.bn.split(" ").includes(B)) && (!t || c.dataset.k.includes(t)) && (!L || +c.dataset.lv === L) && (!R || c.dataset.tr.split(" ").includes(R)) && (!C || (Cp ? c.dataset.ch.split(" ")[0] === Cn : c.dataset.ch.split(" ").includes(Cn)));
         c.hidden = !ok; if (ok) n++;
       });
+      if (gr.value === "bn" && B && sec.id !== B) n = 0;
       sec.hidden = n === 0; shown += n;
       sec.querySelector(".n").textContent = n + " póz";
     });
@@ -1496,6 +1613,8 @@ function figure(f) {
   lv.addEventListener("change", apply);
   tr.addEventListener("change", apply);
   ch.addEventListener("change", apply);
+  bn.addEventListener("change", apply);
+  gr.addEventListener("change", () => { render(gr.value); apply(); });
 
   const h = location.hash.slice(1);
   if (h && CATS.some(c => c[0] === h)) { const b = document.getElementById("c-" + h); if (b) b.click(); }
