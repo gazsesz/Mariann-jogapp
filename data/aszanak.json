@@ -1,5 +1,57 @@
 {
- "version": 3,
+ "version": 4,
+ "benefitAreas": [
+  {
+   "id": "sziv",
+   "name": "Szív és keringés",
+   "reason": "A keringés serkentése vagy a pulzus és a vérnyomás nyugtatása."
+  },
+  {
+   "id": "tudo",
+   "name": "Tüdő és légzés",
+   "reason": "A mellkas és a bordaközi izmok tágítása mélyebb, szabadabb légzést tesz lehetővé."
+  },
+  {
+   "id": "emesztes",
+   "name": "Emésztés",
+   "reason": "A has összenyomása, csavarása vagy nyújtása masszírozza a hasi szerveket és segíti a bélmozgást."
+  },
+  {
+   "id": "allokepesseg",
+   "name": "Állóképesség és erő",
+   "reason": "A tartott izommunka erőt és kitartást épít."
+  },
+  {
+   "id": "hajlekonysag",
+   "name": "Hajlékonyság",
+   "reason": "Az izmok, inak és kötőszövetek nyújtása növeli a mozgástartományt."
+  },
+  {
+   "id": "immun",
+   "name": "Immunrendszer",
+   "reason": "A nyirokkeringés serkentése és a stresszszint csökkentése támogatja a szervezet védekezését."
+  },
+  {
+   "id": "hormon",
+   "name": "Szervek és hormonok",
+   "reason": "A belső szervek és mirigyek (pajzsmirigy, mellékvese, kismedence) környékének finom nyomása, nyújtása vagy vérellátása."
+  },
+  {
+   "id": "tartas",
+   "name": "Testtartás",
+   "reason": "A gerinc körüli izmok erősítése és a görnyedt tartás ellensúlyozása."
+  },
+  {
+   "id": "elme",
+   "name": "Agy és elme",
+   "reason": "A fókusz, a koncentráció és a lelki egyensúly fejlesztése, a stressz oldása."
+  },
+  {
+   "id": "alvas",
+   "name": "Alvás",
+   "reason": "Az idegrendszer lecsendesítése (paraszimpatikus hatás), ami segíti az elalvást és a pihenést."
+  }
+ ],
  "chakras": [
   {
    "id": 1,
@@ -175,6 +227,11 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -218,6 +275,10 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -264,6 +325,11 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 25,
     "a": [
@@ -311,6 +377,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -357,6 +429,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -399,6 +477,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": -22,
     "h": -28,
@@ -449,6 +533,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 105,
     "h": 105,
@@ -497,6 +587,13 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 100,
     "h": 100,
@@ -544,6 +641,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 100,
     "h": 85,
@@ -590,6 +693,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 110,
     "h": 95,
@@ -637,6 +746,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 160,
     "h": 165,
@@ -682,6 +797,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 5,
     "a": [
@@ -724,6 +845,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -767,6 +894,11 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tudo",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -810,6 +942,11 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 14,
     "h": 18,
@@ -860,6 +997,11 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -906,6 +1048,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "immun",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 15,
     "a": [
@@ -948,6 +1097,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 35,
     "h": 40,
@@ -994,6 +1150,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 22,
     "a": [
@@ -1038,6 +1200,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 110,
     "h": 105,
@@ -1083,6 +1251,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 105,
     "h": 100,
@@ -1131,6 +1305,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 90,
     "h": 90,
@@ -1174,6 +1354,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 40,
     "a": [
@@ -1219,6 +1405,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 165,
     "h": 175,
@@ -1263,6 +1456,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 95,
     "h": 85,
@@ -1308,6 +1507,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 168,
     "h": 178,
@@ -1354,6 +1559,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 172,
     "h": 180,
@@ -1401,6 +1612,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 180,
     "h": 180,
@@ -1450,6 +1668,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 72,
     "h": 85,
@@ -1497,6 +1722,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 74,
     "h": 85,
@@ -1545,6 +1777,13 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 0,
     "h": 0,
@@ -1594,6 +1833,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 86,
     "h": 92,
@@ -1641,6 +1887,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 60,
     "h": 45,
@@ -1687,6 +1940,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 60,
     "h": 45,
@@ -1733,6 +1992,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 42,
     "h": 30,
@@ -1780,6 +2046,13 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 78,
     "h": 80,
@@ -1827,6 +2100,14 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 55,
     "h": 40,
@@ -1875,6 +2156,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": -70,
     "h": -110,
@@ -1923,6 +2211,14 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "hormon",
+    "tartas",
+    "alvas"
+   ],
    "figure": {
     "t": 220,
     "h": 270,
@@ -1971,6 +2267,14 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 260,
     "h": 200,
@@ -2019,6 +2323,14 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "immun",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 295,
     "h": 220,
@@ -2063,6 +2375,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 250,
     "h": 250,
@@ -2109,6 +2427,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 294,
     "h": 250,
@@ -2152,6 +2477,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 283,
     "h": 275,
@@ -2195,6 +2527,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 76,
     "h": 55,
@@ -2239,6 +2577,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 76,
     "h": 135,
@@ -2285,6 +2628,11 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 130,
     "h": 110,
@@ -2331,6 +2679,13 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 270,
     "h": 270,
@@ -2375,6 +2730,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": -25,
     "h": -40,
@@ -2425,6 +2786,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2472,6 +2839,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2518,6 +2891,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2563,6 +2941,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 40,
     "h": 45,
@@ -2607,6 +2991,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 35,
     "fc": 10,
@@ -2653,6 +3043,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2698,6 +3094,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 0,
     "fc": 270,
@@ -2743,6 +3144,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -2789,6 +3196,11 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 62,
     "h": 70,
@@ -2838,6 +3250,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 5,
     "a": [
@@ -2884,6 +3301,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -2928,6 +3349,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": -5,
     "h": -8,
@@ -2974,6 +3400,11 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 15,
     "a": [
@@ -3020,6 +3451,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3064,6 +3501,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 10,
     "a": [
@@ -3108,6 +3549,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 10,
     "a": [
@@ -3151,6 +3596,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 100,
     "h": 95,
@@ -3196,6 +3645,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 95,
     "h": 100,
@@ -3245,6 +3698,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -3291,6 +3749,10 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -3338,6 +3800,9 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3380,6 +3845,9 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 75,
     "h": 85,
@@ -3424,6 +3892,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -3471,6 +3944,10 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3516,6 +3993,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3563,6 +4046,12 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3608,6 +4097,11 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3656,6 +4150,12 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3702,6 +4202,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3746,6 +4252,12 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -3790,6 +4302,11 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "tudo",
+    "immun",
+    "elme"
+   ],
    "figure": {
     "t": 10,
     "h": 20,
@@ -3836,6 +4353,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 10,
     "a": [
@@ -3884,6 +4406,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 120,
     "h": 110,
@@ -3927,6 +4453,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 110,
     "h": 100,
@@ -3972,6 +4502,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 78.5,
     "h": 80,
@@ -4017,6 +4552,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 65.5,
     "a": [
@@ -4062,6 +4602,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "elme"
+   ],
    "figure": {
     "t": 70,
     "h": 80,
@@ -4109,6 +4654,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 95,
     "h": 90,
@@ -4154,6 +4704,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 100,
     "h": 95,
@@ -4199,6 +4754,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 100,
     "h": 95,
@@ -4244,6 +4803,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "elme"
+   ],
    "figure": {
     "t": 30,
     "h": 45,
@@ -4287,6 +4851,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 15,
     "h": 25,
@@ -4335,6 +4903,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 5,
     "h": 10,
@@ -4380,6 +4952,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 120,
     "h": 110,
@@ -4424,6 +5000,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "sziv",
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 65.5,
     "h": 70,
@@ -4467,6 +5049,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 77.6,
     "h": 80,
@@ -4512,6 +5099,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": -35,
     "h": -25,
@@ -4555,6 +5147,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": -62,
     "h": -50,
@@ -4598,6 +5195,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -4641,6 +5243,9 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "tartas"
+   ],
    "figure": {
     "t": 76,
     "h": 80,
@@ -4684,6 +5289,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 76,
     "h": 85,
@@ -4730,6 +5340,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "immun",
+    "elme"
+   ],
    "figure": {
     "t": 135,
     "h": 150,
@@ -4773,6 +5390,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "immun",
+    "elme"
+   ],
    "figure": {
     "t": 140,
     "h": 160,
@@ -4820,6 +5443,13 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 180,
     "h": 290,
@@ -4868,6 +5498,15 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "emesztes",
+    "hajlekonysag",
+    "immun",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 172,
     "h": 290,
@@ -4915,6 +5554,13 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 172,
     "h": 290,
@@ -4964,6 +5610,13 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 180,
     "h": 180,
@@ -5007,6 +5660,12 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 180,
     "h": 180,
@@ -5053,6 +5712,12 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "immun",
+    "elme"
+   ],
    "figure": {
     "t": 180,
     "h": 180,
@@ -5098,6 +5763,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "immun",
+    "elme"
+   ],
    "figure": {
     "t": 180,
     "h": 170,
@@ -5142,6 +5813,14 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 170,
     "h": 150,
@@ -5190,6 +5869,11 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 100,
     "h": 95,
@@ -5240,6 +5924,12 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -5286,6 +5976,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "tudo",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 90,
     "h": 90,
@@ -5331,6 +6026,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "emesztes",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -5376,6 +6076,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -5421,6 +6126,13 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -5470,6 +6182,12 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -5516,6 +6234,10 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -5559,6 +6281,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 150,
     "h": 160,
@@ -5605,6 +6333,10 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -5650,6 +6382,11 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 35,
     "h": 45,
@@ -5695,6 +6432,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 165,
     "h": 175,
@@ -5740,6 +6484,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 170,
     "h": 175,
@@ -5786,6 +6537,13 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 120,
     "h": 130,
@@ -5830,6 +6588,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 15,
     "h": 10,
@@ -5873,6 +6637,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 110,
     "h": 105,
@@ -5920,6 +6691,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 5,
     "a": [
@@ -5965,6 +6742,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 74,
     "h": 85,
@@ -6012,6 +6795,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 74,
     "h": 85,
@@ -6059,6 +6848,13 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 72,
     "h": 85,
@@ -6105,6 +6901,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "elme"
+   ],
    "figure": {
     "t": -20,
     "h": -15,
@@ -6150,6 +6952,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "elme"
+   ],
    "figure": {
     "t": -5,
     "h": 5,
@@ -6196,6 +7004,14 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "immun",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 140,
     "h": 190,
@@ -6240,6 +7056,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 162,
     "h": 178,
@@ -6286,6 +7108,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": -25,
     "h": -40,
@@ -6330,6 +7158,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": -35,
     "h": -50,
@@ -6376,6 +7210,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 58,
     "h": 45,
@@ -6422,6 +7262,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 55,
     "h": 45,
@@ -6470,6 +7316,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 250,
     "h": 200,
@@ -6515,6 +7368,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 220,
     "h": 270,
@@ -6561,6 +7421,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 260,
     "h": 200,
@@ -6608,6 +7475,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "hormon",
+    "tartas"
+   ],
    "figure": {
     "t": 240,
     "h": 190,
@@ -6655,6 +7529,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 250,
     "h": 210,
@@ -6699,6 +7580,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": -15,
     "h": -25,
@@ -6746,6 +7633,10 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 55,
     "h": 65,
@@ -6793,6 +7684,10 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 22,
     "h": 28,
@@ -6843,6 +7738,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 20,
     "fc": 270,
@@ -6888,6 +7788,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 0,
     "fc": 270,
@@ -6933,6 +7838,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -6976,6 +7885,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 180,
     "h": 180,
@@ -7021,6 +7935,11 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "tartas",
+    "alvas"
+   ],
    "figure": {
     "t": 125,
     "h": 120,
@@ -7067,6 +7986,9 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -7112,6 +8034,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 10,
     "h": 20,
@@ -7158,6 +8084,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -7203,6 +8134,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 270,
     "h": 270,
@@ -7247,6 +8182,10 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon"
+   ],
    "figure": {
     "t": 95,
     "h": 90,
@@ -7292,6 +8231,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -7338,6 +8282,11 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -7384,6 +8333,11 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -7431,6 +8385,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 80,
     "h": 100,
@@ -7479,6 +8440,10 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "tudo",
+    "tartas"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -7527,6 +8492,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "hormon",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 30,
     "h": 35,
@@ -7571,6 +8543,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -7616,6 +8593,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 115,
     "h": 105,
@@ -7659,6 +8640,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 120,
     "h": 110,
@@ -7704,6 +8689,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 10,
     "h": 15,
@@ -7751,6 +8740,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 65.5,
     "a": [
@@ -7794,6 +8787,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 100,
     "h": 95,
@@ -7840,6 +8837,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 40,
     "h": 30,
@@ -7887,6 +8888,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 80,
     "h": 85,
@@ -7932,6 +8938,9 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "allokepesseg"
+   ],
    "figure": {
     "t": 135,
     "h": 110,
@@ -7975,6 +8984,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
    "figure": {
     "t": 10,
     "a": [
@@ -8019,6 +9032,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -8062,6 +9080,11 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 80,
     "h": 80,
@@ -8106,6 +9129,10 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas"
+   ],
    "figure": {
     "t": 72,
     "a": [
@@ -8152,6 +9179,12 @@
     ],
     "note": "a has összenyomása, csavarása vagy a törzs izommunkája"
    },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "hajlekonysag",
+    "tartas"
+   ],
    "figure": {
     "t": 40,
     "h": 45,
@@ -8195,6 +9228,13 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "immun",
+    "elme"
+   ],
    "figure": {
     "t": 135,
     "h": 150,
@@ -8240,6 +9280,12 @@
     ],
     "note": "a fejtető felé irányuló vagy azt terhelő helyzet, illetve a mély elcsendesedés"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 165,
     "h": 180,
@@ -8285,6 +9331,13 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 215,
     "h": 290,
@@ -8332,6 +9385,12 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 180,
     "h": 290,
@@ -8378,6 +9437,12 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 180,
     "h": 290,
@@ -8424,6 +9489,13 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "hajlekonysag",
+    "immun",
+    "hormon",
+    "elme"
+   ],
    "figure": {
     "t": 172,
     "h": 290,
@@ -8469,6 +9541,11 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 100,
     "h": 95,
@@ -8515,6 +9592,11 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 95,
     "h": 90,
@@ -8562,6 +9644,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 240,
     "h": 270,
@@ -8608,6 +9696,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 282,
     "h": 275,
@@ -8654,6 +9748,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "fc": 0,
@@ -8701,6 +9800,10 @@
     ],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 90,
     "h": 90,
@@ -8746,6 +9849,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "emesztes",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 90,
     "h": 90,
@@ -8791,6 +9899,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 62,
     "h": 115,
@@ -8839,6 +9953,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 66,
     "h": 115,
@@ -8886,6 +10005,12 @@
     ],
     "note": "a befelé forduló, előrehajló vagy fókuszt kívánó helyzet, a homlok terhelése vagy egyensúly"
    },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 65,
     "h": 115,
@@ -8932,6 +10057,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 20,
     "h": 25,
@@ -8977,6 +10108,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 12,
     "a": [
@@ -9022,6 +10158,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 95,
     "h": 100,
@@ -9069,6 +10210,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 70,
     "h": 110,
@@ -9117,6 +10263,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 60,
     "h": 100,
@@ -9165,6 +10316,13 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 300,
     "h": 290,
@@ -9211,6 +10369,13 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag",
+    "tartas",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 32,
     "h": 25,
@@ -9257,6 +10422,13 @@
     ],
     "note": "a nyak és a torok nyújtása vagy állzárban (dzsálandhara) tartása"
    },
+   "benefitAreas": [
+    "sziv",
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 165,
     "h": 290,
@@ -9304,6 +10476,12 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 0,
     "h": 0,
@@ -9349,6 +10527,10 @@
     "secondary": [],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme"
+   ],
    "figure": {
     "t": 0,
     "a": [
@@ -9391,6 +10573,10 @@
     "secondary": [],
     "note": "a lábak és a talaj erős kapcsolata, a stabil alap"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme"
+   ],
    "figure": {
     "t": -25,
     "a": [
@@ -9435,6 +10621,12 @@
     ],
     "note": "a mellkas és a vállak tágítása, a szív előtti tér nyitása"
    },
+   "benefitAreas": [
+    "tudo",
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 270,
     "h": 265,
@@ -9483,6 +10675,11 @@
     ],
     "note": "a medence és a csípő megnyitása, az alhas felszabadítása"
    },
+   "benefitAreas": [
+    "hajlekonysag",
+    "elme",
+    "alvas"
+   ],
    "figure": {
     "t": 0,
     "a": [
