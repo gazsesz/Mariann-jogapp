@@ -5,6 +5,23 @@ A legfrissebb lépés van legfelül.
 
 ---
 
+## 3. lépés – Böngészős változat (2026-10-25)
+
+**Gabor kérése:** buildeljük le, hogy böngészőből is meg lehessen nézni.
+
+| Döntés | Miért |
+| --- | --- |
+| Böngészőben **localStorage** a tárolás (`src/lib/store.web.tsx`), telefonon marad az SQLite (`src/lib/store.tsx`) | Az expo-sqlite webes változata különleges szerverfejléceket és WebAssemblyt kér, ami megosztott linken nem működik. A képernyők kódja közös, csak a tároló cserélődik. |
+| Egyetlen önálló HTML fájl készül (`npm run build:web`, majd `node scripts/web-single-file.mjs dist dist/mariann-jogapp.html`) | Bárhol megnyitható és megosztható, nincs szükség szerverre. |
+| Közzétéve Claude Artifactként: https://claude.ai/artifact/Fthcs1MM3NpeeyhHcW3RRu | Privát link, Gabor oszthatja meg (Share menü). |
+| Böngészőben saját megerősítő ablak (törlésnél) | Beágyazott oldalon a böngésző saját párbeszédablakai nem jelennek meg. |
+| A PDF gomb csak a telefonos appban látszik | Beágyazott oldalon a nyomtatás le van tiltva. |
+| Ismeretlen címről a kezdőlapra irányít (`src/app/+not-found.tsx`) | A link bármilyen útvonalon nyílhat meg. |
+
+A böngészőben mentett órák csak abban a böngészőben látszanak, nem szinkronizálódnak a telefonnal.
+
+---
+
 ## 2. lépés – Öt elem és heti tematika (2026-10-25)
 
 **Gabor kérése:** az ászanákhoz kerüljön be az öt alapelem, és lehessen egy témát

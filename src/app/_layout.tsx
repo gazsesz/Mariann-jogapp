@@ -1,12 +1,12 @@
 import { Stack } from 'expo-router';
-import { SQLiteProvider } from 'expo-sqlite';
 import { StatusBar } from 'expo-status-bar';
-import { DB_NAME, migrate } from '../lib/db';
+import { DialogHost } from '../lib/confirm';
+import { StoreProvider } from '../lib/store';
 import { C } from '../lib/theme';
 
 export default function RootLayout() {
   return (
-    <SQLiteProvider databaseName={DB_NAME} onInit={migrate}>
+    <StoreProvider>
       <StatusBar style="dark" />
       <Stack
         screenOptions={{
@@ -26,6 +26,7 @@ export default function RootLayout() {
         <Stack.Screen name="series/link" options={{ title: 'Óravázlat választása' }} />
         <Stack.Screen name="add-to-plan" options={{ title: 'Hozzáadás óravázlathoz', presentation: 'modal' }} />
       </Stack>
-    </SQLiteProvider>
+      <DialogHost />
+    </StoreProvider>
   );
 }

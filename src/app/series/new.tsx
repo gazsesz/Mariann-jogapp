@@ -1,13 +1,12 @@
 import { router } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
-import { saveSeries } from '../../lib/db';
+import { saveSeries, useDb } from '../../lib/store';
 import { createSeries, SERIES_TEMPLATES } from '../../lib/series';
 import { C } from '../../lib/theme';
 
 /** Új tematika indítása sablonból. */
 export default function NewSeries() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const start = async (templateId: string) => {
     const s = await saveSeries(db, createSeries(templateId));
     router.replace({ pathname: '/series/[id]', params: { id: s.id } });

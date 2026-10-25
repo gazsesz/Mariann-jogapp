@@ -1,17 +1,16 @@
 import { router, Stack, useLocalSearchParams } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { PoseBrowser } from '../components/PoseBrowser';
 import { Button } from '../components/ui';
-import { getPlan, modifyPlan } from '../lib/db';
+import { getPlan, modifyPlan, useDb } from '../lib/store';
 import { addItem, newItem } from '../lib/plan';
 import { C } from '../lib/theme';
 import type { Pose } from '../lib/types';
 
 /** Ászanák kiválasztása egy óravázlat adott szakaszába (többet is egymás után). */
 export default function PickPoses() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const { planId, sectionKey } = useLocalSearchParams<{ planId: string; sectionKey: string }>();
   const [sectionTitle, setSectionTitle] = useState('');
   const [added, setAdded] = useState<Record<string, number>>({});

@@ -1,11 +1,10 @@
 import { router, useFocusEffect } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
 import { useCallback, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button, Tag } from '../../components/ui';
 import { confirm } from '../../lib/confirm';
 import { levelName } from '../../lib/data';
-import { deletePlan, deleteSeries, listPlans, listSeries, savePlan } from '../../lib/db';
+import { deletePlan, deleteSeries, listPlans, listSeries, savePlan, useDb } from '../../lib/store';
 import { fold } from '../../lib/filters';
 import { createPlan, duplicatePlan, poseCount } from '../../lib/plan';
 import { seriesIndex } from '../../lib/series';
@@ -15,7 +14,7 @@ import type { Plan, Series } from '../../lib/types';
 type Mode = 'orak' | 'tematikak';
 
 export default function PlansScreen() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const [plans, setPlans] = useState<Plan[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [query, setQuery] = useState('');

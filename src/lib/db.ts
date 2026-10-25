@@ -38,7 +38,7 @@ export async function migrate(db: SQLiteDatabase) {
 }
 
 /** Régebbi mentésekből hiányzó mezők pótlása. */
-function normalize(p: Partial<Plan> & { id: string }): Plan {
+export function normalizePlan(p: Partial<Plan> & { id: string }): Plan {
   return {
     title: '',
     theme: '',
@@ -56,12 +56,12 @@ function normalize(p: Partial<Plan> & { id: string }): Plan {
 
 export async function listPlans(db: SQLiteDatabase): Promise<Plan[]> {
   const rows = await db.getAllAsync<{ data: string }>('SELECT data FROM plans ORDER BY updated_at DESC');
-  return rows.map((r) => normalize(JSON.parse(r.data)));
+  return rows.map((r) => normalizePlan(JSON.parse(r.data)));
 }
 
 export async function getPlan(db: SQLiteDatabase, id: string): Promise<Plan | null> {
   const row = await db.getFirstAsync<{ data: string }>('SELECT data FROM plans WHERE id = ?', id);
-  return row ? normalize(JSON.parse(row.data)) : null;
+  return row ? normalizePlan(JSON.parse(row.data)) : null;
 }
 
 // Az írások sorban futnak, hogy a gyors egymás utáni mentések ne előzzék

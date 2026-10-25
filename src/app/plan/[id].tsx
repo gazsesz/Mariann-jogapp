@@ -1,7 +1,6 @@
 import * as Print from 'expo-print';
 import { router, Stack, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import * as Sharing from 'expo-sharing';
-import { useSQLiteContext } from 'expo-sqlite';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { BalanceBars } from '../../components/BalanceBars';
@@ -11,7 +10,7 @@ import { CONDITION_BY_ID, CONDITIONS, planWarnings } from '../../lib/cautions';
 import { confirm, notify } from '../../lib/confirm';
 import { planBalance } from '../../lib/analysis';
 import { CHAKRA_BY_ID, DATA, ELEMENT_BY_ID, POSE_BY_ID } from '../../lib/data';
-import { getPlan, savePlan } from '../../lib/db';
+import { getPlan, savePlan, useDb } from '../../lib/store';
 import { toggle } from '../../lib/filters';
 import { planHtml } from '../../lib/pdf';
 import { move, newId, poseCount, SIDES_LABEL, updateSection } from '../../lib/plan';
@@ -25,6 +24,11 @@ const LEVELS: { v: Plan['level']; label: string }[] = [
   { v: 2, label: DATA.levels['2'] },
   { v: 3, label: DATA.levels['3'] },
 ];
+
+const SAVED_NOTE =
+  Platform.OS === 'web'
+    ? 'A változások automatikusan mentődnek ebben a böngészőben.'
+    : 'A változások automatikusan mentődnek a telefonra.';
 
 async function exportPdf(plan: Plan) {
   const html = planHtml(plan);
@@ -41,7 +45,7 @@ async function exportPdf(plan: Plan) {
 }
 
 export default function PlanEditor() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [plan, setPlan] = useState<Plan | null>(null);
   const [missing, setMissing] = useState(false);
@@ -100,7 +104,7 @@ export default function PlanEditor() {
       <Stack.Screen
         options={{
           title: plan.title || 'Óravázlat',
-          headerRight: () => (
+          headerRight: Platform.OS === 'web' ? undefined : () => (
             <Pressable onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} hitSlop={8}>
               <Text style={st.headerBtn}>PDF</Text>
             </Pressable>
@@ -289,8 +293,10 @@ export default function PlanEditor() {
         multiline
       />
 
-      <Button label="PDF óravázlat" onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} style={{ marginTop: 16 }} />
-      <Text style={st.saved}>A változások automatikusan mentődnek a telefonra.</Text>
+      {Platform.OS !== 'web' && (
+        <Button label="PDF óravázlat" onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} style={{ marginTop: 16 }} />
+      )}
+      <Text style={st.saved}>{SAVED_NOTE}</Text>
     </ScrollView>
   );
 }

@@ -1,15 +1,14 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text } from 'react-native';
-import { getSeries, listPlans, saveSeries } from '../../lib/db';
+import { getSeries, listPlans, saveSeries, useDb } from '../../lib/store';
 import { poseCount } from '../../lib/plan';
 import { C } from '../../lib/theme';
 import type { Plan } from '../../lib/types';
 
 /** Meglévő óravázlat hozzárendelése egy tematika napjához. */
 export default function LinkPlan() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const { seriesId, dayKey } = useLocalSearchParams<{ seriesId: string; dayKey: string }>();
   const [plans, setPlans] = useState<Plan[]>([]);
   useEffect(() => {

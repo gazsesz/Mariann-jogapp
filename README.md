@@ -28,6 +28,13 @@ Jógaóra-tervező alkalmazás (React Native + Expo, TypeScript – Android és 
 
 Böngészőben is megnézhető: `npx expo start --web`.
 
+Önálló, megosztható HTML fájl (böngészős változat, a mentés localStorage-ban):
+
+```
+npm run build:web
+node scripts/web-single-file.mjs dist dist/mariann-jogapp.html
+```
+
 ## Fejlesztés
 
 ```

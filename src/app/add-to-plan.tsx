@@ -1,17 +1,16 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
 import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../components/ui';
 import { POSE_BY_ID } from '../lib/data';
-import { listPlans, modifyPlan, savePlan } from '../lib/db';
+import { listPlans, modifyPlan, savePlan, useDb } from '../lib/store';
 import { addItem, createPlan, newItem } from '../lib/plan';
 import { C } from '../lib/theme';
 import type { Plan } from '../lib/types';
 
 /** Egy ászana hozzáadása egy meglévő vagy új óravázlat valamelyik szakaszához. */
 export default function AddToPlan() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const { poseId } = useLocalSearchParams<{ poseId: string }>();
   const pose = POSE_BY_ID[poseId];
   const [plans, setPlans] = useState<Plan[]>([]);

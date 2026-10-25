@@ -1,7 +1,6 @@
 import * as Print from 'expo-print';
 import { router, Stack, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import * as Sharing from 'expo-sharing';
-import { useSQLiteContext } from 'expo-sqlite';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { BalanceBars } from '../../components/BalanceBars';
@@ -9,12 +8,17 @@ import { Button, SectionTitle } from '../../components/ui';
 import { dominantElements, planBalance } from '../../lib/analysis';
 import { confirm, notify } from '../../lib/confirm';
 import { DATA, ELEMENT_BY_ID, POSE_BY_ID } from '../../lib/data';
-import { getSeries, listPlans, savePlan, saveSeries } from '../../lib/db';
+import { getSeries, listPlans, savePlan, saveSeries, useDb } from '../../lib/store';
 import { seriesHtml } from '../../lib/pdf';
 import { move, poseCount } from '../../lib/plan';
 import { newSeriesDay, planForDay } from '../../lib/series';
 import { C } from '../../lib/theme';
 import type { Plan, Series, SeriesDay } from '../../lib/types';
+
+const SAVED_NOTE =
+  Platform.OS === 'web'
+    ? 'A változások automatikusan mentődnek ebben a böngészőben.'
+    : 'A változások automatikusan mentődnek a telefonra.';
 
 async function exportPdf(series: Series, plans: Map<string, Plan>) {
   const html = seriesHtml(series, plans);
@@ -31,7 +35,7 @@ async function exportPdf(series: Series, plans: Map<string, Plan>) {
 }
 
 export default function SeriesEditor() {
-  const db = useSQLiteContext();
+  const db = useDb();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [series, setSeries] = useState<Series | null>(null);
   const [plans, setPlans] = useState<Map<string, Plan>>(new Map());
@@ -93,7 +97,7 @@ export default function SeriesEditor() {
       <Stack.Screen
         options={{
           title: series.title || 'Tematika',
-          headerRight: () => (
+          headerRight: Platform.OS === 'web' ? undefined : () => (
             <Pressable onPress={() => exportPdf(series, plans).catch((e) => notify('PDF hiba', String(e)))} hitSlop={8}>
               <Text style={st.headerBtn}>PDF</Text>
             </Pressable>
@@ -193,12 +197,14 @@ export default function SeriesEditor() {
         placeholderTextColor={C.muted}
         multiline
       />
-      <Button
-        label="PDF heti áttekintés"
-        onPress={() => exportPdf(series, plans).catch((e) => notify('PDF hiba', String(e)))}
-        style={{ marginTop: 16 }}
-      />
-      <Text style={st.saved}>A változások automatikusan mentődnek a telefonra.</Text>
+      {Platform.OS !== 'web' && (
+        <Button
+          label="PDF heti áttekintés"
+          onPress={() => exportPdf(series, plans).catch((e) => notify('PDF hiba', String(e)))}
+          style={{ marginTop: 16 }}
+        />
+      )}
+      <Text style={st.saved}>{SAVED_NOTE}</Text>
     </ScrollView>
   );
 }

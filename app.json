@@ -26,7 +26,15 @@
     },
     "scheme": "mariannjogapp",
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "asyncRoutes": {
+            "web": false,
+            "default": false
+          }
+        }
+      ],
       "expo-sqlite"
     ]
   }
