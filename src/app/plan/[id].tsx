@@ -1,0 +1,370 @@
+import * as Print from 'expo-print';
+import { router, Stack, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import * as Sharing from 'expo-sharing';
+import { useSQLiteContext } from 'expo-sqlite';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { PoseFigure } from '../../components/PoseFigure';
+import { Button, Chip, SectionTitle, Tag } from '../../components/ui';
+import { CONDITION_BY_ID, CONDITIONS, planWarnings } from '../../lib/cautions';
+import { confirm, notify } from '../../lib/confirm';
+import { CHAKRA_BY_ID, DATA, POSE_BY_ID } from '../../lib/data';
+import { getPlan, savePlan } from '../../lib/db';
+import { toggle } from '../../lib/filters';
+import { planHtml } from '../../lib/pdf';
+import { move, newId, poseCount, SIDES_LABEL, updateSection } from '../../lib/plan';
+import { C } from '../../lib/theme';
+import type { Plan, PlanItem, Sides } from '../../lib/types';
+
+const SIDES_ORDER: Sides[] = ['nincs', 'mindket', 'jobb', 'bal'];
+const LEVELS: { v: Plan['level']; label: string }[] = [
+  { v: 0, label: 'Vegyes' },
+  { v: 1, label: DATA.levels['1'] },
+  { v: 2, label: DATA.levels['2'] },
+  { v: 3, label: DATA.levels['3'] },
+];
+
+async function exportPdf(plan: Plan) {
+  const html = planHtml(plan);
+  if (Platform.OS === 'web') {
+    await Print.printAsync({ html });
+    return;
+  }
+  const { uri } = await Print.printToFileAsync({ html });
+  if (await Sharing.isAvailableAsync()) {
+    await Sharing.shareAsync(uri, { mimeType: 'application/pdf', UTI: 'com.adobe.pdf', dialogTitle: plan.title });
+  } else {
+    await Print.printAsync({ uri });
+  }
+}
+
+export default function PlanEditor() {
+  const db = useSQLiteContext();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const [plan, setPlan] = useState<Plan | null>(null);
+  const [missing, setMissing] = useState(false);
+  const [tagsText, setTagsText] = useState('');
+
+  // Fókuszba kerüléskor újratöltjük, mert a választó képernyő közvetlenül az adatbázisba ír.
+  useFocusEffect(
+    useCallback(() => {
+      getPlan(db, id).then((p) => {
+        if (!p) return setMissing(true);
+        setPlan(p);
+        setTagsText(p.tags.join(', '));
+      });
+    }, [db, id]),
+  );
+
+  const planRef = useRef<Plan | null>(null);
+  planRef.current = plan;
+  const update = useCallback(
+    (f: (p: Plan) => Plan) => {
+      if (!planRef.current) return;
+      const next = f(planRef.current);
+      planRef.current = next;
+      setPlan(next);
+      savePlan(db, next).catch((e) => notify('Mentési hiba', String(e)));
+    },
+    [db],
+  );
+
+  const warnings = useMemo(() => (plan ? planWarnings(plan, POSE_BY_ID) : []), [plan]);
+  const warnByItem = useMemo(() => new Map(warnings.map((w) => [w.itemKey, w])), [warnings]);
+  const chakraCounts = useMemo(() => {
+    const n: Record<number, number> = {};
+    plan?.sections.forEach((s) =>
+      s.items.forEach((it) => {
+        const p = POSE_BY_ID[it.poseId];
+        if (p) n[p.chakras.primary] = (n[p.chakras.primary] ?? 0) + 1;
+      }),
+    );
+    return n;
+  }, [plan]);
+
+  if (missing) return <Text style={{ padding: 24 }}>Ez az óravázlat már nem létezik.</Text>;
+  if (!plan) return null;
+
+  const total = poseCount(plan);
+  const maxChakra = Math.max(1, ...Object.values(chakraCounts));
+
+  const updateItem = (sectionKey: string, itemKey: string, patch: Partial<PlanItem>) =>
+    update((p) =>
+      updateSection(p, sectionKey, (s) => ({
+        ...s,
+        items: s.items.map((it) => (it.key === itemKey ? { ...it, ...patch } : it)),
+      })),
+    );
+
+  const removeSection = async (key: string) => {
+    const s = plan.sections.find((x) => x.key === key);
+    if (s && s.items.length && !(await confirm('Szakasz törlése', `A(z) „${s.title}” szakasz ${s.items.length} ászanával együtt törlődik.`)))
+      return;
+    update((p) => ({ ...p, sections: p.sections.filter((x) => x.key !== key) }));
+  };
+
+  return (
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={st.content} keyboardShouldPersistTaps="handled">
+      <Stack.Screen
+        options={{
+          title: plan.title || 'Óravázlat',
+          headerRight: () => (
+            <Pressable onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} hitSlop={8}>
+              <Text style={st.headerBtn}>PDF</Text>
+            </Pressable>
+          ),
+        }}
+      />
+
+      <TextInput
+        style={st.titleInput}
+        value={plan.title}
+        onChangeText={(title) => update((p) => ({ ...p, title }))}
+        placeholder="Az óra címe"
+        placeholderTextColor={C.muted}
+      />
+      <TextInput
+        style={st.input}
+        value={plan.theme}
+        onChangeText={(theme) => update((p) => ({ ...p, theme }))}
+        placeholder="Téma, szándék (pl. földelés, szívnyitás)"
+        placeholderTextColor={C.muted}
+      />
+
+      <SectionTitle>Szint és időtartam</SectionTitle>
+      <View style={st.wrap}>
+        {LEVELS.map((l) => (
+          <Chip key={l.v} label={l.label} active={plan.level === l.v} onPress={() => update((p) => ({ ...p, level: l.v }))} />
+        ))}
+      </View>
+      <View style={st.inline}>
+        <TextInput
+          style={[st.input, { width: 80, marginBottom: 0 }]}
+          value={plan.durationMin == null ? '' : String(plan.durationMin)}
+          onChangeText={(t) => {
+            const n = parseInt(t.replace(/\D/g, ''), 10);
+            update((p) => ({ ...p, durationMin: Number.isFinite(n) ? n : null }));
+          }}
+          keyboardType="number-pad"
+          placeholder="60"
+          placeholderTextColor={C.muted}
+        />
+        <Text style={st.muted}> perc</Text>
+      </View>
+
+      <SectionTitle>Címkék</SectionTitle>
+      <TextInput
+        style={st.input}
+        value={tagsText}
+        onChangeText={(t) => {
+          setTagsText(t);
+          const tags = t.split(',').map((x) => x.trim()).filter(Boolean);
+          update((p) => ({ ...p, tags }));
+        }}
+        placeholder="vesszővel elválasztva, pl. reggeli, hétfő, yin"
+        placeholderTextColor={C.muted}
+      />
+
+      <SectionTitle>A csoportban jelzett panaszok</SectionTitle>
+      <View style={st.wrap}>
+        {CONDITIONS.map((c) => (
+          <Chip key={c.id} label={c.name} active={plan.conditions.includes(c.id)}
+            onPress={() => update((p) => ({ ...p, conditions: toggle(p.conditions, c.id) }))} />
+        ))}
+      </View>
+
+      {warnings.length > 0 && (
+        <View style={st.warnBox}>
+          <Text style={st.warnTitle}>⚠ {warnings.length} ászanánál figyelj</Text>
+          {warnings.map((w) => (
+            <Text key={w.itemKey} style={st.warnLine}>
+              • <Text style={{ fontWeight: '700' }}>{w.pose.hu}</Text>
+              {w.conditions.length ? ` – ${w.conditions.map((c) => CONDITION_BY_ID[c].name.toLowerCase()).join(', ')}` : ''}
+              {w.levelTooHigh ? ' – a célzott szintnél nehezebb' : ''}
+            </Text>
+          ))}
+        </View>
+      )}
+
+      {total > 0 && (
+        <>
+          <SectionTitle>Csakra-egyensúly (elsődleges csakrák)</SectionTitle>
+          {DATA.chakras.map((c) => (
+            <View key={c.id} style={st.barRow}>
+              <Text style={st.barLabel}>{c.name}</Text>
+              <View style={st.barTrack}>
+                <View style={{ width: `${((chakraCounts[c.id] ?? 0) / maxChakra) * 100}%`, backgroundColor: c.color, height: 10, borderRadius: 5 }} />
+              </View>
+              <Text style={st.barCount}>{chakraCounts[c.id] ?? 0}</Text>
+            </View>
+          ))}
+        </>
+      )}
+
+      {plan.sections.map((s, si) => (
+        <View key={s.key} style={st.section}>
+          <View style={st.sectionHead}>
+            <TextInput
+              style={st.sectionTitle}
+              value={s.title}
+              onChangeText={(title) => update((p) => updateSection(p, s.key, (x) => ({ ...x, title })))}
+            />
+            <IconBtn label="↑" onPress={() => update((p) => ({ ...p, sections: move(p.sections, si, -1) }))} />
+            <IconBtn label="↓" onPress={() => update((p) => ({ ...p, sections: move(p.sections, si, 1) }))} />
+            <IconBtn label="✕" onPress={() => removeSection(s.key)} />
+          </View>
+
+          {s.items.map((it, ii) => {
+            const pose = POSE_BY_ID[it.poseId];
+            if (!pose) return null;
+            const w = warnByItem.get(it.key);
+            const ch = CHAKRA_BY_ID[pose.chakras.primary];
+            return (
+              <View key={it.key} style={[st.item, w && { borderColor: C.warn }]}>
+                <View style={st.itemTop}>
+                  <Text style={st.num}>{ii + 1}.</Text>
+                  <Pressable onPress={() => router.push({ pathname: '/pose/[id]', params: { id: pose.id } })} style={st.itemFig}>
+                    <PoseFigure figure={pose.figure} width={64} />
+                  </Pressable>
+                  <View style={{ flex: 1 }}>
+                    <Text style={st.itemName}>{pose.hu}</Text>
+                    <Text style={st.itemSk}>
+                      {pose.sanskrit}
+                      {ch ? ` · ${ch.name}` : ''}
+                    </Text>
+                  </View>
+                  <View>
+                    <IconBtn label="↑" onPress={() => update((p) => updateSection(p, s.key, (x) => ({ ...x, items: move(x.items, ii, -1) })))} />
+                    <IconBtn label="↓" onPress={() => update((p) => updateSection(p, s.key, (x) => ({ ...x, items: move(x.items, ii, 1) })))} />
+                  </View>
+                  <IconBtn
+                    label="✕"
+                    onPress={() => update((p) => updateSection(p, s.key, (x) => ({ ...x, items: x.items.filter((y) => y.key !== it.key) })))}
+                  />
+                </View>
+                <View style={st.itemFields}>
+                  <TextInput
+                    style={[st.small, { width: 110 }]}
+                    value={it.hold}
+                    onChangeText={(hold) => updateItem(s.key, it.key, { hold })}
+                    placeholder="tartás"
+                    placeholderTextColor={C.muted}
+                  />
+                  <Pressable
+                    style={st.sides}
+                    onPress={() =>
+                      updateItem(s.key, it.key, { sides: SIDES_ORDER[(SIDES_ORDER.indexOf(it.sides) + 1) % SIDES_ORDER.length] })
+                    }
+                  >
+                    <Text style={st.sidesText}>{it.sides === 'nincs' ? 'oldal: –' : SIDES_LABEL[it.sides]}</Text>
+                  </Pressable>
+                </View>
+                <TextInput
+                  style={[st.small, { marginTop: 6 }]}
+                  value={it.note}
+                  onChangeText={(note) => updateItem(s.key, it.key, { note })}
+                  placeholder="Jegyzet (instrukció, variáció, eszköz…)"
+                  placeholderTextColor={C.muted}
+                  multiline
+                />
+                {w && (
+                  <View style={st.itemWarn}>
+                    <Text style={st.itemWarnText}>⚠ {pose.cautions}</Text>
+                    {w.levelTooHigh && <Tag label="a célzott szintnél nehezebb" tone="warn" />}
+                  </View>
+                )}
+              </View>
+            );
+          })}
+          <Button
+            kind="secondary"
+            label="+ Ászana"
+            onPress={() => router.push({ pathname: '/pick', params: { planId: plan.id, sectionKey: s.key } })}
+            style={{ marginTop: 6 }}
+          />
+        </View>
+      ))}
+
+      <Button
+        kind="ghost"
+        label="+ Új szakasz"
+        onPress={() => update((p) => ({ ...p, sections: [...p.sections, { key: newId(), title: 'Új szakasz', items: [] }] }))}
+      />
+
+      <SectionTitle>Jegyzetek az órához</SectionTitle>
+      <TextInput
+        style={[st.input, { minHeight: 90, textAlignVertical: 'top' }]}
+        value={plan.notes}
+        onChangeText={(notes) => update((p) => ({ ...p, notes }))}
+        placeholder="Zene, légzőgyakorlat, meditáció, gondolat az órához…"
+        placeholderTextColor={C.muted}
+        multiline
+      />
+
+      <Button label="PDF óravázlat" onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} style={{ marginTop: 16 }} />
+      <Text style={st.saved}>A változások automatikusan mentődnek a telefonra.</Text>
+    </ScrollView>
+  );
+}
+
+function IconBtn({ label, onPress }: { label: string; onPress: () => void }) {
+  return (
+    <Pressable onPress={onPress} hitSlop={6} style={({ pressed }) => [st.iconBtn, pressed && { backgroundColor: C.panel }]}>
+      <Text style={st.iconBtnText}>{label}</Text>
+    </Pressable>
+  );
+}
+
+const st = StyleSheet.create({
+  content: { padding: 16, paddingBottom: 48 },
+  headerBtn: { color: C.accent, fontWeight: '700', fontSize: 16, paddingHorizontal: 8 },
+  titleInput: { fontSize: 22, fontWeight: '700', color: C.ink, paddingVertical: 6, marginBottom: 6, borderBottomWidth: 1, borderBottomColor: C.line },
+  input: {
+    backgroundColor: C.surface,
+    borderWidth: 1,
+    borderColor: C.line,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    fontSize: 15,
+    color: C.ink,
+    marginBottom: 6,
+  },
+  wrap: { flexDirection: 'row', flexWrap: 'wrap' },
+  inline: { flexDirection: 'row', alignItems: 'center', marginTop: 4 },
+  muted: { color: C.muted, fontSize: 15 },
+  warnBox: { backgroundColor: C.warnSoft, borderRadius: 12, padding: 12, marginTop: 12 },
+  warnTitle: { color: C.warn, fontWeight: '700', marginBottom: 4 },
+  warnLine: { color: C.warn, fontSize: 14, lineHeight: 20 },
+  barRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
+  barLabel: { width: 120, fontSize: 13, color: C.ink },
+  barTrack: { flex: 1, backgroundColor: C.panel, height: 10, borderRadius: 5, overflow: 'hidden' },
+  barCount: { width: 28, textAlign: 'right', fontSize: 13, color: C.muted },
+  section: { marginTop: 20 },
+  sectionHead: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2, borderBottomColor: C.accent, marginBottom: 8 },
+  sectionTitle: { flex: 1, fontSize: 18, fontWeight: '700', color: C.accent, paddingVertical: 6 },
+  item: { backgroundColor: C.surface, borderRadius: 12, borderWidth: 1, borderColor: C.line, padding: 10, marginBottom: 8 },
+  itemTop: { flexDirection: 'row', alignItems: 'center' },
+  num: { width: 22, color: C.muted, fontSize: 14 },
+  itemFig: { backgroundColor: C.panel, borderRadius: 8, marginRight: 10 },
+  itemName: { fontSize: 15, fontWeight: '600', color: C.ink },
+  itemSk: { fontSize: 12, color: C.muted, fontStyle: 'italic' },
+  itemFields: { flexDirection: 'row', alignItems: 'center', marginTop: 8, gap: 8 },
+  small: {
+    backgroundColor: C.bg,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    fontSize: 14,
+    color: C.ink,
+    borderWidth: 1,
+    borderColor: C.line,
+  },
+  sides: { backgroundColor: C.accentSoft, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 7 },
+  sidesText: { color: C.accent, fontSize: 14, fontWeight: '600' },
+  itemWarn: { marginTop: 6 },
+  itemWarnText: { color: C.warn, fontSize: 13, lineHeight: 18, marginBottom: 4 },
+  iconBtn: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 },
+  iconBtnText: { fontSize: 16, color: C.muted },
+  saved: { textAlign: 'center', color: C.muted, fontSize: 12, marginTop: 10 },
+});
