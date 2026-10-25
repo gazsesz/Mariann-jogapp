@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { PracticeBrowser } from '../components/PracticeBrowser';
 import { Button, Segmented } from '../components/ui';
-import { KIND_LIST, KINDS } from '../lib/data';
+import { KIND_LIST, KIND_PLURAL, KINDS } from '../lib/data';
 import { addItem, newItem } from '../lib/plan';
 import { getPlan, modifyPlan, useDb } from '../lib/store';
 import { C, WIDE } from '../lib/theme';
@@ -34,7 +34,7 @@ export default function PickPractices() {
       <View style={st.top}>
         <View style={WIDE}>
           <Segmented
-            options={KIND_LIST.map((k) => [k, k === 'asana' ? 'Ászanák' : k === 'mudra' ? 'Mudrák' : 'Pránájáma'] as [Kind, string])}
+            options={KIND_LIST.map((k) => [k, KIND_PLURAL[k]] as [Kind, string])}
             value={kind}
             onChange={setKind}
           />

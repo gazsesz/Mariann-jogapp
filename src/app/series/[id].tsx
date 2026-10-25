@@ -10,7 +10,7 @@ import { confirm, notify } from '../../lib/confirm';
 import { DATA, ELEMENT_BY_ID, practiceOf } from '../../lib/data';
 import { getSeries, listPlans, savePlan, saveSeries, useDb } from '../../lib/store';
 import { seriesHtml } from '../../lib/pdf';
-import { move, countLabel } from '../../lib/plan';
+import { countLabel, itemSummary, move } from '../../lib/plan';
 import { newSeriesDay, planForDay } from '../../lib/series';
 import { C, WIDE } from '../../lib/theme';
 import type { Plan, Series, SeriesDay } from '../../lib/types';
@@ -165,6 +165,14 @@ export default function SeriesEditor() {
                     {plan.durationMin ? ` · ${plan.durationMin} perc` : ''}
                     {dom.length ? ` · ${dom.map((e) => ELEMENT_BY_ID[e]?.name).join(', ')}` : ''}
                   </Text>
+                  {plan.sections
+                    .filter((sec) => sec.items.length)
+                    .map((sec) => (
+                      <Text key={sec.key} style={st.planItems} numberOfLines={3}>
+                        <Text style={{ fontWeight: '600' }}>{sec.title}: </Text>
+                        {sec.items.map(itemSummary).filter(Boolean).join(' · ')}
+                      </Text>
+                    ))}
                 </View>
                 <Text style={st.open}>Megnyitás ›</Text>
               </Pressable>
@@ -250,6 +258,7 @@ const st = StyleSheet.create({
   plan: { flexDirection: 'row', alignItems: 'center', marginTop: 8, backgroundColor: C.accentSoft, borderRadius: 10, padding: 10 },
   planTitle: { fontSize: 15, fontWeight: '600', color: C.ink },
   planMeta: { fontSize: 13, color: C.muted, marginTop: 2 },
+  planItems: { fontSize: 13, color: C.ink, marginTop: 4, lineHeight: 18 },
   open: { color: C.accent, fontWeight: '700', marginLeft: 8 },
   planActions: { flexDirection: 'row', alignItems: 'center', marginTop: 8, gap: 4 },
   unlink: { color: C.muted, fontSize: 12, marginTop: 6, textAlign: 'right' },

@@ -1,4 +1,5 @@
 import type { Kind, Plan, PlanItem, PlanSection, Practice } from './types';
+import { isSequence, practiceOf } from './data';
 
 export const newId = () =>
   Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -45,8 +46,9 @@ export function duplicatePlan(p: Plan): Plan {
   };
 }
 
-/** Mudránál, pránájámánál az ajánlott idő; yin pózoknál perces tartás, máshol légzésszám. */
+/** Mudránál, pránájámánál az ajánlott idő; sorozatnál a tempó; yin pózoknál perces tartás, máshol légzésszám. */
 export function defaultHold(p: Practice): string {
+  if (isSequence(p)) return '1 légzés / mozdulat';
   if ('duration' in p && typeof p.duration === 'string') return p.duration;
   if (p.category === 'yin') return '3 perc';
   if (p.category === 'pihen') return '1–2 perc';
@@ -54,7 +56,12 @@ export function defaultHold(p: Practice): string {
 }
 
 export function newItem(p: Practice, kind: Kind = 'asana'): PlanItem {
-  return { key: newId(), kind, poseId: p.id, hold: defaultHold(p), sides: 'nincs', note: '' };
+  const item: PlanItem = { key: newId(), kind, poseId: p.id, hold: defaultHold(p), sides: 'nincs', note: '' };
+  if (isSequence(p)) {
+    item.reps = p.rounds;
+    if (p.sided) item.sides = 'mindket';
+  }
+  return item;
 }
 
 export function addItem(plan: Plan, sectionKey: string, item: PlanItem): Plan {
@@ -80,15 +87,20 @@ export const poseCount = (p: Plan) => p.sections.reduce((n, s) => n + s.items.le
 
 /** Pl. „6 ászana · 1 mudra · 2 pránájáma”. */
 export function countLabel(p: Plan): string {
-  const n: Record<Kind, number> = { asana: 0, mudra: 0, pranayama: 0 };
+  const n: Record<Kind, number> = { asana: 0, sequence: 0, mudra: 0, pranayama: 0 };
   p.sections.forEach((s) => s.items.forEach((it) => n[it.kind ?? 'asana']++));
   const parts = [
     n.asana ? `${n.asana} ászana` : '',
+    n.sequence ? `${n.sequence} sorozat` : '',
     n.mudra ? `${n.mudra} mudra` : '',
     n.pranayama ? `${n.pranayama} pránájáma` : '',
   ].filter(Boolean);
   return parts.length ? parts.join(' · ') : 'még üres';
 }
+
+/** Pl. „3 kör” – sorozatnál kör, ászanánál ismétlés. */
+export const repsLabel = (it: PlanItem) =>
+  it.reps ? `${it.reps} ${it.kind === 'sequence' ? 'kör' : 'ismétlés'}` : '';
 
 export const SIDES_LABEL: Record<PlanItem['sides'], string> = {
   nincs: '–',
@@ -96,3 +108,11 @@ export const SIDES_LABEL: Record<PlanItem['sides'], string> = {
   jobb: 'jobb oldal',
   bal: 'bal oldal',
 };
+
+/** Rövid felsorolás a tematika napjaihoz, pl. „Napüdvözlet A (3 kör) · Harcos II (jobb oldal)”. */
+export function itemSummary(it: PlanItem): string {
+  const p = practiceOf(it);
+  if (!p) return '';
+  const extra = [repsLabel(it), it.sides !== 'nincs' ? SIDES_LABEL[it.sides] : ''].filter(Boolean).join(', ');
+  return extra ? `${p.hu} (${extra})` : p.hu;
+}

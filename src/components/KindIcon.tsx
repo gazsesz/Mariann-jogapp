@@ -2,8 +2,17 @@ import Svg, { Circle, Path } from 'react-native-svg';
 import { C } from '../lib/theme';
 import type { Kind } from '../lib/types';
 
-/** Jelkép a mudrákhoz (összeérő ujjak köre) és a pránájámákhoz (légzéshullámok). */
+/** Jelkép a mudrákhoz (összeérő ujjak köre), a pránájámákhoz (légzéshullámok) és a sorozatokhoz (körforgás). */
 export function KindIcon({ kind, size = 48, color = C.fig }: { kind: Exclude<Kind, 'asana'>; size?: number; color?: string }) {
+  if (kind === 'sequence') {
+    return (
+      <Svg width={size} height={size} viewBox="0 0 48 48">
+        <Path d="M38 20 A15 15 0 0 0 11 15" stroke={color} strokeWidth={3} strokeLinecap="round" fill="none" />
+        <Path d="M10 28 A15 15 0 0 0 37 33" stroke={color} strokeWidth={3} strokeLinecap="round" fill="none" />
+        <Path d="M11 7 L11 15 L19 15 M37 41 L37 33 L29 33" stroke={color} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </Svg>
+    );
+  }
   if (kind === 'mudra') {
     return (
       <Svg width={size} height={size} viewBox="0 0 48 48">

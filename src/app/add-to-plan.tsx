@@ -26,7 +26,8 @@ export default function AddToPlan() {
   const addToNew = async () => {
     const base = createPlan();
     // ászana a fő részbe, mudra és pránájáma a ráhangolódásba
-    const main = (kind === 'asana' ? base.sections[2] : base.sections[0]) ?? base.sections[0];
+    // Ászana a Fő részbe, sorozat a Bemelegítésbe, mudra és pránájáma a Ráhangolódásba.
+    const main = (kind === 'asana' ? base.sections[2] : kind === 'sequence' ? base.sections[1] : base.sections[0]) ?? base.sections[0];
     const p = await savePlan(db, addItem(base, main.key, newItem(pose, kind)));
     router.replace({ pathname: '/plan/[id]', params: { id: p.id } });
   };

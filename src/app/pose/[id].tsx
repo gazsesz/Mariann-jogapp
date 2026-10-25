@@ -1,13 +1,17 @@
 import { router, Stack, useLocalSearchParams } from 'expo-router';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { PoseFigure } from '../../components/PoseFigure';
 import { PracticeThumb } from '../../components/PracticeRow';
 import { Button, SectionTitle, Tag } from '../../components/ui';
 import { CONDITION_BY_ID, poseConditions } from '../../lib/cautions';
-import { BENEFIT_BY_ID, categoryName, CHAKRA_BY_ID, ELEMENT_BY_ID, KINDS, levelName, TRADITION_BY_ID } from '../../lib/data';
+import { BENEFIT_BY_ID, categoryName, CHAKRA_BY_ID, ELEMENT_BY_ID, isSequence, KINDS, levelName, POSE_BY_ID, TRADITION_BY_ID } from '../../lib/data';
 import { C, WIDE } from '../../lib/theme';
-import type { Kind, Technique } from '../../lib/types';
+import type { FlowStep, Kind, Technique } from '../../lib/types';
 
-/** Ászana, mudra vagy pránájáma adatlapja (a `kind` paraméter dönti el, alapból ászana). */
+const BREATH: Record<FlowStep['breath'], string> = { be: 'be', ki: 'ki', tart: 'tart' };
+const BREATH_LONG: Record<FlowStep['breath'], string> = { be: 'belégzés', ki: 'kilégzés', tart: 'maradj' };
+
+/** Ászana, sorozat, mudra vagy pránájáma adatlapja (a `kind` paraméter dönti el, alapból ászana). */
 export default function PracticeDetail() {
   const params = useLocalSearchParams<{ id: string; kind?: Kind }>();
   const kind: Kind = params.kind && params.kind in KINDS ? params.kind : 'asana';
@@ -16,13 +20,28 @@ export default function PracticeDetail() {
   const t = p as Technique;
   const primary = CHAKRA_BY_ID[p.chakras.primary];
   const conds = poseConditions(p);
+  const seq = isSequence(p) ? p : null;
 
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={[st.content, WIDE]}>
       <Stack.Screen options={{ title: p.hu }} />
-      <View style={st.figure}>
-        <PracticeThumb practice={p} kind={kind} width={240} />
-      </View>
+      {seq ? (
+        <ScrollView horizontal style={st.strip} contentContainerStyle={{ padding: 8 }} showsHorizontalScrollIndicator={false}>
+          {seq.flow.map((f, i) => {
+            const fp = POSE_BY_ID[f.pose];
+            return fp ? (
+              <View key={i} style={st.stripItem}>
+                <PoseFigure figure={fp.figure} width={84} />
+                <Text style={[st.breath, st[`b_${f.breath}`]]}>{BREATH[f.breath]}</Text>
+              </View>
+            ) : null;
+          })}
+        </ScrollView>
+      ) : (
+        <View style={st.figure}>
+          <PracticeThumb practice={p} kind={kind} width={240} />
+        </View>
+      )}
       <Text style={st.hu}>{p.hu}</Text>
       <Text style={st.sk}>
         {p.sanskrit} · {p.en}
@@ -49,6 +68,12 @@ export default function PracticeDetail() {
               {t.duration}
             </Text>
           )}
+          {seq && (
+            <Text style={st.body}>
+              <Text style={{ fontWeight: '700' }}>{seq.flow.length} lépés · </Text>
+              {seq.sided ? 'oldalanként: egy kör az egyik lábbal vezet, a következő a másikkal' : 'egy körben mindkét oldal'}
+            </Text>
+          )}
         </View>
       )}
 
@@ -59,11 +84,32 @@ export default function PracticeDetail() {
       />
 
       <SectionTitle>Végrehajtás</SectionTitle>
-      {p.steps.map((s, i) => (
-        <Text key={i} style={st.step}>
-          {i + 1}. {s}
-        </Text>
-      ))}
+      {seq
+        ? seq.flow.map((f, i) => {
+            const fp = POSE_BY_ID[f.pose];
+            return (
+              <Pressable
+                key={i}
+                style={({ pressed }) => [st.flowRow, pressed && { opacity: 0.7 }]}
+                onPress={() => router.push({ pathname: '/pose/[id]', params: { id: f.pose } })}
+              >
+                <Text style={st.flowN}>{i + 1}.</Text>
+                {fp && <PoseFigure figure={fp.figure} width={56} />}
+                <View style={{ flex: 1, minWidth: 0, marginLeft: 8 }}>
+                  <Text style={st.flowName}>
+                    {fp?.hu ?? f.pose} <Text style={st.flowSk}>{fp?.sanskrit}</Text>
+                  </Text>
+                  {!!f.cue && <Text style={st.flowCue}>{f.cue}</Text>}
+                </View>
+                <Text style={[st.breath, st[`b_${f.breath}`]]}>{BREATH_LONG[f.breath]}</Text>
+              </Pressable>
+            );
+          })
+        : p.steps.map((s, i) => (
+            <Text key={i} style={st.step}>
+              {i + 1}. {s}
+            </Text>
+          ))}
 
       <SectionTitle>Hatások</SectionTitle>
       <Text style={st.body}>{p.benefits}</Text>
@@ -135,4 +181,23 @@ const st = StyleSheet.create({
   dot: { width: 12, height: 12, borderRadius: 6, marginRight: 8 },
   facts: { marginTop: 10, backgroundColor: C.accentSoft, borderRadius: 12, padding: 12, gap: 4 },
   warnBox: { backgroundColor: C.warnSoft, borderRadius: 12, padding: 12 },
+  strip: { backgroundColor: C.panel, borderRadius: 16, flexGrow: 0 },
+  stripItem: { alignItems: 'center', marginRight: 2 },
+  breath: { fontSize: 12, fontWeight: '700', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 8, overflow: 'hidden' },
+  b_be: { backgroundColor: C.accentSoft, color: C.accent },
+  b_ki: { backgroundColor: C.goldSoft, color: C.gold },
+  b_tart: { backgroundColor: C.panel, color: C.muted },
+  flowRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: C.surface,
+    borderRadius: 10,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    marginBottom: 6,
+  },
+  flowN: { width: 24, color: C.muted, fontSize: 14 },
+  flowName: { fontSize: 15, fontWeight: '600', color: C.ink },
+  flowSk: { fontSize: 12, fontWeight: '400', color: C.muted, fontStyle: 'italic' },
+  flowCue: { fontSize: 13, color: C.muted, marginTop: 1 },
 });

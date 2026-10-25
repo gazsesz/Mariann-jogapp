@@ -4,9 +4,10 @@ Jógaóra-tervező alkalmazás (React Native + Expo, TypeScript – Android és 
 
 ## Tartalom
 
-- `src/app/` – az app képernyői (expo-router): ászanatár, mudratár, pránájámák, közös adatlap, óravázlataim, óravázlat-szerkesztő, tematikák (több napra bontott témák).
+- `src/app/` – az app képernyői (expo-router): ászanatár, sorozatok, mudratár, pránájámák, közös adatlap, óravázlataim, óravázlat-szerkesztő, tematikák (több napra bontott témák).
 - `src/lib/` – adat, szűrők, ellenjavallat-figyelmeztetések, figurarajzolás, mentés (SQLite), PDF.
 - `data/aszanak.json` – az ászanatár app-barát adatai (205 ászana, 12 kategória, irányzat-címkék, csakrák, öt elem, hatásterületek, lépések, ellenjavallatok, figura-szögek).
+- `data/sorozatok.json` – 20 dinamikus sorozat (nap-, hold-, földüdvözlet, vinyásza, gyengéd áramlások) 5 kategóriában, lépésenként ászanával és légzéssel.
 - `data/mudrak.json`, `data/pranayamak.json` – 39 mudra és 22 pránájáma, 6–6 kategóriában (generátor: `scripts/adat/`).
 - `docs/aszanatar.html` – az ászanatár önálló, böngészőben megnyitható változata SVG figurákkal.
 - `docs/DONTESEK.md` – döntésnapló: lépésenként mit és miért döntöttünk.

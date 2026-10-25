@@ -60,11 +60,11 @@ test('minden panasz-minta legalább egy gyakorlatra illik', async () => {
   }
 });
 
-test('mudrák és pránájámák: teljes, érvényes adat, szűrhető', async () => {
+test('mudrák, pránájámák, sorozatok: teljes, érvényes adat, szűrhető', async () => {
   const { KINDS } = await import('../src/lib/data');
   const els = new Set(DATA.elements.map((e) => e.id));
   const bens = new Set(DATA.benefitAreas.map((b) => b.id));
-  for (const kind of ['mudra', 'pranayama'] as const) {
+  for (const kind of ['mudra', 'pranayama', 'sequence'] as const) {
     const info = KINDS[kind];
     assert.ok(info.items.length >= 20, kind);
     const cats = new Set(info.categories.map((c) => c.id));
@@ -169,4 +169,37 @@ test('tematika: sablonok, napi óravázlat, hozzárendelés', async () => {
   assert.deepEqual(dominantElements(planBalance(p, (it) => byId[it.poseId]).elements), ['fold']);
   const html = seriesHtml(s, new Map([[p.id, p]]));
   assert.ok(html.includes('1. nap') && html.includes('Hegy') && html.includes('Még nincs óravázlat.'));
+});
+
+test('sorozatok: lépések ászanákra mutatnak, oldal és körszám az óravázlatban', async () => {
+  const { KINDS, SEQUENCES, hasSides } = await import('../src/lib/data');
+  const { countLabel, itemSummary } = await import('../src/lib/plan');
+  const cats = new Set(KINDS.sequence.categories.map((c) => c.id));
+  for (const id of ['nap', 'hold', 'fold', 'vinyasa']) assert.ok(cats.has(id), id);
+  for (const s of SEQUENCES) {
+    assert.ok(s.flow.length >= 2, s.id);
+    s.flow.forEach((f) => assert.ok(byId[f.pose], `${s.id}: ${f.pose}`));
+    assert.equal(s.steps.length, s.flow.length, s.id);
+    assert.ok(s.rounds > 0, s.id);
+  }
+  const surya = KINDS.sequence.byId['surya-namaskara-a'];
+  const warrior = KINDS.sequence.byId['harcos-aramlas'];
+  assert.equal(hasSides('sequence', surya), false);
+  assert.equal(hasSides('sequence', warrior), true);
+  assert.equal(hasSides('asana'), true);
+
+  let plan = createPlan('Sorozatos');
+  plan = addItem(plan, plan.sections[1].key, newItem(surya, 'sequence'));
+  plan = addItem(plan, plan.sections[2].key, { ...newItem(warrior, 'sequence'), reps: 2, sides: 'jobb' });
+  plan = addItem(plan, plan.sections[2].key, { ...newItem(byId['vrksasana']), sides: 'bal' });
+  const [a] = plan.sections[1].items;
+  assert.equal(a.reps, 3);
+  assert.equal(a.sides, 'nincs');
+  assert.equal(newItem(warrior, 'sequence').sides, 'mindket');
+  assert.equal(countLabel(plan), '1 ászana · 2 sorozat');
+  assert.equal(itemSummary(a), 'Napüdvözlet A (3 kör)');
+  assert.equal(itemSummary(plan.sections[2].items[0]), 'Harcos-áramlás (2 kör, jobb oldal)');
+  assert.equal(itemSummary(plan.sections[2].items[1]), 'Fa (bal oldal)');
+  const html = planHtml(plan);
+  assert.ok(html.includes('3 kör') && html.includes('Lefelé néző kutya (tart)') && html.includes('jobb oldal'));
 });

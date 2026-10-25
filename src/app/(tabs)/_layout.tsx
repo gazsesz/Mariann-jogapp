@@ -31,6 +31,16 @@ function BreathIcon({ color }: { color: ColorValue }) {
   );
 }
 
+function FlowIcon({ color }: { color: ColorValue }) {
+  const c = color as string;
+  return (
+    <Svg width={26} height={26} viewBox="0 0 24 24">
+      <Path d="M19 10a7.5 7.5 0 0 0-13.5-2.5M5 14a7.5 7.5 0 0 0 13.5 2.5" stroke={c} strokeWidth={2} strokeLinecap="round" fill="none" />
+      <Path d="M5.5 3.5v4h4M18.5 20.5v-4h-4" stroke={c} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </Svg>
+  );
+}
+
 function PlanIcon({ color }: { color: ColorValue }) {
   const c = color as string;
   return (
@@ -54,6 +64,7 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen name="index" options={{ title: 'Ászanatár', tabBarLabel: 'Ászanák', tabBarIcon: PoseIcon }} />
+      <Tabs.Screen name="sorozatok" options={{ title: 'Sorozatok', tabBarLabel: 'Sorozatok', tabBarIcon: FlowIcon }} />
       <Tabs.Screen name="mudrak" options={{ title: 'Mudratár', tabBarLabel: 'Mudrák', tabBarIcon: MudraIcon }} />
       <Tabs.Screen name="pranayamak" options={{ title: 'Pránájámák', tabBarLabel: 'Pránájáma', tabBarIcon: BreathIcon }} />
       <Tabs.Screen name="plans" options={{ title: 'Óravázlataim', tabBarLabel: 'Óráim', tabBarIcon: PlanIcon }} />

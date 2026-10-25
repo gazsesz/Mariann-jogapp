@@ -9,15 +9,20 @@ import { Button, Chip, SectionTitle, Tag } from '../../components/ui';
 import { CONDITION_BY_ID, CONDITIONS, planWarnings } from '../../lib/cautions';
 import { confirm, notify } from '../../lib/confirm';
 import { planBalance } from '../../lib/analysis';
-import { CHAKRA_BY_ID, DATA, ELEMENT_BY_ID, itemKind, KINDS, practiceOf } from '../../lib/data';
+import { CHAKRA_BY_ID, DATA, ELEMENT_BY_ID, hasSides, itemKind, KINDS, practiceOf } from '../../lib/data';
 import { getPlan, savePlan, useDb } from '../../lib/store';
 import { toggle } from '../../lib/filters';
 import { planHtml } from '../../lib/pdf';
-import { move, newId, poseCount, SIDES_LABEL, updateSection } from '../../lib/plan';
+import { move, newId, poseCount, updateSection } from '../../lib/plan';
 import { C, WIDE } from '../../lib/theme';
 import type { Plan, PlanItem, Sides } from '../../lib/types';
 
-const SIDES_ORDER: Sides[] = ['nincs', 'mindket', 'jobb', 'bal'];
+const SIDE_OPTIONS: [Sides, string][] = [
+  ['nincs', '–'],
+  ['jobb', 'jobb'],
+  ['bal', 'bal'],
+  ['mindket', 'mindkét'],
+];
 const LEVELS: { v: Plan['level']; label: string }[] = [
   { v: 0, label: 'Vegyes' },
   { v: 1, label: DATA.levels['1'] },
@@ -241,20 +246,52 @@ export default function PlanEditor() {
                     style={[st.small, { width: kind === 'asana' ? 110 : 210, maxWidth: '100%' }]}
                     value={it.hold}
                     onChangeText={(hold) => updateItem(s.key, it.key, { hold })}
-                    placeholder="tartás"
+                    placeholder={kind === 'sequence' ? 'tempó' : 'tartás'}
                     placeholderTextColor={C.muted}
                   />
-                  {kind === 'asana' && (
-                    <Pressable
-                      style={st.sides}
-                      onPress={() =>
-                        updateItem(s.key, it.key, { sides: SIDES_ORDER[(SIDES_ORDER.indexOf(it.sides) + 1) % SIDES_ORDER.length] })
-                      }
-                    >
-                      <Text style={st.sidesText}>{it.sides === 'nincs' ? 'oldal: –' : SIDES_LABEL[it.sides]}</Text>
-                    </Pressable>
-                  )}
                 </View>
+                {(kind === 'asana' || kind === 'sequence') && (
+                  <View style={st.itemFields}>
+                    {hasSides(kind, pose) && (
+                      <View style={st.fieldGroup}>
+                        <Text style={st.fieldLabel}>Oldal</Text>
+                        <View style={st.choice}>
+                          {SIDE_OPTIONS.map(([v, label]) => (
+                            <Pressable
+                              key={v}
+                              onPress={() => updateItem(s.key, it.key, { sides: v })}
+                              style={[st.choiceBtn, it.sides === v && st.choiceActive]}
+                              accessibilityRole="radio"
+                              accessibilityState={{ checked: it.sides === v }}
+                            >
+                              <Text style={[st.choiceText, it.sides === v && { color: '#fff' }]}>{label}</Text>
+                            </Pressable>
+                          ))}
+                        </View>
+                      </View>
+                    )}
+                    <View style={st.fieldGroup}>
+                      <Text style={st.fieldLabel}>{kind === 'sequence' ? 'Kör' : 'Ismétlés'}</Text>
+                      <View style={st.choice}>
+                        <Pressable
+                          style={st.choiceBtn}
+                          onPress={() => updateItem(s.key, it.key, { reps: Math.max(0, (it.reps ?? 0) - 1) || undefined })}
+                          accessibilityLabel="kevesebb"
+                        >
+                          <Text style={st.choiceText}>−</Text>
+                        </Pressable>
+                        <Text style={st.repsValue}>{it.reps ?? '–'}</Text>
+                        <Pressable
+                          style={st.choiceBtn}
+                          onPress={() => updateItem(s.key, it.key, { reps: Math.min(99, (it.reps ?? 0) + 1) })}
+                          accessibilityLabel="több"
+                        >
+                          <Text style={st.choiceText}>+</Text>
+                        </Pressable>
+                      </View>
+                    </View>
+                  </View>
+                )}
                 <TextInput
                   style={[st.small, { marginTop: 6 }]}
                   value={it.note}
@@ -344,7 +381,7 @@ const st = StyleSheet.create({
   itemKind: { fontSize: 11, fontWeight: '700', color: C.gold, textTransform: 'uppercase', letterSpacing: 0.4 },
   itemName: { fontSize: 15, fontWeight: '600', color: C.ink },
   itemSk: { fontSize: 12, color: C.muted, fontStyle: 'italic' },
-  itemFields: { flexDirection: 'row', alignItems: 'center', marginTop: 8, gap: 8 },
+  itemFields: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', marginTop: 8, gap: 8 },
   small: {
     backgroundColor: C.bg,
     borderRadius: 8,
@@ -355,8 +392,13 @@ const st = StyleSheet.create({
     borderWidth: 1,
     borderColor: C.line,
   },
-  sides: { backgroundColor: C.accentSoft, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 7 },
-  sidesText: { color: C.accent, fontSize: 14, fontWeight: '600' },
+  fieldGroup: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  fieldLabel: { fontSize: 13, color: C.muted },
+  choice: { flexDirection: 'row', alignItems: 'center', backgroundColor: C.bg, borderRadius: 8, padding: 2 },
+  choiceBtn: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6, minWidth: 32, alignItems: 'center' },
+  choiceActive: { backgroundColor: C.accent },
+  choiceText: { color: C.accent, fontSize: 14, fontWeight: '600' },
+  repsValue: { minWidth: 26, textAlign: 'center', fontSize: 15, fontWeight: '700', color: C.ink },
   itemWarn: { marginTop: 6 },
   itemWarnText: { color: C.warn, fontSize: 13, lineHeight: 18, marginBottom: 4 },
   iconBtn: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 },

@@ -5,6 +5,27 @@ A legfrissebb lépés van legfelül.
 
 ---
 
+## 5. lépés – Dinamikus sorozatok, oldal és körszám (2026-10-25)
+
+**Gabor kérése:** legyenek dinamikus ászanasorozatok (nap-, hold-, földüdvözlet, vinyásza),
+és az óravázlatokban (a tematikákban is) lehessen megadni az oldalt (jobb, bal), sorozatoknál
+az ismétlésszámot.
+
+| Döntés | Miért |
+| --- | --- |
+| **20 sorozat, 5 kategória**: napüdvözletek (A, B, 12 lépéses, térdelő), holdüdvözletek (álló oldalirányú, 14 lépéses, félhold-áramlás), földüdvözletek (álló, térdelő, guggolás-áramlás), vinyásza-áramlások (alap, kezdő, harcos, istennő–csillag, szék, kitörés–félspárga), gyengéd áramlások (macska–tehén, gyermek–kobra, fekvő csavar, szélfelszabadító) – `data/sorozatok.json` | A leggyakrabban tanított hagyományos és modern sorozatok, az óra minden részére (bemelegítés, fő rész, levezetés). |
+| A sorozat lépései az ászanatár pózaira hivatkoznak, lépésenként légzéssel (be / ki / maradj) és rövid instrukcióval | Így minden lépésnek van figurája, és egy koppintással megnyílik a póz adatlapja. A generátor (`scripts/adat/sorozatok.py`) ellenőrzi, hogy minden póz létezik. |
+| A sorozatnak saját csakra, elem, hatás és ellenjavallat adata van | Ugyanúgy szűrhető, és beszámít az óra egyensúlyába és a figyelmeztetésekbe. |
+| A sorozatnál jelöljük, hogy oldalanként végzendő-e (pl. klasszikus napüdvözlet, harcos-áramlás), és van javasolt körszáma | Ettől függ, hogy az óravázlatban oldalt is lehet-e választani. |
+| Új alsó fül: **Sorozatok** (az Ászanák után); a választóban is külön fül | Egy koppintásra elérhető. |
+| Új órába a sorozat a **Bemelegítés** szakaszba kerül | Ott a leggyakoribb (napüdvözlet), utána áthelyezhető. |
+| Óraelemnél **oldal**: – / jobb / bal / mindkét gombsor (ászanánál és oldalanként végzett sorozatnál) | A korábbi, koppintásra váltogató gomb nem volt elég feltűnő; így egy érintéssel választható. |
+| Óraelemnél **kör / ismétlés** számláló (−/+): sorozatnál „kör” (a javasolt körszámmal indul), ászanánál „ismétlés” (alapból üres) | Dinamikus ismétléseknél ászanánál is hasznos lehet (pl. háromszor a fa). Új mező: `PlanItem.reps`. |
+| A tematika napjain az óravázlat tartalma szakaszonként, oldal- és körszámmal látszik (pl. „Harcos-áramlás (3 kör, bal oldal) · Fa (2 ismétlés, jobb oldal)”), a heti PDF-ben is | Gabor kérése: a tematikában is látszódjon. |
+| Az óra PDF-jében a sorozat lépései is felsorolódnak légzéssel | Nyomtatva is követhető. |
+
+---
+
 ## 4. lépés – Mudratár, pránájámák, tablet nézet (2026-10-25)
 
 **Gabor kérése:** az ászanák mellett legyen mudratár és pránájáma-gyűjtemény, ugyanúgy

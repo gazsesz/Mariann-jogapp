@@ -1,7 +1,7 @@
 import { CONDITION_BY_ID, planWarnings } from './cautions';
-import { CHAKRA_BY_ID, ELEMENT_BY_ID, isPose, itemKind, KINDS, levelName, practiceOf } from './data';
+import { CHAKRA_BY_ID, ELEMENT_BY_ID, isPose, isSequence, itemKind, KINDS, levelName, POSE_BY_ID, practiceOf } from './data';
 import { figureSvg } from './figure';
-import { countLabel, SIDES_LABEL } from './plan';
+import { countLabel, itemSummary, repsLabel, SIDES_LABEL } from './plan';
 import type { Plan, Series } from './types';
 
 const PDF_FIGURE = { fig: '#2b2f3a', far: '#a8b1ad', mat: '#b9c8d9', eye: '#ffffff', strap: '#a86f0c' };
@@ -29,13 +29,17 @@ export function planHtml(plan: Plan): string {
           const w = warnByItem.get(it.key);
           const ch = CHAKRA_BY_ID[p.chakras.primary];
           const el = ELEMENT_BY_ID[p.elements.primary];
-          const details = [pattern, it.hold, it.sides !== 'nincs' ? SIDES_LABEL[it.sides] : ''].filter(Boolean).join(' · ');
+          const details = [pattern, repsLabel(it), it.hold, it.sides !== 'nincs' ? SIDES_LABEL[it.sides] : ''].filter(Boolean).join(' · ');
+          const flow = isSequence(p)
+            ? p.flow.map((f) => `${POSE_BY_ID[f.pose]?.hu ?? f.pose} (${f.breath})`).join(' → ')
+            : '';
           return `<tr>
             <td class="n">${i + 1}.</td>
             <td class="fig">${isPose(p) ? figureSvg(p.figure, PDF_FIGURE, 84) : `<span class="kind">${esc(KINDS[itemKind(it)].label)}</span>`}</td>
             <td>
               <div class="name">${esc(p.hu)} <span class="sk">${esc(p.sanskrit)}</span></div>
               ${details ? `<div class="det">${esc(details)}</div>` : ''}
+              ${flow ? `<div class="flow">${esc(flow)}</div>` : ''}
               ${it.note ? `<div class="note">${esc(it.note)}</div>` : ''}
               ${w ? `<div class="warn">⚠ ${esc(p.cautions)}</div>` : ''}
             </td>
@@ -66,6 +70,7 @@ export function planHtml(plan: Plan): string {
   .name { font-weight: 700; font-size: 13px; }
   .sk { font-weight: 400; font-style: italic; color: #5d6470; }
   .det { color: #3d4f8f; }
+  .flow { color: #5d6470; font-size: 11px; margin-top: 2px; }
   .note { margin-top: 2px; }
   .warn { color: #a2412b; margin-top: 2px; font-size: 11px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin-right: 4px; }
@@ -93,8 +98,8 @@ export function seriesHtml(series: Series, plans: Map<string, Plan>): string {
             .map(
               (s) =>
                 `<div class="sec"><b>${esc(s.title)}:</b> ${s.items
-                  .map((it) => practiceOf(it)?.hu)
-                  .filter((x): x is string => !!x)
+                  .map(itemSummary)
+                  .filter(Boolean)
                   .map(esc)
                   .join(', ')}</div>`,
             )

@@ -17,7 +17,7 @@ export interface Figure {
   strap?: boolean | number;
 }
 
-export type Kind = 'asana' | 'mudra' | 'pranayama';
+export type Kind = 'asana' | 'mudra' | 'pranayama' | 'sequence';
 
 /** Az ászanák, mudrák és pránájámák közös adatai (szűrés, óravázlat, figyelmeztetés). */
 export interface Practice {
@@ -48,6 +48,31 @@ export interface Technique extends Practice {
   pattern?: string;
   /** Ajánlott időtartam vagy ismétlésszám. */
   duration: string;
+}
+
+/** Egy lépés a dinamikus sorozatban: ászana + légzés + rövid instrukció. */
+export interface FlowStep {
+  pose: string;
+  breath: 'be' | 'ki' | 'tart';
+  cue?: string;
+}
+
+/** Dinamikus ászanasorozat (napüdvözlet, holdüdvözlet, vinyásza…). */
+export interface Sequence extends Practice {
+  traditions: string[];
+  /** Oldalanként végzendő (egy kör egyik oldalt vezeti). */
+  sided: boolean;
+  /** Javasolt körszám az óravázlatban. */
+  rounds: number;
+  duration: string;
+  flow: FlowStep[];
+}
+
+export interface SequenceData {
+  version: number;
+  kind: 'sequence';
+  categories: Category[];
+  items: Sequence[];
 }
 
 export interface TechniqueData {
@@ -116,6 +141,8 @@ export interface PlanItem {
   /** Tartási idő szabad szöveggel, pl. „5 légzés”, „3 perc”. */
   hold: string;
   sides: Sides;
+  /** Ismétlésszám (sorozatoknál a körök száma); hiánya = nincs megadva. */
+  reps?: number;
   note: string;
 }
 

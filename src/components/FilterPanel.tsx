@@ -40,7 +40,7 @@ export function FilterPanel({
           ))}
         </View>
 
-        {kind === 'asana' && (
+        {(kind === 'asana' || kind === 'sequence') && (
           <>
             <SectionTitle>Irányzat</SectionTitle>
             <View style={st.row}>
