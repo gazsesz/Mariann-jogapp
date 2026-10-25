@@ -1,0 +1,1665 @@
+{
+ "version": 1,
+ "kind": "sequence",
+ "categories": [
+  {
+   "id": "nap",
+   "name": "Napüdvözletek",
+   "description": "Súrja namaszkár: melegítő, energizáló, a gerincet minden irányba mozgató sorozatok; az óra elején, a bemelegítés gerince."
+  },
+  {
+   "id": "hold",
+   "name": "Holdüdvözletek",
+   "description": "Csandra namaszkár: hűsítőbb, befelé forduló, oldalirányú és csípőnyitó sorozatok; esti órákra, holdi témákhoz."
+  },
+  {
+   "id": "fold",
+   "name": "Földüdvözletek",
+   "description": "Prithví namaszkár: talajközeli, földelő sorozatok; gyökerezéshez, stabilitáshoz, kezdőknek és lassabb órákra."
+  },
+  {
+   "id": "vinyasa",
+   "name": "Vinyásza-áramlások",
+   "description": "Légzésre kötött átmenetek és rövid áramlások, amelyek ászanákat fűznek össze és melegen tartják a testet."
+  },
+  {
+   "id": "gyenged",
+   "name": "Gyengéd áramlások",
+   "description": "Négykézláb, ülve vagy fekve végzett dinamikus mozgások: gerincmobilizálás, ráhangolódás, levezetés."
+  }
+ ],
+ "items": [
+  {
+   "id": "surya-namaskara-a",
+   "sanskrit": "Sūrya Namaskāra A",
+   "hu": "Napüdvözlet A",
+   "en": "Sun Salutation A",
+   "category": "nap",
+   "level": 1,
+   "traditions": [
+    "ashtanga"
+   ],
+   "sided": false,
+   "rounds": 3,
+   "duration": "3–5 kör",
+   "flow": [
+    {
+     "pose": "tadasana",
+     "breath": "ki",
+     "cue": "szamaszthiti, kezek a test mellett"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "karok ívben fel, tekintet a hüvelykujjakra"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki",
+     "cue": "előrehajlás csípőből"
+    },
+    {
+     "pose": "ardha-uttanasana",
+     "breath": "be",
+     "cue": "hosszú gerinc, tekintet előre"
+    },
+    {
+     "pose": "caturanga-dandasana",
+     "breath": "ki",
+     "cue": "hátralépés vagy -ugrás, könyök a test mellett"
+    },
+    {
+     "pose": "urdhva-mukha-svanasana",
+     "breath": "be",
+     "cue": "mellkas előre-fel, combok a talaj fölött"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "tart",
+     "cue": "5 légzés"
+    },
+    {
+     "pose": "ardha-uttanasana",
+     "breath": "be",
+     "cue": "előrelépés vagy -ugrás"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "felegyenesedés hosszú gerinccel"
+    },
+    {
+     "pose": "tadasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Hegy – kilégzés: szamaszthiti, kezek a test mellett",
+    "Felfelé nyújtott kezek – belégzés: karok ívben fel, tekintet a hüvelykujjakra",
+    "Álló előrehajlás – kilégzés: előrehajlás csípőből",
+    "Félig előrehajlás – belégzés: hosszú gerinc, tekintet előre",
+    "Négy ponton álló bot – kilégzés: hátralépés vagy -ugrás, könyök a test mellett",
+    "Felfelé néző kutya – belégzés: mellkas előre-fel, combok a talaj fölött",
+    "Lefelé néző kutya – maradj: 5 légzés",
+    "Félig előrehajlás – belégzés: előrelépés vagy -ugrás",
+    "Álló előrehajlás – kilégzés",
+    "Felfelé nyújtott kezek – belégzés: felegyenesedés hosszú gerinccel",
+    "Hegy – kilégzés"
+   ],
+   "benefits": "Felmelegíti az egész testet, összeköti a mozgást a légzéssel; erősíti a kart, vállat, törzset, nyújtja a láb hátsó oldalát.",
+   "cautions": "Csukló- vagy vállsérülésnél a csaturanga helyett térdelő változat. Magas vérnyomásnál lassan, fejet a szív fölött tartva. Derékpanasz esetén hajlított térddel hajolj előre. Várandósság alatt módosított változat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4,
+     5
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego",
+     "eter"
+    ]
+   },
+   "benefitAreas": [
+    "sziv",
+    "allokepesseg",
+    "hajlekonysag",
+    "tudo"
+   ]
+  },
+  {
+   "id": "surya-namaskara-b",
+   "sanskrit": "Sūrya Namaskāra B",
+   "hu": "Napüdvözlet B",
+   "en": "Sun Salutation B",
+   "category": "nap",
+   "level": 2,
+   "traditions": [
+    "ashtanga"
+   ],
+   "sided": false,
+   "rounds": 3,
+   "duration": "3–5 kör",
+   "flow": [
+    {
+     "pose": "utkatasana",
+     "breath": "be",
+     "cue": "térdhajlítás, karok fel"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "ardha-uttanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "caturanga-dandasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-mukha-svanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "virabhadrasana-i",
+     "breath": "be",
+     "cue": "jobb láb előre"
+    },
+    {
+     "pose": "caturanga-dandasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-mukha-svanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "virabhadrasana-i",
+     "breath": "be",
+     "cue": "bal láb előre"
+    },
+    {
+     "pose": "caturanga-dandasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-mukha-svanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "tart",
+     "cue": "5 légzés"
+    },
+    {
+     "pose": "ardha-uttanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "utkatasana",
+     "breath": "be"
+    },
+    {
+     "pose": "tadasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Szék – belégzés: térdhajlítás, karok fel",
+    "Álló előrehajlás – kilégzés",
+    "Félig előrehajlás – belégzés",
+    "Négy ponton álló bot – kilégzés",
+    "Felfelé néző kutya – belégzés",
+    "Lefelé néző kutya – kilégzés",
+    "Harcos I – belégzés: jobb láb előre",
+    "Négy ponton álló bot – kilégzés",
+    "Felfelé néző kutya – belégzés",
+    "Lefelé néző kutya – kilégzés",
+    "Harcos I – belégzés: bal láb előre",
+    "Négy ponton álló bot – kilégzés",
+    "Felfelé néző kutya – belégzés",
+    "Lefelé néző kutya – maradj: 5 légzés",
+    "Félig előrehajlás – belégzés",
+    "Álló előrehajlás – kilégzés",
+    "Szék – belégzés",
+    "Hegy – kilégzés"
+   ],
+   "benefits": "Erősebben melegít, mint az A változat: combot, farizmot, vállat erősít, növeli az állóképességet és a belső tüzet.",
+   "cautions": "Térdpanasznál a széknél és a harcosnál kisebb hajlítás. Csukló- vagy vállsérülésnél térdelő átmenet. Magas vérnyomásnál, szívbetegségnél lassabb tempó, kevesebb kör. Várandósság alatt kerüld a csaturangát.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1,
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "fold",
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "allokepesseg",
+    "sziv",
+    "tudo",
+    "tartas"
+   ]
+  },
+  {
+   "id": "surya-namaskara-hatha",
+   "sanskrit": "Sūrya Namaskāra (12 lépés)",
+   "hu": "Klasszikus napüdvözlet (12 lépés)",
+   "en": "Classical Sun Salutation",
+   "category": "nap",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": true,
+   "rounds": 4,
+   "duration": "4–12 kör (páros szám)",
+   "flow": [
+    {
+     "pose": "pranamasana",
+     "breath": "ki",
+     "cue": "kezek a szív előtt"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "karok fel, enyhe hátrahajlás"
+    },
+    {
+     "pose": "padahastasana",
+     "breath": "ki",
+     "cue": "kezek a talp mellé"
+    },
+    {
+     "pose": "utthita-asva-sancalanasana",
+     "breath": "be",
+     "cue": "a vezető láb hátra, tekintet fel"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki",
+     "cue": "hegy póz"
+    },
+    {
+     "pose": "astanga-namaskara",
+     "breath": "tart",
+     "cue": "légzés kint: térd, mellkas, áll a talajon"
+    },
+    {
+     "pose": "bhujangasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "utthita-asva-sancalanasana",
+     "breath": "be",
+     "cue": "ugyanaz a láb előre"
+    },
+    {
+     "pose": "padahastasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    },
+    {
+     "pose": "pranamasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Imapóz (üdvözlés) – kilégzés: kezek a szív előtt",
+    "Felfelé nyújtott kezek – belégzés: karok fel, enyhe hátrahajlás",
+    "Kéz a talp alatt – kilégzés: kezek a talp mellé",
+    "Lovas póz – belégzés: a vezető láb hátra, tekintet fel",
+    "Lefelé néző kutya – kilégzés: hegy póz",
+    "Nyolcpontos üdvözlés – maradj: légzés kint: térd, mellkas, áll a talajon",
+    "Kobra – belégzés",
+    "Lefelé néző kutya – kilégzés",
+    "Lovas póz – belégzés: ugyanaz a láb előre",
+    "Kéz a talp alatt – kilégzés",
+    "Felfelé nyújtott kezek – belégzés",
+    "Imapóz (üdvözlés) – kilégzés"
+   ],
+   "benefits": "A hatha jóga hagyományos napüdvözlete: a gerinc hajlítását és nyújtását váltogatja, átmozgatja az egész testet, serkenti a keringést és az emésztést.",
+   "cautions": "Magas vérnyomásnál, szívbetegségnél lassan, a fejet ne ejtsd hirtelen. Derékpanasznál, porckorongsérvnél kerüld a mély hátrahajlást. Csuklópanasznál öklön vagy alkaron támaszkodj. Várandósság alatt módosítva.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4,
+     6
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "sziv",
+    "emesztes",
+    "hajlekonysag",
+    "tudo",
+    "hormon"
+   ]
+  },
+  {
+   "id": "terdelo-napudvozlet",
+   "sanskrit": "Sūrya Namaskāra (térdelő)",
+   "hu": "Kíméletes, térdelő napüdvözlet",
+   "en": "Gentle kneeling Sun Salutation",
+   "category": "nap",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": true,
+   "rounds": 4,
+   "duration": "4–6 kör",
+   "flow": [
+    {
+     "pose": "pranamasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki",
+     "cue": "hajlított térddel"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "a vezető láb hátra, hátsó térd a talajon"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "ki",
+     "cue": "asztal"
+    },
+    {
+     "pose": "astanga-namaskara",
+     "breath": "ki",
+     "cue": "térd, mellkas, áll le"
+    },
+    {
+     "pose": "bhujangasana",
+     "breath": "be",
+     "cue": "alacsony kobra"
+    },
+    {
+     "pose": "balasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "ugyanaz a láb előre"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    },
+    {
+     "pose": "pranamasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Imapóz (üdvözlés) – kilégzés",
+    "Felfelé nyújtott kezek – belégzés",
+    "Álló előrehajlás – kilégzés: hajlított térddel",
+    "Alacsony kitörés – belégzés: a vezető láb hátra, hátsó térd a talajon",
+    "Asztal (négykézláb) – kilégzés: asztal",
+    "Nyolcpontos üdvözlés – kilégzés: térd, mellkas, áll le",
+    "Kobra – belégzés: alacsony kobra",
+    "Gyermek – kilégzés",
+    "Asztal (négykézláb) – belégzés",
+    "Alacsony kitörés – belégzés: ugyanaz a láb előre",
+    "Álló előrehajlás – kilégzés",
+    "Felfelé nyújtott kezek – belégzés",
+    "Imapóz (üdvözlés) – kilégzés"
+   ],
+   "benefits": "Kezdőknek, idősebbeknek, regeneráló órákra: a napüdvözlet íve csukló- és derékkímélő formában.",
+   "cautions": "Térdpanasznál takaró a térd alá. Magas vérnyomásnál a fejet ne ejtsd a szív alá hosszan.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "hajlekonysag",
+    "tartas",
+    "sziv"
+   ]
+  },
+  {
+   "id": "candra-namaskara-kripalu",
+   "sanskrit": "Candra Namaskāra",
+   "hu": "Holdüdvözlet (álló, oldalirányú)",
+   "en": "Moon Salutation (standing)",
+   "category": "hold",
+   "level": 2,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 2,
+   "duration": "2–4 kör",
+   "flow": [
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "kezek összefonva, mutatóujj fel"
+    },
+    {
+     "pose": "parsva-urdhva-hastasana",
+     "breath": "ki",
+     "cue": "oldalhajlítás jobbra, majd balra"
+    },
+    {
+     "pose": "utkata-konasana",
+     "breath": "ki",
+     "cue": "terpesz, istennő"
+    },
+    {
+     "pose": "utthita-tadasana",
+     "breath": "be",
+     "cue": "csillag"
+    },
+    {
+     "pose": "utthita-trikonasana",
+     "breath": "ki",
+     "cue": "jobbra"
+    },
+    {
+     "pose": "parsvottanasana",
+     "breath": "ki",
+     "cue": "piramis jobbra"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "jobb láb elöl, alacsony kitörés"
+    },
+    {
+     "pose": "skandasana",
+     "breath": "ki",
+     "cue": "oldalsó kitörés jobbra, majd balra"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "bal láb elöl"
+    },
+    {
+     "pose": "parsvottanasana",
+     "breath": "ki",
+     "cue": "piramis balra"
+    },
+    {
+     "pose": "utthita-trikonasana",
+     "breath": "ki",
+     "cue": "balra"
+    },
+    {
+     "pose": "utthita-tadasana",
+     "breath": "be"
+    },
+    {
+     "pose": "utkata-konasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "parsva-urdhva-hastasana",
+     "breath": "ki",
+     "cue": "balra, majd jobbra"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    }
+   ],
+   "steps": [
+    "Felfelé nyújtott kezek – belégzés: kezek összefonva, mutatóujj fel",
+    "Álló oldalhajlítás – kilégzés: oldalhajlítás jobbra, majd balra",
+    "Istennő – kilégzés: terpesz, istennő",
+    "Csillag – belégzés: csillag",
+    "Háromszög – kilégzés: jobbra",
+    "Piramis – kilégzés: piramis jobbra",
+    "Alacsony kitörés – belégzés: jobb láb elöl, alacsony kitörés",
+    "Oldalsó kitörés – kilégzés: oldalsó kitörés jobbra, majd balra",
+    "Alacsony kitörés – belégzés: bal láb elöl",
+    "Piramis – kilégzés: piramis balra",
+    "Háromszög – kilégzés: balra",
+    "Csillag – belégzés",
+    "Istennő – kilégzés",
+    "Álló oldalhajlítás – kilégzés: balra, majd jobbra",
+    "Felfelé nyújtott kezek – belégzés"
+   ],
+   "benefits": "Oldalirányban nyújt, a csípőt és combot nyitja, hűsítőbb és befelé fordulóbb, mint a napüdvözlet. Holdi, nőies minőségű, esti órákra.",
+   "cautions": "Térdpanasznál az istennőben és oldalsó kitörésben kisebb hajlítás. Csípőpanasznál kerüld a mély oldalsó kitörést. Combhajlító-sérülésnél hajlított térddel a piramisban.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1,
+     6
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "tartas"
+   ]
+  },
+  {
+   "id": "candra-namaskara-sivananda",
+   "sanskrit": "Candra Namaskāra (14 lépés)",
+   "hu": "Klasszikus holdüdvözlet (14 lépés)",
+   "en": "Classical Moon Salutation",
+   "category": "hold",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": true,
+   "rounds": 4,
+   "duration": "2–6 kör (páros szám)",
+   "flow": [
+    {
+     "pose": "pranamasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    },
+    {
+     "pose": "padahastasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "utthita-asva-sancalanasana",
+     "breath": "be",
+     "cue": "vezető láb hátra"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "karok fel, félhold-hátrahajlás"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "astanga-namaskara",
+     "breath": "tart",
+     "cue": "légzés kint"
+    },
+    {
+     "pose": "bhujangasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "utthita-asva-sancalanasana",
+     "breath": "be",
+     "cue": "ugyanaz a láb előre"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "karok fel, félhold-hátrahajlás"
+    },
+    {
+     "pose": "padahastasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    },
+    {
+     "pose": "pranamasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Imapóz (üdvözlés) – kilégzés",
+    "Felfelé nyújtott kezek – belégzés",
+    "Kéz a talp alatt – kilégzés",
+    "Lovas póz – belégzés: vezető láb hátra",
+    "Alacsony kitörés – belégzés: karok fel, félhold-hátrahajlás",
+    "Lefelé néző kutya – kilégzés",
+    "Nyolcpontos üdvözlés – maradj: légzés kint",
+    "Kobra – belégzés",
+    "Lefelé néző kutya – kilégzés",
+    "Lovas póz – belégzés: ugyanaz a láb előre",
+    "Alacsony kitörés – belégzés: karok fel, félhold-hátrahajlás",
+    "Kéz a talp alatt – kilégzés",
+    "Felfelé nyújtott kezek – belégzés",
+    "Imapóz (üdvözlés) – kilégzés"
+   ],
+   "benefits": "A napüdvözlet holdi párja: a félhold-hátrahajlás nyitja a csípőhajlítókat és a szívet, lassabb, nyugodtabb ritmusú.",
+   "cautions": "Derékpanasznál, porckorongsérvnél kerüld a mély hátrahajlást. Térdpanasznál takaró a térd alá. Magas vérnyomásnál lassan, a fejet a szív fölött tartva.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4,
+     6
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "hajlekonysag",
+    "hormon",
+    "elme",
+    "alvas"
+   ]
+  },
+  {
+   "id": "prithvi-namaskara",
+   "sanskrit": "Pṛthvī Namaskāra",
+   "hu": "Földüdvözlet",
+   "en": "Earth Salutation",
+   "category": "fold",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 3,
+   "duration": "3–5 kör",
+   "flow": [
+    {
+     "pose": "tadasana",
+     "breath": "ki",
+     "cue": "talpak gyökerezése"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki",
+     "cue": "hajlított térddel"
+    },
+    {
+     "pose": "malasana",
+     "breath": "be",
+     "cue": "guggolás, kezek a földön"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "ki",
+     "cue": "négykézláb"
+    },
+    {
+     "pose": "bitilasana",
+     "breath": "be",
+     "cue": "tehén"
+    },
+    {
+     "pose": "marjaryasana",
+     "breath": "ki",
+     "cue": "macska"
+    },
+    {
+     "pose": "balasana",
+     "breath": "tart",
+     "cue": "3 légzés, homlok a földön"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "malasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "be",
+     "cue": "lassan gördülj fel"
+    },
+    {
+     "pose": "tadasana",
+     "breath": "ki",
+     "cue": "kezek a szív előtt"
+    }
+   ],
+   "steps": [
+    "Hegy – kilégzés: talpak gyökerezése",
+    "Felfelé nyújtott kezek – belégzés",
+    "Álló előrehajlás – kilégzés: hajlított térddel",
+    "Guggolás (füzér) – belégzés: guggolás, kezek a földön",
+    "Asztal (négykézláb) – kilégzés: négykézláb",
+    "Tehén – belégzés: tehén",
+    "Macska – kilégzés: macska",
+    "Gyermek – maradj: 3 légzés, homlok a földön",
+    "Asztal (négykézláb) – belégzés",
+    "Guggolás (füzér) – kilégzés",
+    "Álló előrehajlás – belégzés: lassan gördülj fel",
+    "Hegy – kilégzés: kezek a szív előtt"
+   ],
+   "benefits": "Földel, stabilizál, a figyelmet a talajra és a testre irányítja; lassú, talajközeli ritmus, szorongás és szétszórtság ellen.",
+   "cautions": "Térdpanasznál a guggolásban párna a sarok alá, vagy kerüld. Csuklópanasznál öklön támaszkodj. Bokapanasznál kisebb guggolás.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "elme",
+    "tartas",
+    "emesztes",
+    "hajlekonysag"
+   ]
+  },
+  {
+   "id": "talajkozeli-foldudvozlet",
+   "sanskrit": "Pṛthvī Namaskāra (térdelő)",
+   "hu": "Térdelő földüdvözlet",
+   "en": "Kneeling Earth Salutation",
+   "category": "fold",
+   "level": 1,
+   "traditions": [
+    "hatha",
+    "restor"
+   ],
+   "sided": false,
+   "rounds": 3,
+   "duration": "3–5 kör",
+   "flow": [
+    {
+     "pose": "vajrasana",
+     "breath": "ki",
+     "cue": "sarkon ülés, kezek a combon"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "térdelő helyzetben karok fel"
+    },
+    {
+     "pose": "sasankasana-sasangasana",
+     "breath": "ki",
+     "cue": "előrehajlás, homlok a földön"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki",
+     "cue": "rövid kutya, vagy maradj négykézláb"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "balasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "vajrasana",
+     "breath": "be",
+     "cue": "lassan felgördülés"
+    }
+   ],
+   "steps": [
+    "Gyémánt (sarokülés) – kilégzés: sarkon ülés, kezek a combon",
+    "Felfelé nyújtott kezek – belégzés: térdelő helyzetben karok fel",
+    "Nyúl – kilégzés: előrehajlás, homlok a földön",
+    "Asztal (négykézláb) – belégzés",
+    "Lefelé néző kutya – kilégzés: rövid kutya, vagy maradj négykézláb",
+    "Asztal (négykézláb) – belégzés",
+    "Gyermek – kilégzés",
+    "Gyémánt (sarokülés) – belégzés: lassan felgördülés"
+   ],
+   "benefits": "Nagyon kíméletes, földelő sorozat; ráhangolódásra, levezetésre, idősebbeknek, várandósoknak (térdelő változat).",
+   "cautions": "Térdpanasznál párna a térd és a sarok közé. Glaukómánál, magas vérnyomásnál a lefelé néző kutyát hagyd ki.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "elme",
+    "alvas",
+    "emesztes"
+   ]
+  },
+  {
+   "id": "alap-vinyasa",
+   "sanskrit": "Vinyāsa",
+   "hu": "Alap vinyásza (átmenet)",
+   "en": "Basic vinyasa",
+   "category": "vinyasa",
+   "level": 1,
+   "traditions": [
+    "ashtanga"
+   ],
+   "sided": false,
+   "rounds": 1,
+   "duration": "pózok között 1×",
+   "flow": [
+    {
+     "pose": "phalakasana",
+     "breath": "be"
+    },
+    {
+     "pose": "caturanga-dandasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-mukha-svanasana",
+     "breath": "be"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Deszka – belégzés",
+    "Négy ponton álló bot – kilégzés",
+    "Felfelé néző kutya – belégzés",
+    "Lefelé néző kutya – kilégzés"
+   ],
+   "benefits": "Az ászanák közötti áramlás alapegysége: újramelegít, kiegyensúlyozza a hátra- és előrehajlásokat, erősíti a kart és a törzset.",
+   "cautions": "Csukló- vagy vállsérülésnél a kezdő (térdelő) változatot használd. Derékpanasznál felfelé néző kutya helyett kobra.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas"
+   ]
+  },
+  {
+   "id": "kezdo-vinyasa",
+   "sanskrit": "Vinyāsa (kíméletes)",
+   "hu": "Kezdő vinyásza (térdelő)",
+   "en": "Gentle vinyasa",
+   "category": "vinyasa",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 1,
+   "duration": "pózok között 1×",
+   "flow": [
+    {
+     "pose": "phalakasana",
+     "breath": "be",
+     "cue": "térd a talajon is lehet"
+    },
+    {
+     "pose": "astanga-namaskara",
+     "breath": "ki",
+     "cue": "térd, mellkas, áll le"
+    },
+    {
+     "pose": "bhujangasana",
+     "breath": "be",
+     "cue": "alacsony kobra"
+    },
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Deszka – belégzés: térd a talajon is lehet",
+    "Nyolcpontos üdvözlés – kilégzés: térd, mellkas, áll le",
+    "Kobra – belégzés: alacsony kobra",
+    "Lefelé néző kutya – kilégzés"
+   ],
+   "benefits": "Az alap vinyásza kíméletes változata: ugyanazt az ívet adja kevesebb kar- és vállterheléssel.",
+   "cautions": "Csuklópanasznál öklön támaszkodj. Térdpanasznál takaró a térd alá.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "tartas",
+    "hajlekonysag"
+   ]
+  },
+  {
+   "id": "harcos-aramlas",
+   "sanskrit": "Vīrabhadra krama",
+   "hu": "Harcos-áramlás",
+   "en": "Warrior flow",
+   "category": "vinyasa",
+   "level": 2,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": true,
+   "rounds": 3,
+   "duration": "3–5 kör oldalanként",
+   "flow": [
+    {
+     "pose": "virabhadrasana-ii",
+     "breath": "be",
+     "cue": "harcos II"
+    },
+    {
+     "pose": "viparita-virabhadrasana",
+     "breath": "be",
+     "cue": "fordított harcos"
+    },
+    {
+     "pose": "utthita-parsvakonasana",
+     "breath": "ki",
+     "cue": "kiterjesztett oldalszög"
+    },
+    {
+     "pose": "virabhadrasana-ii",
+     "breath": "be"
+    },
+    {
+     "pose": "virabhadrasana-i",
+     "breath": "ki",
+     "cue": "csípő előre fordul"
+    }
+   ],
+   "steps": [
+    "Harcos II – belégzés: harcos II",
+    "Fordított harcos – belégzés: fordított harcos",
+    "Kiterjesztett oldalszög – kilégzés: kiterjesztett oldalszög",
+    "Harcos II – belégzés",
+    "Harcos I – kilégzés: csípő előre fordul"
+   ],
+   "benefits": "Erőt, kitartást és földeltséget ad; erősíti a lábat, nyitja a csípőt és a mellkast, bátorságot, elszántságot ébreszt.",
+   "cautions": "Térdpanasznál a térd ne menjen a boka elé, kisebb hajlítás. Csípőpanasznál rövidebb terpesz. Vállpanasznál csípőre tett kézzel. Magas vérnyomásnál ne tartsd sokáig a karokat a fej fölött.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1,
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "fold",
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "allokepesseg",
+    "tartas",
+    "hajlekonysag"
+   ]
+  },
+  {
+   "id": "istenno-csillag",
+   "sanskrit": "Utkaṭa Koṇāsana krama",
+   "hu": "Istennő–csillag áramlás",
+   "en": "Goddess–star flow",
+   "category": "vinyasa",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 6,
+   "duration": "5–8 kör",
+   "flow": [
+    {
+     "pose": "utthita-tadasana",
+     "breath": "be",
+     "cue": "csillag, karok oldalra-fel"
+    },
+    {
+     "pose": "utkata-konasana",
+     "breath": "ki",
+     "cue": "istennő, könyök hajlítva, tenyér előre"
+    }
+   ],
+   "steps": [
+    "Csillag – belégzés: csillag, karok oldalra-fel",
+    "Istennő – kilégzés: istennő, könyök hajlítva, tenyér előre"
+   ],
+   "benefits": "Melegít, erősíti a combot és a medencefenéket, nyitja a csípőt; a szakrális energiát, kreativitást ébreszti.",
+   "cautions": "Térdpanasznál kisebb hajlítás, a térd a lábujjak irányába nézzen. Várandósság alatt szélesebb, kényelmes terpesz.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "allokepesseg",
+    "hormon",
+    "hajlekonysag"
+   ]
+  },
+  {
+   "id": "szek-aramlas",
+   "sanskrit": "Utkaṭāsana krama",
+   "hu": "Szék-áramlás csavarral",
+   "en": "Chair flow with twist",
+   "category": "vinyasa",
+   "level": 2,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": true,
+   "rounds": 3,
+   "duration": "3–5 kör",
+   "flow": [
+    {
+     "pose": "utkatasana",
+     "breath": "be"
+    },
+    {
+     "pose": "parivrtta-utkatasana",
+     "breath": "ki",
+     "cue": "csavar jobbra"
+    },
+    {
+     "pose": "utkatasana",
+     "breath": "be"
+    },
+    {
+     "pose": "parivrtta-utkatasana",
+     "breath": "ki",
+     "cue": "csavar balra"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "felegyenesedés"
+    }
+   ],
+   "steps": [
+    "Szék – belégzés",
+    "Csavart szék – kilégzés: csavar jobbra",
+    "Szék – belégzés",
+    "Csavart szék – kilégzés: csavar balra",
+    "Álló előrehajlás – kilégzés",
+    "Felfelé nyújtott kezek – belégzés: felegyenesedés"
+   ],
+   "benefits": "Felmelegít, erősíti a combot és a törzset, a csavar serkenti az emésztést és méregtelenít.",
+   "cautions": "Térdpanasznál kisebb hajlítás. Derékpanasznál, porckorongsérvnél óvatos, kis csavar. Várandósság alatt csavar nélkül.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg",
+    "tartas"
+   ]
+  },
+  {
+   "id": "csipo-nyito-aramlas",
+   "sanskrit": "Añjaneyāsana krama",
+   "hu": "Kitörés–félspárga áramlás",
+   "en": "Lunge–half split flow",
+   "category": "vinyasa",
+   "level": 1,
+   "traditions": [
+    "hatha",
+    "yin"
+   ],
+   "sided": true,
+   "rounds": 4,
+   "duration": "4–6 kör oldalanként",
+   "flow": [
+    {
+     "pose": "adho-mukha-svanasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "eka-pada-adho-mukha-svanasana",
+     "breath": "be",
+     "cue": "háromlábú kutya"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "ki",
+     "cue": "láb előre, hátsó térd le"
+    },
+    {
+     "pose": "ardha-hanumanasana",
+     "breath": "ki",
+     "cue": "csípő hátra, első láb nyújtva"
+    },
+    {
+     "pose": "anjaneyasana",
+     "breath": "be",
+     "cue": "csípő előre, karok fel"
+    }
+   ],
+   "steps": [
+    "Lefelé néző kutya – kilégzés",
+    "Háromlábú kutya – belégzés: háromlábú kutya",
+    "Alacsony kitörés – kilégzés: láb előre, hátsó térd le",
+    "Félspárga – kilégzés: csípő hátra, első láb nyújtva",
+    "Alacsony kitörés – belégzés: csípő előre, karok fel"
+   ],
+   "benefits": "Dinamikusan nyújtja a csípőhajlítókat és a combhajlítókat; ülőmunka után, futók és kerékpárosok számára kiváló.",
+   "cautions": "Térdpanasznál takaró a hátsó térd alá. Combhajlító-sérülésnél ne nyújtsd teljesen az első lábat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "hajlekonysag",
+    "tartas"
+   ]
+  },
+  {
+   "id": "macska-tehen",
+   "sanskrit": "Marjaryāsana–Bitilāsana",
+   "hu": "Macska–tehén áramlás",
+   "en": "Cat–cow flow",
+   "category": "gyenged",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 8,
+   "duration": "5–10 kör",
+   "flow": [
+    {
+     "pose": "bharmanasana",
+     "breath": "ki",
+     "cue": "csukló a váll, térd a csípő alatt"
+    },
+    {
+     "pose": "bitilasana",
+     "breath": "be",
+     "cue": "medence billen, mellkas előre"
+    },
+    {
+     "pose": "marjaryasana",
+     "breath": "ki",
+     "cue": "gerinc kerekítése, köldök befelé"
+    }
+   ],
+   "steps": [
+    "Asztal (négykézláb) – kilégzés: csukló a váll, térd a csípő alatt",
+    "Tehén – belégzés: medence billen, mellkas előre",
+    "Macska – kilégzés: gerinc kerekítése, köldök befelé"
+   ],
+   "benefits": "A gerinc minden csigolyáját átmozgatja, összehangolja a légzést és a mozgást; bemelegítésre, ráhangolódásra.",
+   "cautions": "Csuklópanasznál öklön vagy alkaron. Térdpanasznál takaró a térd alá. Nyaksérülésnél a fej a gerinc vonalában maradjon.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "tartas",
+    "emesztes",
+    "hajlekonysag"
+   ]
+  },
+  {
+   "id": "gyermek-kobra-hullam",
+   "sanskrit": "Śaśāṅka–Bhujaṅgāsana",
+   "hu": "Gyermek–kobra hullám",
+   "en": "Child–cobra wave",
+   "category": "gyenged",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 6,
+   "duration": "5–8 kör",
+   "flow": [
+    {
+     "pose": "balasana",
+     "breath": "ki",
+     "cue": "homlok a földön, karok előre"
+    },
+    {
+     "pose": "bharmanasana",
+     "breath": "be",
+     "cue": "előregördülés"
+    },
+    {
+     "pose": "bhujangasana",
+     "breath": "be",
+     "cue": "alacsony kobra, a csípő leér"
+    },
+    {
+     "pose": "balasana",
+     "breath": "ki",
+     "cue": "vissza a sarkakra"
+    }
+   ],
+   "steps": [
+    "Gyermek – kilégzés: homlok a földön, karok előre",
+    "Asztal (négykézláb) – belégzés: előregördülés",
+    "Kobra – belégzés: alacsony kobra, a csípő leér",
+    "Gyermek – kilégzés: vissza a sarkakra"
+   ],
+   "benefits": "Hullámszerűen váltja az előre- és hátrahajlást: átmozgatja a gerincet, nyitja a szívet, megnyugtat.",
+   "cautions": "Térdpanasznál párna a térd és a sarok közé. Derékpanasznál nagyon alacsony kobra.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "tartas",
+    "elme",
+    "sziv"
+   ]
+  },
+  {
+   "id": "fekvo-csavar-aramlas",
+   "sanskrit": "Jaṭhara Parivartana krama",
+   "hu": "Fekvő csavar-áramlás",
+   "en": "Supine twist flow",
+   "category": "gyenged",
+   "level": 1,
+   "traditions": [
+    "hatha",
+    "restor"
+   ],
+   "sided": false,
+   "rounds": 4,
+   "duration": "4–6 kör",
+   "flow": [
+    {
+     "pose": "apanasana",
+     "breath": "ki",
+     "cue": "térdek a mellkashoz"
+    },
+    {
+     "pose": "jathara-parivartanasana",
+     "breath": "ki",
+     "cue": "térdek jobbra, fej balra"
+    },
+    {
+     "pose": "apanasana",
+     "breath": "be",
+     "cue": "vissza középre"
+    },
+    {
+     "pose": "jathara-parivartanasana",
+     "breath": "ki",
+     "cue": "térdek balra, fej jobbra"
+    },
+    {
+     "pose": "apanasana",
+     "breath": "be"
+    }
+   ],
+   "steps": [
+    "Térd a mellkashoz – kilégzés: térdek a mellkashoz",
+    "Hasforgatás – kilégzés: térdek jobbra, fej balra",
+    "Térd a mellkashoz – belégzés: vissza középre",
+    "Hasforgatás – kilégzés: térdek balra, fej jobbra",
+    "Térd a mellkashoz – belégzés"
+   ],
+   "benefits": "Lazítja a derekat és a hátizmokat, masszírozza a hasi szerveket; levezetésre, relaxáció előtt.",
+   "cautions": "Derékpanasznál, porckorongsérvnél kis mozdulat. Várandósság alatt kerüld. Hasi műtét után várj vele.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "alvas",
+    "tartas"
+   ]
+  },
+  {
+   "id": "szelfelszabadito-aramlas",
+   "sanskrit": "Pavanamuktāsana krama",
+   "hu": "Szélfelszabadító áramlás",
+   "en": "Wind-relieving flow",
+   "category": "gyenged",
+   "level": 1,
+   "traditions": [
+    "hatha",
+    "restor"
+   ],
+   "sided": true,
+   "rounds": 3,
+   "duration": "3–5 kör oldalanként",
+   "flow": [
+    {
+     "pose": "savasana",
+     "breath": "be",
+     "cue": "hanyatt fekvés"
+    },
+    {
+     "pose": "pavanamuktasana",
+     "breath": "ki",
+     "cue": "egyik térd a mellkashoz, fej a térdhez"
+    },
+    {
+     "pose": "savasana",
+     "breath": "be",
+     "cue": "láb vissza"
+    },
+    {
+     "pose": "apanasana",
+     "breath": "ki",
+     "cue": "mindkét térd a mellkashoz"
+    }
+   ],
+   "steps": [
+    "Ellazulás (halott póz) – belégzés: hanyatt fekvés",
+    "Szélfelszabadító – kilégzés: egyik térd a mellkashoz, fej a térdhez",
+    "Ellazulás (halott póz) – belégzés: láb vissza",
+    "Térd a mellkashoz – kilégzés: mindkét térd a mellkashoz"
+   ],
+   "benefits": "Serkenti az emésztést, enyhíti a puffadást, lazítja a derekat; reggeli és esti gyakorlásra egyaránt.",
+   "cautions": "Nyakpanasznál a fej maradjon a talajon. Sérv, hasi műtét után, várandósság alatt kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "tartas"
+   ]
+  },
+  {
+   "id": "felhold-aramlas",
+   "sanskrit": "Ardha Candrāsana krama",
+   "hu": "Félhold-áramlás",
+   "en": "Half moon flow",
+   "category": "hold",
+   "level": 2,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": true,
+   "rounds": 3,
+   "duration": "3–5 kör oldalanként",
+   "flow": [
+    {
+     "pose": "virabhadrasana-ii",
+     "breath": "be"
+    },
+    {
+     "pose": "utthita-trikonasana",
+     "breath": "ki"
+    },
+    {
+     "pose": "ardha-candrasana",
+     "breath": "be",
+     "cue": "súly az első lábra, hátsó láb fel"
+    },
+    {
+     "pose": "utthita-trikonasana",
+     "breath": "ki",
+     "cue": "vissza, lassan"
+    },
+    {
+     "pose": "virabhadrasana-ii",
+     "breath": "be"
+    }
+   ],
+   "steps": [
+    "Harcos II – belégzés",
+    "Háromszög – kilégzés",
+    "Félhold – belégzés: súly az első lábra, hátsó láb fel",
+    "Háromszög – kilégzés: vissza, lassan",
+    "Harcos II – belégzés"
+   ],
+   "benefits": "Egyensúlyt, könnyedséget és oldalirányú nyújtást ad; a holdi minőség: nyitottság, befogadás, lebegés a stabil alap fölött.",
+   "cautions": "Alacsony vérnyomásnál, szédülésnél a tekintet a talajra. Nyakpanasznál ne fordítsd fel a fejet. Térdpanasznál ne feszítsd túl a térdet. Szükség esetén téglával.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6,
+     1
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "hajlekonysag",
+    "tartas",
+    "elme"
+   ]
+  },
+  {
+   "id": "guggolo-aramlas",
+   "sanskrit": "Mālāsana krama",
+   "hu": "Guggolás-áramlás",
+   "en": "Squat flow",
+   "category": "fold",
+   "level": 1,
+   "traditions": [
+    "hatha"
+   ],
+   "sided": false,
+   "rounds": 4,
+   "duration": "4–6 kör",
+   "flow": [
+    {
+     "pose": "tadasana",
+     "breath": "be",
+     "cue": "csípőszéles állás"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki",
+     "cue": "hajlított térddel"
+    },
+    {
+     "pose": "malasana",
+     "breath": "be",
+     "cue": "guggolás, könyök a térdek között, kezek a szív előtt"
+    },
+    {
+     "pose": "uttanasana",
+     "breath": "ki",
+     "cue": "csípő fel"
+    },
+    {
+     "pose": "urdhva-hastasana",
+     "breath": "be",
+     "cue": "felgördülés, karok fel"
+    },
+    {
+     "pose": "tadasana",
+     "breath": "ki"
+    }
+   ],
+   "steps": [
+    "Hegy – belégzés: csípőszéles állás",
+    "Álló előrehajlás – kilégzés: hajlított térddel",
+    "Guggolás (füzér) – belégzés: guggolás, könyök a térdek között, kezek a szív előtt",
+    "Álló előrehajlás – kilégzés: csípő fel",
+    "Felfelé nyújtott kezek – belégzés: felgördülés, karok fel",
+    "Hegy – kilégzés"
+   ],
+   "benefits": "Földel, nyitja a csípőt és a medencét, erősíti a lábat; az apána (lefelé áramló energia) támogatása, emésztés, elengedés.",
+   "cautions": "Térdpanasznál kisebb guggolás vagy blokk a fenék alá. Bokapanasznál takaró a sarok alá. Várandósság alatt csak támasszal.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hajlekonysag",
+    "hormon"
+   ]
+  }
+ ]
+}
