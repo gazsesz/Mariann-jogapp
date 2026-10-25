@@ -6,9 +6,9 @@ import { confirm } from '../../lib/confirm';
 import { levelName } from '../../lib/data';
 import { deletePlan, deleteSeries, listPlans, listSeries, savePlan, useDb } from '../../lib/store';
 import { fold } from '../../lib/filters';
-import { createPlan, duplicatePlan, poseCount } from '../../lib/plan';
+import { createPlan, duplicatePlan, countLabel } from '../../lib/plan';
 import { seriesIndex } from '../../lib/series';
-import { C } from '../../lib/theme';
+import { C, WIDE } from '../../lib/theme';
 import type { Plan, Series } from '../../lib/types';
 
 type Mode = 'orak' | 'tematikak';
@@ -71,27 +71,29 @@ export default function PlansScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: C.bg }}>
       <View style={st.top}>
-        <View style={st.segment}>
-          {(
-            [
-              ['orak', `Órák (${plans.length})`],
-              ['tematikak', `Tematikák (${series.length})`],
-            ] as [Mode, string][]
-          ).map(([m, label]) => (
-            <Pressable key={m} onPress={() => setMode(m)} style={[st.segBtn, mode === m && st.segActive]} accessibilityRole="tab">
-              <Text style={[st.segText, mode === m && st.segTextActive]}>{label}</Text>
-            </Pressable>
-          ))}
-        </View>
-        <View style={st.bar}>
-          <TextInput
-            style={st.search}
-            placeholder={mode === 'orak' ? 'Keresés címre, témára, címkére' : 'Keresés tematikára, napra'}
-            placeholderTextColor={C.muted}
-            value={query}
-            onChangeText={setQuery}
-          />
-          <Button label={mode === 'orak' ? '+ Új óra' : '+ Új tematika'} onPress={create} />
+        <View style={WIDE}>
+          <View style={st.segment}>
+            {(
+              [
+                ['orak', `Órák (${plans.length})`],
+                ['tematikak', `Tematikák (${series.length})`],
+              ] as [Mode, string][]
+            ).map(([m, label]) => (
+              <Pressable key={m} onPress={() => setMode(m)} style={[st.segBtn, mode === m && st.segActive]} accessibilityRole="tab">
+                <Text style={[st.segText, mode === m && st.segTextActive]}>{label}</Text>
+              </Pressable>
+            ))}
+          </View>
+          <View style={st.bar}>
+            <TextInput
+              style={st.search}
+              placeholder={mode === 'orak' ? 'Keresés címre, témára, címkére' : 'Keresés tematikára, napra'}
+              placeholderTextColor={C.muted}
+              value={query}
+              onChangeText={setQuery}
+            />
+            <Button label={mode === 'orak' ? '+ Új óra' : '+ Új tematika'} onPress={create} />
+          </View>
         </View>
       </View>
 
@@ -99,12 +101,12 @@ export default function PlansScreen() {
         <FlatList
           data={shownPlans}
           keyExtractor={(p) => p.id}
-          contentContainerStyle={{ padding: 12 }}
+          contentContainerStyle={[{ padding: 12 }, WIDE]}
           ListEmptyComponent={
             <Text style={st.empty}>
               {plans.length
                 ? 'Nincs találat.'
-                : 'Még nincs óravázlatod. Hozz létre egyet az „Új óra” gombbal, vagy egy ászana lapjáról add hozzá.'}
+                : 'Még nincs óravázlatod. Hozz létre egyet az „Új óra” gombbal, vagy egy ászana, mudra, pránájáma lapjáról add hozzá.'}
             </Text>
           }
           renderItem={({ item: p }) => {
@@ -122,7 +124,7 @@ export default function PlansScreen() {
                 <Text style={st.title}>{p.title || 'Névtelen óra'}</Text>
                 {!!p.theme && <Text style={st.theme}>{p.theme}</Text>}
                 <Text style={st.meta}>
-                  {poseCount(p)} ászana
+                  {countLabel(p)}
                   {p.durationMin ? ` · ${p.durationMin} perc` : ''}
                   {p.level ? ` · ${levelName(p.level)}` : ''}
                   {' · '}
@@ -147,7 +149,7 @@ export default function PlansScreen() {
         <FlatList
           data={shownSeries}
           keyExtractor={(s) => s.id}
-          contentContainerStyle={{ padding: 12 }}
+          contentContainerStyle={[{ padding: 12 }, WIDE]}
           ListEmptyComponent={
             <Text style={st.empty}>
               {series.length

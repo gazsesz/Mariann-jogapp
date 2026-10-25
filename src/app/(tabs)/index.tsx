@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
-import { PoseBrowser } from '../../components/PoseBrowser';
+import { PracticeBrowser } from '../../components/PracticeBrowser';
 
 export default function AsanaCatalogue() {
-  return <PoseBrowser onSelect={(p) => router.push({ pathname: '/pose/[id]', params: { id: p.id } })} />;
+  return <PracticeBrowser kind="asana" onSelect={(p) => router.push({ pathname: '/pose/[id]', params: { id: p.id } })} />;
 }

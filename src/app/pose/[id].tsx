@@ -1,39 +1,60 @@
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { PoseFigure } from '../../components/PoseFigure';
+import { PracticeThumb } from '../../components/PracticeRow';
 import { Button, SectionTitle, Tag } from '../../components/ui';
 import { CONDITION_BY_ID, poseConditions } from '../../lib/cautions';
-import { BENEFIT_BY_ID, CATEGORY_BY_ID, CHAKRA_BY_ID, ELEMENT_BY_ID, levelName, POSE_BY_ID, TRADITION_BY_ID } from '../../lib/data';
-import { C } from '../../lib/theme';
+import { BENEFIT_BY_ID, categoryName, CHAKRA_BY_ID, ELEMENT_BY_ID, KINDS, levelName, TRADITION_BY_ID } from '../../lib/data';
+import { C, WIDE } from '../../lib/theme';
+import type { Kind, Technique } from '../../lib/types';
 
-export default function PoseDetail() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const p = POSE_BY_ID[id];
-  if (!p) return <Text style={{ padding: 24 }}>Nem található ászana.</Text>;
+/** Ászana, mudra vagy pránájáma adatlapja (a `kind` paraméter dönti el, alapból ászana). */
+export default function PracticeDetail() {
+  const params = useLocalSearchParams<{ id: string; kind?: Kind }>();
+  const kind: Kind = params.kind && params.kind in KINDS ? params.kind : 'asana';
+  const p = KINDS[kind].byId[params.id];
+  if (!p) return <Text style={{ padding: 24 }}>Nem található.</Text>;
+  const t = p as Technique;
   const primary = CHAKRA_BY_ID[p.chakras.primary];
   const conds = poseConditions(p);
 
   return (
-    <ScrollView style={{ flex: 1 }} contentContainerStyle={st.content}>
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={[st.content, WIDE]}>
       <Stack.Screen options={{ title: p.hu }} />
       <View style={st.figure}>
-        <PoseFigure figure={p.figure} width={240} />
+        <PracticeThumb practice={p} kind={kind} width={240} />
       </View>
       <Text style={st.hu}>{p.hu}</Text>
       <Text style={st.sk}>
         {p.sanskrit} · {p.en}
       </Text>
       <View style={st.tags}>
-        <Tag label={CATEGORY_BY_ID[p.category]?.name ?? p.category} />
+        {kind !== 'asana' && <Tag label={KINDS[kind].label} tone="gold" />}
+        <Tag label={categoryName(kind, p.category)} />
         <Tag label={levelName(p.level)} />
-        {p.traditions.map((t) => (
-          <Tag key={t} label={TRADITION_BY_ID[t]?.name ?? t} />
+        {(p.traditions ?? []).map((tr) => (
+          <Tag key={tr} label={TRADITION_BY_ID[tr]?.name ?? tr} />
         ))}
       </View>
+      {(!!t.pattern || !!t.duration) && (
+        <View style={st.facts}>
+          {!!t.pattern && (
+            <Text style={st.body}>
+              <Text style={{ fontWeight: '700' }}>Ritmus: </Text>
+              {t.pattern}
+            </Text>
+          )}
+          {!!t.duration && (
+            <Text style={st.body}>
+              <Text style={{ fontWeight: '700' }}>Ajánlott: </Text>
+              {t.duration}
+            </Text>
+          )}
+        </View>
+      )}
 
       <Button
         label="Hozzáadás óravázlathoz"
-        onPress={() => router.push({ pathname: '/add-to-plan', params: { poseId: p.id } })}
+        onPress={() => router.push({ pathname: '/add-to-plan', params: { poseId: p.id, kind } })}
         style={{ marginTop: 12 }}
       />
 
@@ -112,5 +133,6 @@ const st = StyleSheet.create({
   muted: { color: C.muted, marginTop: 4 },
   chakraRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
   dot: { width: 12, height: 12, borderRadius: 6, marginRight: 8 },
+  facts: { marginTop: 10, backgroundColor: C.accentSoft, borderRadius: 12, padding: 12, gap: 4 },
   warnBox: { backgroundColor: C.warnSoft, borderRadius: 12, padding: 12 },
 });

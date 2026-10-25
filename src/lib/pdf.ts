@@ -1,7 +1,7 @@
 import { CONDITION_BY_ID, planWarnings } from './cautions';
-import { CHAKRA_BY_ID, ELEMENT_BY_ID, levelName, POSE_BY_ID } from './data';
+import { CHAKRA_BY_ID, ELEMENT_BY_ID, isPose, itemKind, KINDS, levelName, practiceOf } from './data';
 import { figureSvg } from './figure';
-import { poseCount, SIDES_LABEL } from './plan';
+import { countLabel, SIDES_LABEL } from './plan';
 import type { Plan, Series } from './types';
 
 const PDF_FIGURE = { fig: '#2b2f3a', far: '#a8b1ad', mat: '#b9c8d9', eye: '#ffffff', strap: '#a86f0c' };
@@ -11,11 +11,11 @@ const esc = (s: string) =>
 
 /** Nyomtatható óravázlat HTML-ben (expo-print ebből készít PDF-et). */
 export function planHtml(plan: Plan): string {
-  const warnByItem = new Map(planWarnings(plan, POSE_BY_ID).map((w) => [w.itemKey, w]));
+  const warnByItem = new Map(planWarnings(plan, practiceOf).map((w) => [w.itemKey, w]));
   const meta = [
     plan.level ? levelName(plan.level) : 'Vegyes szint',
     plan.durationMin ? `${plan.durationMin} perc` : '',
-    `${poseCount(plan)} ászana`,
+    countLabel(plan),
   ].filter(Boolean).join(' · ');
   const conditions = plan.conditions.map((c) => CONDITION_BY_ID[c]?.name).filter(Boolean);
 
@@ -23,15 +23,16 @@ export function planHtml(plan: Plan): string {
     .map((s) => {
       const rows = s.items
         .map((it, i) => {
-          const p = POSE_BY_ID[it.poseId];
+          const p = practiceOf(it);
           if (!p) return '';
+          const pattern = 'pattern' in p && typeof p.pattern === 'string' ? p.pattern : '';
           const w = warnByItem.get(it.key);
           const ch = CHAKRA_BY_ID[p.chakras.primary];
           const el = ELEMENT_BY_ID[p.elements.primary];
-          const details = [it.hold, it.sides !== 'nincs' ? SIDES_LABEL[it.sides] : ''].filter(Boolean).join(' · ');
+          const details = [pattern, it.hold, it.sides !== 'nincs' ? SIDES_LABEL[it.sides] : ''].filter(Boolean).join(' · ');
           return `<tr>
             <td class="n">${i + 1}.</td>
-            <td class="fig">${figureSvg(p.figure, PDF_FIGURE, 84)}</td>
+            <td class="fig">${isPose(p) ? figureSvg(p.figure, PDF_FIGURE, 84) : `<span class="kind">${esc(KINDS[itemKind(it)].label)}</span>`}</td>
             <td>
               <div class="name">${esc(p.hu)} <span class="sk">${esc(p.sanskrit)}</span></div>
               ${details ? `<div class="det">${esc(details)}</div>` : ''}
@@ -69,6 +70,7 @@ export function planHtml(plan: Plan): string {
   .warn { color: #a2412b; margin-top: 2px; font-size: 11px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin-right: 4px; }
   .empty { color: #5d6470; }
+  .kind { display: inline-block; padding: 3px 8px; border-radius: 10px; background: #dfe4f3; color: #3d4f8f; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
 </style></head><body>
   <h1>${esc(plan.title || 'Óravázlat')}</h1>
   ${plan.theme ? `<div class="theme">${esc(plan.theme)}</div>` : ''}
@@ -91,9 +93,9 @@ export function seriesHtml(series: Series, plans: Map<string, Plan>): string {
             .map(
               (s) =>
                 `<div class="sec"><b>${esc(s.title)}:</b> ${s.items
-                  .map((it) => POSE_BY_ID[it.poseId])
-                  .filter(Boolean)
-                  .map((x) => esc(x.hu))
+                  .map((it) => practiceOf(it)?.hu)
+                  .filter((x): x is string => !!x)
+                  .map(esc)
                   .join(', ')}</div>`,
             )
             .join('')

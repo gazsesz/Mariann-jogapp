@@ -18,3 +18,6 @@ export const C = {
 };
 
 export const FIGURE_COLORS = { fig: C.fig, far: C.figFar, mat: C.mat, eye: C.panel, strap: C.gold };
+
+/** Tableten (pl. Galaxy Tab S6 Lite) ne nyúljon szét a tartalom: középre igazított, max. 860 px széles oszlop. */
+export const WIDE = { width: '100%', maxWidth: 860, alignSelf: 'center' } as const;

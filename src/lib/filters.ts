@@ -1,4 +1,4 @@
-import type { Pose } from './types';
+import type { Practice } from './types';
 
 /**
  * Kombinálható szűrők: egy csoporton belül VAGY, csoportok között ÉS.
@@ -31,7 +31,7 @@ export const EMPTY_FILTER: PoseFilter = {
 export const fold = (s: string) =>
   s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
-const searchKey = (p: Pose) => fold([p.hu, p.sanskrit, p.en, p.id].join(' '));
+const searchKey = (p: Practice) => fold([p.hu, p.sanskrit, p.en, p.id].join(' '));
 
 export function activeFilterCount(f: PoseFilter): number {
   return (
@@ -44,10 +44,10 @@ export function activeFilterCount(f: PoseFilter): number {
   );
 }
 
-export function matchesFilter(p: Pose, f: PoseFilter): boolean {
+export function matchesFilter(p: Practice, f: PoseFilter): boolean {
   if (f.categories.length && !f.categories.includes(p.category)) return false;
   if (f.levels.length && !f.levels.includes(p.level)) return false;
-  if (f.traditions.length && !p.traditions.some((t) => f.traditions.includes(t))) return false;
+  if (f.traditions.length && !p.traditions?.some((t) => f.traditions.includes(t))) return false;
   if (f.chakras.length) {
     const own = f.primaryChakraOnly ? [p.chakras.primary] : [p.chakras.primary, ...p.chakras.secondary];
     if (!own.some((c) => f.chakras.includes(c))) return false;
@@ -62,7 +62,7 @@ export function matchesFilter(p: Pose, f: PoseFilter): boolean {
   return true;
 }
 
-export function filterPoses(poses: Pose[], f: PoseFilter): Pose[] {
+export function filterPoses<T extends Practice>(poses: T[], f: PoseFilter): T[] {
   return poses.filter((p) => matchesFilter(p, f));
 }
 

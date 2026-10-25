@@ -12,6 +12,25 @@ function PoseIcon({ color }: { color: ColorValue }) {
   );
 }
 
+function MudraIcon({ color }: { color: ColorValue }) {
+  const c = color as string;
+  return (
+    <Svg width={26} height={26} viewBox="0 0 24 24">
+      <Circle cx={10} cy={13} r={4.5} stroke={c} strokeWidth={2} fill="none" />
+      <Path d="M14 10l5-5M15 13l6-3M14.5 16l5 2" stroke={c} strokeWidth={2} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+function BreathIcon({ color }: { color: ColorValue }) {
+  const c = color as string;
+  return (
+    <Svg width={26} height={26} viewBox="0 0 24 24">
+      <Path d="M3 8c3-3 6-3 9 0s6 3 9 0M3 13c3-3 6-3 9 0s6 3 9 0M3 18c3-3 6-3 9 0s6 3 9 0" stroke={c} strokeWidth={2} strokeLinecap="round" fill="none" />
+    </Svg>
+  );
+}
+
 function PlanIcon({ color }: { color: ColorValue }) {
   const c = color as string;
   return (
@@ -34,8 +53,10 @@ export default function TabsLayout() {
         headerTitleStyle: { color: C.ink },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: 'Ászanatár', tabBarIcon: PoseIcon }} />
-      <Tabs.Screen name="plans" options={{ title: 'Óravázlataim', tabBarIcon: PlanIcon }} />
+      <Tabs.Screen name="index" options={{ title: 'Ászanatár', tabBarLabel: 'Ászanák', tabBarIcon: PoseIcon }} />
+      <Tabs.Screen name="mudrak" options={{ title: 'Mudratár', tabBarLabel: 'Mudrák', tabBarIcon: MudraIcon }} />
+      <Tabs.Screen name="pranayamak" options={{ title: 'Pránájámák', tabBarLabel: 'Pránájáma', tabBarIcon: BreathIcon }} />
+      <Tabs.Screen name="plans" options={{ title: 'Óravázlataim', tabBarLabel: 'Óráim', tabBarIcon: PlanIcon }} />
     </Tabs>
   );
 }

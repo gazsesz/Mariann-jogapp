@@ -52,10 +52,52 @@ test('keresés ékezet nélkül is talál', () => {
   assert.ok(hu.length >= 2);
 });
 
-test('minden panasz-minta legalább egy ászanára illik', () => {
+test('minden panasz-minta legalább egy gyakorlatra illik', async () => {
+  const { KINDS } = await import('../src/lib/data');
+  const all = [...KINDS.asana.items, ...KINDS.mudra.items, ...KINDS.pranayama.items];
   for (const c of CONDITIONS) {
-    assert.ok(POSES.some((p) => poseConditions(p).includes(c.id)), c.id);
+    assert.ok(all.some((p) => poseConditions(p).includes(c.id)), c.id);
   }
+});
+
+test('mudrák és pránájámák: teljes, érvényes adat, szűrhető', async () => {
+  const { KINDS } = await import('../src/lib/data');
+  const els = new Set(DATA.elements.map((e) => e.id));
+  const bens = new Set(DATA.benefitAreas.map((b) => b.id));
+  for (const kind of ['mudra', 'pranayama'] as const) {
+    const info = KINDS[kind];
+    assert.ok(info.items.length >= 20, kind);
+    const cats = new Set(info.categories.map((c) => c.id));
+    for (const p of info.items) {
+      assert.ok(cats.has(p.category), `${kind} ${p.id}`);
+      assert.ok(els.has(p.elements.primary), p.id);
+      assert.ok(p.steps.length > 0 && p.cautions && p.benefits, p.id);
+      p.benefitAreas.forEach((b) => assert.ok(bens.has(b), `${p.id}: ${b}`));
+    }
+    for (const c of info.categories) assert.ok(info.items.some((p) => p.category === c.id), `${kind} üres kategória: ${c.id}`);
+  }
+  const calming = filterPoses(KINDS.pranayama.items, { ...EMPTY_FILTER, categories: ['nyugtato'], benefits: ['alvas'] });
+  assert.ok(calming.length > 0);
+});
+
+test('óravázlat vegyes gyakorlatokkal: figyelmeztetés, egyensúly, PDF', async () => {
+  const { KINDS, practiceOf } = await import('../src/lib/data');
+  const { planBalance } = await import('../src/lib/analysis');
+  const { countLabel } = await import('../src/lib/plan');
+  let plan = { ...createPlan('Vegyes'), conditions: ['magasvn'] };
+  plan = addItem(plan, plan.sections[0].key, newItem(KINDS.pranayama.byId['kapalabhati'], 'pranayama'));
+  plan = addItem(plan, plan.sections[0].key, newItem(KINDS.mudra.byId['jnana-mudra'], 'mudra'));
+  plan = addItem(plan, plan.sections[2].key, newItem(byId['tadasana']));
+  assert.equal(countLabel(plan), '1 ászana · 1 mudra · 1 pránájáma');
+  assert.equal(plan.sections[0].items[0].hold, '3 × 20–60');
+  const w = planWarnings(plan, practiceOf);
+  assert.deepEqual(w.map((x) => x.practice.id), ['kapalabhati']);
+  const b = planBalance(plan, practiceOf);
+  assert.equal(Object.values(b.elements).reduce((a, n) => a + n, 0), 3);
+  const html = planHtml(plan);
+  assert.ok(html.includes('Koponyafénylés') && html.includes('Pránájáma') && html.includes('A tudás mudrája'));
+  // régi mentés (kind nélkül) ászanaként olvasódik
+  assert.equal(practiceOf({ poseId: 'tadasana' })?.id, 'tadasana');
 });
 
 test('figyelmeztetés: jelzett panasz és túl magas szint', () => {
@@ -64,9 +106,9 @@ test('figyelmeztetés: jelzett panasz és túl magas szint', () => {
   plan = { ...plan, level: 1, conditions: ['magasvn'] };
   plan = addItem(plan, plan.sections[2].key, newItem(sirsasana));
   plan = addItem(plan, plan.sections[2].key, newItem(byId['tadasana']));
-  const w = planWarnings(plan, byId);
+  const w = planWarnings(plan, (it) => byId[it.poseId]);
   assert.equal(w.length, 1);
-  assert.equal(w[0].pose.id, sirsasana.id);
+  assert.equal(w[0].practice.id, sirsasana.id);
   assert.ok(w[0].levelTooHigh);
 });
 
@@ -124,7 +166,7 @@ test('tematika: sablonok, napi óravázlat, hozzárendelés', async () => {
   p = addItem(p, p.sections[2].key, newItem(byId['tadasana']));
   s.days[0].planId = p.id;
   assert.equal(seriesIndex([s]).get(p.id)?.day, 0);
-  assert.deepEqual(dominantElements(planBalance(p, byId).elements), ['fold']);
+  assert.deepEqual(dominantElements(planBalance(p, (it) => byId[it.poseId]).elements), ['fold']);
   const html = seriesHtml(s, new Map([[p.id, p]]));
   assert.ok(html.includes('1. nap') && html.includes('Hegy') && html.includes('Még nincs óravázlat.'));
 });

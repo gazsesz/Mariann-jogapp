@@ -7,12 +7,12 @@ import { BalanceBars } from '../../components/BalanceBars';
 import { Button, SectionTitle } from '../../components/ui';
 import { dominantElements, planBalance } from '../../lib/analysis';
 import { confirm, notify } from '../../lib/confirm';
-import { DATA, ELEMENT_BY_ID, POSE_BY_ID } from '../../lib/data';
+import { DATA, ELEMENT_BY_ID, practiceOf } from '../../lib/data';
 import { getSeries, listPlans, savePlan, saveSeries, useDb } from '../../lib/store';
 import { seriesHtml } from '../../lib/pdf';
-import { move, poseCount } from '../../lib/plan';
+import { move, countLabel } from '../../lib/plan';
 import { newSeriesDay, planForDay } from '../../lib/series';
-import { C } from '../../lib/theme';
+import { C, WIDE } from '../../lib/theme';
 import type { Plan, Series, SeriesDay } from '../../lib/types';
 
 const SAVED_NOTE =
@@ -67,7 +67,7 @@ export default function SeriesEditor() {
     series?.days.forEach((d) => {
       const p = d.planId ? plans.get(d.planId) : undefined;
       if (!p) return;
-      const b = planBalance(p, POSE_BY_ID).elements;
+      const b = planBalance(p, practiceOf).elements;
       for (const k in b) counts[k] = (counts[k] ?? 0) + b[k];
     });
     return counts;
@@ -93,7 +93,7 @@ export default function SeriesEditor() {
   const hasAnyPlan = series.days.some((d) => d.planId && plans.has(d.planId));
 
   return (
-    <ScrollView style={{ flex: 1 }} contentContainerStyle={st.content} keyboardShouldPersistTaps="handled">
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={[st.content, WIDE]} keyboardShouldPersistTaps="handled">
       <Stack.Screen
         options={{
           title: series.title || 'Tematika',
@@ -130,7 +130,7 @@ export default function SeriesEditor() {
       <SectionTitle>Napok</SectionTitle>
       {series.days.map((d, i) => {
         const plan = d.planId ? plans.get(d.planId) : undefined;
-        const dom = plan ? dominantElements(planBalance(plan, POSE_BY_ID).elements) : [];
+        const dom = plan ? dominantElements(planBalance(plan, practiceOf).elements) : [];
         return (
           <View key={d.key} style={st.day}>
             <View style={st.dayHead}>
@@ -161,7 +161,7 @@ export default function SeriesEditor() {
                 <View style={{ flex: 1 }}>
                   <Text style={st.planTitle}>{plan.title || 'Névtelen óra'}</Text>
                   <Text style={st.planMeta}>
-                    {poseCount(plan)} ászana
+                    {countLabel(plan)}
                     {plan.durationMin ? ` · ${plan.durationMin} perc` : ''}
                     {dom.length ? ` · ${dom.map((e) => ELEMENT_BY_ID[e]?.name).join(', ')}` : ''}
                   </Text>

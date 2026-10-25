@@ -4,17 +4,17 @@ import * as Sharing from 'expo-sharing';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { BalanceBars } from '../../components/BalanceBars';
-import { PoseFigure } from '../../components/PoseFigure';
+import { PracticeThumb } from '../../components/PracticeRow';
 import { Button, Chip, SectionTitle, Tag } from '../../components/ui';
 import { CONDITION_BY_ID, CONDITIONS, planWarnings } from '../../lib/cautions';
 import { confirm, notify } from '../../lib/confirm';
 import { planBalance } from '../../lib/analysis';
-import { CHAKRA_BY_ID, DATA, ELEMENT_BY_ID, POSE_BY_ID } from '../../lib/data';
+import { CHAKRA_BY_ID, DATA, ELEMENT_BY_ID, itemKind, KINDS, practiceOf } from '../../lib/data';
 import { getPlan, savePlan, useDb } from '../../lib/store';
 import { toggle } from '../../lib/filters';
 import { planHtml } from '../../lib/pdf';
 import { move, newId, poseCount, SIDES_LABEL, updateSection } from '../../lib/plan';
-import { C } from '../../lib/theme';
+import { C, WIDE } from '../../lib/theme';
 import type { Plan, PlanItem, Sides } from '../../lib/types';
 
 const SIDES_ORDER: Sides[] = ['nincs', 'mindket', 'jobb', 'bal'];
@@ -75,9 +75,9 @@ export default function PlanEditor() {
     [db],
   );
 
-  const warnings = useMemo(() => (plan ? planWarnings(plan, POSE_BY_ID) : []), [plan]);
+  const warnings = useMemo(() => (plan ? planWarnings(plan, practiceOf) : []), [plan]);
   const warnByItem = useMemo(() => new Map(warnings.map((w) => [w.itemKey, w])), [warnings]);
-  const balance = useMemo(() => (plan ? planBalance(plan, POSE_BY_ID) : null), [plan]);
+  const balance = useMemo(() => (plan ? planBalance(plan, practiceOf) : null), [plan]);
 
   if (missing) return <Text style={{ padding: 24 }}>Ez az óravázlat már nem létezik.</Text>;
   if (!plan) return null;
@@ -100,7 +100,7 @@ export default function PlanEditor() {
   };
 
   return (
-    <ScrollView style={{ flex: 1 }} contentContainerStyle={st.content} keyboardShouldPersistTaps="handled">
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={[st.content, WIDE]} keyboardShouldPersistTaps="handled">
       <Stack.Screen
         options={{
           title: plan.title || 'Óravázlat',
@@ -174,7 +174,7 @@ export default function PlanEditor() {
           <Text style={st.warnTitle}>⚠ {warnings.length} ászanánál figyelj</Text>
           {warnings.map((w) => (
             <Text key={w.itemKey} style={st.warnLine}>
-              • <Text style={{ fontWeight: '700' }}>{w.pose.hu}</Text>
+              • <Text style={{ fontWeight: '700' }}>{w.practice.hu}</Text>
               {w.conditions.length ? ` – ${w.conditions.map((c) => CONDITION_BY_ID[c].name.toLowerCase()).join(', ')}` : ''}
               {w.levelTooHigh ? ' – a célzott szintnél nehezebb' : ''}
             </Text>
@@ -205,8 +205,9 @@ export default function PlanEditor() {
           </View>
 
           {s.items.map((it, ii) => {
-            const pose = POSE_BY_ID[it.poseId];
+            const pose = practiceOf(it);
             if (!pose) return null;
+            const kind = itemKind(it);
             const w = warnByItem.get(it.key);
             const ch = CHAKRA_BY_ID[pose.chakras.primary];
             const el = ELEMENT_BY_ID[pose.elements.primary];
@@ -214,10 +215,11 @@ export default function PlanEditor() {
               <View key={it.key} style={[st.item, w && { borderColor: C.warn }]}>
                 <View style={st.itemTop}>
                   <Text style={st.num}>{ii + 1}.</Text>
-                  <Pressable onPress={() => router.push({ pathname: '/pose/[id]', params: { id: pose.id } })} style={st.itemFig}>
-                    <PoseFigure figure={pose.figure} width={64} />
+                  <Pressable onPress={() => router.push({ pathname: '/pose/[id]', params: { id: pose.id, kind } })} style={st.itemFig}>
+                    <PracticeThumb practice={pose} kind={kind} width={64} />
                   </Pressable>
                   <View style={{ flex: 1 }}>
+                    {kind !== 'asana' && <Text style={st.itemKind}>{KINDS[kind].label}</Text>}
                     <Text style={st.itemName}>{pose.hu}</Text>
                     <Text style={st.itemSk}>
                       {pose.sanskrit}
@@ -236,20 +238,22 @@ export default function PlanEditor() {
                 </View>
                 <View style={st.itemFields}>
                   <TextInput
-                    style={[st.small, { width: 110 }]}
+                    style={[st.small, { width: kind === 'asana' ? 110 : 210, maxWidth: '100%' }]}
                     value={it.hold}
                     onChangeText={(hold) => updateItem(s.key, it.key, { hold })}
                     placeholder="tartás"
                     placeholderTextColor={C.muted}
                   />
-                  <Pressable
-                    style={st.sides}
-                    onPress={() =>
-                      updateItem(s.key, it.key, { sides: SIDES_ORDER[(SIDES_ORDER.indexOf(it.sides) + 1) % SIDES_ORDER.length] })
-                    }
-                  >
-                    <Text style={st.sidesText}>{it.sides === 'nincs' ? 'oldal: –' : SIDES_LABEL[it.sides]}</Text>
-                  </Pressable>
+                  {kind === 'asana' && (
+                    <Pressable
+                      style={st.sides}
+                      onPress={() =>
+                        updateItem(s.key, it.key, { sides: SIDES_ORDER[(SIDES_ORDER.indexOf(it.sides) + 1) % SIDES_ORDER.length] })
+                      }
+                    >
+                      <Text style={st.sidesText}>{it.sides === 'nincs' ? 'oldal: –' : SIDES_LABEL[it.sides]}</Text>
+                    </Pressable>
+                  )}
                 </View>
                 <TextInput
                   style={[st.small, { marginTop: 6 }]}
@@ -270,7 +274,7 @@ export default function PlanEditor() {
           })}
           <Button
             kind="secondary"
-            label="+ Ászana"
+            label="+ Gyakorlat"
             onPress={() => router.push({ pathname: '/pick', params: { planId: plan.id, sectionKey: s.key } })}
             style={{ marginTop: 6 }}
           />
@@ -337,6 +341,7 @@ const st = StyleSheet.create({
   itemTop: { flexDirection: 'row', alignItems: 'center' },
   num: { width: 22, color: C.muted, fontSize: 14 },
   itemFig: { backgroundColor: C.panel, borderRadius: 8, marginRight: 10 },
+  itemKind: { fontSize: 11, fontWeight: '700', color: C.gold, textTransform: 'uppercase', letterSpacing: 0.4 },
   itemName: { fontSize: 15, fontWeight: '600', color: C.ink },
   itemSk: { fontSize: 12, color: C.muted, fontStyle: 'italic' },
   itemFields: { flexDirection: 'row', alignItems: 'center', marginTop: 8, gap: 8 },

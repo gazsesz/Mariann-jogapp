@@ -1,56 +1,61 @@
 import { useMemo, useState } from 'react';
 import { Pressable, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
-import { DATA, POSES } from '../lib/data';
+import { KINDS } from '../lib/data';
 import { activeFilterCount, EMPTY_FILTER, filterPoses, type PoseFilter } from '../lib/filters';
-import { C } from '../lib/theme';
-import type { Pose } from '../lib/types';
+import { C, WIDE } from '../lib/theme';
+import type { Kind, Practice } from '../lib/types';
 import { FilterPanel } from './FilterPanel';
-import { PoseRow } from './PoseRow';
+import { PracticeRow } from './PracticeRow';
 
-/** Kereshető, szűrhető ászanalista kategóriánként csoportosítva. */
-export function PoseBrowser({
+/** Kereshető, szűrhető ászana-, mudra- vagy pránájáma-lista kategóriánként csoportosítva. */
+export function PracticeBrowser({
+  kind = 'asana',
   onSelect,
   renderRight,
 }: {
-  onSelect: (p: Pose) => void;
-  renderRight?: (p: Pose) => React.ReactNode;
+  kind?: Kind;
+  onSelect: (p: Practice) => void;
+  renderRight?: (p: Practice) => React.ReactNode;
 }) {
+  const info = KINDS[kind];
   const [filter, setFilter] = useState<PoseFilter>(EMPTY_FILTER);
   const [showFilters, setShowFilters] = useState(false);
-  const results = useMemo(() => filterPoses(POSES, filter), [filter]);
+  const results = useMemo(() => filterPoses(info.items, filter), [info, filter]);
   const sections = useMemo(
     () =>
-      DATA.categories
+      info.categories
         .map((c) => ({ key: c.id, title: c.name, data: results.filter((p) => p.category === c.id) }))
         .filter((s) => s.data.length),
-    [results],
+    [info, results],
   );
   const n = activeFilterCount(filter);
 
   return (
     <View style={{ flex: 1, backgroundColor: C.bg }}>
-      <View style={st.bar}>
-        <TextInput
-          style={st.search}
-          placeholder="Keresés (magyar, szanszkrit vagy angol név)"
-          placeholderTextColor={C.muted}
-          value={filter.query}
-          onChangeText={(query) => setFilter({ ...filter, query })}
-          autoCorrect={false}
-          clearButtonMode="while-editing"
-        />
-        <Pressable
-          onPress={() => setShowFilters(!showFilters)}
-          style={[st.filterBtn, (n > 0 || showFilters) && { backgroundColor: C.accent }]}
-          accessibilityRole="button"
-        >
-          <Text style={[st.filterBtnText, (n > 0 || showFilters) && { color: '#fff' }]}>
-            Szűrők{n ? ` (${n})` : ''}
-          </Text>
-        </Pressable>
+      <View style={st.barOuter}>
+        <View style={[st.bar, WIDE]}>
+          <TextInput
+            style={st.search}
+            placeholder="Keresés (magyar, szanszkrit vagy angol név)"
+            placeholderTextColor={C.muted}
+            value={filter.query}
+            onChangeText={(query) => setFilter({ ...filter, query })}
+            autoCorrect={false}
+            clearButtonMode="while-editing"
+          />
+          <Pressable
+            onPress={() => setShowFilters(!showFilters)}
+            style={[st.filterBtn, (n > 0 || showFilters) && { backgroundColor: C.accent }]}
+            accessibilityRole="button"
+          >
+            <Text style={[st.filterBtnText, (n > 0 || showFilters) && { color: '#fff' }]}>
+              Szűrők{n ? ` (${n})` : ''}
+            </Text>
+          </Pressable>
+        </View>
       </View>
       {showFilters ? (
-        <FilterPanel filter={filter} onChange={setFilter} resultCount={results.length} onClose={() => setShowFilters(false)} />
+        <FilterPanel kind={kind} filter={filter} onChange={setFilter} resultCount={results.length} onClose={() => setShowFilters(false)} />
       ) : (
         <SectionList
           sections={sections}
@@ -62,15 +67,16 @@ export function PoseBrowser({
               {section.title} <Text style={st.headerCount}>{section.data.length}</Text>
             </Text>
           )}
-          renderItem={({ item }) => <PoseRow pose={item} onPress={() => onSelect(item)} right={renderRight?.(item)} />}
+          renderItem={({ item }) => <PracticeRow practice={item} kind={kind} onPress={() => onSelect(item)} right={renderRight?.(item)} />}
           ListHeaderComponent={
             <Text style={st.count}>
-              {results.length} / {POSES.length} ászana
+              {results.length} / {info.items.length} {info.label.toLowerCase()}
               {n > 0 ? ' a szűrők alapján' : ''}
             </Text>
           }
-          ListEmptyComponent={<Text style={st.empty}>Nincs a szűrőknek megfelelő ászana.</Text>}
+          ListEmptyComponent={<Text style={st.empty}>Nincs a szűrőknek megfelelő találat.</Text>}
           keyboardShouldPersistTaps="handled"
+          contentContainerStyle={WIDE}
         />
       )}
     </View>
@@ -78,14 +84,8 @@ export function PoseBrowser({
 }
 
 const st = StyleSheet.create({
-  bar: {
-    flexDirection: 'row',
-    padding: 10,
-    gap: 8,
-    backgroundColor: C.surface,
-    borderBottomWidth: 1,
-    borderBottomColor: C.line,
-  },
+  barOuter: { backgroundColor: C.surface, borderBottomWidth: 1, borderBottomColor: C.line },
+  bar: { flexDirection: 'row', padding: 10, gap: 8 },
   search: {
     flex: 1,
     minWidth: 0,

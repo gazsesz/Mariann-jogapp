@@ -1,0 +1,1166 @@
+{
+ "version": 1,
+ "kind": "mudra",
+ "categories": [
+  {
+   "id": "meditacios",
+   "name": "Meditációs mudrák",
+   "description": "Ülő gyakorlásban, meditációban és pránájámában tartott kéztartások, amelyek elcsendesítik és befelé fordítják a figyelmet."
+  },
+  {
+   "id": "elem",
+   "name": "Elem-mudrák",
+   "description": "Az öt ujj az öt elemet képviseli (hüvelykujj: tűz, mutatóujj: levegő, középső: éter, gyűrűsujj: föld, kisujj: víz). Az ujjak összeérintése az adott elemet erősíti vagy csillapítja."
+  },
+  {
+   "id": "energetikai",
+   "name": "Energetikai és gyógyító mudrák",
+   "description": "Egy-egy szerv, funkció vagy lelkiállapot támogatására használt kéztartások; jellemzően napi többször 5–15 percig tartva."
+  },
+  {
+   "id": "fej",
+   "name": "Fej-mudrák (mana)",
+   "description": "A szemet, a nyelvet, a füleket és az orrot használó mudrák, amelyek az érzékek befelé fordítását (pratjáhára) segítik."
+  },
+  {
+   "id": "test",
+   "name": "Testtartás-mudrák (kaya)",
+   "description": "Az egész testet bevonó mudrák, amelyek az ászana, a légzés és a figyelem összekapcsolásával irányítják a prána áramlását."
+  },
+  {
+   "id": "bandha",
+   "name": "Bandhák (energiazárak)",
+   "description": "Izmos-energetikai zárak, amelyek a pránát a törzsben tartják és irányítják. Fokozatosan, tapasztalt oktató mellett tanulandók."
+  }
+ ],
+ "items": [
+  {
+   "id": "jnana-mudra",
+   "sanskrit": "Jñāna mudrā",
+   "hu": "A tudás mudrája",
+   "en": "Gesture of knowledge",
+   "category": "meditacios",
+   "level": 1,
+   "steps": [
+    "Ülj kényelmes, egyenes gerincű ülésben.",
+    "A hüvelyk- és mutatóujj hegyét érintsd össze, a többi ujj lazán nyújtva.",
+    "A kézfejek a térdeken, tenyérrel lefelé."
+   ],
+   "benefits": "Földel és elcsendesít, segíti a koncentrációt; a befelé forduló, nyugodt figyelem klasszikus kéztartása.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "alvas"
+   ],
+   "duration": "5–15 perc"
+  },
+  {
+   "id": "chin-mudra",
+   "sanskrit": "Cin mudrā",
+   "hu": "A tudatosság mudrája",
+   "en": "Gesture of consciousness",
+   "category": "meditacios",
+   "level": 1,
+   "steps": [
+    "Hüvelyk- és mutatóujj hegye összeér, a többi ujj nyújtva.",
+    "A kézfejek a térdeken, tenyérrel felfelé."
+   ],
+   "benefits": "Nyitottságot és befogadást kelt, élénkebb, mint a jñāna mudrá; a mellkas tágabbnak érződik.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "tudo"
+   ],
+   "duration": "5–15 perc"
+  },
+  {
+   "id": "dhyana-mudra",
+   "sanskrit": "Dhyāna mudrā",
+   "hu": "A meditáció mudrája",
+   "en": "Meditation gesture",
+   "category": "meditacios",
+   "level": 1,
+   "steps": [
+    "Az ölben a jobb kézfejet tedd a bal tenyérbe, mindkét tenyér felfelé.",
+    "A hüvelykujjak hegye finoman összeér, oválist formálva."
+   ],
+   "benefits": "Mély nyugalmat és összeszedettséget ad; a figyelem a köldök alatti térbe süllyed.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     7
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "alvas"
+   ],
+   "duration": "10–30 perc"
+  },
+  {
+   "id": "bhairava-mudra",
+   "sanskrit": "Bhairava mudrā",
+   "hu": "Bhairava mudra",
+   "en": "Gesture of Bhairava",
+   "category": "meditacios",
+   "level": 1,
+   "steps": [
+    "Az ölben a jobb kezet tedd a bal tenyérbe, mindkettő felfelé néz (ez a bhairava).",
+    "Fordított kézsorrenddel (bal a jobbon) bhairavī mudrá a neve."
+   ],
+   "benefits": "A két agyfélteke, a napi és holdi energia egyensúlyát jelképezi; kiegyensúlyoz és elmélyít.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "10–20 perc"
+  },
+  {
+   "id": "anjali-mudra",
+   "sanskrit": "Añjali mudrā",
+   "hu": "Imatartás",
+   "en": "Salutation seal",
+   "category": "meditacios",
+   "level": 1,
+   "steps": [
+    "A tenyereket a szív előtt egymáshoz simítod, az ujjak felfelé mutatnak.",
+    "A hüvelykujjak finoman a szegycsonthoz érnek, a vállak lazák."
+   ],
+   "benefits": "Tisztelet, hála és középre rendeződés; az óra elején és végén a szándék megfogalmazásához.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "sziv"
+   ],
+   "duration": "1–3 perc"
+  },
+  {
+   "id": "uttarabodhi-mudra",
+   "sanskrit": "Uttarabodhi mudrā",
+   "hu": "A legfelső megvilágosodás mudrája",
+   "en": "Gesture of supreme enlightenment",
+   "category": "meditacios",
+   "level": 2,
+   "steps": [
+    "Fond össze az ujjaidat a mellkas előtt.",
+    "A mutatóujjakat nyújtsd ki és érintsd össze, felfelé mutatnak; a hüvelykujjak hegye lefelé összeér."
+   ],
+   "benefits": "Energizál és felemel, önbizalmat ad; döntés előtt, fáradtság vagy levertség idején.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     7
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "allokepesseg"
+   ],
+   "duration": "3–10 perc"
+  },
+  {
+   "id": "dharmachakra-mudra",
+   "sanskrit": "Dharmacakra mudrā",
+   "hu": "A tan kerekének mudrája",
+   "en": "Wheel of dharma gesture",
+   "category": "meditacios",
+   "level": 2,
+   "steps": [
+    "Mindkét kézen a hüvelyk- és mutatóujj kört formál.",
+    "A kezeket a mellkas előtt tartod: a jobb tenyér kifelé, a bal befelé néz, a két kör finoman összeér."
+   ],
+   "benefits": "A tanítás és az átadás gesztusa; az oktatói jelenlét, a világos kommunikáció támogatására.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "eter"
+    ]
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "3–10 perc"
+  },
+  {
+   "id": "prithvi-mudra",
+   "sanskrit": "Pṛthvī mudrā",
+   "hu": "A föld mudrája",
+   "en": "Earth gesture",
+   "category": "elem",
+   "level": 1,
+   "steps": [
+    "A gyűrűsujj és a hüvelykujj hegyét érintsd össze, a többi ujj nyújtva.",
+    "Mindkét kézzel, a kézfejek a térdeken vagy combokon."
+   ],
+   "benefits": "Erősíti a föld elemet: stabilitást, kitartást és biztonságérzetet ad; szétszórtság, kimerültség idején.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 1,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "allokepesseg"
+   ],
+   "duration": "10–15 perc"
+  },
+  {
+   "id": "varuna-mudra",
+   "sanskrit": "Varuṇa mudrā",
+   "hu": "A víz mudrája",
+   "en": "Water gesture",
+   "category": "elem",
+   "level": 1,
+   "steps": [
+    "A kisujj és a hüvelykujj hegyét érintsd össze, a többi ujj nyújtva."
+   ],
+   "benefits": "Erősíti a víz elemet: a hidratáltság, a nyálkahártyák és az érzelmi áramlás támogatására; szárazság érzetekor.",
+   "cautions": "Ödémára vagy erős nyákképződésre hajlamosaknál rövidebb ideig.",
+   "chakras": {
+    "primary": 2,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "hormon"
+   ],
+   "duration": "10–15 perc"
+  },
+  {
+   "id": "surya-mudra",
+   "sanskrit": "Sūrya (Agni) mudrā",
+   "hu": "A nap (tűz) mudrája",
+   "en": "Sun gesture",
+   "category": "elem",
+   "level": 1,
+   "steps": [
+    "A gyűrűsujjat hajlítsd a hüvelykujj tövéhez, a hüvelykujjal finoman nyomd rá.",
+    "A többi ujj nyújtva."
+   ],
+   "benefits": "Csökkenti a föld és növeli a tűz elemet: melegít, élénkíti az anyagcserét és az emésztést.",
+   "cautions": "Magas láz, gyulladás, kimerültség vagy magas vérnyomás esetén kerüld; nyáron rövidebben.",
+   "chakras": {
+    "primary": 3,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "vayu-mudra",
+   "sanskrit": "Vāyu mudrā",
+   "hu": "A levegő mudrája",
+   "en": "Air gesture",
+   "category": "elem",
+   "level": 1,
+   "steps": [
+    "A mutatóujjat hajlítsd a hüvelykujj tövéhez, a hüvelykujjal fogd le.",
+    "A többi ujj nyújtva."
+   ],
+   "benefits": "Csillapítja a túlzott levegő elemet: nyugtalanság, szorongás, puffadás, remegés idején.",
+   "cautions": "Ha a tünetek enyhülnek, hagyd abba; nem tartós gyakorlásra való.",
+   "chakras": {
+    "primary": 4,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "emesztes"
+   ],
+   "duration": "5–15 perc"
+  },
+  {
+   "id": "akasha-mudra",
+   "sanskrit": "Ākāśa mudrā",
+   "hu": "Az éter mudrája",
+   "en": "Space gesture",
+   "category": "elem",
+   "level": 1,
+   "steps": [
+    "A középső ujj és a hüvelykujj hegyét érintsd össze, a többi ujj nyújtva."
+   ],
+   "benefits": "Erősíti az éter elemet: tágasságot, befogadást és belső csendet ad; meditáció előtt.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "10–15 perc"
+  },
+  {
+   "id": "shunya-mudra",
+   "sanskrit": "Śūnya mudrā",
+   "hu": "Az üresség mudrája",
+   "en": "Gesture of emptiness",
+   "category": "elem",
+   "level": 1,
+   "steps": [
+    "A középső ujjat hajlítsd a hüvelykujj tövéhez, a hüvelykujjal fogd le.",
+    "A többi ujj nyújtva."
+   ],
+   "benefits": "Csökkenti a túlzott éter elemet: fülzúgás, szédülés, \"légüres\" érzés, szétszórtság idején.",
+   "cautions": "A tünet enyhülése után hagyd abba.",
+   "chakras": {
+    "primary": 5,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "5–15 perc"
+  },
+  {
+   "id": "prana-mudra",
+   "sanskrit": "Prāṇa mudrā",
+   "hu": "Az életerő mudrája",
+   "en": "Gesture of life force",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A gyűrűs- és a kisujj hegyét érintsd a hüvelykujj hegyéhez, a mutató- és középső ujj nyújtva."
+   ],
+   "benefits": "Életerőt, vitalitást ad, erősíti az immunrendszert és a szemet; fáradtság, lábadozás idején.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "immun",
+    "allokepesseg"
+   ],
+   "duration": "10–15 perc"
+  },
+  {
+   "id": "apana-mudra",
+   "sanskrit": "Apāna mudrā",
+   "hu": "A kiválasztás mudrája",
+   "en": "Gesture of elimination",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A középső és a gyűrűsujj hegyét érintsd a hüvelykujj hegyéhez, a mutató- és kisujj nyújtva."
+   ],
+   "benefits": "Az apána váju, a lefelé áramló energia támogatására: méregtelenítés, emésztés, elengedés.",
+   "cautions": "Várandósság alatt csak a kilencedik hónapban, szakember tanácsára.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hormon"
+   ],
+   "duration": "10–15 perc"
+  },
+  {
+   "id": "apana-vayu-mudra",
+   "sanskrit": "Apāna vāyu (Mṛta sañjīvanī) mudrā",
+   "hu": "A szív mudrája",
+   "en": "Heart gesture",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A mutatóujjat hajlítsd a hüvelykujj tövéhez.",
+    "A középső és gyűrűsujj hegye a hüvelykujj hegyével érintkezik, a kisujj nyújtva."
+   ],
+   "benefits": "Hagyományosan a szív és a keringés támogatására, szívdobogás, szorongás, mellkasi feszülés idején.",
+   "cautions": "Mellkasi fájdalomnál, panasznál orvoshoz kell fordulni; a mudra nem helyettesíti a kezelést.",
+   "chakras": {
+    "primary": 4,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "sziv",
+    "elme"
+   ],
+   "duration": "10–15 perc"
+  },
+  {
+   "id": "linga-mudra",
+   "sanskrit": "Liṅga mudrā",
+   "hu": "A hő mudrája",
+   "en": "Gesture of heat",
+   "category": "energetikai",
+   "level": 2,
+   "steps": [
+    "Fond össze az ujjaidat, a bal hüvelykujj felfelé áll.",
+    "A jobb hüvelykujj és mutatóujj körbefogja a bal hüvelykujjat."
+   ],
+   "benefits": "Belső hőt termel, a légutak és az immunrendszer támogatására hideg időben, megfázás kezdetén.",
+   "cautions": "Lázas állapotban, magas vérnyomásnál és nyáron kerüld; utána igyál vizet.",
+   "chakras": {
+    "primary": 3,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "immun",
+    "tudo"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "ganesha-mudra",
+   "sanskrit": "Gaṇeśa mudrā",
+   "hu": "Ganésa mudrája",
+   "en": "Gesture of Ganesha",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A bal tenyér kifelé néz a mellkas előtt, a jobb tenyér befelé; az ujjak behajlítva egymásba akasztódnak.",
+    "Belégzésnél pihenj, kilégzésnél húzd a kezeket egymástól el, az ujjak nem engednek. Ismételd, majd cserélj kezet."
+   ],
+   "benefits": "Az akadályok elhárításának jelképe: bátorságot ad, nyitja a mellkast, erősíti a karokat és a szívet.",
+   "cautions": "Vállsérülésnél kisebb húzóerővel.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "tuz"
+    ]
+   },
+   "benefitAreas": [
+    "sziv",
+    "tudo",
+    "elme"
+   ],
+   "duration": "3–6 kör"
+  },
+  {
+   "id": "garuda-mudra",
+   "sanskrit": "Garuḍa mudrā",
+   "hu": "A sas mudrája",
+   "en": "Eagle gesture",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A kezeket keresztezd a csuklónál, tenyérrel befelé, a hüvelykujjak összeakadnak.",
+    "Az ujjak szárnyként szétnyílnak; a kezeket tartsd a köldök, majd a szív előtt."
+   ],
+   "benefits": "Élénkíti a keringést és a légzést, könnyedséget ad; fáradtság, nehézség érzetekor.",
+   "cautions": "Magas vérnyomásnál rövidebb ideig.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "sziv",
+    "tudo"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "hakini-mudra",
+   "sanskrit": "Hākinī mudrā",
+   "hu": "Hákiní mudrája",
+   "en": "Gesture of Hakini",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "Az ujjbegyeket érintsd össze páronként, a kezek közt egy gömbnyi tér marad.",
+    "Tartsd a homlok vagy a mellkas előtt, a tekintet felfelé, a nyelv a szájpadláson."
+   ],
+   "benefits": "Koncentrációt és emlékezetet támogat, összehangolja a két agyféltekét; tanulás, felkészülés előtt.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 6,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "kubera-mudra",
+   "sanskrit": "Kubera mudrā",
+   "hu": "Kubéra mudrája",
+   "en": "Gesture of Kubera",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A hüvelyk-, mutató- és középső ujj hegyét érintsd össze.",
+    "A gyűrűs- és kisujjat hajlítsd a tenyérbe."
+   ],
+   "benefits": "Szándék megerősítésére, céltudatosság és magabiztosság erősítésére.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "ushas-mudra",
+   "sanskrit": "Uṣas mudrā",
+   "hu": "A hajnal mudrája",
+   "en": "Gesture of dawn",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "Fond össze az ujjaidat úgy, hogy a jobb hüvelykujj a bal fölött legyen (nőknél gyakran fordítva).",
+    "A kezeket tedd az alhasra."
+   ],
+   "benefits": "Ébresztő, frissítő kéztartás reggelre; a kreativitás és az alhasi terület energiájának támogatására.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "hormon",
+    "elme"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "matangi-mudra",
+   "sanskrit": "Mātaṅgī mudrā",
+   "hu": "Mátangí mudrája",
+   "en": "Gesture of Matangi",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "Fond össze az ujjaidat a napfonat előtt, a középső ujjak nyújtva, egymáshoz simulnak, előre mutatnak.",
+    "A figyelem a napfonat területén."
+   ],
+   "benefits": "Belső harmóniát ad, nyugtatja a napfonat körüli feszültséget, segíti az emésztést.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "elme"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "rudra-mudra",
+   "sanskrit": "Rudra mudrā",
+   "hu": "Rudra mudrája",
+   "en": "Gesture of Rudra",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A mutató- és gyűrűsujj hegyét érintsd a hüvelykujj hegyéhez, a középső és kisujj nyújtva."
+   ],
+   "benefits": "A napfonat erejét erősíti, középre rendez, szédülés és erőtlenség idején segít.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 3,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "allokepesseg",
+    "elme"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "shankh-mudra",
+   "sanskrit": "Śaṅkha mudrā",
+   "hu": "A kagyló mudrája",
+   "en": "Conch gesture",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A bal hüvelykujjat fogd körbe a jobb kéz négy ujjával.",
+    "A jobb hüvelykujj a bal középső ujj hegyéhez ér; a kezek kagylót formálnak a szegycsont előtt."
+   ],
+   "benefits": "A torok és a hang mudrája; mantrázás, éneklés előtt, rekedtség vagy beszédhelyzet előtti izgalom idején.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 5,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "tudo"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "adi-mudra",
+   "sanskrit": "Ādi mudrā",
+   "hu": "Az ősi mudra",
+   "en": "Primal gesture",
+   "category": "energetikai",
+   "level": 1,
+   "steps": [
+    "A hüvelykujjat hajlítsd a tenyérbe a kisujj tövéhez, a többi ujjal zárd körbe (laza ököl).",
+    "A kézfejek a combokon, tenyérrel lefelé."
+   ],
+   "benefits": "Lecsendesíti az idegrendszert, mélyíti a kulcscsonti és felső mellkasi légzést; pránájáma elején.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     5
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "tudo",
+    "alvas",
+    "elme"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "shambhavi-mudra",
+   "sanskrit": "Śāmbhavī mudrā",
+   "hu": "A szemöldökközép nézése",
+   "en": "Eyebrow centre gazing",
+   "category": "fej",
+   "level": 2,
+   "steps": [
+    "Ülj egyenesen, a tekinteted emeld fel a két szemöldök közötti pontra, a fej nem mozdul.",
+    "Tartsd, amíg kényelmes; ha a szem feszül, csukd be és pihenj."
+   ],
+   "benefits": "Erős koncentrációs gyakorlat, a harmadik szem (ádzsnyá) területét aktiválja, elcsendesíti a gondolatokat.",
+   "cautions": "Glaukómánál, szemműtét után, retinaproblémánál kerüld; ne erőltesd.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     7
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "1–3 perc"
+  },
+  {
+   "id": "nasikagra-drishti",
+   "sanskrit": "Nāsikāgra dṛṣṭi",
+   "hu": "Az orrhegy nézése",
+   "en": "Nose tip gazing",
+   "category": "fej",
+   "level": 2,
+   "steps": [
+    "Ülj egyenesen, a tekinteted az orrhegyre irányul, a szemek félig nyitva.",
+    "Ha fárad a szem, csukd be, és pihenj."
+   ],
+   "benefits": "Földelő koncentrációs gyakorlat, a figyelmet a test és a légzés felé vonja.",
+   "cautions": "Glaukómánál, szemproblémánál kerüld.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "1–3 perc"
+  },
+  {
+   "id": "shanmukhi-mudra",
+   "sanskrit": "Ṣaṇmukhī mudrā",
+   "hu": "A hat kapu bezárása",
+   "en": "Closing the six gates",
+   "category": "fej",
+   "level": 2,
+   "steps": [
+    "A hüvelykujjak a fülkagylót zárják, a mutatóujjak a lehunyt szemhéjon, a középsők az orrszárnyakon, a gyűrűs- és kisujjak az ajkak felett és alatt.",
+    "Belégzés után tartsd bent a levegőt, és figyelj befelé; kilégzéskor lazíts."
+   ],
+   "benefits": "Az érzékek befelé fordítása (pratjáhára), mély befelé figyelés, a belső hang (nada) meghallása.",
+   "cautions": "Depresszióra hajlamosaknál rövid ideig, magas vérnyomásnál légzésvisszatartás nélkül.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     5
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "alvas"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "khechari-mudra",
+   "sanskrit": "Khecarī mudrā (egyszerűsített)",
+   "hu": "A nyelv mudrája",
+   "en": "Tongue lock",
+   "category": "fej",
+   "level": 2,
+   "steps": [
+    "Csukott szájjal hajlítsd hátra a nyelv hegyét a szájpadlásra, amennyire kényelmes.",
+    "Lélegezz lassan az orrodon; ujjáji légzéssel együtt is gyakorolható."
+   ],
+   "benefits": "Lecsendesít, csökkenti a szomjúságot és a nyugtalanságot; meditáció és pránájáma kísérője.",
+   "cautions": "Ha a nyelv alatt feszülés vagy fájdalom van, lazíts; ne erőltesd.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "3–10 perc"
+  },
+  {
+   "id": "viparita-karani-mudra",
+   "sanskrit": "Viparīta karaṇī mudrā",
+   "hu": "A fordított tartás mudrája",
+   "en": "Inverted gesture",
+   "category": "test",
+   "level": 2,
+   "steps": [
+    "Hanyattfekvésből emeld a lábakat, a medencét támaszd a tenyereddel (vagy tegyél alá párnát).",
+    "A test 45 fokos szöget zár a talajjal, a tekintet a lábujjakra; figyelj a légzésre."
+   ],
+   "benefits": "Megfordítja a prána áramlását, frissít, nyugtatja az idegrendszert, segíti a vénás visszaáramlást.",
+   "cautions": "Menstruáció alatt, magas vérnyomásnál, glaukómánál, nyaksérülésnél kerüld vagy a falnál, alátámasztva végezd.",
+   "chakras": {
+    "primary": 7,
+    "secondary": [
+     5
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "sziv",
+    "alvas",
+    "hormon"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "yoga-mudra",
+   "sanskrit": "Yoga mudrā",
+   "hu": "A jóga mudrája",
+   "en": "Gesture of yoga",
+   "category": "test",
+   "level": 2,
+   "steps": [
+    "Lótusz- vagy törökülésben fogd meg a hátad mögött a bal csuklót a jobb kézzel.",
+    "Kilégzésre hajolj előre, a homlok a talaj felé; maradj, majd belégzésre emelkedj fel."
+   ],
+   "benefits": "Befelé fordít, nyugtat, masszírozza a hasi szerveket, segíti az elengedést.",
+   "cautions": "Derék- és térdpanasznál, várandósság alatt, magas vérnyomásnál óvatosan vagy kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "emesztes",
+    "elme"
+   ],
+   "duration": "1–3 perc"
+  },
+  {
+   "id": "maha-mudra",
+   "sanskrit": "Mahā mudrā",
+   "hu": "A nagy mudra",
+   "en": "Great gesture",
+   "category": "test",
+   "level": 3,
+   "steps": [
+    "Ülj, a bal sarok a gát alatt, a jobb láb nyújtva; fogd meg a jobb lábujjakat.",
+    "Belégzés után tartsd bent a levegőt, alkalmazd a torok- és gyökérzárat, a tekintet a szemöldökközépre.",
+    "Engedd el a zárakat, lélegezz ki; ismételd, majd oldalt cserélj."
+   ],
+   "benefits": "A haṭha-jóga egyik legfontosabb gyakorlata: összekapcsolja a pránát és az apánát, élénkít és elmélyít.",
+   "cautions": "Magas vérnyomásnál, szívbetegségnél, várandósság alatt kerüld; csak a bandhák ismeretében gyakorold.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hormon",
+    "elme"
+   ],
+   "duration": "3–5 kör oldalanként"
+  },
+  {
+   "id": "ashwini-mudra",
+   "sanskrit": "Aśvinī mudrā",
+   "hu": "A ló mudrája",
+   "en": "Horse gesture",
+   "category": "test",
+   "level": 1,
+   "steps": [
+    "Ülj kényelmesen, lélegezz nyugodtan.",
+    "Ritmikusan húzd össze és engedd el a záróizmot, 10–20-szor.",
+    "Pihenj, majd ismételd."
+   ],
+   "benefits": "Erősíti a medencefenéket, segíti az emésztést, előkészíti a múla bandhát.",
+   "cautions": "Aranyérnél, végbél-gyulladásnál, várandósság utolsó heteiben kerüld.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hormon"
+   ],
+   "duration": "3 × 10–20 ismétlés"
+  },
+  {
+   "id": "tadagi-mudra",
+   "sanskrit": "Taḍāgī mudrā",
+   "hu": "A tó mudrája",
+   "en": "Pond gesture",
+   "category": "test",
+   "level": 2,
+   "steps": [
+    "Ülj nyújtott lábakkal, hajolj előre, és fogd meg a nagylábujjakat.",
+    "Lassan, mélyen lélegezz a hasba, a has kitágul, mint egy tó; kilégzésre lazíts. 5–10 légzés."
+   ],
+   "benefits": "Tágítja a hasi teret, élénkíti a hasi szerveket és az emésztést, nyugtat.",
+   "cautions": "Derékpanasznál hajlított térddel; várandósság alatt kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hormon"
+   ],
+   "duration": "5–10 légzés"
+  },
+  {
+   "id": "mula-bandha",
+   "sanskrit": "Mūla bandha",
+   "hu": "Gyökérzár",
+   "en": "Root lock",
+   "category": "bandha",
+   "level": 2,
+   "steps": [
+    "Ülj stabilan, a gerinc egyenes.",
+    "Kilégzés végén finoman húzd fel a gát (medencefenék) középpontját befelé és felfelé.",
+    "Tartsd néhány légzésig, majd lassan engedd el."
+   ],
+   "benefits": "Stabilizálja a medencét, felfelé irányítja az energiát, erősíti a medencefenéket; földelt jelenlétet ad.",
+   "cautions": "Menstruáció alatt, várandósság alatt, medencefenék-túlfeszülésnél kerüld vagy nagyon finoman végezd.",
+   "chakras": {
+    "primary": 1,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "fold",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "hormon",
+    "tartas"
+   ],
+   "duration": "5–10 légzés"
+  },
+  {
+   "id": "uddiyana-bandha",
+   "sanskrit": "Uḍḍīyāna bandha",
+   "hu": "Hasizár, a felrepülés zárja",
+   "en": "Abdominal lock",
+   "category": "bandha",
+   "level": 3,
+   "steps": [
+    "Állj enyhén terpeszben, a kezek a combokon, hajolj kicsit előre.",
+    "Teljes kilégzés után tartsd kint a levegőt, és szívd be-fel a hasat a bordák alá (hamis belégzés).",
+    "Engedd el a hasat, és csak utána lélegezz be. Csak üres gyomorral."
+   ],
+   "benefits": "Masszírozza a hasi szerveket, erősíti a rekeszizmot, élénkít, felfelé irányítja a pránát.",
+   "cautions": "Várandósság, menstruáció, magas vérnyomás, szívbetegség, gyomorfekély, sérv, friss hasi műtét esetén kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hormon"
+   ],
+   "duration": "3–5 ismétlés"
+  },
+  {
+   "id": "jalandhara-bandha",
+   "sanskrit": "Jālandhara bandha",
+   "hu": "Torokzár",
+   "en": "Throat lock",
+   "category": "bandha",
+   "level": 2,
+   "steps": [
+    "Ülj egyenesen, lélegezz be, és tartsd bent a levegőt.",
+    "Emeld a szegycsontot, és engedd az állat a mellkas felé, a nyak hátul hosszú.",
+    "Emeld fel a fejet, és csak utána lélegezz ki."
+   ],
+   "benefits": "Bent tartja a pránát a légzésvisszatartás alatt, nyugtatja a szívet és az elmét, a pajzsmirigy területére hat.",
+   "cautions": "Nyaksérülésnél, magas vérnyomásnál, szívbetegségnél kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "hormon",
+    "sziv",
+    "elme"
+   ],
+   "duration": "3–5 ismétlés"
+  },
+  {
+   "id": "maha-bandha",
+   "sanskrit": "Mahā bandha",
+   "hu": "A nagy zár",
+   "en": "Great lock",
+   "category": "bandha",
+   "level": 3,
+   "steps": [
+    "Teljes kilégzés után tartsd kint a levegőt.",
+    "Egymás után alkalmazd a torokzárat, a hasizárat és a gyökérzárat.",
+    "Fordított sorrendben engedd el őket, majd lélegezz be."
+   ],
+   "benefits": "A három zár együtt; mély befelé fordulás, az energia összegyűjtése és felemelése.",
+   "cautions": "Csak a három bandha külön elsajátítása után, tapasztalt oktatóval. Várandósság, magas vérnyomás, szívbetegség esetén kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1,
+     5
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "fold",
+     "eter"
+    ]
+   },
+   "benefitAreas": [
+    "hormon",
+    "elme"
+   ],
+   "duration": "3 ismétlés"
+  }
+ ]
+}

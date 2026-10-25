@@ -5,6 +5,31 @@ A legfrissebb lépés van legfelül.
 
 ---
 
+## 4. lépés – Mudratár, pránájámák, tablet nézet (2026-10-25)
+
+**Gabor kérése:** az ászanák mellett legyen mudratár és pránájáma-gyűjtemény, ugyanúgy
+kategorizálva, és ezek is kerülhessenek az óravázlatba. A Galaxy Tab S6 Lite tableten is
+jól kell kinéznie.
+
+| Döntés | Miért |
+| --- | --- |
+| **39 mudra, 6 kategória**: meditációs, elem-, energetikai, fej-, test-mudrák, bandhák (`data/mudrak.json`) | A klasszikus (hatha, tantra) és a modern gyógyító mudra-hagyomány legismertebb kézjelei; a bandhák is ide kerültek, mert az órán hasonlóan, kiegészítésként használjuk őket. |
+| **22 pránájáma, 6 kategória**: alapozó, kiegyensúlyozó, nyugtató, hűsítő, élénkítő, légzésvisszatartásos (`data/pranayamak.json`) | Hatás szerint csoportosítva, mert az órán a szándékhoz (lenyugtatás, felébresztés) választunk légzést. A visszatartásosak külön kategóriában vannak, mert ezekhez a legtöbb ellenjavallat tartozik. |
+| A mudráknak és pránájámáknak is van szint, csakra (elsődleges + másodlagos), öt elem, hatásterület, ellenjavallat és ajánlott időtartam; a pránájámáknál ritmus is (pl. 4–7–8) | Így ugyanazokkal a szűrőkkel kereshetők, és az óra csakra-, elem-egyensúlyába és a panasz-figyelmeztetésekbe is beszámítanak. |
+| Az adatfájlok Python generátorból készülnek (`scripts/adat/mudrak.py`, `scripts/adat/pranayamak.py`) | Egy helyen szerkeszthető, ellenőrzött szöveg; újrafuttatva frissül a JSON. |
+| Közös adatmodell: `Practice` (alap), ebből `Pose` (ászana) és `Technique` (mudra, pránájáma); a szűrők, adatlap, lista ugyanazok a komponensek, `kind` paraméterrel | Egy kód, három tár: amit egyszer javítunk vagy bővítünk, mindháromnál működik. |
+| Két új alsó fül: **Mudrák** és **Pránájáma**; az ászanák fül neve „Ászanák” | Mindegyik tár egy koppintásra elérhető. |
+| Az óravázlat elemeinél `kind` mező (hiánya = ászana) | A régebben mentett órák változtatás nélkül megnyílnak. |
+| A „+ Gyakorlat” választóban fülek: Ászanák / Mudrák / Pránájáma | Egy szakaszba vegyesen is tehetünk gyakorlatokat (pl. ráhangolódás: légzés + mudra). |
+| Új órába a mudra és pránájáma a **Ráhangolódás** szakaszba kerül, az ászana a Fő részbe | Ez a leggyakoribb helyük; utána szabadon áthelyezhetők. |
+| Új panasz-szűrők: szívbetegség, menstruáció, sérv/hasi műtét/fekély, szorongás/pánik, epilepszia | A légzésvisszatartások és az erős hasi légzések ellenjavallatai miatt kellettek. |
+| Az óralistán és PDF-ben a darabszám típus szerint (pl. „6 ászana · 1 mudra · 2 pránájáma”) | Ránézésre látszik az óra összetétele. |
+| **Tablet:** a tartalom középre igazított, legfeljebb 860 pt széles oszlop (`WIDE` a `src/lib/theme.ts`-ben) | Az S6 Lite fekvő helyzetében (és nagy képernyőn) ne nyúljanak szét a sorok; álló helyzetben a teljes szélességet használja. |
+
+A böngészős változat ugyanazon a linken frissült.
+
+---
+
 ## 3. lépés – Böngészős változat (2026-10-25)
 
 **Gabor kérése:** buildeljük le, hogy böngészőből is meg lehessen nézni.

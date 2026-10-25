@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { saveSeries, useDb } from '../../lib/store';
 import { createSeries, SERIES_TEMPLATES } from '../../lib/series';
-import { C } from '../../lib/theme';
+import { C, WIDE } from '../../lib/theme';
 
 /** Új tematika indítása sablonból. */
 export default function NewSeries() {
@@ -12,7 +12,7 @@ export default function NewSeries() {
     router.replace({ pathname: '/series/[id]', params: { id: s.id } });
   };
   return (
-    <ScrollView contentContainerStyle={{ padding: 16 }}>
+    <ScrollView contentContainerStyle={[{ padding: 16 }, WIDE]}>
       <Text style={st.lead}>Miből induljon a tematika? A napok címe és fókusza utána szabadon átírható.</Text>
       {SERIES_TEMPLATES.map((t) => (
         <Pressable key={t.id} style={({ pressed }) => [st.card, pressed && { opacity: 0.8 }]} onPress={() => start(t.id)}>

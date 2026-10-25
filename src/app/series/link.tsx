@@ -2,8 +2,8 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text } from 'react-native';
 import { getSeries, listPlans, saveSeries, useDb } from '../../lib/store';
-import { poseCount } from '../../lib/plan';
-import { C } from '../../lib/theme';
+import { countLabel } from '../../lib/plan';
+import { C, WIDE } from '../../lib/theme';
 import type { Plan } from '../../lib/types';
 
 /** Meglévő óravázlat hozzárendelése egy tematika napjához. */
@@ -25,13 +25,13 @@ export default function LinkPlan() {
     <FlatList
       data={plans}
       keyExtractor={(p) => p.id}
-      contentContainerStyle={{ padding: 12 }}
+      contentContainerStyle={[{ padding: 12 }, WIDE]}
       ListEmptyComponent={<Text style={st.empty}>Még nincs óravázlatod.</Text>}
       renderItem={({ item: p }) => (
         <Pressable style={({ pressed }) => [st.card, pressed && { opacity: 0.8 }]} onPress={() => pick(p)}>
           <Text style={st.title}>{p.title || 'Névtelen óra'}</Text>
           <Text style={st.meta}>
-            {poseCount(p)} ászana{p.theme ? ` · ${p.theme}` : ''}
+            {countLabel(p)}{p.theme ? ` · ${p.theme}` : ''}
           </Text>
         </Pressable>
       )}

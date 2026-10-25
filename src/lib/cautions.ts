@@ -1,8 +1,8 @@
-import type { Plan, Pose } from './types';
+import type { Plan, PlanItem, Practice } from './types';
 
 /**
- * Csoportban gyakori panaszok. Az ászanatár ellenjavallat-szövegeiben
- * (Pose.cautions) keresünk rájuk utaló kifejezéseket.
+ * Csoportban gyakori panaszok. Az ászanák, mudrák és pránájámák
+ * ellenjavallat-szövegeiben (Practice.cautions) keresünk rájuk utaló kifejezéseket.
  */
 export interface Condition {
   id: string;
@@ -26,13 +26,18 @@ export const CONDITIONS: Condition[] = [
   { id: 'terd', name: 'Térd', pattern: /térd\w*\s?(sérül|panasz|fájd|probl|érzékeny)|ha a térd fáj/ },
   { id: 'boka', name: 'Boka, lábfej', pattern: /boka|bütyök|lábujjprobl/ },
   { id: 'combh', name: 'Combhajlító', pattern: /combhajlító/ },
-  { id: 'szem', name: 'Glaukóma, szemnyomás', pattern: /glaukóm|szem\w*\s?(probl|nyomás)/ },
+  { id: 'szem', name: 'Glaukóma, szemnyomás', pattern: /glaukóm|szem\w*\s?(probl|nyomás|műtét)/ },
+  { id: 'sziv', name: 'Szívbetegség', pattern: /szívbeteg|mellkasi fájdalom/ },
+  { id: 'menstruacio', name: 'Menstruáció', pattern: /menstruáció/ },
+  { id: 'hasi', name: 'Sérv, hasi műtét, fekély', pattern: /sérv|hasi műtét|fekély/ },
+  { id: 'szorongas', name: 'Szorongás, pánik', pattern: /szorongás|pánik/ },
+  { id: 'epilepszia', name: 'Epilepszia', pattern: /epilepszi/ },
 ];
 
 export const CONDITION_BY_ID = Object.fromEntries(CONDITIONS.map((c) => [c.id, c]));
 
-/** Azok a panaszok, amelyekre a póz ellenjavallata kitér. */
-export function poseConditions(p: Pose): string[] {
+/** Azok a panaszok, amelyekre a gyakorlat ellenjavallata kitér. */
+export function poseConditions(p: Practice): string[] {
   const text = p.cautions.toLowerCase();
   return CONDITIONS.filter((c) => c.pattern.test(text)).map((c) => c.id);
 }
@@ -40,23 +45,23 @@ export function poseConditions(p: Pose): string[] {
 export interface PlanWarning {
   sectionKey: string;
   itemKey: string;
-  pose: Pose;
-  /** A csoport jelzett panaszai közül azok, amelyeket a póz érint. */
+  practice: Practice;
+  /** A csoport jelzett panaszai közül azok, amelyeket a gyakorlat érint. */
   conditions: string[];
-  /** A póz szintje magasabb, mint az óra célzott szintje. */
+  /** A gyakorlat szintje magasabb, mint az óra célzott szintje. */
   levelTooHigh: boolean;
 }
 
-export function planWarnings(plan: Plan, poseById: Record<string, Pose>): PlanWarning[] {
+export function planWarnings(plan: Plan, lookup: (it: PlanItem) => Practice | undefined): PlanWarning[] {
   const out: PlanWarning[] = [];
   for (const s of plan.sections) {
     for (const it of s.items) {
-      const pose = poseById[it.poseId];
-      if (!pose) continue;
-      const conditions = poseConditions(pose).filter((c) => plan.conditions.includes(c));
-      const levelTooHigh = plan.level > 0 && pose.level > plan.level;
+      const practice = lookup(it);
+      if (!practice) continue;
+      const conditions = poseConditions(practice).filter((c) => plan.conditions.includes(c));
+      const levelTooHigh = plan.level > 0 && practice.level > plan.level;
       if (conditions.length || levelTooHigh) {
-        out.push({ sectionKey: s.key, itemKey: it.key, pose, conditions, levelTooHigh });
+        out.push({ sectionKey: s.key, itemKey: it.key, practice, conditions, levelTooHigh });
       }
     }
   }

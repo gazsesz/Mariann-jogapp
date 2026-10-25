@@ -1,0 +1,721 @@
+{
+ "version": 1,
+ "kind": "pranayama",
+ "categories": [
+  {
+   "id": "alapozo",
+   "name": "Alapozó légzések",
+   "description": "A légzés tudatosítása és a teljes légzőtér használata; minden további pránájáma alapja, bármely óra elejére."
+  },
+  {
+   "id": "kiegyensulyozo",
+   "name": "Kiegyensúlyozó légzések",
+   "description": "A be- és kilégzés, a jobb és bal oldal, a napi és holdi energia egyensúlyát teremtik meg."
+  },
+  {
+   "id": "nyugtato",
+   "name": "Nyugtató légzések",
+   "description": "A paraszimpatikus idegrendszert aktiválják: lassítanak, ellazítanak, segítik az alvást és a meditációt."
+  },
+  {
+   "id": "husito",
+   "name": "Hűsítő légzések",
+   "description": "Hűtik a testet és a kedélyt; meleg időben, erős gyakorlás után, ingerlékenység esetén."
+  },
+  {
+   "id": "elenkito",
+   "name": "Élénkítő és tisztító légzések",
+   "description": "Melegítenek, energizálnak, tisztítják a légutakat. Üres gyomorral, nappal gyakorolandók."
+  },
+  {
+   "id": "kumbhaka",
+   "name": "Légzésvisszatartások (kumbhaka)",
+   "description": "A be- vagy kilégzés utáni tudatos szünet. Csak megalapozott légzéstechnika után, fokozatosan."
+  }
+ ],
+ "items": [
+  {
+   "id": "legzesmegfigyeles",
+   "sanskrit": "Śvāsa darśana",
+   "hu": "A légzés megfigyelése",
+   "en": "Breath awareness",
+   "category": "alapozo",
+   "level": 1,
+   "pattern": "természetes ritmus",
+   "steps": [
+    "Ülj vagy feküdj kényelmesen, csukd be a szemed.",
+    "Ne változtass a légzéseden, csak figyeld: hol érzed, milyen hosszú a be- és kilégzés, hol vannak szünetek."
+   ],
+   "benefits": "Megérkezést, jelenlétet ad; az óra eleji ráhangolódás legegyszerűbb módja.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "tudo"
+   ],
+   "duration": "2–5 perc"
+  },
+  {
+   "id": "hasi-legzes",
+   "sanskrit": "Adhama prāṇāyāma",
+   "hu": "Hasi (rekeszizom-) légzés",
+   "en": "Abdominal breathing",
+   "category": "alapozo",
+   "level": 1,
+   "pattern": "lassú, 4–6 mp be, 4–6 mp ki",
+   "steps": [
+    "Feküdj hanyatt, egyik kezed a hasadon, másik a mellkasodon.",
+    "Belégzésnél a has emelkedik, a mellkas alig mozdul; kilégzésnél a has lassan visszasüllyed."
+   ],
+   "benefits": "Lassítja a pulzust, aktiválja a rekeszizmot és a paraszimpatikus idegrendszert, segíti az emésztést.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     3
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": [
+     "tuz"
+    ]
+   },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "alvas"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "teljes-joga-legzes",
+   "sanskrit": "Dīrgha prāṇāyāma",
+   "hu": "Teljes jógalégzés (háromrészes légzés)",
+   "en": "Three-part breath",
+   "category": "alapozo",
+   "level": 1,
+   "pattern": "lassú, hullámszerű",
+   "steps": [
+    "Belégzésnél töltsd meg sorban a hasat, a bordakosarat, majd a felső mellkast.",
+    "Kilégzésnél fordított sorrendben engedd ki: felső mellkas, bordák, has."
+   ],
+   "benefits": "A teljes tüdőkapacitás használatát tanítja, nyugtat és energizál egyszerre; a pránájáma alapja.",
+   "cautions": "Szédülés esetén lassíts, és térj vissza a természetes légzéshez.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2,
+     3
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "viz",
+     "tuz"
+    ]
+   },
+   "benefitAreas": [
+    "tudo",
+    "sziv",
+    "elme"
+   ],
+   "duration": "5 perc"
+  },
+  {
+   "id": "ujjayi",
+   "sanskrit": "Ujjāyī prāṇāyāma",
+   "hu": "Győzedelmes légzés",
+   "en": "Victorious breath",
+   "category": "alapozo",
+   "level": 1,
+   "pattern": "lassú, egyenletes, hallható",
+   "steps": [
+    "Orron át lélegezz, a gégét enyhén szűkítsd, mintha suttognál.",
+    "A légzés halk, tengerzúgás-szerű hangot ad; be- és kilégzés egyenlő hosszú."
+   ],
+   "benefits": "Fókuszt ad, melegít, összeköti a mozgást a légzéssel; vinyásza és ászanagyakorlás kísérője.",
+   "cautions": "Ne szorítsd a torkot; alacsony vérnyomásnál a fekvő változat ajánlott.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": [
+     "levego"
+    ]
+   },
+   "benefitAreas": [
+    "tudo",
+    "elme",
+    "allokepesseg"
+   ],
+   "duration": "az egész gyakorlás alatt"
+  },
+  {
+   "id": "sama-vritti",
+   "sanskrit": "Sama vṛtti",
+   "hu": "Egyenlő légzés",
+   "en": "Equal breathing",
+   "category": "kiegyensulyozo",
+   "level": 1,
+   "pattern": "1:1, pl. 4 mp be, 4 mp ki",
+   "steps": [
+    "Számolj belégzésre 4-ig, kilégzésre 4-ig, orron át.",
+    "Ha könnyen megy, növeld 5–6-ra, de a légzés maradjon erőlködésmentes."
+   ],
+   "benefits": "Kiegyensúlyozza az idegrendszert, összeszedettséget és nyugalmat ad.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "sziv"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "koherens-legzes",
+   "sanskrit": "Sama vṛtti (koherens ritmus)",
+   "hu": "Koherens légzés",
+   "en": "Coherent breathing",
+   "category": "kiegyensulyozo",
+   "level": 1,
+   "pattern": "kb. 5,5 mp be, 5,5 mp ki (5–6 légzés/perc)",
+   "steps": [
+    "Lélegezz be kb. 5–6 másodpercig, majd ki ugyanannyi ideig, orron át, szünet nélkül.",
+    "Tarts ki 5–10 percig, lágy, hasi légzéssel."
+   ],
+   "benefits": "A szívritmus-variabilitás javításával összehangolja a szívet és a légzést, csökkenti a stresszt.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 4,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "sziv",
+    "elme",
+    "alvas"
+   ],
+   "duration": "5–10 perc"
+  },
+  {
+   "id": "nadi-shodhana",
+   "sanskrit": "Nāḍī śodhana",
+   "hu": "Váltott orrlyukú légzés",
+   "en": "Alternate nostril breathing",
+   "category": "kiegyensulyozo",
+   "level": 1,
+   "pattern": "1:1, majd 1:2",
+   "steps": [
+    "Jobb kézzel visnu mudrában (mutató- és középső ujj behajlítva) zárd a jobb orrlyukat, lélegezz be balon.",
+    "Zárd a balt, lélegezz ki jobbon; lélegezz be jobbon, zárd, ki balon. Ez egy kör."
+   ],
+   "benefits": "Megtisztítja az energiacsatornákat, összehangolja a két agyféltekét, mélyen nyugtat és összpontosít.",
+   "cautions": "Eldugult orrnál várj vele, vagy gyakorold képzeletben.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "tudo",
+    "alvas"
+   ],
+   "duration": "5–10 kör"
+  },
+  {
+   "id": "anuloma-viloma",
+   "sanskrit": "Anuloma viloma",
+   "hu": "Váltott orrlyukú légzés visszatartással",
+   "en": "Alternate nostril breathing with retention",
+   "category": "kiegyensulyozo",
+   "level": 2,
+   "pattern": "1:4:2 (pl. 4 be, 16 bent, 8 ki)",
+   "steps": [
+    "A nádí sódhana menetében, a belégzés után mindkét orrlyukat zárd, és tartsd bent a levegőt.",
+    "Kezdd 1:2:2 aránnyal, és csak fokozatosan növeld."
+   ],
+   "benefits": "Mélyíti a nádí sódhana hatását, növeli a koncentrációt és a légzés feletti uralmat.",
+   "cautions": "Magas vérnyomásnál, szívbetegségnél, várandósság alatt visszatartás nélkül végezd.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     7
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "tudo"
+   ],
+   "duration": "5–10 kör"
+  },
+  {
+   "id": "surya-bhedana",
+   "sanskrit": "Sūrya bhedana",
+   "hu": "Napcsatornás légzés",
+   "en": "Right nostril breathing",
+   "category": "elenkito",
+   "level": 2,
+   "pattern": "jobbon be, balon ki",
+   "steps": [
+    "Zárd a bal orrlyukat, lélegezz be a jobbon.",
+    "Zárd a jobbat, lélegezz ki a balon. Ismételd."
+   ],
+   "benefits": "A napcsatornát (pingala) aktiválja: melegít, élénkít, javítja az éberséget és az emésztést.",
+   "cautions": "Magas vérnyomásnál, szívbetegségnél, szorongásnál, este kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "emesztes",
+    "allokepesseg"
+   ],
+   "duration": "5–10 kör"
+  },
+  {
+   "id": "chandra-bhedana",
+   "sanskrit": "Candra bhedana",
+   "hu": "Holdcsatornás légzés",
+   "en": "Left nostril breathing",
+   "category": "nyugtato",
+   "level": 2,
+   "pattern": "balon be, jobbon ki",
+   "steps": [
+    "Zárd a jobb orrlyukat, lélegezz be a balon.",
+    "Zárd a balt, lélegezz ki a jobbon. Ismételd."
+   ],
+   "benefits": "A holdcsatornát (ida) aktiválja: hűsít, nyugtat, segíti az elalvást.",
+   "cautions": "Alacsony vérnyomásnál, levertségnél, megfázáskor kerüld.",
+   "chakras": {
+    "primary": 2,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "viz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "alvas",
+    "elme"
+   ],
+   "duration": "5–10 kör"
+  },
+  {
+   "id": "visama-vritti",
+   "sanskrit": "Viṣama vṛtti",
+   "hu": "Hosszabbított kilégzés",
+   "en": "Extended exhalation",
+   "category": "nyugtato",
+   "level": 1,
+   "pattern": "1:2, pl. 4 mp be, 8 mp ki",
+   "steps": [
+    "Lélegezz be orron 4-ig, majd ki lassan 6–8-ig.",
+    "Ha szükséges, kezdd 4:6 aránnyal."
+   ],
+   "benefits": "A hosszú kilégzés a paraszimpatikus idegrendszert aktiválja: lassít, ellazít, segíti az alvást.",
+   "cautions": "Ha levegőhiányt érzel, rövidítsd a kilégzést.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "alvas",
+    "elme",
+    "sziv"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "bhramari",
+   "sanskrit": "Bhrāmarī",
+   "hu": "Méhecske-légzés",
+   "en": "Humming bee breath",
+   "category": "nyugtato",
+   "level": 1,
+   "pattern": "normál belégzés, hosszú zümmögő kilégzés",
+   "steps": [
+    "Ülj egyenesen, a hüvelykujjakkal zárd a fülkagylót (vagy sanmukhí mudrában).",
+    "Lélegezz be orron, kilégzéskor zümmögj halkan, csukott szájjal. A rezgést figyeld a fejben."
+   ],
+   "benefits": "Gyorsan oldja a feszültséget, a dühöt és a szorongást, nyugtatja az idegrendszert, segíti az alvást.",
+   "cautions": "Fülgyulladásnál kerüld; fekve ne gyakorold.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "alvas"
+   ],
+   "duration": "5–10 kör"
+  },
+  {
+   "id": "udgitha",
+   "sanskrit": "Udgītha (Praṇava)",
+   "hu": "Óm-légzés",
+   "en": "Om chanting breath",
+   "category": "nyugtato",
+   "level": 1,
+   "pattern": "normál belégzés, hosszú kilégzés A–U–M hanggal",
+   "steps": [
+    "Lélegezz be mélyen, kilégzéskor énekeld: A – U – M, a hang a hastól a mellkason át a fejig vándorol.",
+    "A végén figyeld a csendet."
+   ],
+   "benefits": "Rezgésével nyugtat, egységérzést és összeszedettséget ad; az óra eleje vagy vége.",
+   "cautions": "Nincs különösebb ellenjavallat.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     7
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "tudo"
+   ],
+   "duration": "3–7 kör"
+  },
+  {
+   "id": "shitali",
+   "sanskrit": "Śītalī",
+   "hu": "Hűsítő légzés",
+   "en": "Cooling breath",
+   "category": "husito",
+   "level": 1,
+   "pattern": "szájon be (csőnyelv), orron ki",
+   "steps": [
+    "Tedd ki a nyelvet, és hajlítsd csővé.",
+    "Lélegezz be rajta keresztül lassan, csukd be a szádat, és lélegezz ki orron."
+   ],
+   "benefits": "Hűsít, csillapítja a szomjúságot és az ingerlékenységet, nyugtatja a szívet.",
+   "cautions": "Alacsony vérnyomásnál, asztmánál, megfázáskor, hidegben kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "sziv",
+    "elme"
+   ],
+   "duration": "8–10 kör"
+  },
+  {
+   "id": "shitkari",
+   "sanskrit": "Śītkārī",
+   "hu": "Szisszenő légzés",
+   "en": "Hissing breath",
+   "category": "husito",
+   "level": 1,
+   "pattern": "fogakon át be, orron ki",
+   "steps": [
+    "Harapd finoman össze a fogaidat, az ajkak szétnyílnak.",
+    "Lélegezz be a fogak között szisszenve, majd csukd be a szádat, és lélegezz ki orron."
+   ],
+   "benefits": "A sítalí változata azoknak, akik nem tudják a nyelvüket csővé hajlítani; hűsít és nyugtat.",
+   "cautions": "Érzékeny fogaknál, alacsony vérnyomásnál, hidegben kerüld.",
+   "chakras": {
+    "primary": 5,
+    "secondary": [
+     2
+    ]
+   },
+   "elements": {
+    "primary": "eter",
+    "secondary": [
+     "viz"
+    ]
+   },
+   "benefitAreas": [
+    "elme"
+   ],
+   "duration": "8–10 kör"
+  },
+  {
+   "id": "kapalabhati",
+   "sanskrit": "Kapālabhāti",
+   "hu": "Koponyafénylés",
+   "en": "Skull shining breath",
+   "category": "elenkito",
+   "level": 2,
+   "pattern": "aktív, rövid kilégzés, passzív belégzés",
+   "steps": [
+    "Ülj egyenesen, kezdj 20 rövid, erőteljes kilégzéssel orron át, a hasat befelé rántva.",
+    "A belégzés magától történik. Utána pihenj néhány nyugodt légzésig; 3 kör."
+   ],
+   "benefits": "Tisztító gyakorlat (kriyá): kitisztítja a légutakat, élénkít, melegít, erősíti a hasizmokat.",
+   "cautions": "Várandósság, menstruáció, magas vérnyomás, szívbetegség, epilepszia, sérv, friss hasi műtét esetén kerüld. Szédülésnél állj meg.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     6
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "tudo",
+    "emesztes",
+    "allokepesseg"
+   ],
+   "duration": "3 × 20–60"
+  },
+  {
+   "id": "bhastrika",
+   "sanskrit": "Bhastrikā",
+   "hu": "Fújtatólégzés",
+   "en": "Bellows breath",
+   "category": "elenkito",
+   "level": 3,
+   "pattern": "aktív be- és kilégzés egyenlő erővel",
+   "steps": [
+    "Ülj egyenesen, lélegezz be és ki erőteljesen, egyenlő ütemben orron át, a has és a mellkas pumpál.",
+    "10 légzés után lassú, mély légzés; 3 kör."
+   ],
+   "benefits": "Erősen melegít és energizál, növeli az oxigénfelvételt, frissít.",
+   "cautions": "Magas vérnyomás, szívbetegség, várandósság, epilepszia, pánikbetegség esetén kerüld. Szédülésnél állj meg.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "tudo",
+    "allokepesseg",
+    "immun"
+   ],
+   "duration": "3 × 10"
+  },
+  {
+   "id": "agni-sara",
+   "sanskrit": "Agni sāra",
+   "hu": "A tűz tisztítása",
+   "en": "Fire purification",
+   "category": "elenkito",
+   "level": 3,
+   "pattern": "kilégzés utáni visszatartás, a has pumpálása",
+   "steps": [
+    "Teljes kilégzés után tartsd kint a levegőt, a kezek a combokon.",
+    "Gyorsan húzd be és engedd ki a hasat 10–20-szor, majd lélegezz be."
+   ],
+   "benefits": "Élénkíti az emésztőtüzet, masszírozza a hasi szerveket, erősíti a hasfalat.",
+   "cautions": "Csak üres gyomorral. Várandósság, menstruáció, magas vérnyomás, szívbetegség, gyomorfekély, sérv esetén kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": []
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "emesztes",
+    "hormon"
+   ],
+   "duration": "3 kör"
+  },
+  {
+   "id": "viloma",
+   "sanskrit": "Viloma prāṇāyāma",
+   "hu": "Megszakított légzés",
+   "en": "Interrupted breath",
+   "category": "kumbhaka",
+   "level": 2,
+   "pattern": "3 részletben be, folyamatosan ki (vagy fordítva)",
+   "steps": [
+    "Belégzés 3 részletben, mindegyik után 2 mp szünettel, majd hosszú, folyamatos kilégzés.",
+    "Változat: folyamatos belégzés, majd 3 részletben kilégzés."
+   ],
+   "benefits": "Finomítja a légzés irányítását, előkészíti a hosszabb visszatartásokat; a megszakított kilégzés nyugtat.",
+   "cautions": "Magas vérnyomásnál csak a megszakított kilégzés változatot végezd.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     3
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "tuz"
+    ]
+   },
+   "benefitAreas": [
+    "tudo",
+    "elme"
+   ],
+   "duration": "5–10 kör"
+  },
+  {
+   "id": "negyszog-legzes",
+   "sanskrit": "Sama vṛtti kumbhaka",
+   "hu": "Négyszöglégzés",
+   "en": "Box breathing",
+   "category": "kumbhaka",
+   "level": 2,
+   "pattern": "4:4:4:4 (be, bent, ki, kint)",
+   "steps": [
+    "Lélegezz be 4-ig, tartsd bent 4-ig, lélegezz ki 4-ig, tartsd kint 4-ig.",
+    "Ha kényelmes, a négy szakasz hossza együtt nőhet."
+   ],
+   "benefits": "Fókuszt és nyugalmat ad stresszhelyzetben, erősíti a légzés feletti kontrollt.",
+   "cautions": "Magas vérnyomásnál, szívbetegségnél, várandósság alatt a visszatartásokat hagyd el vagy rövidítsd.",
+   "chakras": {
+    "primary": 6,
+    "secondary": [
+     4
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": []
+   },
+   "benefitAreas": [
+    "elme",
+    "sziv"
+   ],
+   "duration": "3–5 perc"
+  },
+  {
+   "id": "antara-kumbhaka",
+   "sanskrit": "Antara kumbhaka",
+   "hu": "Belégzés utáni visszatartás",
+   "en": "Retention after inhalation",
+   "category": "kumbhaka",
+   "level": 3,
+   "pattern": "1:2:2-től 1:4:2-ig",
+   "steps": [
+    "Teljes belégzés után tartsd bent a levegőt jálandhara bandhával.",
+    "Emeld fel a fejet, és lassan lélegezz ki. Mindig kényelmes határon belül."
+   ],
+   "benefits": "Növeli a prána-kapacitást, mélyíti a koncentrációt, energizál.",
+   "cautions": "Magas vérnyomás, szívbetegség, várandósság, glaukóma esetén kerüld.",
+   "chakras": {
+    "primary": 4,
+    "secondary": [
+     5
+    ]
+   },
+   "elements": {
+    "primary": "levego",
+    "secondary": [
+     "eter"
+    ]
+   },
+   "benefitAreas": [
+    "tudo",
+    "elme"
+   ],
+   "duration": "3–5 kör"
+  },
+  {
+   "id": "bahya-kumbhaka",
+   "sanskrit": "Bāhya kumbhaka",
+   "hu": "Kilégzés utáni visszatartás",
+   "en": "Retention after exhalation",
+   "category": "kumbhaka",
+   "level": 3,
+   "pattern": "1:2:1 (be, ki, kint)",
+   "steps": [
+    "Teljes kilégzés után tartsd kint a levegőt, bandhákkal vagy anélkül.",
+    "Ha szükséges, nyugodtan lélegezz be; ne kapkodj levegő után."
+   ],
+   "benefits": "Mélyen elcsendesít, erősíti a rekeszizmot és a bandhákat, előkészíti a meditációt.",
+   "cautions": "Magas vérnyomás, szívbetegség, várandósság, szorongás esetén kerüld.",
+   "chakras": {
+    "primary": 3,
+    "secondary": [
+     1
+    ]
+   },
+   "elements": {
+    "primary": "tuz",
+    "secondary": [
+     "fold"
+    ]
+   },
+   "benefitAreas": [
+    "elme",
+    "emesztes"
+   ],
+   "duration": "3–5 kör"
+  }
+ ]
+}

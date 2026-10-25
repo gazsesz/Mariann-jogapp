@@ -17,14 +17,17 @@ export interface Figure {
   strap?: boolean | number;
 }
 
-export interface Pose {
+export type Kind = 'asana' | 'mudra' | 'pranayama';
+
+/** Az ászanák, mudrák és pránájámák közös adatai (szűrés, óravázlat, figyelmeztetés). */
+export interface Practice {
   id: string;
   sanskrit: string;
   hu: string;
   en: string;
   category: string;
   level: 1 | 2 | 3;
-  traditions: string[];
+  traditions?: string[];
   steps: string[];
   benefits: string;
   cautions: string;
@@ -32,7 +35,26 @@ export interface Pose {
   benefitAreas: string[];
   /** Az öt elem (föld, víz, tűz, levegő, éter) a csakrákból származtatva. */
   elements: { primary: string; secondary: string[] };
+}
+
+export interface Pose extends Practice {
+  traditions: string[];
   figure: Figure;
+}
+
+/** Mudra vagy pránájáma. */
+export interface Technique extends Practice {
+  /** Pránájámánál a ritmus, arány. */
+  pattern?: string;
+  /** Ajánlott időtartam vagy ismétlésszám. */
+  duration: string;
+}
+
+export interface TechniqueData {
+  version: number;
+  kind: 'mudra' | 'pranayama';
+  categories: Category[];
+  items: Technique[];
 }
 
 export interface Category {
@@ -87,6 +109,9 @@ export type Sides = 'nincs' | 'mindket' | 'jobb' | 'bal';
 
 export interface PlanItem {
   key: string;
+  /** Hiányzó érték = ászana (a korábbi mentésekkel való összhang miatt). */
+  kind?: Kind;
+  /** Az ászana, mudra vagy pránájáma azonosítója. */
   poseId: string;
   /** Tartási idő szabad szöveggel, pl. „5 légzés”, „3 perc”. */
   hold: string;

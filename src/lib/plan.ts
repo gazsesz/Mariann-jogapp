@@ -1,4 +1,4 @@
-import type { Plan, PlanItem, PlanSection, Pose } from './types';
+import type { Kind, Plan, PlanItem, PlanSection, Practice } from './types';
 
 export const newId = () =>
   Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -45,15 +45,16 @@ export function duplicatePlan(p: Plan): Plan {
   };
 }
 
-/** Yin pózoknál perces tartás, máshol légzésszám az alapértelmezés. */
-export function defaultHold(p: Pose): string {
+/** Mudránál, pránájámánál az ajánlott idő; yin pózoknál perces tartás, máshol légzésszám. */
+export function defaultHold(p: Practice): string {
+  if ('duration' in p && typeof p.duration === 'string') return p.duration;
   if (p.category === 'yin') return '3 perc';
   if (p.category === 'pihen') return '1–2 perc';
   return '5 légzés';
 }
 
-export function newItem(p: Pose): PlanItem {
-  return { key: newId(), poseId: p.id, hold: defaultHold(p), sides: 'nincs', note: '' };
+export function newItem(p: Practice, kind: Kind = 'asana'): PlanItem {
+  return { key: newId(), kind, poseId: p.id, hold: defaultHold(p), sides: 'nincs', note: '' };
 }
 
 export function addItem(plan: Plan, sectionKey: string, item: PlanItem): Plan {
@@ -76,6 +77,18 @@ export function move<T>(list: T[], index: number, delta: number): T[] {
 }
 
 export const poseCount = (p: Plan) => p.sections.reduce((n, s) => n + s.items.length, 0);
+
+/** Pl. „6 ászana · 1 mudra · 2 pránájáma”. */
+export function countLabel(p: Plan): string {
+  const n: Record<Kind, number> = { asana: 0, mudra: 0, pranayama: 0 };
+  p.sections.forEach((s) => s.items.forEach((it) => n[it.kind ?? 'asana']++));
+  const parts = [
+    n.asana ? `${n.asana} ászana` : '',
+    n.mudra ? `${n.mudra} mudra` : '',
+    n.pranayama ? `${n.pranayama} pránájáma` : '',
+  ].filter(Boolean);
+  return parts.length ? parts.join(' · ') : 'még üres';
+}
 
 export const SIDES_LABEL: Record<PlanItem['sides'], string> = {
   nincs: '–',

@@ -63,6 +63,29 @@ export function Button({
   );
 }
 
+/** Kapcsolósor néhány nézet között (pl. Órák / Tematikák). */
+export function Segmented<T extends string>({
+  options,
+  value,
+  onChange,
+}: {
+  options: [T, string][];
+  value: T;
+  onChange: (v: T) => void;
+}) {
+  return (
+    <View style={s.segment}>
+      {options.map(([v, label]) => (
+        <Pressable key={v} onPress={() => onChange(v)} style={[s.segBtn, value === v && s.segActive]} accessibilityRole="tab">
+          <Text style={[s.segText, value === v && s.segTextActive]} numberOfLines={1}>
+            {label}
+          </Text>
+        </Pressable>
+      ))}
+    </View>
+  );
+}
+
 export function SectionTitle({ children }: { children: ReactNode }) {
   return <Text style={s.sectionTitle}>{children}</Text>;
 }
@@ -86,6 +109,11 @@ export const s = StyleSheet.create({
   tagText: { fontSize: 12 },
   btn: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   btnText: { fontSize: 15, fontWeight: '600' },
+  segment: { flexDirection: 'row', backgroundColor: C.bg, borderRadius: 10, padding: 3 },
+  segBtn: { flex: 1, paddingVertical: 8, paddingHorizontal: 4, borderRadius: 8, alignItems: 'center' },
+  segActive: { backgroundColor: C.surface, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 3, elevation: 1 },
+  segText: { color: C.muted, fontWeight: '600' },
+  segTextActive: { color: C.accent },
   sectionTitle: {
     fontSize: 13,
     fontWeight: '700',
