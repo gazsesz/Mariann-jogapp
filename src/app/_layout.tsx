@@ -21,6 +21,9 @@ export default function RootLayout() {
         <Stack.Screen name="pose/[id]" options={{ title: 'Ászana' }} />
         <Stack.Screen name="plan/[id]" options={{ title: 'Óravázlat' }} />
         <Stack.Screen name="pick" options={{ title: 'Ászanák hozzáadása' }} />
+        <Stack.Screen name="series/new" options={{ title: 'Új tematika' }} />
+        <Stack.Screen name="series/[id]" options={{ title: 'Tematika' }} />
+        <Stack.Screen name="series/link" options={{ title: 'Óravázlat választása' }} />
         <Stack.Screen name="add-to-plan" options={{ title: 'Hozzáadás óravázlathoz', presentation: 'modal' }} />
       </Stack>
     </SQLiteProvider>

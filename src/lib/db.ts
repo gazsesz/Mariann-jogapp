@@ -1,12 +1,12 @@
 import type { SQLiteDatabase } from 'expo-sqlite';
-import type { Plan } from './types';
+import type { Plan, Series } from './types';
 
 // Az óravázlatok az eszközön, SQLite-ban tárolódnak. Egy sor = egy óravázlat;
 // a szerkezet (szakaszok, pózok) JSON-ként van a `data` oszlopban, így a
 // formátum bővítése nem igényel táblamódosítást.
 
 export const DB_NAME = 'jogapp.db';
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 
 export async function migrate(db: SQLiteDatabase) {
   const row = await db.getFirstAsync<{ user_version: number }>('PRAGMA user_version');
@@ -15,6 +15,17 @@ export async function migrate(db: SQLiteDatabase) {
     await db.execAsync(`
       PRAGMA journal_mode = WAL;
       CREATE TABLE IF NOT EXISTS plans (
+        id TEXT PRIMARY KEY NOT NULL,
+        title TEXT NOT NULL,
+        data TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      );
+    `);
+  }
+  if (v < 2) {
+    await db.execAsync(`
+      CREATE TABLE IF NOT EXISTS series (
         id TEXT PRIMARY KEY NOT NULL,
         title TEXT NOT NULL,
         data TEXT NOT NULL,
@@ -89,5 +100,35 @@ export function modifyPlan(db: SQLiteDatabase, id: string, f: (p: Plan) => Plan)
 export function deletePlan(db: SQLiteDatabase, id: string): Promise<void> {
   return serial(async () => {
     await db.runAsync('DELETE FROM plans WHERE id = ?', id);
+  });
+}
+
+// Tematikák (több napra bontott témák), ugyanúgy JSON-ként tárolva.
+
+export async function listSeries(db: SQLiteDatabase): Promise<Series[]> {
+  const rows = await db.getAllAsync<{ data: string }>('SELECT data FROM series ORDER BY updated_at DESC');
+  return rows.map((r) => JSON.parse(r.data) as Series);
+}
+
+export async function getSeries(db: SQLiteDatabase, id: string): Promise<Series | null> {
+  const row = await db.getFirstAsync<{ data: string }>('SELECT data FROM series WHERE id = ?', id);
+  return row ? (JSON.parse(row.data) as Series) : null;
+}
+
+export function saveSeries(db: SQLiteDatabase, series: Series): Promise<Series> {
+  return serial(async () => {
+    const x = { ...series, updatedAt: new Date().toISOString() };
+    await db.runAsync(
+      `INSERT INTO series (id, title, data, created_at, updated_at) VALUES (?, ?, ?, ?, ?)
+       ON CONFLICT(id) DO UPDATE SET title = excluded.title, data = excluded.data, updated_at = excluded.updated_at`,
+      x.id, x.title, JSON.stringify(x), x.createdAt, x.updatedAt,
+    );
+    return x;
+  });
+}
+
+export function deleteSeries(db: SQLiteDatabase, id: string): Promise<void> {
+  return serial(async () => {
+    await db.runAsync('DELETE FROM series WHERE id = ?', id);
   });
 }

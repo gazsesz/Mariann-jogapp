@@ -52,9 +52,17 @@ export function FilterPanel({
               onPress={() => set({ chakras: toggle(filter.chakras, c.id) })} />
           ))}
         </View>
+
+        <SectionTitle>Öt elem</SectionTitle>
+        <View style={st.row}>
+          {DATA.elements.map((e) => (
+            <Chip key={e.id} label={e.name} color={e.color} active={filter.elements.includes(e.id)}
+              onPress={() => set({ elements: toggle(filter.elements, e.id) })} />
+          ))}
+        </View>
         <View style={st.switchRow}>
           <Switch value={filter.primaryChakraOnly} onValueChange={(v) => set({ primaryChakraOnly: v })} />
-          <Text style={st.switchText}>Csak az elsődleges csakra számítson</Text>
+          <Text style={st.switchText}>Csak az elsődleges csakra és elem számítson</Text>
         </View>
 
         <SectionTitle>Hatásterület</SectionTitle>

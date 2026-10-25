@@ -30,6 +30,8 @@ export interface Pose {
   cautions: string;
   chakras: { primary: number; secondary: number[]; note?: string };
   benefitAreas: string[];
+  /** Az öt elem (föld, víz, tűz, levegő, éter) a csakrákból származtatva. */
+  elements: { primary: string; secondary: string[] };
   figure: Figure;
 }
 
@@ -48,6 +50,16 @@ export interface Chakra {
   color: string;
 }
 
+export interface Element {
+  id: string;
+  name: string;
+  sanskrit: string;
+  chakra: number;
+  color: string;
+  quality: string;
+  practice: string;
+}
+
 export interface BenefitArea {
   id: string;
   name: string;
@@ -63,6 +75,8 @@ export interface AsanaData {
   version: number;
   benefitAreas: BenefitArea[];
   chakras: Chakra[];
+  elements: Element[];
+  elementsNote: string;
   categories: Category[];
   traditions: Tradition[];
   levels: Record<string, string>;
@@ -99,6 +113,26 @@ export interface Plan {
   conditions: string[];
   notes: string;
   sections: PlanSection[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SeriesDay {
+  key: string;
+  /** A nap címe, pl. „Föld – gyökerezés”. */
+  title: string;
+  /** A nap fókusza, szándéka. */
+  focus: string;
+  planId: string | null;
+}
+
+/** Tematika: egy téma lebontása több (jellemzően 7) napra, naponként egy óravázlattal. */
+export interface Series {
+  id: string;
+  title: string;
+  theme: string;
+  notes: string;
+  days: SeriesDay[];
   createdAt: string;
   updatedAt: string;
 }

@@ -88,6 +88,7 @@ const st = StyleSheet.create({
   },
   search: {
     flex: 1,
+    minWidth: 0,
     backgroundColor: C.bg,
     borderRadius: 10,
     paddingHorizontal: 12,

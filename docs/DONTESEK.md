@@ -5,6 +5,37 @@ A legfrissebb lépés van legfelül.
 
 ---
 
+## 2. lépés – Öt elem és heti tematika (2026-10-25)
+
+**Gabor kérése:** az ászanákhoz kerüljön be az öt alapelem, és lehessen egy témát
+több napra (pl. egy hétre) lebontani, ami az óravázlatoknál is látszik.
+
+### Öt elem
+
+| Döntés | Miért |
+| --- | --- |
+| Az „5 alapelem” a jógai **pañca mahābhūta**: Föld, Víz, Tűz, Levegő, Éter | A jóga hagyományában ez az öt elem, és az első öt csakrához kötődik. (A kínai öt elem – fa, tűz, föld, fém, víz – más rendszer; ha arra lenne igény, külön vehetjük fel.) |
+| Az elem **a csakrákból származik** (Föld–Mūlādhāra, Víz–Svādhiṣṭhāna, Tűz–Maṇipūra, Levegő–Anāhata, Éter–Viśuddha) | Így következetes a meglévő csakra-hozzárendeléssel. Ha az elsődleges csakra a 6. vagy 7., akkor az első 1–5. másodlagos csakra eleme az elsődleges, ennek híján Éter (4 fordított/fejre irányuló póz). |
+| Az adat a `data/aszanak.json`-ba került (5. verzió): `elements` lista és pózonként `elements: {primary, secondary}` | Egy forrás az appnak és később az ászanatárnak. A `docs/aszanatar.html` még nem mutatja az elemeket. |
+| Megjelenik: szűrő („Öt elem”), lista, adatlap (elem minősége), óravázlat „Öt elem egyensúlya” sávdiagram, PDF | Az óra elem-egyensúlya ugyanúgy látszik, mint a csakráké. |
+
+Eloszlás: Tűz 58, Víz 49, Levegő 43, Föld 38, Éter 17 ászana (elsődleges elem).
+
+### Tematika
+
+| Döntés | Miért |
+| --- | --- |
+| Új egység: **tematika** = cím, téma, jegyzet és napok listája; minden nap: cím, fókusz, hozzárendelt óravázlat | Egy témát napokra bontva lehet megtervezni, a napok óravázlatai külön is használhatók. |
+| Alapból 7 nap, de napok hozzáadhatók, törölhetők, mozgathatók | Lehet 5 napos vagy 10 napos sorozat is. |
+| Sablonok: **Üres hét**, **Csakra-utazás (7 nap)**, **Öt elem (5 nap + integráló + pihentető nap)** | Gyors indulás; a napok címe és fókusza kitöltve, átírható. |
+| Egy naphoz új óravázlat készíthető (cím: „Tematika – N. nap: …”, téma = a nap fókusza, címke = a tematika neve), vagy meglévő rendelhető hozzá | Rugalmas: kész órák is beilleszthetők. |
+| Az **Óravázlataim** fülön „Órák / Tematikák” váltó; az órák kártyáján látszik, melyik tematika hányadik napja | Gabor kérése szerint az óravázlatoknál is látszik a tematika. |
+| Tematika törlésekor az óravázlatok megmaradnak; óravázlat törlésekor a nap üres lesz | Ne vesszen el véletlenül kidolgozott óra. |
+| Heti elem-egyensúly és PDF heti áttekintés (naponként fókusz és pózok szakaszonként) | Áttekinthető a hét íve, kinyomtatható. |
+| Tárolás: új `series` tábla (SQLite séma 2. verzió), JSON-ban | Ugyanaz a minta, mint az óravázlatoknál. |
+
+---
+
 ## 1. lépés – Az app alapja (2026-10-25)
 
 **Cél:** működő első változat telefonra: ászanatár szűrőkkel, óravázlat

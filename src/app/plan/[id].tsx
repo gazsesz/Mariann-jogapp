@@ -4,11 +4,13 @@ import * as Sharing from 'expo-sharing';
 import { useSQLiteContext } from 'expo-sqlite';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { BalanceBars } from '../../components/BalanceBars';
 import { PoseFigure } from '../../components/PoseFigure';
 import { Button, Chip, SectionTitle, Tag } from '../../components/ui';
 import { CONDITION_BY_ID, CONDITIONS, planWarnings } from '../../lib/cautions';
 import { confirm, notify } from '../../lib/confirm';
-import { CHAKRA_BY_ID, DATA, POSE_BY_ID } from '../../lib/data';
+import { planBalance } from '../../lib/analysis';
+import { CHAKRA_BY_ID, DATA, ELEMENT_BY_ID, POSE_BY_ID } from '../../lib/data';
 import { getPlan, savePlan } from '../../lib/db';
 import { toggle } from '../../lib/filters';
 import { planHtml } from '../../lib/pdf';
@@ -71,22 +73,12 @@ export default function PlanEditor() {
 
   const warnings = useMemo(() => (plan ? planWarnings(plan, POSE_BY_ID) : []), [plan]);
   const warnByItem = useMemo(() => new Map(warnings.map((w) => [w.itemKey, w])), [warnings]);
-  const chakraCounts = useMemo(() => {
-    const n: Record<number, number> = {};
-    plan?.sections.forEach((s) =>
-      s.items.forEach((it) => {
-        const p = POSE_BY_ID[it.poseId];
-        if (p) n[p.chakras.primary] = (n[p.chakras.primary] ?? 0) + 1;
-      }),
-    );
-    return n;
-  }, [plan]);
+  const balance = useMemo(() => (plan ? planBalance(plan, POSE_BY_ID) : null), [plan]);
 
   if (missing) return <Text style={{ padding: 24 }}>Ez az óravázlat már nem létezik.</Text>;
   if (!plan) return null;
 
   const total = poseCount(plan);
-  const maxChakra = Math.max(1, ...Object.values(chakraCounts));
 
   const updateItem = (sectionKey: string, itemKey: string, patch: Partial<PlanItem>) =>
     update((p) =>
@@ -186,18 +178,12 @@ export default function PlanEditor() {
         </View>
       )}
 
-      {total > 0 && (
+      {total > 0 && balance && (
         <>
           <SectionTitle>Csakra-egyensúly (elsődleges csakrák)</SectionTitle>
-          {DATA.chakras.map((c) => (
-            <View key={c.id} style={st.barRow}>
-              <Text style={st.barLabel}>{c.name}</Text>
-              <View style={st.barTrack}>
-                <View style={{ width: `${((chakraCounts[c.id] ?? 0) / maxChakra) * 100}%`, backgroundColor: c.color, height: 10, borderRadius: 5 }} />
-              </View>
-              <Text style={st.barCount}>{chakraCounts[c.id] ?? 0}</Text>
-            </View>
-          ))}
+          <BalanceBars rows={DATA.chakras} counts={balance.chakras} />
+          <SectionTitle>Öt elem egyensúlya</SectionTitle>
+          <BalanceBars rows={DATA.elements} counts={balance.elements} />
         </>
       )}
 
@@ -219,6 +205,7 @@ export default function PlanEditor() {
             if (!pose) return null;
             const w = warnByItem.get(it.key);
             const ch = CHAKRA_BY_ID[pose.chakras.primary];
+            const el = ELEMENT_BY_ID[pose.elements.primary];
             return (
               <View key={it.key} style={[st.item, w && { borderColor: C.warn }]}>
                 <View style={st.itemTop}>
@@ -231,6 +218,7 @@ export default function PlanEditor() {
                     <Text style={st.itemSk}>
                       {pose.sanskrit}
                       {ch ? ` · ${ch.name}` : ''}
+                      {el ? ` · ${el.name}` : ''}
                     </Text>
                   </View>
                   <View>
@@ -336,13 +324,9 @@ const st = StyleSheet.create({
   warnBox: { backgroundColor: C.warnSoft, borderRadius: 12, padding: 12, marginTop: 12 },
   warnTitle: { color: C.warn, fontWeight: '700', marginBottom: 4 },
   warnLine: { color: C.warn, fontSize: 14, lineHeight: 20 },
-  barRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
-  barLabel: { width: 120, fontSize: 13, color: C.ink },
-  barTrack: { flex: 1, backgroundColor: C.panel, height: 10, borderRadius: 5, overflow: 'hidden' },
-  barCount: { width: 28, textAlign: 'right', fontSize: 13, color: C.muted },
   section: { marginTop: 20 },
   sectionHead: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2, borderBottomColor: C.accent, marginBottom: 8 },
-  sectionTitle: { flex: 1, fontSize: 18, fontWeight: '700', color: C.accent, paddingVertical: 6 },
+  sectionTitle: { flex: 1, minWidth: 0, fontSize: 18, fontWeight: '700', color: C.accent, paddingVertical: 6 },
   item: { backgroundColor: C.surface, borderRadius: 12, borderWidth: 1, borderColor: C.line, padding: 10, marginBottom: 8 },
   itemTop: { flexDirection: 'row', alignItems: 'center' },
   num: { width: 22, color: C.muted, fontSize: 14 },

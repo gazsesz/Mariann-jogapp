@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { PoseFigure } from '../../components/PoseFigure';
 import { Button, SectionTitle, Tag } from '../../components/ui';
 import { CONDITION_BY_ID, poseConditions } from '../../lib/cautions';
-import { BENEFIT_BY_ID, CATEGORY_BY_ID, CHAKRA_BY_ID, levelName, POSE_BY_ID, TRADITION_BY_ID } from '../../lib/data';
+import { BENEFIT_BY_ID, CATEGORY_BY_ID, CHAKRA_BY_ID, ELEMENT_BY_ID, levelName, POSE_BY_ID, TRADITION_BY_ID } from '../../lib/data';
 import { C } from '../../lib/theme';
 
 export default function PoseDetail() {
@@ -71,6 +71,20 @@ export default function PoseDetail() {
         ) : null;
       })}
       {!!p.chakras.note && <Text style={[st.body, st.muted]}>{p.chakras.note}</Text>}
+
+      <SectionTitle>Öt elem</SectionTitle>
+      {[p.elements.primary, ...p.elements.secondary].map((eid, i) => {
+        const e = ELEMENT_BY_ID[eid];
+        return e ? (
+          <View key={eid} style={st.chakraRow}>
+            <View style={[st.dot, { backgroundColor: e.color }]} />
+            <Text style={[st.body, { flex: 1 }]}>
+              <Text style={{ fontWeight: i === 0 ? '700' : '400' }}>{e.name}</Text> ({e.sanskrit}){i === 0 ? ' – elsődleges' : ''}
+              {i === 0 ? <Text style={{ color: C.muted }}>{'\n'}{e.quality}</Text> : null}
+            </Text>
+          </View>
+        ) : null;
+      })}
 
       <SectionTitle>Ellenjavallatok, óvatosság</SectionTitle>
       <View style={st.warnBox}>

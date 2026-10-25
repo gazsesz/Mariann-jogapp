@@ -1,12 +1,13 @@
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { CHAKRA_BY_ID, levelName } from '../lib/data';
+import { CHAKRA_BY_ID, ELEMENT_BY_ID, levelName } from '../lib/data';
 import { C } from '../lib/theme';
 import type { Pose } from '../lib/types';
 import { PoseFigure } from './PoseFigure';
 
 function PoseRowImpl({ pose, onPress, right }: { pose: Pose; onPress: () => void; right?: React.ReactNode }) {
   const ch = CHAKRA_BY_ID[pose.chakras.primary];
+  const el = ELEMENT_BY_ID[pose.elements.primary];
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [st.row, pressed && { backgroundColor: C.panel }]}>
       <View style={st.fig}>
@@ -19,6 +20,8 @@ function PoseRowImpl({ pose, onPress, right }: { pose: Pose; onPress: () => void
           <Text style={st.metaText}>{levelName(pose.level)}</Text>
           {ch && <View style={[st.dot, { backgroundColor: ch.color }]} />}
           {ch && <Text style={st.metaText}>{ch.name}</Text>}
+          {el && <View style={[st.dot, { backgroundColor: el.color }]} />}
+          {el && <Text style={st.metaText}>{el.name}</Text>}
         </View>
       </View>
       {right}

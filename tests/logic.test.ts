@@ -98,3 +98,33 @@ test('PDF HTML: cím, szakaszok, jegyzet, escape', () => {
   assert.ok(html.includes('talajkapcsolat'));
   assert.ok(html.includes('Ujjayi légzés'));
 });
+
+test('öt elem: minden ászanának van érvényes elsődleges eleme, és szűrhető', async () => {
+  const ids = new Set(DATA.elements.map((e) => e.id));
+  assert.equal(DATA.elements.length, 5);
+  for (const p of POSES) {
+    assert.ok(ids.has(p.elements.primary), p.id);
+    p.elements.secondary.forEach((e) => assert.ok(ids.has(e) && e !== p.elements.primary, p.id));
+  }
+  const fold = filterPoses(POSES, { ...EMPTY_FILTER, elements: ['fold'], primaryChakraOnly: true });
+  assert.ok(fold.length > 0 && fold.every((p) => p.elements.primary === 'fold'));
+  assert.equal(byId['tadasana'].elements.primary, 'fold');
+});
+
+test('tematika: sablonok, napi óravázlat, hozzárendelés', async () => {
+  const { createSeries, planForDay, seriesIndex } = await import('../src/lib/series');
+  const { seriesHtml } = await import('../src/lib/pdf');
+  const { planBalance, dominantElements } = await import('../src/lib/analysis');
+  assert.equal(createSeries('ures').days.length, 7);
+  assert.equal(createSeries('csakra').days.length, 7);
+  const s = createSeries('elemek');
+  assert.equal(s.days.length, 7);
+  let p = planForDay(s, 0);
+  assert.ok(p.title.startsWith('Az öt elem hete – 1. nap'));
+  p = addItem(p, p.sections[2].key, newItem(byId['tadasana']));
+  s.days[0].planId = p.id;
+  assert.equal(seriesIndex([s]).get(p.id)?.day, 0);
+  assert.deepEqual(dominantElements(planBalance(p, byId).elements), ['fold']);
+  const html = seriesHtml(s, new Map([[p.id, p]]));
+  assert.ok(html.includes('1. nap') && html.includes('Hegy') && html.includes('Még nincs óravázlat.'));
+});

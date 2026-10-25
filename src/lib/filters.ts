@@ -10,7 +10,8 @@ export interface PoseFilter {
   levels: number[];
   traditions: string[];
   chakras: number[];
-  /** Csak az elsődleges csakra számít. */
+  elements: string[];
+  /** Csak az elsődleges csakra és elem számít. */
   primaryChakraOnly: boolean;
   benefits: string[];
 }
@@ -21,13 +22,14 @@ export const EMPTY_FILTER: PoseFilter = {
   levels: [],
   traditions: [],
   chakras: [],
+  elements: [],
   primaryChakraOnly: false,
   benefits: [],
 };
 
 /** Ékezet- és kisbetű-független kereséshez. */
 export const fold = (s: string) =>
-  s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
 const searchKey = (p: Pose) => fold([p.hu, p.sanskrit, p.en, p.id].join(' '));
 
@@ -37,6 +39,7 @@ export function activeFilterCount(f: PoseFilter): number {
     f.levels.length +
     f.traditions.length +
     f.chakras.length +
+    f.elements.length +
     f.benefits.length
   );
 }
@@ -48,6 +51,10 @@ export function matchesFilter(p: Pose, f: PoseFilter): boolean {
   if (f.chakras.length) {
     const own = f.primaryChakraOnly ? [p.chakras.primary] : [p.chakras.primary, ...p.chakras.secondary];
     if (!own.some((c) => f.chakras.includes(c))) return false;
+  }
+  if (f.elements.length) {
+    const own = f.primaryChakraOnly ? [p.elements.primary] : [p.elements.primary, ...p.elements.secondary];
+    if (!own.some((e) => f.elements.includes(e))) return false;
   }
   if (f.benefits.length && !p.benefitAreas.some((b) => f.benefits.includes(b))) return false;
   const q = fold(f.query.trim());

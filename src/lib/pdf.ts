@@ -1,8 +1,8 @@
 import { CONDITION_BY_ID, planWarnings } from './cautions';
-import { CHAKRA_BY_ID, levelName, POSE_BY_ID } from './data';
+import { CHAKRA_BY_ID, ELEMENT_BY_ID, levelName, POSE_BY_ID } from './data';
 import { figureSvg } from './figure';
 import { poseCount, SIDES_LABEL } from './plan';
-import type { Plan } from './types';
+import type { Plan, Series } from './types';
 
 const PDF_FIGURE = { fig: '#2b2f3a', far: '#a8b1ad', mat: '#b9c8d9', eye: '#ffffff', strap: '#a86f0c' };
 
@@ -27,6 +27,7 @@ export function planHtml(plan: Plan): string {
           if (!p) return '';
           const w = warnByItem.get(it.key);
           const ch = CHAKRA_BY_ID[p.chakras.primary];
+          const el = ELEMENT_BY_ID[p.elements.primary];
           const details = [it.hold, it.sides !== 'nincs' ? SIDES_LABEL[it.sides] : ''].filter(Boolean).join(' · ');
           return `<tr>
             <td class="n">${i + 1}.</td>
@@ -37,7 +38,7 @@ export function planHtml(plan: Plan): string {
               ${it.note ? `<div class="note">${esc(it.note)}</div>` : ''}
               ${w ? `<div class="warn">⚠ ${esc(p.cautions)}</div>` : ''}
             </td>
-            <td class="ch">${ch ? `<span class="dot" style="background:${ch.color}"></span>${esc(ch.name)}` : ''}</td>
+            <td class="ch">${ch ? `<div><span class="dot" style="background:${ch.color}"></span>${esc(ch.name)}</div>` : ''}${el ? `<div><span class="dot" style="background:${el.color}"></span>${esc(el.name)}</div>` : ''}</td>
           </tr>`;
         })
         .join('');
@@ -75,5 +76,50 @@ export function planHtml(plan: Plan): string {
   ${conditions.length ? `<div class="box">A csoportban jelzett panaszok: ${esc(conditions.join(', '))}</div>` : ''}
   ${plan.notes ? `<div class="notes">${esc(plan.notes)}</div>` : ''}
   ${sections}
+</body></html>`;
+}
+
+/** Tematika heti áttekintése: naponként a fókusz és az óravázlat pózai szakaszonként. */
+export function seriesHtml(series: Series, plans: Map<string, Plan>): string {
+  const days = series.days
+    .map((d, i) => {
+      const p = d.planId ? plans.get(d.planId) : undefined;
+      const body = p
+        ? `<div class="plan">${esc(p.title)}${p.durationMin ? ` · ${p.durationMin} perc` : ''}</div>` +
+          p.sections
+            .filter((s) => s.items.length)
+            .map(
+              (s) =>
+                `<div class="sec"><b>${esc(s.title)}:</b> ${s.items
+                  .map((it) => POSE_BY_ID[it.poseId])
+                  .filter(Boolean)
+                  .map((x) => esc(x.hu))
+                  .join(', ')}</div>`,
+            )
+            .join('')
+        : '<div class="empty">Még nincs óravázlat.</div>';
+      return `<div class="day"><h2>${i + 1}. nap${d.title ? ` – ${esc(d.title)}` : ''}</h2>${
+        d.focus ? `<div class="focus">${esc(d.focus)}</div>` : ''
+      }${body}</div>`;
+    })
+    .join('');
+  return `<!doctype html><html lang="hu"><head><meta charset="utf-8">
+<style>
+  @page { margin: 14mm; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; color: #23262e; font-size: 12px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .theme { font-size: 14px; margin-bottom: 6px; }
+  .notes { background: #f2f4f1; padding: 8px 10px; border-radius: 6px; white-space: pre-wrap; margin: 6px 0; }
+  .day { page-break-inside: avoid; border-bottom: 1px solid #d5dbd4; padding: 6px 0 8px; }
+  h2 { font-size: 15px; margin: 6px 0 2px; color: #3d4f8f; }
+  .focus { font-style: italic; color: #5d6470; margin-bottom: 4px; }
+  .plan { font-weight: 700; margin: 2px 0; }
+  .sec { margin: 1px 0; }
+  .empty { color: #5d6470; }
+</style></head><body>
+  <h1>${esc(series.title || 'Tematika')}</h1>
+  ${series.theme ? `<div class="theme">${esc(series.theme)}</div>` : ''}
+  ${series.notes ? `<div class="notes">${esc(series.notes)}</div>` : ''}
+  ${days}
 </body></html>`;
 }
