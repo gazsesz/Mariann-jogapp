@@ -5,18 +5,18 @@ A legfrissebb lépés van legfelül.
 
 ---
 
-## Yogahome 1. lépés – Független ág, új név, egyszerűsített felület (2026-11-02)
+## YogahOMe 1. lépés – Független ág, új név, egyszerűsített felület (2026-11-02)
 
 **Gabor kérése:** a meglévő appot Mariann appjától teljesen független ágon visszük tovább,
-átlagos (nem feltétlenül tapasztalt) felhasználóknak. Név: **Yogahome** („Jóga otthon”).
+átlagos (nem feltétlenül tapasztalt) felhasználóknak. Név: **YogahOMe** („Jóga otthon”).
 A spirituális, csakrás szűrők kerüljenek egy haladó szekcióba, de ne törlődjenek.
 A teljes terv: `docs/terv.html`.
 
 | Döntés | Miért |
 | --- | --- |
 | Ág: `claude/project-thread-nkbmp7`, a Mariann-féle `claude/project-thread-24jwdm` (PR #3) állapotából indul | Független fejlődés, de a már meglévő adat és logika megmarad. |
-| App neve **Yogahome**, slug/scheme `yogahome`, csomagazonosító `hu.yogahome.app` | Gabor döntése; nem oktatói név. Az új azonosító miatt a telefonon külön appként települ a tanári mellé. |
-| Zöldes-kékes (teal) téma: fő szín `#1f5a55`, háttér `#eff3f0`, kiemelő sáfrány `#e9b76a` | Gabor kérése; a design vászon (claude.ai artifact „Yogahome – design”) színei. |
+| App neve **YogahOMe**, slug/scheme `yogahome`, csomagazonosító `hu.yogahome.app` | Gabor döntése; nem oktatói név. Az új azonosító miatt a telefonon külön appként települ a tanári mellé. |
+| Zöldes-kékes (teal) téma: fő szín `#1f5a55`, háttér `#eff3f0`, kiemelő sáfrány `#e9b76a` | Gabor kérése; a design vászon (claude.ai artifact „YogahOMe – design”) színei. |
 | Két alsó fül: **Gyakorlattár** (Ászanák / Sorozatok / Légzés váltóval) és **Óráim** | Az eddigi 5 fül sok egy kezdőnek. A Főoldal a célalapú órákkal a 3. lépésben jön. |
 | A mudratár a Gyakorlattár „Mudrák ›” linkjéről nyílik, nem fül | Gabor: a mudrák a haladó részbe kerülnek; a légzés elöl marad, mert a relaxációban és a panaszos órákban kell. |
 | A szűrőpanelen az irányzat, csakra és öt elem egy összecsukott **„Haladó szűrők”** részbe került; ha bármelyik aktív, nyitva marad | Kezdőnek a szint, kategória, hatásterület elég; a spirituális szempontok nem törlődnek. |
