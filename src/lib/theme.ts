@@ -1,20 +1,22 @@
-// Színek az ászanatár világos témájából.
+// Yogahome színvilág: zöldes-kékes (teal) alap, sáfrány kiemelés.
 export const C = {
-  bg: '#f2f4f1',
+  bg: '#eff3f0',
   surface: '#ffffff',
-  panel: '#e6ebe5',
-  ink: '#23262e',
-  muted: '#5d6470',
-  line: '#d5dbd4',
-  accent: '#3d4f8f',
-  accentSoft: '#dfe4f3',
-  gold: '#a86f0c',
-  goldSoft: '#f6ead2',
-  warn: '#a2412b',
+  panel: '#e5ece8',
+  ink: '#1c2826',
+  muted: '#50605d',
+  line: '#d3ded9',
+  accent: '#1f5a55',
+  accentSoft: '#ddedea',
+  dark: '#12302c',
+  gold: '#9a640f',
+  goldSoft: '#f6ebd6',
+  saffron: '#e9b76a',
+  warn: '#8e3420',
   warnSoft: '#f8e6e1',
-  fig: '#2b2f3a',
-  figFar: '#a8b1ad',
-  mat: '#b9c8d9',
+  fig: '#1c2826',
+  figFar: '#a3b5af',
+  mat: '#b5cfc8',
 };
 
 export const FIGURE_COLORS = { fig: C.fig, far: C.figFar, mat: C.mat, eye: C.panel, strap: C.gold };

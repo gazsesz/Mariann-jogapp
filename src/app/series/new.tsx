@@ -13,7 +13,7 @@ export default function NewSeries() {
   };
   return (
     <ScrollView contentContainerStyle={[{ padding: 16 }, WIDE]}>
-      <Text style={st.lead}>Miből induljon a tematika? A napok címe és fókusza utána szabadon átírható.</Text>
+      <Text style={st.lead}>Miből induljon a program? A napok címe és fókusza utána szabadon átírható.</Text>
       {SERIES_TEMPLATES.map((t) => (
         <Pressable key={t.id} style={({ pressed }) => [st.card, pressed && { opacity: 0.8 }]} onPress={() => start(t.id)}>
           <Text style={st.title}>{t.name}</Text>

@@ -36,6 +36,7 @@ export function duplicatePlan(p: Plan): Plan {
     ...p,
     id: newId(),
     title: p.title + ' (másolat)',
+    favorite: false,
     sections: p.sections.map((s) => ({
       ...s,
       key: newId(),

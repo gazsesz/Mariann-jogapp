@@ -161,10 +161,12 @@ export interface Plan {
   level: 0 | 1 | 2 | 3;
   durationMin: number | null;
   tags: string[];
-  /** A csoportban jelzett panaszok azonosítói (lásd cautions.ts). */
+  /** Kímélendő területek, panaszok azonosítói (lásd cautions.ts). */
   conditions: string[];
   notes: string;
   sections: PlanSection[];
+  /** Kedvencnek jelölt óra (a „Kedvencek” listában jelenik meg). */
+  favorite?: boolean;
   createdAt: string;
   updatedAt: string;
 }

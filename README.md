@@ -1,10 +1,10 @@
-# Mariann jógapp
+# Yogahome – Jóga otthon
 
-Jógaóra-tervező alkalmazás (React Native + Expo, TypeScript – Android és iOS).
+Otthoni jóga app átlagos felhasználóknak (React Native + Expo, TypeScript – Android és iOS): célalapú, időtartamra generált órák, magyar narrációval. A Mariann-féle tanári óratervezőből indult, attól független ágon fejlődik (terv: `docs/terv.html`, döntések: `docs/DONTESEK.md`).
 
 ## Tartalom
 
-- `src/app/` – az app képernyői (expo-router): ászanatár, sorozatok, mudratár, pránájámák, közös adatlap, óravázlataim, óravázlat-szerkesztő, tematikák (több napra bontott témák).
+- `src/app/` – az app képernyői (expo-router): Gyakorlattár (ászanák, sorozatok, légzés; a mudratár a haladó részben), közös adatlap, Óráim (órák, kedvencek, programok), óraszerkesztő.
 - `src/lib/` – adat, szűrők, ellenjavallat-figyelmeztetések, figurarajzolás, mentés (SQLite), PDF.
 - `data/aszanak.json` – az ászanatár app-barát adatai (205 ászana, 12 kategória, irányzat-címkék, csakrák, öt elem, hatásterületek, lépések, ellenjavallatok, figura-szögek).
 - `data/sorozatok.json` – 20 dinamikus sorozat (nap-, hold-, földüdvözlet, vinyásza, gyengéd áramlások) 5 kategóriában, lépésenként ászanával és légzéssel.
@@ -34,7 +34,7 @@ Böngészőben is megnézhető: `npx expo start --web`.
 
 ```
 npm run build:web
-node scripts/web-single-file.mjs dist dist/mariann-jogapp.html
+node scripts/web-single-file.mjs dist dist/yogahome.html
 ```
 
 ## Fejlesztés

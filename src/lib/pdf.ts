@@ -69,18 +69,18 @@ export function planHtml(plan: Plan): string {
   td.ch { width: 110px; color: #5d6470; font-size: 11px; }
   .name { font-weight: 700; font-size: 13px; }
   .sk { font-weight: 400; font-style: italic; color: #5d6470; }
-  .det { color: #3d4f8f; }
+  .det { color: #1f5a55; }
   .flow { color: #5d6470; font-size: 11px; margin-top: 2px; }
   .note { margin-top: 2px; }
   .warn { color: #a2412b; margin-top: 2px; font-size: 11px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin-right: 4px; }
   .empty { color: #5d6470; }
-  .kind { display: inline-block; padding: 3px 8px; border-radius: 10px; background: #dfe4f3; color: #3d4f8f; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+  .kind { display: inline-block; padding: 3px 8px; border-radius: 10px; background: #ddedea; color: #1f5a55; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
 </style></head><body>
   <h1>${esc(plan.title || 'Óravázlat')}</h1>
   ${plan.theme ? `<div class="theme">${esc(plan.theme)}</div>` : ''}
   <div class="meta">${esc(meta)}</div>
-  ${conditions.length ? `<div class="box">A csoportban jelzett panaszok: ${esc(conditions.join(', '))}</div>` : ''}
+  ${conditions.length ? `<div class="box">Kímélendő területek, panaszok: ${esc(conditions.join(', '))}</div>` : ''}
   ${plan.notes ? `<div class="notes">${esc(plan.notes)}</div>` : ''}
   ${sections}
 </body></html>`;
@@ -118,7 +118,7 @@ export function seriesHtml(series: Series, plans: Map<string, Plan>): string {
   .theme { font-size: 14px; margin-bottom: 6px; }
   .notes { background: #f2f4f1; padding: 8px 10px; border-radius: 6px; white-space: pre-wrap; margin: 6px 0; }
   .day { page-break-inside: avoid; border-bottom: 1px solid #d5dbd4; padding: 6px 0 8px; }
-  h2 { font-size: 15px; margin: 6px 0 2px; color: #3d4f8f; }
+  h2 { font-size: 15px; margin: 6px 0 2px; color: #1f5a55; }
   .focus { font-style: italic; color: #5d6470; margin-bottom: 4px; }
   .plan { font-weight: 700; margin: 2px 0; }
   .sec { margin: 1px 0; }

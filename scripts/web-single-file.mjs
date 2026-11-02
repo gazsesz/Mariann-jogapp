@@ -1,13 +1,13 @@
 // Az `expo export --platform web` kimenetéből egyetlen, önálló HTML fájlt készít
 // (a JS és a képek beágyazva), ami bárhol megnyitható vagy megosztható.
-// Használat: node scripts/web-single-file.mjs dist dist/mariann-jogapp.html [--fragment]
+// Használat: node scripts/web-single-file.mjs dist dist/yogahome.html [--fragment]
 // --fragment: <html>/<head>/<body> nélküli változat beágyazáshoz (pl. Claude Artifact).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const args = process.argv.slice(2);
 const fragment = args.includes('--fragment');
-const [dist = 'dist', out = join(dist, 'mariann-jogapp.html')] = args.filter((a) => !a.startsWith('--'));
+const [dist = 'dist', out = join(dist, 'yogahome.html')] = args.filter((a) => !a.startsWith('--'));
 let html = readFileSync(join(dist, 'index.html'), 'utf8');
 
 const scriptRe = /<script src="([^"]+)" defer><\/script>/g;

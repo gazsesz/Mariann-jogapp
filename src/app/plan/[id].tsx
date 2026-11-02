@@ -55,6 +55,7 @@ export default function PlanEditor() {
   const [plan, setPlan] = useState<Plan | null>(null);
   const [missing, setMissing] = useState(false);
   const [tagsText, setTagsText] = useState('');
+  const [showBalance, setShowBalance] = useState(false);
 
   // Fókuszba kerüléskor újratöltjük, mert a választó képernyő közvetlenül az adatbázisba ír.
   useFocusEffect(
@@ -109,10 +110,22 @@ export default function PlanEditor() {
       <Stack.Screen
         options={{
           title: plan.title || 'Óravázlat',
-          headerRight: Platform.OS === 'web' ? undefined : () => (
-            <Pressable onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} hitSlop={8}>
-              <Text style={st.headerBtn}>PDF</Text>
-            </Pressable>
+          headerRight: () => (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+              <Pressable
+                onPress={() => update((p) => ({ ...p, favorite: !p.favorite }))}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={plan.favorite ? 'Kedvenc jelölés levétele' : 'Megjelölés kedvencként'}
+              >
+                <Text style={[st.headerStar, plan.favorite && { color: C.saffron }]}>{plan.favorite ? '★' : '☆'}</Text>
+              </Pressable>
+              {Platform.OS !== 'web' && (
+                <Pressable onPress={() => exportPdf(plan).catch((e) => notify('PDF hiba', String(e)))} hitSlop={8}>
+                  <Text style={st.headerBtn}>PDF</Text>
+                </Pressable>
+              )}
+            </View>
           ),
         }}
       />
@@ -166,7 +179,7 @@ export default function PlanEditor() {
         placeholderTextColor={C.muted}
       />
 
-      <SectionTitle>A csoportban jelzett panaszok</SectionTitle>
+      <SectionTitle>Kímélendő területek, panaszok</SectionTitle>
       <View style={st.wrap}>
         {CONDITIONS.map((c) => (
           <Chip key={c.id} label={c.name} active={plan.conditions.includes(c.id)}
@@ -188,6 +201,11 @@ export default function PlanEditor() {
       )}
 
       {total > 0 && balance && (
+        <Pressable onPress={() => setShowBalance(!showBalance)} accessibilityRole="button" accessibilityState={{ expanded: showBalance }}>
+          <Text style={st.advToggle}>{showBalance ? '▲' : '▼'} Haladó: csakra- és elem-egyensúly</Text>
+        </Pressable>
+      )}
+      {total > 0 && balance && showBalance && (
         <>
           <SectionTitle>Csakra-egyensúly (elsődleges csakrák)</SectionTitle>
           <BalanceBars rows={DATA.chakras} counts={balance.chakras} />
@@ -352,6 +370,8 @@ function IconBtn({ label, onPress }: { label: string; onPress: () => void }) {
 
 const st = StyleSheet.create({
   content: { padding: 16, paddingBottom: 48 },
+  advToggle: { color: C.muted, fontWeight: '600', fontSize: 14, marginTop: 18, paddingVertical: 6 },
+  headerStar: { fontSize: 24, color: C.muted },
   headerBtn: { color: C.accent, fontWeight: '700', fontSize: 16, paddingHorizontal: 8 },
   titleInput: { fontSize: 22, fontWeight: '700', color: C.ink, paddingVertical: 6, marginBottom: 6, borderBottomWidth: 1, borderBottomColor: C.line },
   input: {

@@ -11,7 +11,7 @@ import { seriesIndex } from '../../lib/series';
 import { C, WIDE } from '../../lib/theme';
 import type { Plan, Series } from '../../lib/types';
 
-type Mode = 'orak' | 'tematikak';
+type Mode = 'orak' | 'kedvencek' | 'tematikak';
 
 export default function PlansScreen() {
   const db = useDb();
@@ -30,12 +30,14 @@ export default function PlansScreen() {
   const planById = useMemo(() => new Map(plans.map((p) => [p.id, p])), [plans]);
   const q = fold(query.trim());
 
+  const favCount = plans.filter((p) => p.favorite).length;
   const shownPlans = useMemo(() => {
-    if (!q) return plans;
-    return plans.filter((p) =>
+    const base = mode === 'kedvencek' ? plans.filter((p) => p.favorite) : plans;
+    if (!q) return base;
+    return base.filter((p) =>
       fold([p.title, p.theme, ...p.tags, bySeries.get(p.id)?.series.title ?? ''].join(' ')).includes(q),
     );
-  }, [plans, q, bySeries]);
+  }, [plans, q, bySeries, mode]);
   const shownSeries = useMemo(() => {
     if (!q) return series;
     return series.filter((s) => fold([s.title, s.theme, ...s.days.map((d) => d.title)].join(' ')).includes(q));
@@ -49,20 +51,24 @@ export default function PlansScreen() {
     const p = await savePlan(db, createPlan());
     router.push({ pathname: '/plan/[id]', params: { id: p.id } });
   };
+  const toggleFavorite = async (p: Plan) => {
+    await savePlan(db, { ...p, favorite: !p.favorite });
+    reload();
+  };
   const duplicate = async (p: Plan) => {
     await savePlan(db, duplicatePlan(p));
     reload();
   };
   const remove = async (p: Plan) => {
     const inSeries = bySeries.get(p.id);
-    const extra = inSeries ? `\n\nA(z) „${inSeries.series.title}” tematika ${inSeries.day + 1}. napjáról is lekerül.` : '';
+    const extra = inSeries ? `\n\nA(z) „${inSeries.series.title}” program ${inSeries.day + 1}. napjáról is lekerül.` : '';
     if (await confirm('Óravázlat törlése', `Biztosan törlöd: „${p.title}”?${extra}`)) {
       await deletePlan(db, p.id);
       reload();
     }
   };
   const removeSeries = async (s: Series) => {
-    if (await confirm('Tematika törlése', `Biztosan törlöd: „${s.title}”? A napokhoz tartozó óravázlatok megmaradnak.`)) {
+    if (await confirm('Program törlése', `Biztosan törlöd: „${s.title}”? A napokhoz tartozó óravázlatok megmaradnak.`)) {
       await deleteSeries(db, s.id);
       reload();
     }
@@ -76,7 +82,8 @@ export default function PlansScreen() {
             {(
               [
                 ['orak', `Órák (${plans.length})`],
-                ['tematikak', `Tematikák (${series.length})`],
+                ['kedvencek', `Kedvencek (${favCount})`],
+                ['tematikak', `Programok (${series.length})`],
               ] as [Mode, string][]
             ).map(([m, label]) => (
               <Pressable key={m} onPress={() => setMode(m)} style={[st.segBtn, mode === m && st.segActive]} accessibilityRole="tab">
@@ -87,24 +94,26 @@ export default function PlansScreen() {
           <View style={st.bar}>
             <TextInput
               style={st.search}
-              placeholder={mode === 'orak' ? 'Keresés címre, témára, címkére' : 'Keresés tematikára, napra'}
+              placeholder={mode === 'tematikak' ? 'Keresés programra, napra' : 'Keresés címre, témára, címkére'}
               placeholderTextColor={C.muted}
               value={query}
               onChangeText={setQuery}
             />
-            <Button label={mode === 'orak' ? '+ Új óra' : '+ Új tematika'} onPress={create} />
+            <Button label={mode === 'tematikak' ? '+ Új program' : '+ Új óra'} onPress={create} />
           </View>
         </View>
       </View>
 
-      {mode === 'orak' ? (
+      {mode !== 'tematikak' ? (
         <FlatList
           data={shownPlans}
           keyExtractor={(p) => p.id}
           contentContainerStyle={[{ padding: 12 }, WIDE]}
           ListEmptyComponent={
             <Text style={st.empty}>
-              {plans.length
+              {mode === 'kedvencek' && !favCount
+                ? 'Még nincs kedvenc órád. Egy óra csillagára koppintva jelölheted meg.'
+                : plans.length
                 ? 'Nincs találat.'
                 : 'Még nincs óravázlatod. Hozz létre egyet az „Új óra” gombbal, vagy egy ászana, mudra, pránájáma lapjáról add hozzá.'}
             </Text>
@@ -121,7 +130,17 @@ export default function PlansScreen() {
                     {s.series.title} · {s.day + 1}. nap
                   </Text>
                 )}
-                <Text style={st.title}>{p.title || 'Névtelen óra'}</Text>
+                <View style={st.titleRow}>
+                  <Text style={[st.title, { flex: 1 }]}>{p.title || 'Névtelen óra'}</Text>
+                  <Pressable
+                    onPress={() => toggleFavorite(p)}
+                    hitSlop={10}
+                    accessibilityRole="button"
+                    accessibilityLabel={p.favorite ? 'Kedvenc jelölés levétele' : 'Megjelölés kedvencként'}
+                  >
+                    <Text style={[st.star, p.favorite && st.starOn]}>{p.favorite ? '★' : '☆'}</Text>
+                  </Pressable>
+                </View>
                 {!!p.theme && <Text style={st.theme}>{p.theme}</Text>}
                 <Text style={st.meta}>
                   {countLabel(p)}
@@ -154,7 +173,7 @@ export default function PlansScreen() {
             <Text style={st.empty}>
               {series.length
                 ? 'Nincs találat.'
-                : 'A tematikával egy témát több napra bonthatsz le (pl. egy hét), és minden naphoz óravázlatot készíthetsz. Kezdd az „Új tematika” gombbal.'}
+                : 'A programmal egy célt több napra bonthatsz le (pl. „7 nap a derékért”), és minden naphoz órát rendelhetsz. Kezdd az „Új program” gombbal.'}
             </Text>
           }
           renderItem={({ item: s }) => {
@@ -164,7 +183,7 @@ export default function PlansScreen() {
                 style={({ pressed }) => [st.card, pressed && { opacity: 0.8 }]}
                 onPress={() => router.push({ pathname: '/series/[id]', params: { id: s.id } })}
               >
-                <Text style={st.title}>{s.title || 'Névtelen tematika'}</Text>
+                <Text style={st.title}>{s.title || 'Névtelen program'}</Text>
                 {!!s.theme && <Text style={st.theme}>{s.theme}</Text>}
                 <Text style={st.meta}>
                   {s.days.length} nap · {done} óravázlat kész
@@ -215,6 +234,9 @@ const st = StyleSheet.create({
   card: { backgroundColor: C.surface, borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: C.line },
   seriesBadge: { fontSize: 12, fontWeight: '700', color: C.gold, textTransform: 'uppercase', letterSpacing: 0.4, marginBottom: 2 },
   title: { fontSize: 17, fontWeight: '700', color: C.ink },
+  titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
+  star: { fontSize: 24, lineHeight: 26, color: C.muted },
+  starOn: { color: C.saffron },
   theme: { fontSize: 14, color: C.ink, marginTop: 2 },
   meta: { fontSize: 13, color: C.muted, marginTop: 4 },
   tags: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 6 },

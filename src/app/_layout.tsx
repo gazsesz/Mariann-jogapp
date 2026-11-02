@@ -19,10 +19,11 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false, title: 'Vissza' }} />
         <Stack.Screen name="pose/[id]" options={{ title: 'Ászana' }} />
+        <Stack.Screen name="mudrak" options={{ title: 'Mudratár (haladó)' }} />
         <Stack.Screen name="plan/[id]" options={{ title: 'Óravázlat' }} />
         <Stack.Screen name="pick" options={{ title: 'Ászanák hozzáadása' }} />
-        <Stack.Screen name="series/new" options={{ title: 'Új tematika' }} />
-        <Stack.Screen name="series/[id]" options={{ title: 'Tematika' }} />
+        <Stack.Screen name="series/new" options={{ title: 'Új program' }} />
+        <Stack.Screen name="series/[id]" options={{ title: 'Program' }} />
         <Stack.Screen name="series/link" options={{ title: 'Óravázlat választása' }} />
         <Stack.Screen name="add-to-plan" options={{ title: 'Hozzáadás óravázlathoz', presentation: 'modal' }} />
       </Stack>

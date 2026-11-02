@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { PracticeBrowser } from '../../components/PracticeBrowser';
+import { PracticeBrowser } from '../components/PracticeBrowser';
 
 export default function MudraCatalogue() {
   return (

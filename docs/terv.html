@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yogahome – terv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EFF3F0; --surface:#FFFFFF; --soft:#DDEDEA; --line:#D3DED9;
+  --ink:#1C2826; --muted:#50605D; --brand:#1F5A55; --brand2:#2B6E67;
+  --accent:#9A640F; --accentSoft:#F6EBD6; --warn:#8E3420; --warnSoft:#F8E6E1;
+  --dark:#12302C;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1F1D; --surface:#16302C; --soft:#1F4440; --line:#2C4E4A;
+    --ink:#E9F1EE; --muted:#A8C2BC; --brand:#8FD0C6; --brand2:#7FC2B8;
+    --accent:#E9B76A; --accentSoft:#3A3220; --warn:#F0A08C; --warnSoft:#3A231E; --dark:#0A1816;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1F1D; --surface:#16302C; --soft:#1F4440; --line:#2C4E4A;
+  --ink:#E9F1EE; --muted:#A8C2BC; --brand:#8FD0C6; --brand2:#7FC2B8;
+  --accent:#E9B76A; --accentSoft:#3A3220; --warn:#F0A08C; --warnSoft:#3A231E; --dark:#0A1816;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:40px 16px 80px}
+h1,h2,h3{font-family:Outfit,system-ui,sans-serif;font-weight:500;line-height:1.25}
+h1{font-size:36px;margin:0 0 8px;color:var(--brand)}
+h2{font-size:26px;margin:56px 0 12px;color:var(--brand)}
+h3{font-size:19px;margin:28px 0 8px}
+p{margin:0 0 12px}
+.lead{font-size:18px;color:var(--muted);max-width:720px}
+.meta{font-size:14px;color:var(--muted);margin-bottom:24px}
+nav.toc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0}
+nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px}
+nav.toc a{color:var(--brand2);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+@media (max-width:640px){nav.toc ol{columns:1}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.grid .card{margin:0}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:12px;background:var(--soft);color:var(--brand);margin:2px 4px 2px 0}
+.tag.new{background:var(--accentSoft);color:var(--accent)}
+.tag.warn{background:var(--warnSoft);color:var(--warn)}
+.note{background:var(--accentSoft);border-radius:14px;padding:14px 18px;margin:16px 0}
+.warnbox{background:var(--warnSoft);border-radius:14px;padding:14px 18px;margin:16px 0;color:var(--ink)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.5px;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px;min-width:160px}
+.bar span{display:block}
+.b1{background:#9CC7C0}.b2{background:#6FA8A0}.b3{background:#E9B76A}.b4{background:#6FA8A0}.b5{background:#2B6E67}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin:6px 0 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.flow .step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:14.5px}
+.flow .arr{color:var(--muted)}
+ul{margin:0 0 12px;padding-left:22px}
+li{margin:4px 0}
+.q{counter-increment:q;position:relative;padding-left:44px}
+.q::before{content:counter(q);position:absolute;left:16px;top:18px;font-family:Outfit,sans-serif;font-weight:600;color:var(--accent)}
+.qs{counter-reset:q}
+code{font-size:13.5px;background:var(--soft);padding:1px 6px;border-radius:6px}
+footer{margin-top:56px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Yogahome – terv</h1>
+<p class="meta">Változat: 2. vázlat · 2026. november 2. · a meglévő óratervező appból indul, de attól teljesen független ágon fejlődik</p>
+<p class="lead">Jógaapp átlagos felhasználóknak: a felhasználó kiválaszt egy célt (pl. „derékfájás”, „reggeli ébresztő”) és egy időtartamot, az app pedig az eddig összegyűjtött adatokból összeállít neki egy biztonságos, jól felépített órát, amit hangjelzésekkel és magyar narrációval végig is vezet.</p>
+
+<nav class="toc" aria-label="Tartalom">
+<ol>
+<li><a href="#cel">Cél és célközönség</a></li>
+<li><a href="#marad">Mi marad, mi rejtőzik, mi új</a></li>
+<li><a href="#tipusok">Óratípusok</a></li>
+<li><a href="#javaslat">Javasolt további óratípusok</a></li>
+<li><a href="#ido">Időtartam és szakaszok</a></li>
+<li><a href="#generalas">Hogyan generálódik az óra</a></li>
+<li><a href="#adat">Szükséges adatbővítés</a></li>
+<li><a href="#folyamat">Felhasználói folyamat, képernyők</a></li>
+<li><a href="#hang">Narráció és hangjelzések</a></li>
+<li><a href="#zene">Zene (későbbi terv)</a></li>
+<li><a href="#biztonsag">Biztonság, felelősség</a></li>
+<li><a href="#lepesek">Fejlesztési lépések</a></li>
+<li><a href="#kerdesek">Döntések (Gabor válaszai)</a></li>
+</ol>
+</nav>
+
+<h2 id="cel">1. Cél és célközönség</h2>
+<div class="grid">
+  <div class="card"><h3 style="margin-top:0">Kinek</h3><p>Nem feltétlenül tapasztalt jógázóknak, akik otthon, egyedül gyakorolnak, és egy konkrét problémára vagy alkalomra keresnek órát.</p></div>
+  <div class="card"><h3 style="margin-top:0">Mit kapnak</h3><p>Előre definiált óratípusokat, amelyekből az app a beállított idő és szűrés szerint állítja össze a gyakorlatokat. Nem kell ászanákat ismerniük.</p></div>
+  <div class="card"><h3 style="margin-top:0">Miben más, mint a tanári app</h3><p>A kiinduló pont a cél, nem az ászanatár. A tervezés helyett a gyakorlás vezetése (időzítés, hang) kerül a középpontba.</p></div>
+</div>
+
+<h2 id="marad">2. Mi marad, mi rejtőzik, mi új</h2>
+<div class="tbl"><table>
+<thead><tr><th>Funkció</th><th>Sorsa</th><th>Megjegyzés</th></tr></thead>
+<tbody>
+<tr><td>Ászana-, sorozat-, légzés- és mudratár</td><td><span class="tag">marad</span></td><td>A Gyakorlattár fülön böngészhető, de a hangsúly az órákon van.</td></tr>
+<tr><td>Szűrők: szint, kategória, hatásterület, ellenjavallat</td><td><span class="tag">marad</span></td><td>Egyszerűsített, hétköznapi nyelvű címkékkel (pl. „Alvás” helyett „Jobb alvás”).</td></tr>
+<tr><td>Csakra-, öt elem-, irányzat-szűrő, csakra-egyensúly</td><td><span class="tag warn">rejtve</span></td><td>„Haladó” összecsukott szekcióba kerül a szűrőben; a Beállításokban egy kapcsolóval mindig látható lehet. Az adatokból semmi nem törlődik.</td></tr>
+<tr><td>Óraszerkesztő (kézi összeállítás)</td><td><span class="tag">marad, másodlagos</span></td><td>„Saját óra” néven, nem hangsúlyosan (később a fizetős részbe kerülhet). Bármely óra kedvencnek jelölhető, a kedvencek egy helyen láthatók.</td></tr>
+<tr><td>Tematikák</td><td><span class="tag">átalakul</span></td><td>Opcionális „Programok”, például „7 nap a derékért”, „2 hetes core-erősítő”.</td></tr>
+<tr><td>PDF óravázlat</td><td><span class="tag">rejtve</span></td><td>Átlagfelhasználónak ritkán kell; a haladó menüben marad.</td></tr>
+<tr><td>Célalapú óratípusok és időtartam-választó</td><td><span class="tag new">új</span></td><td>Az app fő funkciója.</td></tr>
+<tr><td>Gyakorlás mód: időzítő, hangjelzés, narráció</td><td><span class="tag new">új</span></td><td>A designban már szereplő „Tanítási mód” átnevezve.</td></tr>
+<tr><td>Kímélendő területek (térd, csukló, nyak, vérnyomás stb.)</td><td><span class="tag new">új</span></td><td>Egyszer beállítva minden generált órára érvényes.</td></tr>
+<tr><td>Kedvencek, előzmények, „hogy érezted magad?” visszajelzés</td><td><span class="tag new">új</span></td><td>Fiók nélkül, a telefonon tárolva.</td></tr>
+</tbody></table></div>
+
+<h2 id="tipusok">3. Óratípusok</h2>
+<p>Minden óratípus egy „recept”: milyen hatásterületekre és kategóriákra súlyoz, mit kerül, és mivel indul, illetve zárul. A hatásterület-azonosítók a meglévő adatból jönnek (<code>aszanak.json</code> → <code>benefitAreas</code>).</p>
+<div class="tbl"><table>
+<thead><tr><th>Óratípus</th><th>Előnyben részesít</th><th>Kerüli / óvatosan</th><th>Nyitás és zárás</th></tr></thead>
+<tbody>
+<tr><td><strong>Futás utáni lazítás</strong></td><td>Hajlékonyság; vádli-, comb- és csípőnyújtás, előrehajlások, csípőnyitók, fekvő csavar</td><td>Erősítés, hosszú álló pózok, ugrások</td><td>Rövid álló nyújtással indul (a test meleg), lábak a falon zárással</td></tr>
+<tr><td><strong>Reggeli ébresztő jóga</strong></td><td>Állóképesség, keringés, tüdő; napüdvözlet, álló pózok, enyhe hátrahajlás, csavar</td><td>Hosszú yin-tartás, mély relaxáció</td><td>Élénkítő légzés (pl. kapalabhati, ha nincs ellenjavallat); rövid, ülő zárás</td></tr>
+<tr><td><strong>Fejfájás, migrén esetén</strong></td><td>Elme, alvás; nyak-váll lazítás, támasztott előrehajlás, gyermekpóz, restoratív pózok</td><td><span class="tag warn">fordított pózok</span> <span class="tag warn">erős hátrahajlás</span> élénkítő légzés, gyors tempó</td><td>Lassú, hosszabb kilégzésű légzés; hosszú relaxáció. Rohamban csak légzés + fekvés.</td></tr>
+<tr><td><strong>Fáradtság kezelése</strong></td><td>Keringés, tüdő, hormon; gyengéd mellkasnyitás, enyhe fordított (lábak a falon), lassú áramlás</td><td>Kimerítő erősítés</td><td>Kiegyensúlyozó légzés (váltott orrlyukas); rövid relaxáció, hogy ne aludjon el</td></tr>
+<tr><td><strong>Megfázás megelőzése</strong></td><td>Immun, tüdő; mellkasnyitás, csavarok, enyhe fordítottak, napüdvözlet</td><td>Lázas állapotban nem javasolt (az app figyelmeztet)</td><td>Melegítő légzés; relaxáció betakarózva</td></tr>
+<tr><td><strong>Menstruációs görcsök ellen</strong></td><td>Hormon, emésztés; csípőnyitók, támasztott pózok, macska–tehén, gyermekpóz, pillangó fekve</td><td><span class="tag warn">fordított pózok</span> <span class="tag warn">erős hasizom</span> <span class="tag warn">mély csavar</span></td><td>Hasi légzés; hosszú, támasztott relaxáció</td></tr>
+<tr><td><strong>Derék-, hátfájdalom esetén</strong></td><td>Testtartás, hajlékonyság; macska–tehén, gyermekpóz, sfinx, fekvő csavar, térd a mellkashoz, gyengéd core</td><td><span class="tag warn">mély előrehajlás nyújtott lábbal</span> erős hátrahajlás, terhelt csavar</td><td>Fekvő indítás; kíméletes, lassú tempó végig</td></tr>
+<tr><td><strong>Ülő- és állómunka utáni lazítás</strong></td><td>Testtartás, hajlékonyság; csípőhajlító-nyújtás, mellkasnyitás, nyak-váll, vádli, lábak a falon</td><td>—</td><td>Állásban indul; lábak a falon zárással (állómunkánál ez a fő elem)</td></tr>
+<tr><td><strong>Erősítés</strong> (al-választó: core, has, hát, kar és váll, láb és far, egész test)</td><td>Állóképesség; a kiválasztott izomcsoportra ható pózok, ismétléssel vagy hosszabb tartással</td><td>Az izomcsoport túlterhelése: két erős elem közé ellenpóz kerül</td><td>Dinamikus bemelegítés; nyújtó levezetés a terhelt izmokra</td></tr>
+</tbody></table></div>
+<div class="note"><strong>Az erősítéshez új adat kell:</strong> a jelenlegi pózoknak nincs „melyik izomcsoportot dolgoztatja” mezőjük. Ezt a <a href="#adat">7. pontban</a> pótoljuk.</div>
+
+<h2 id="javaslat">4. Javasolt további óratípusok</h2>
+<div class="grid">
+  <div class="card"><strong>Stresszoldás, szorongás</strong><p>Lassú kilégzés, előrehajlások, földelő álló pózok, hosszú relaxáció.</p></div>
+  <div class="card"><strong>Esti lazítás, jobb alvás</strong><p>Az alvás hatásterületre épül; képernyő elsötétül, a narráció egyre halkabb.</p></div>
+  <div class="card"><strong>Nyak és váll feszülés (képernyő előtt)</strong><p>Rövid, 10–15 perces, akár székben is végezhető.</p></div>
+  <div class="card"><strong>Irodai mini-jóga székben</strong><p>5–10 perc, felállás nélkül; csak „székes” jelölésű gyakorlatok.</p></div>
+  <div class="card"><strong>Emésztés, puffadás</strong><p>Csavarok, szélfelszabadító póz, hasi légzés. Teli gyomorra nem.</p></div>
+  <div class="card"><strong>Csípőnyitás, hajlékonyság</strong><p>Általános nyújtó óra, yin elemekkel.</p></div>
+  <div class="card"><strong>Egyensúly és koncentráció</strong><p>Egyensúlyozó pózok, fókusz; idősebbeknek fal melletti változattal.</p></div>
+  <div class="card"><strong>Túra, kerékpározás utáni lazítás</strong><p>A futás utáni óra változata, más hangsúllyal (csípőhajlító, hát).</p></div>
+  <div class="card"><strong>Kezdő alapozó sorozat</strong><p>Hét rövid óra az alap pózok megtanulására; jól illeszkedik a „Programok”-hoz.</p></div>
+  <div class="card"><strong>Idősebbeknek, kíméletes jóga</strong><p>Csak kezdő szint, székes és falas változatok, lassú tempó.</p></div>
+</div>
+<p>Döntés: mind a tíz javasolt óratípus bekerül.</p>
+<p style="color:var(--muted);font-size:14px">A várandós jógát szándékosan kihagytam: ehhez szakember által ellenőrzött, külön tartalom kellene.</p>
+
+<h2 id="ido">5. Időtartam és szakaszok</h2>
+<p>Választható idők: <strong>10, 15, 20, 30, 45, 60, 90 perc</strong>. Az óra öt szakaszból áll; a szakaszok aránya az időtartammal és az óratípussal változik (a lazító óráknál nagyobb a levezetés és a relaxáció, az erősítőnél a fő rész).</p>
+<div class="tbl"><table>
+<thead><tr><th>Idő</th><th>Ráhang.</th><th>Bemelegítés</th><th>Fő rész</th><th>Levezetés</th><th>Relaxáció</th><th>Kb. gyakorlat</th><th>Arány</th></tr></thead>
+<tbody>
+<tr><td>10 p</td><td class="num">0,5</td><td class="num">2</td><td class="num">5</td><td class="num">1,5</td><td class="num">1</td><td class="num">6–8</td><td><div class="bar"><span class="b1" style="flex:.5"></span><span class="b2" style="flex:2"></span><span class="b3" style="flex:5"></span><span class="b4" style="flex:1.5"></span><span class="b5" style="flex:1"></span></div></td></tr>
+<tr><td>15 p</td><td class="num">1</td><td class="num">3</td><td class="num">7</td><td class="num">2</td><td class="num">2</td><td class="num">9–11</td><td><div class="bar"><span class="b1" style="flex:1"></span><span class="b2" style="flex:3"></span><span class="b3" style="flex:7"></span><span class="b4" style="flex:2"></span><span class="b5" style="flex:2"></span></div></td></tr>
+<tr><td>20 p</td><td class="num">1</td><td class="num">4</td><td class="num">10</td><td class="num">3</td><td class="num">2</td><td class="num">12–14</td><td><div class="bar"><span class="b1" style="flex:1"></span><span class="b2" style="flex:4"></span><span class="b3" style="flex:10"></span><span class="b4" style="flex:3"></span><span class="b5" style="flex:2"></span></div></td></tr>
+<tr><td>30 p</td><td class="num">2</td><td class="num">5</td><td class="num">15</td><td class="num">4</td><td class="num">4</td><td class="num">16–20</td><td><div class="bar"><span class="b1" style="flex:2"></span><span class="b2" style="flex:5"></span><span class="b3" style="flex:15"></span><span class="b4" style="flex:4"></span><span class="b5" style="flex:4"></span></div></td></tr>
+<tr><td>45 p</td><td class="num">3</td><td class="num">8</td><td class="num">22</td><td class="num">6</td><td class="num">6</td><td class="num">22–28</td><td><div class="bar"><span class="b1" style="flex:3"></span><span class="b2" style="flex:8"></span><span class="b3" style="flex:22"></span><span class="b4" style="flex:6"></span><span class="b5" style="flex:6"></span></div></td></tr>
+<tr><td>60 p</td><td class="num">4</td><td class="num">10</td><td class="num">30</td><td class="num">8</td><td class="num">8</td><td class="num">28–36</td><td><div class="bar"><span class="b1" style="flex:4"></span><span class="b2" style="flex:10"></span><span class="b3" style="flex:30"></span><span class="b4" style="flex:8"></span><span class="b5" style="flex:8"></span></div></td></tr>
+<tr><td>90 p</td><td class="num">5</td><td class="num">15</td><td class="num">45</td><td class="num">12</td><td class="num">13</td><td class="num">40–50</td><td><div class="bar"><span class="b1" style="flex:5"></span><span class="b2" style="flex:15"></span><span class="b3" style="flex:45"></span><span class="b4" style="flex:12"></span><span class="b5" style="flex:13"></span></div></td></tr>
+</tbody></table></div>
+<div class="legend"><span><i class="b1"></i>Ráhangolódás</span><span><i class="b2"></i>Bemelegítés</span><span><i class="b3"></i>Fő rész</span><span><i class="b4"></i>Levezetés</span><span><i class="b5"></i>Relaxáció</span></div>
+<p style="margin-top:12px">Az alapértékek percben, általános órára. Óratípusonként módosító szorzók: például a „Futás utáni lazítás” a fő rész 30%-át átadja a levezetésnek, a „Fejfájás” pedig a relaxációt duplázza. Egy póz átlagosan 45–60 másodperc (tartás plusz átmenet); oldalas póznál ez kétszer számít.</p>
+
+<h2 id="generalas">6. Hogyan generálódik az óra</h2>
+<div class="flow" aria-label="Generálás lépései">
+  <span class="step">Óratípus + idő + szint</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Kímélendő területek kiszűrése</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Pózok pontozása</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Szakaszokba osztás</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Sorrend és ellenpózok</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Időre igazítás</span>
+</div>
+<ol>
+<li><strong>Kizárás:</strong> elhagyjuk a szintnél nehezebb pózokat, a felhasználó kímélendő területeivel ütközőket és az óratípus tiltólistáját (pl. migrénnél a fordítottakat).</li>
+<li><strong>Pontozás:</strong> minden póz pontot kap, ha a hatásterülete, kategóriája vagy izomcsoportja egyezik az óratípus receptjével. Egy kis véletlen tényező gondoskodik róla, hogy két óra ne legyen ugyanolyan.</li>
+<li><strong>Szakaszok:</strong> a pózoknak lesz „hova illik” jelölése (bemelegítő, fő, levezető, relaxáló), és csak a szakasznak megfelelőek kerülnek oda. A bemelegítésbe illik sorozat is (pl. napüdvözlet), ha az óratípus engedi.</li>
+<li><strong>Sorrend-szabályok:</strong> állótól a talajig haladunk (álló → térdelő/ülő → hason → háton fekve), hátrahajlás után ellenpóz jön, oldalas pózok mindkét oldalra kerülnek, a csúcspóz a fő rész második harmadában van.</li>
+<li><strong>Időre igazítás:</strong> a tartásidőket a választott időhöz hangoljuk, és addig adunk hozzá vagy veszünk el pózt, amíg a szakasz ideje stimmel.</li>
+<li><strong>Utána:</strong> „Újragenerálás” gomb (új variáció), egyes pózok cseréje egy hasonlóra, és mentés a kedvencek közé.</li>
+</ol>
+
+<h2 id="adat">7. Szükséges adatbővítés</h2>
+<p>A meglévő 205 ászana, 20 sorozat, 22 pránájáma és 39 mudra adata megmarad, és néhány új mezőt kap:</p>
+<div class="tbl"><table>
+<thead><tr><th>Új mező</th><th>Mire kell</th><th>Példa</th></tr></thead>
+<tbody>
+<tr><td><code>muscles</code></td><td>Izomcsoport szerinti erősítő órák</td><td><code>["core","has","hat","kar","vall","lab","far"]</code></td></tr>
+<tr><td><code>phases</code></td><td>Melyik szakaszba illik</td><td><code>["bemelegites","fo"]</code></td></tr>
+<tr><td><code>intensity</code></td><td>Tempó és terhelés kiegyensúlyozása (1–5)</td><td>Hegy: 1, Deszka: 4</td></tr>
+<tr><td><code>hold</code></td><td>Alap tartásidő másodpercben és légzésszámban</td><td><code>{"sec":30,"breaths":5}</code></td></tr>
+<tr><td><code>avoidFor</code></td><td>Strukturált ellenjavallat a szöveg helyett</td><td><code>["terd","csuklo","magas_vernyomas","menstruacio","migren"]</code></td></tr>
+<tr><td><code>counterpose</code></td><td>Javasolt ellenpóz azonosítója</td><td>Teve → Gyermekpóz</td></tr>
+<tr><td><code>position</code></td><td>Sorrendhez: álló, térdelő, ülő, hason, háton, szék, fal</td><td><code>"allo"</code></td></tr>
+<tr><td><code>cue</code></td><td>Rövid, kimondható narrációs szöveg (1–3 mondat)</td><td>„Lépj terpeszbe, a karok vállmagasságban…”</td></tr>
+</tbody></table></div>
+<p>Új fájl: <code>data/oratipusok.json</code> az óratípus-receptekkel (súlyok, tiltólista, nyitó és záró elemek, szakasz-szorzók). Az adatokat én töltöm fel a meglévő leírásokból, a végén te vagy Mariann átnézitek.</p>
+
+<h2 id="folyamat">8. Felhasználói folyamat, képernyők</h2>
+<div class="flow" aria-label="Felhasználói folyamat">
+  <span class="step">Főoldal: „Mire vágysz ma?”</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Cél kiválasztása</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Idő és szint</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Óra előnézet</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Gyakorlás</span><span class="arr" aria-hidden="true">→</span>
+  <span class="step">Hogy érezted magad?</span>
+</div>
+<ul>
+<li><strong>Első indítás:</strong> 3 rövid kérdés (tapasztalat, kímélendő területek, narráció kell-e). Később a Beállításokban módosítható.</li>
+<li><strong>Főoldal:</strong> célkártyák ikonnal (Ébresztő, Hátfájás, Futás után…), alattuk „Folytatnád?” és a kedvencek.</li>
+<li><strong>Beállító lap:</strong> időtartam-gombok (10–90), szint, erősítésnél izomcsoport-választó. „Indítás” és „Előnézet”.</li>
+<li><strong>Előnézet:</strong> szakaszok idősávval, pózonként csere gomb; „Újragenerálás”.</li>
+<li><strong>Gyakorlás:</strong> a design „Tanítási mód” képernyője: nagy figura, hátralévő idő vagy légzés, következő póz, szünet és léptetés. A képernyő ébren marad.</li>
+<li><strong>Gyakorlattár:</strong> böngészés, szűrők; a „Haladó” szekcióban a csakra-, elem- és irányzatszűrők.</li>
+</ul>
+
+<h2 id="hang">9. Narráció és hangjelzések</h2>
+<h3>Lehet-e magyar narráció? Igen, három úton</h3>
+<div class="tbl"><table>
+<thead><tr><th>Megoldás</th><th>Minőség</th><th>Költség</th><th>Offline</th><th>Mikor</th></tr></thead>
+<tbody>
+<tr><td><strong>A) A telefon beépített felolvasója</strong> (<code>expo-speech</code>; iOS-en és Androidon is van magyar hang)</td><td>Érthető, de gépies</td><td>Ingyenes</td><td>Igen</td><td>Első verzió, azonnal megy</td></tr>
+<tr><td><strong>B) Előre legenerált, természetes AI-hang</strong> (pl. Microsoft Azure magyar neurális hangjai, Google Cloud TTS, ElevenLabs)</td><td>Természetes, nyugodt hang</td><td>Egyszeri, várhatóan néhány ezer forint a teljes szövegkészletre; API-kulcs kell</td><td>Igen (a hangfájlok az appba kerülnek)</td><td>Kiadás előtt</td></tr>
+<tr><td><strong>C) Felvett emberi hang</strong> (pl. Mariann)</td><td>A legszemélyesebb</td><td>Felvételi idő</td><td>Igen</td><td>Ha van rá kedv és idő</td></tr>
+</tbody></table></div>
+<p><strong>Amit én meg tudok csinálni:</strong> megírom az összes narrációs szöveget magyarul (pózonként belépés, igazítás, kilépés; szakaszváltások; légzésvezetés; relaxációs szöveg), és megírom a generáló szkriptet, ami a B) úthoz egy kulccsal lefuttatható. Az A) utat az appba közvetlenül beépítem.</p>
+<p><strong>Narráció felépítése egy pózra:</strong> név → belépés (1–2 mondat) → légzésszámlálás vagy „maradj” → oldalváltás („Most a bal oldal”) → kilépés. Három beállítás: teljes narráció, csak pózok neve, csak hangjelzés.</p>
+
+<h3>Hangjelzések</h3>
+<div class="tbl"><table>
+<thead><tr><th>Esemény</th><th>Hang</th></tr></thead>
+<tbody>
+<tr><td>Póz vége, következő jön</td><td>Rövid, halk csengő</td></tr>
+<tr><td>Bemelegítés vége, fő rész vége</td><td>Tibeti hangtál, egy ütés</td></tr>
+<tr><td>Relaxáció kezdete</td><td>Hangtál, lassan elhalkuló</td></tr>
+<tr><td>Óra vége (relaxációból kihozás)</td><td>Három halk ütés, utána egy halk visszahívó mondat</td></tr>
+<tr><td>Oldalváltás</td><td>Dupla rövid csengő (narráció nélkül is érthető)</td></tr>
+</tbody></table></div>
+<p>A hangokat szintetizálva elő tudom állítani, így nincs licencgond. Rezgés opcionálisan. Lezárt képernyőnél és háttérben is szól (ehhez a telefonos „háttérhang” beállítás kell az appban).</p>
+
+<h2 id="zene">10. Zene (későbbi terv)</h2>
+<ul>
+<li><strong>Saját zene:</strong> a felhasználó a telefonjáról választ hangfájlt; egyszerű és jogtiszta.</li>
+<li><strong>Beépített, jogdíjmentes zenék:</strong> néhány hangulat (nyugodt, élénkítő, természet hangjai), óratípushoz rendelve. Licencelt könyvtárból vagy megrendelve.</li>
+<li><strong>Streaming (Spotify stb.):</strong> csak a lejátszó vezérlése lehetséges, prémium fiók kell hozzá, és bonyolult; nem javaslom első körben.</li>
+<li>Narráció és hangjelzés alatt a zene automatikusan elhalkul.</li>
+</ul>
+<p>Már most úgy építem fel a lejátszót, hogy a zene később csak egy újabb hangsáv legyen.</p>
+
+<h2 id="biztonsag">11. Biztonság, felelősség</h2>
+<div class="warnbox">
+<ul style="margin:0">
+<li>Első indításkor egy rövid nyilatkozat: az app nem helyettesíti az orvosi kezelést; akut, erős vagy új keletű fájdalom esetén orvoshoz kell fordulni.</li>
+<li>A panaszos óratípusoknál (fejfájás, hátfájás, menstruáció, megfázás) az óra elején egy mondat, hogy mikor ne gyakoroljon (pl. láz, zsibbadás, hirtelen erős fejfájás).</li>
+<li>A gyakorlás közben bármikor elérhető „Ez most fáj” gomb: kihagyja a pózt, és jelöli, hogy a következő generálásnál kerülje.</li>
+<li>Ennél a változatnál az ellenjavallatokat szigorúbban vesszük, mint a tanári appban.</li>
+</ul>
+</div>
+
+<h2 id="lepesek">12. Fejlesztési lépések</h2>
+<div class="tbl"><table>
+<thead><tr><th>#</th><th>Lépés</th><th>Eredmény</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Független ág a meglévő appból, Yogahome név, új design (zöldeskék), 4 alsó fül, „Haladó” szűrőszekció</td><td>Átalakított, futó app</td></tr>
+<tr><td>2</td><td>Adatbővítés: új pózmezők és <code>oratipusok.json</code> a 9 + javasolt óratípussal</td><td>Átnézhető adatlista neked/Mariannak</td></tr>
+<tr><td>3</td><td>Órageneráló motor, időtartam-választó, előnézet, csere, újragenerálás, tesztekkel</td><td>Célból kész óra</td></tr>
+<tr><td>4</td><td>Gyakorlás mód: időzítő, hangjelzések, ébren tartott képernyő, háttérlejátszás</td><td>Végigvezetett óra hanggal</td></tr>
+<tr><td>5</td><td>Narráció: szövegek megírása, beépített felolvasó</td><td>Magyar hangvezetés (gépi)</td></tr>
+<tr><td>6</td><td>Természetes AI-hang legenerálása (ha adsz kulcsot), vagy Mariann hangja</td><td>Kiadható minőségű narráció</td></tr>
+<tr><td>7</td><td>Programok (többnapos), kedvencek, visszajelzés</td><td>Visszatérő használat</td></tr>
+<tr><td>8</td><td>Zene</td><td>Zenei aláfestés</td></tr>
+</tbody></table></div>
+<p>Minden lépés a döntésnaplóba (<code>docs/DONTESEK.md</code>) is bekerül, ahogy eddig.</p>
+
+<h2 id="kerdesek">13. Döntések (Gabor válaszai, 2026. november 2.)</h2>
+<div class="tbl"><table>
+<thead><tr><th>Kérdés</th><th>Döntés</th></tr></thead>
+<tbody>
+<tr><td>Ág és név</td><td>Mariann appjától teljesen független ágon megy tovább. Az app neve: <strong>Yogahome</strong> (alcím: „Jóga otthon”). Ág: <code>claude/project-thread-nkbmp7</code> (független a Mariann-féle ágtól).</td></tr>
+<tr><td>Mudrák, pránájámák</td><td>A mudratár a haladó részbe kerül, a légzőgyakorlatok elöl maradnak.</td></tr>
+<tr><td>Kézi óraszerkesztő</td><td>Marad, de nem hangsúlyosan; később fizetős funkció lehet. Kedvenc órák jelölése és egy helyen listázása kell.</td></tr>
+<tr><td>Tematikák</td><td>Opcionális „Programok”.</td></tr>
+<tr><td>Narráció</td><td>Először a telefon beépített felolvasójával próbáljuk ki. Ehhez nem kell a kisegítő lehetőségeket bekapcsolni; legfeljebb a magyar hangot kell egyszer letölteni, ha a telefonon még nincs fent.</td></tr>
+<tr><td>Javasolt óratípusok</td><td>Mindegyik bekerül.</td></tr>
+<tr><td>Szakmai ellenőrzés</td><td>Egyelőre saját használatra készül; később Mariann vagy Rea nézi át.</td></tr>
+</tbody></table></div>
+
+<h3>Saját hangból generált narráció</h3>
+<p>Két dolgot is jelenthet, mindkettő megoldható:</p>
+<ul>
+<li><strong>Hangklónozás:</strong> felolvasol néhány perc tetszőleges szöveget, egy szolgáltatás (pl. ElevenLabs, magyarul is tud) ebből megtanulja a hangodat, és az összes narrációs szöveget a te hangodon mondja fel. Ehhez egy fiók kell nála (kis havidíj), a hangfájlok utána az appba kerülnek, offline is szólnak.</li>
+<li><strong>Diktált szövegből narráció:</strong> szabadon elmondod, mit mondanál egy pózban vagy relaxációban, a hangfelvételből leírt szöveget én rendbe teszem, és az lesz a narráció szövege (bármelyik hanggal felolvasva).</li>
+</ul>
+
+<footer>Az app továbbra is fiók nélkül, offline működik; minden adat a telefonon marad. Yogahome – terv, 2. vázlat.</footer>
+</div>
+</body>
+</html>

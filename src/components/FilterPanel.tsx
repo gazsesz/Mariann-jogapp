@@ -1,4 +1,5 @@
-import { ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { DATA, KINDS } from '../lib/data';
 import { EMPTY_FILTER, toggle, type PoseFilter } from '../lib/filters';
 import { C, WIDE } from '../lib/theme';
@@ -19,6 +20,11 @@ export function FilterPanel({
   onClose: () => void;
 }) {
   const set = (patch: Partial<PoseFilter>) => onChange({ ...filter, ...patch });
+  // A spirituális szempontok (csakra, elem, irányzat) egy összecsukott „Haladó” részben vannak;
+  // ha valamelyik aktív, a rész nyitva marad, hogy látszódjon, mi szűr.
+  const advancedCount = filter.traditions.length + filter.chakras.length + filter.elements.length;
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const advancedOpen = showAdvanced || advancedCount > 0;
   return (
     <View style={st.wrap}>
       <ScrollView contentContainerStyle={[st.content, WIDE]}>
@@ -40,38 +46,6 @@ export function FilterPanel({
           ))}
         </View>
 
-        {(kind === 'asana' || kind === 'sequence') && (
-          <>
-            <SectionTitle>Irányzat</SectionTitle>
-            <View style={st.row}>
-              {DATA.traditions.map((t) => (
-                <Chip key={t.id} label={t.name} active={filter.traditions.includes(t.id)}
-                  onPress={() => set({ traditions: toggle(filter.traditions, t.id) })} />
-              ))}
-            </View>
-          </>
-        )}
-
-        <SectionTitle>Csakra</SectionTitle>
-        <View style={st.row}>
-          {DATA.chakras.map((c) => (
-            <Chip key={c.id} label={`${c.id}. ${c.name}`} color={c.color} active={filter.chakras.includes(c.id)}
-              onPress={() => set({ chakras: toggle(filter.chakras, c.id) })} />
-          ))}
-        </View>
-
-        <SectionTitle>Öt elem</SectionTitle>
-        <View style={st.row}>
-          {DATA.elements.map((e) => (
-            <Chip key={e.id} label={e.name} color={e.color} active={filter.elements.includes(e.id)}
-              onPress={() => set({ elements: toggle(filter.elements, e.id) })} />
-          ))}
-        </View>
-        <View style={st.switchRow}>
-          <Switch value={filter.primaryChakraOnly} onValueChange={(v) => set({ primaryChakraOnly: v })} />
-          <Text style={st.switchText}>Csak az elsődleges csakra és elem számítson</Text>
-        </View>
-
         <SectionTitle>Hatásterület</SectionTitle>
         <View style={st.row}>
           {DATA.benefitAreas.map((b) => (
@@ -79,6 +53,52 @@ export function FilterPanel({
               onPress={() => set({ benefits: toggle(filter.benefits, b.id) })} />
           ))}
         </View>
+
+        <Pressable
+          onPress={() => setShowAdvanced(!advancedOpen)}
+          style={st.advHead}
+          accessibilityRole="button"
+          accessibilityState={{ expanded: advancedOpen }}
+        >
+          <Text style={st.advTitle}>Haladó szűrők{advancedCount ? ` (${advancedCount})` : ''}</Text>
+          <Text style={st.advSub}>Irányzat, csakra, öt elem</Text>
+          <Text style={st.advArrow}>{advancedOpen ? '▲' : '▼'}</Text>
+        </Pressable>
+        {advancedOpen && (
+          <View>
+            {(kind === 'asana' || kind === 'sequence') && (
+              <>
+                <SectionTitle>Irányzat</SectionTitle>
+                <View style={st.row}>
+                  {DATA.traditions.map((t) => (
+                    <Chip key={t.id} label={t.name} active={filter.traditions.includes(t.id)}
+                      onPress={() => set({ traditions: toggle(filter.traditions, t.id) })} />
+                  ))}
+                </View>
+              </>
+            )}
+
+            <SectionTitle>Csakra</SectionTitle>
+            <View style={st.row}>
+              {DATA.chakras.map((c) => (
+                <Chip key={c.id} label={`${c.id}. ${c.name}`} color={c.color} active={filter.chakras.includes(c.id)}
+                  onPress={() => set({ chakras: toggle(filter.chakras, c.id) })} />
+              ))}
+            </View>
+
+            <SectionTitle>Öt elem</SectionTitle>
+            <View style={st.row}>
+              {DATA.elements.map((e) => (
+                <Chip key={e.id} label={e.name} color={e.color} active={filter.elements.includes(e.id)}
+                  onPress={() => set({ elements: toggle(filter.elements, e.id) })} />
+              ))}
+            </View>
+            <View style={st.switchRow}>
+              <Switch value={filter.primaryChakraOnly} onValueChange={(v) => set({ primaryChakraOnly: v })} />
+              <Text style={st.switchText}>Csak az elsődleges csakra és elem számítson</Text>
+            </View>
+          </View>
+        )}
       </ScrollView>
       <View style={st.footer}>
         <Button kind="secondary" label="Törlés" onPress={() => onChange({ ...EMPTY_FILTER, query: filter.query })} />
@@ -95,5 +115,17 @@ const st = StyleSheet.create({
   row: { flexDirection: 'row', flexWrap: 'wrap' },
   switchRow: { flexDirection: 'row', alignItems: 'center', marginTop: 4 },
   switchText: { marginLeft: 8, color: C.ink, fontSize: 14 },
+  advHead: {
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    backgroundColor: C.surface,
+    borderWidth: 1,
+    borderColor: C.line,
+  },
+  advTitle: { fontSize: 15, fontWeight: '700', color: C.ink },
+  advSub: { fontSize: 13, color: C.muted, marginTop: 2 },
+  advArrow: { position: 'absolute', right: 14, top: 18, color: C.muted, fontSize: 12 },
   footer: { flexDirection: 'row', padding: 12, borderTopWidth: 1, borderTopColor: C.line, backgroundColor: C.surface },
 });

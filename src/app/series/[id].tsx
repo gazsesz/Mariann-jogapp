@@ -73,7 +73,7 @@ export default function SeriesEditor() {
     return counts;
   }, [series, plans]);
 
-  if (missing) return <Text style={{ padding: 24 }}>Ez a tematika már nem létezik.</Text>;
+  if (missing) return <Text style={{ padding: 24 }}>Ez a program már nem létezik.</Text>;
   if (!series) return null;
 
   const updateDay = (key: string, patch: Partial<SeriesDay>) =>
@@ -96,7 +96,7 @@ export default function SeriesEditor() {
     <ScrollView style={{ flex: 1 }} contentContainerStyle={[st.content, WIDE]} keyboardShouldPersistTaps="handled">
       <Stack.Screen
         options={{
-          title: series.title || 'Tematika',
+          title: series.title || 'Program',
           headerRight: Platform.OS === 'web' ? undefined : () => (
             <Pressable onPress={() => exportPdf(series, plans).catch((e) => notify('PDF hiba', String(e)))} hitSlop={8}>
               <Text style={st.headerBtn}>PDF</Text>
@@ -108,7 +108,7 @@ export default function SeriesEditor() {
         style={st.titleInput}
         value={series.title}
         onChangeText={(title) => update((s) => ({ ...s, title }))}
-        placeholder="A tematika címe"
+        placeholder="A program címe"
         placeholderTextColor={C.muted}
       />
       <TextInput
