@@ -167,6 +167,8 @@ export interface Plan {
   sections: PlanSection[];
   /** Kedvencnek jelölt óra (a „Kedvencek” listában jelenik meg). */
   favorite?: boolean;
+  /** Ha az órát a generátor készítette: a kérés (cél, idő, szint, kímélendő területek) és a változat. */
+  generator?: { goal: string; option?: string; minutes: number; level: 1 | 2 | 3; avoid: string[]; variant: number };
   createdAt: string;
   updatedAt: string;
 }

@@ -5,6 +5,28 @@ A legfrissebb lépés van legfelül.
 
 ---
 
+## Yoga hOMe 2. lépés – Egyszerű főoldal és óragenerátor (2026-11-02)
+
+**Gabor kérése:** a kezdőoldal legyen nagyon egyszerű: Kedvencek; Új óra → szűrés → generálás,
+a változatok listázása, kiválasztás, kedvencnek jelölés; Eddigi óráim, ahogy a designon van.
+
+| Döntés | Miért |
+| --- | --- |
+| Három alsó fül: **Főoldal**, Gyakorlattár, Óráim | A főoldal a belépési pont; a gyakorlattár és a teljes lista másodlagos. |
+| Főoldal: nagy „Új óra” gomb, Kedvencek (vízszintes kártyák), Eddigi óráim (5 legutóbbi), mindenhol csillag | A design vászon (Yoga hOMe – design) szerint. |
+| Új óra: cél (19 óratípus), erősítésnél testrész, idő (10–90 perc), szint, kímélendő területek; alatta a szakaszok becsült perce | A terv szerinti szűrés; a szakaszidő látszik, mielőtt generál. |
+| **19 óratípus** receptként (`src/lib/goals.ts`): hatásterület- és kategória-súlyok, kiemelt pózok, kizárt kategóriák/pózok, kizárt panaszok, „kíméletes” (csak kezdő) jelölés, bemelegítő sorozatok, ráhangoló légzés, szakaszarány-szorzó, záró pózok, biztonsági figyelmeztetés | A meglévő adatokból (hatásterület, kategória, szint, ellenjavallat-szöveg) már értelmes órák állnak össze; az új pózmezők (izomcsoport, szakasz, intenzitás) később pontosítják. |
+| Generátor (`src/lib/generator.ts`): szakaszidők az alaptáblázatból × óratípus × változat; pontozás + kis véletlen; állótól a talajig rendezés; hátrahajlás után gyermekpóz ellenpóz; túl hosszú óránál a fő rész végéről elhagy | A terv 6. pontja. Determinisztikus mag: ugyanaz a kérés és mag ugyanazt adja. |
+| **Három változat**: kiegyensúlyozott, lendületesebb, nyugodtabb | Legyen választék, és mégse kelljen sokat görgetni. „Újra” gomb: új változatok. |
+| Kímélendő területnél a póz kimarad; kivétel a pihenő pózok (pl. savászana), ezek az ellenjavallat szövegét kapják megjegyzésként | Az ellenjavallat-szövegek sokszor módosítást írnak (párna a térd alá), nem tiltást; a pihenő pózok nélkül nem lenne relaxáció. |
+| Oldalas pózok becslése azonosító és kategória alapján (`isSidedPose`) | Az adatban még nincs ilyen mező. |
+| Az irodai mini legfeljebb 30 perc (`maxMinutes`) | Csak ülő/álló kezdő pózokból hosszabb óra ismétlődne. |
+| A változat csak kiválasztáskor vagy csillagozáskor mentődik; a mentett óra a szerkesztőben módosítható | Ne teljen meg a lista ki nem próbált órákkal. Új mező: `Plan.generator` (cél, idő, szint, kímélt területek, változat). |
+| „Mentett órák, amelyek illenek”: ugyanaz a cél, ±25% (legalább ±5 perc) időtartam | Gabor: a meglévők listázása a generálás után. |
+| Tesztek (`tests/generator.test.ts`): minden óratípus × időtartam × változat időre stimmel, a szint, a kizárt kategóriák és a kímélt területek érvényesülnek | A generátor bővítésekor is biztonságos maradjon. |
+
+---
+
 ## Yoga hOMe 1. lépés – Független ág, új név, egyszerűsített felület (2026-11-02)
 
 **Gabor kérése:** a meglévő appot Mariann appjától teljesen független ágon visszük tovább,

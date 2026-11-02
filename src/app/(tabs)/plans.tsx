@@ -1,5 +1,5 @@
-import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useMemo, useState } from 'react';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button, Tag } from '../../components/ui';
 import { confirm } from '../../lib/confirm';
@@ -18,7 +18,11 @@ export default function PlansScreen() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [query, setQuery] = useState('');
-  const [mode, setMode] = useState<Mode>('orak');
+  const params = useLocalSearchParams<{ mode?: Mode }>();
+  const [mode, setMode] = useState<Mode>(params.mode ?? 'orak');
+  useEffect(() => {
+    if (params.mode) setMode(params.mode);
+  }, [params.mode]);
 
   const reload = useCallback(() => {
     listPlans(db).then(setPlans);

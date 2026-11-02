@@ -12,6 +12,15 @@ function PoseIcon({ color }: { color: ColorValue }) {
   );
 }
 
+function HomeIcon({ color }: { color: ColorValue }) {
+  const c = color as string;
+  return (
+    <Svg width={26} height={26} viewBox="0 0 24 24">
+      <Path d="M4 11l8-7 8 7v9H4z" stroke={c} strokeWidth={2} strokeLinejoin="round" fill="none" />
+    </Svg>
+  );
+}
+
 function PlanIcon({ color }: { color: ColorValue }) {
   const c = color as string;
   return (
@@ -34,7 +43,8 @@ export default function TabsLayout() {
         headerTitleStyle: { color: C.ink },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: 'Gyakorlattár', tabBarLabel: 'Gyakorlattár', tabBarIcon: PoseIcon }} />
+      <Tabs.Screen name="index" options={{ title: 'Yoga hOMe', tabBarLabel: 'Főoldal', tabBarIcon: HomeIcon }} />
+      <Tabs.Screen name="tar" options={{ title: 'Gyakorlattár', tabBarLabel: 'Gyakorlattár', tabBarIcon: PoseIcon }} />
       <Tabs.Screen name="plans" options={{ title: 'Óráim', tabBarLabel: 'Óráim', tabBarIcon: PlanIcon }} />
     </Tabs>
   );
