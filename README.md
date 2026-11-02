@@ -1,4 +1,4 @@
-# YogahOMe – Jóga otthon
+# Yoga hOMe – Jóga otthon
 
 Otthoni jóga app átlagos felhasználóknak (React Native + Expo, TypeScript – Android és iOS): célalapú, időtartamra generált órák, magyar narrációval. A Mariann-féle tanári óratervezőből indult, attól független ágon fejlődik (terv: `docs/terv.html`, döntések: `docs/DONTESEK.md`).
 
